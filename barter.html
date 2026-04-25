@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Бартерная биржа | Creators.kz</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        base: '#F8F7F5',
+                        text: '#1A1A1A',
+                        accent: '#9C1C4F',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --accent: #9C1C4F;
+            --accent-rgb: 156, 28, 79;
+        }
+        html, body {
+            background-color: #F8F7F5;
+            color: #1A1A1A;
+            scroll-behavior: smooth;
+        }
+        nav {
+            background: rgba(248, 247, 245, 0.96) !important;
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.08);
+        }
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -6px var(--accent);
+        }
+        .card-panel {
+            background: #FFFFFF;
+            border: 1px solid rgba(var(--accent-rgb), 0.08);
+            border-radius: 24px;
+            box-shadow: 0 12px 30px -12px rgba(var(--accent-rgb), 0.12);
+            transition: all 0.3s ease;
+        }
+        .card-panel:hover {
+            box-shadow: 0 20px 40px -12px rgba(var(--accent-rgb), 0.22);
+            transform: translateY(-4px);
+        }
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+        .tab-btn.inactive {
+            background: #F1F1F1;
+            color: #1A1A1A;
+        }
+        .footer-link {
+            transition: color 0.3s ease;
+        }
+        .footer-link:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+   <!-- ОБНОВЛЕННАЯ ШАПКА ПО СКРИНШОТУ -->
+<nav class="fixed w-full z-50 px-4 py-4 bg-[#F8F7F5] border-b border-gray-200 transition-all duration-300">
+    <div class="max-w-[1400px] mx-auto flex justify-between items-center gap-4">
+        
+        <!-- 1. Логотип -->
+        <a href="index.html" class="text-2xl font-black tracking-tight shrink-0">
+            CREATORS<span class="text-[var(--accent)]">.</span>KZ
+        </a>
+        
+        <!-- 2. Переключатель ролей -->
+        <div class="hidden lg:flex bg-gray-200/70 p-1 rounded-full items-center shrink-0">
+            <button class="px-6 py-2 text-sm font-bold text-gray-700 rounded-full transition-all">
+                Блогер
+            </button>
+            <button class="px-6 py-2 text-sm font-bold bg-[var(--accent)] text-white rounded-full shadow-md transition-all">
+                Заказчик
+            </button>
+        </div>
+        
+        <!-- 3. Центральное меню -->
+        <div class="hidden xl:flex items-center space-x-8 text-sm font-bold tracking-wide text-gray-800">
+            <a href="#how-it-works" class="hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
+            <a href="catalog.html" class="hover:text-[var(--accent)] transition">КАТАЛОГ</a>
+            <a href="barter.html" class="text-[var(--accent)] border-b-2 border-[var(--accent)] pb-1 flex items-center">
+                БАРТЕР 
+                <span class="bg-[#B85C7B] text-white text-[10px] px-2 py-0.5 rounded-full ml-2 font-semibold">NEW</span>
+            </a>
+            <a href="#about" class="hover:text-[var(--accent)] transition">О НАС</a>
+            <a href="contacts.html" class="hover:text-[var(--accent)] transition">КОНТАКТЫ</a>
+        </div>
+        
+        <!-- 4. Кнопка Вход / Регистрация -->
+        <div class="hidden lg:flex items-center shrink-0">
+            <a href="#auth" class="px-6 py-2.5 rounded-full text-sm font-bold border border-gray-300 bg-transparent hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
+                Вход / Регистрация
+            </a>
+        </div>
+        
+        <!-- Мобильное меню (бургер) -->
+        <button class="xl:hidden text-2xl text-gray-800 focus:outline-none ml-auto">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        
+    </div>
+</nav>
+
+    <main class="flex-grow pt-32 pb-20">
+        
+        <section class="px-4 max-w-7xl mx-auto text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-black mb-4 tracking-tight">Бартерная <span class="text-[var(--accent)]">биржа</span></h1>
+            <p class="text-gray-600 max-w-2xl mx-auto md:text-lg mb-10">Быстрый обмен: бренды предлагают свои продукты и услуги, блогеры забирают их за контент. Предложения сгорают через 24 часа!</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-lg mx-auto bg-white p-2 rounded-[2rem] shadow-sm border border-gray-100">
+                <button id="btn-blogger" onclick="switchView('blogger')" class="tab-btn active flex-1 py-3 px-6 rounded-3xl font-bold text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-fire"></i> Лента заявок
+                </button>
+                <button id="btn-brand" onclick="switchView('brand')" class="tab-btn inactive flex-1 py-3 px-6 rounded-3xl font-bold text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Предложить бартер
+                </button>
+            </div>
+        </section>
+
+      <section id="view-blogger" class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="card-panel p-6 flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-4 py-1 rounded-bl-xl shadow-md">
+                        <i class="fa-regular fa-clock mr-1"></i> Осталось 14 ч.
+                    </div>
+                    <div class="flex items-center gap-4 mb-4 mt-2">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden shrink-0">
+                            <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=150&auto=format&fit=crop" alt="Cafe" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">Сеть кофеен "Zerno"</h3>
+                            <p class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Алматы, Казахстан</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 flex-grow">
+                        <h4 class="font-black text-xl mb-2 text-[var(--accent)]">Депозит 15 000 ₸ на меню</h4>
+                        <p class="text-sm text-gray-600 mb-3">Приглашаем на тест нашего нового спешелти-меню. От вас требуется прийти в любую кофейню сети.</p>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 text-sm">
+                            <div class="font-semibold mb-1 text-xs uppercase text-gray-500">Требования:</div>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>От 3 000 подписчиков</li>
+                                <li>Снять 1 Reels + 2 Stories</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <div class="text-xs text-gray-500 font-semibold">Откликов: 12</div>
+                        <button class="btn-accent px-6 py-2.5 rounded-full font-bold text-sm">Откликнуться</button>
+                    </div>
+                </div>
+
+                <div class="card-panel p-6 flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-orange-500 text-white text-xs font-bold px-4 py-1 rounded-bl-xl shadow-md">
+                        <i class="fa-regular fa-clock mr-1"></i> Осталось 5 ч.
+                    </div>
+                    <div class="flex items-center gap-4 mb-4 mt-2">
+                        <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white shrink-0">BL</div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">BlackLine Cosmetics</h3>
+                            <p class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> СНГ / Доставка</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 flex-grow">
+                        <h4 class="font-black text-xl mb-2 text-[var(--accent)]">Бокс уходовой косметики</h4>
+                        <p class="text-sm text-gray-600 mb-3">Отправляем наш новый набор (сыворотка + крем + тоник) курьером. Розничная цена 8 500 ₽.</p>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 text-sm">
+                            <div class="font-semibold mb-1 text-xs uppercase text-gray-500">Требования:</div>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>От 10 000 подписчиков</li>
+                                <li>Распаковка в Stories</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <div class="text-xs text-gray-500 font-semibold">Откликов: 34</div>
+                        <button class="btn-accent px-6 py-2.5 rounded-full font-bold text-sm">Откликнуться</button>
+                    </div>
+                </div>
+
+                <div class="card-panel p-6 flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-4 py-1 rounded-bl-xl shadow-md">
+                        <i class="fa-regular fa-clock mr-1"></i> Осталось 2 ч.
+                    </div>
+                    <div class="flex items-center gap-4 mb-4 mt-2">
+                        <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 shrink-0">
+                            <i class="fa-solid fa-camera-retro text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">TechStore.kz</h3>
+                            <p class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Астана, Казахстан</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 flex-grow">
+                        <h4 class="font-black text-xl mb-2 text-[var(--accent)]">Стабилизатор для смартфона</h4>
+                        <p class="text-sm text-gray-600 mb-3">Дарим трехосевой стаб за честный видео-обзор его возможностей в работе креатора.</p>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 text-sm">
+                            <div class="font-semibold mb-1 text-xs uppercase text-gray-500">Требования:</div>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>Техно-блог или Мобилография</li>
+                                <li>Полноценный Reels-обзор</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <div class="text-xs text-gray-500 font-semibold">Откликов: 56</div>
+                        <button class="btn-accent px-6 py-2.5 rounded-full font-bold text-sm">Откликнуться</button>
+                    </div>
+                </div>
+
+                <div class="card-panel p-6 flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold px-4 py-1 rounded-bl-xl shadow-md">
+                        <i class="fa-regular fa-clock mr-1"></i> Осталось 22 ч.
+                    </div>
+                    <div class="flex items-center gap-4 mb-4 mt-2">
+                        <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden shrink-0 text-center flex items-center justify-center font-bold">
+                            U
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">Urban Wear</h3>
+                            <p class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Москва / Доставка</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 flex-grow">
+                        <h4 class="font-black text-xl mb-2 text-[var(--accent)]">Худи из новой коллекции</h4>
+                        <p class="text-sm text-gray-600 mb-3">Любая вещь на выбор из коллекции "Autumn 2026". Отправляем в любой город.</p>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 text-sm">
+                            <div class="font-semibold mb-1 text-xs uppercase text-gray-500">Требования:</div>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>Стиль: Streetwear / Fashion</li>
+                                <li>Фото-пост или стильный Transition</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <div class="text-xs text-gray-500 font-semibold">Откликов: 8</div>
+                        <button class="btn-accent px-6 py-2.5 rounded-full font-bold text-sm">Откликнуться</button>
+                    </div>
+                </div>
+
+                <div class="card-panel p-6 flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-4 py-1 rounded-bl-xl shadow-md">
+                        <i class="fa-regular fa-clock mr-1"></i> Осталось 8 ч.
+                    </div>
+                    <div class="flex items-center gap-4 mb-4 mt-2">
+                        <div class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white shrink-0">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">SkillUp Online</h3>
+                            <p class="text-xs text-gray-500"><i class="fa-solid fa-globe mr-1"></i> Весь мир / Удаленно</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 flex-grow">
+                        <h4 class="font-black text-xl mb-2 text-[var(--accent)]">Курс "Продвижение в TikTok"</h4>
+                        <p class="text-sm text-gray-600 mb-3">Даем полный доступ к курсу (цена 45 000 ₸) за честный отзыв в ваших соцсетях.</p>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 text-sm">
+                            <div class="font-semibold mb-1 text-xs uppercase text-gray-500">Требования:</div>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>Экспертный блог или Саморазвитие</li>
+                                <li>Серия из 3-х Stories с прогревом</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <div class="text-xs text-gray-500 font-semibold">Откликов: 21</div>
+                        <button class="btn-accent px-6 py-2.5 rounded-full font-bold text-sm">Откликнуться</button>
+                    </div>
+                </div>
+
+                <div class="card-panel p-6 flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-orange-500 text-white text-xs font-bold px-4 py-1 rounded-bl-xl shadow-md">
+                        <i class="fa-regular fa-clock mr-1"></i> Осталось 11 ч.
+                    </div>
+                    <div class="flex items-center gap-4 mb-4 mt-2">
+                        <div class="w-12 h-12 rounded-full bg-gray-100 overflow-hidden shrink-0">
+                            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=150&auto=format&fit=crop" alt="Gym" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">PowerGym</h3>
+                            <p class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Алматы</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 flex-grow">
+                        <h4 class="font-black text-xl mb-2 text-[var(--accent)]">Безлимит на 3 месяца</h4>
+                        <p class="text-sm text-gray-600 mb-3">Абонемент в наш зал (включая бассейн) взамен на отметку в профиле и обзор раздевалок.</p>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 text-sm">
+                            <div class="font-semibold mb-1 text-xs uppercase text-gray-500">Требования:</div>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>Фитнес-блогеры / ЗОЖ</li>
+                                <li>Минимум 5 000 подписчиков</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <div class="text-xs text-gray-500 font-semibold">Откликов: 19</div>
+                        <button class="btn-accent px-6 py-2.5 rounded-full font-bold text-sm">Откликнуться</button>
+                    </div>
+                </div>
+
+                <div class="card-panel p-6 flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-4 py-1 rounded-bl-xl shadow-md">
+                        <i class="fa-regular fa-clock mr-1"></i> Осталось 3 ч.
+                    </div>
+                    <div class="flex items-center gap-4 mb-4 mt-2">
+                        <div class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-500 shrink-0">
+                            <i class="fa-solid fa-sparkles"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">Glow Up Studio</h3>
+                            <p class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Ташкент, Узбекистан</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 flex-grow">
+                        <h4 class="font-black text-xl mb-2 text-[var(--accent)]">Сложное окрашивание</h4>
+                        <p class="text-sm text-gray-600 mb-3">Любой вид окрашивания (Airtouch, Balayage) от топ-мастера студии. Материалы включены.</p>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 text-sm">
+                            <div class="font-semibold mb-1 text-xs uppercase text-gray-500">Требования:</div>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>Бьюти-блог / Лайфстайл</li>
+                                <li>Reels "До / После"</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <div class="text-xs text-gray-500 font-semibold">Откликов: 42</div>
+                        <button class="btn-accent px-6 py-2.5 rounded-full font-bold text-sm">Откликнуться</button>
+                    </div>
+                </div>
+
+                <div class="card-panel p-6 flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold px-4 py-1 rounded-bl-xl shadow-md">
+                        <i class="fa-regular fa-clock mr-1"></i> Осталось 20 ч.
+                    </div>
+                    <div class="flex items-center gap-4 mb-4 mt-2">
+                        <div class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center text-orange-700 shrink-0">
+                            <i class="fa-solid fa-couch"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight">Home Vibes</h3>
+                            <p class="text-xs text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> Доставка по СНГ</p>
+                        </div>
+                    </div>
+                    <div class="mb-4 flex-grow">
+                        <h4 class="font-black text-xl mb-2 text-[var(--accent)]">Набор аромасвечей (3 шт)</h4>
+                        <p class="text-sm text-gray-600 mb-3">Натуральный соевый воск, премиальные ароматы. Идеально для уютных кадров.</p>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 text-sm">
+                            <div class="font-semibold mb-1 text-xs uppercase text-gray-500">Требования:</div>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li>Эстетичный блог / Уют</li>
+                                <li>Атмосферное фото или Stories</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <div class="text-xs text-gray-500 font-semibold">Откликов: 15</div>
+                        <button class="btn-accent px-6 py-2.5 rounded-full font-bold text-sm">Откликнуться</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-[#9C1C4F]/10 pt-16 pb-8" id="contacts">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="text-3xl font-black tracking-[-2px] mb-6">
+                        CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                    </div>
+                    <p class="text-[#666] text-sm max-w-sm leading-relaxed">
+                        Группа компаний AYACOM. ТОО «KAF». <br/> БИН: 221240005124. <br/> Официальная платформа для инфлюенс-маркетинга в Казахстане и России.
+                    </p>
+                    <div class="flex space-x-4 mt-8">
+                        <a href="#" class="w-12 h-12 rounded-3xl bg-white shadow flex items-center justify-center text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-2xl transition"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-3xl bg-white shadow flex items-center justify-center text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-2xl transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Навигация</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="#how-it-works" class="hover:text-[var(--accent)]">Как это работает</a></li>
+                       <li><a href="catalog.html" class="hover:text-[var(--accent)]">База блогеров</a></li>
+                        <li><a href="#register" class="hover:text-[var(--accent)]">Регистрация</a></li>
+                        <li><a href="#business" class="hover:text-[var(--accent)]">Для кого мы работаем</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Контакты</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="#" class="hover:text-[var(--accent)]">+7 (717) 555-12-34</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)]">info@creators.kz</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)]">Астана, ул. Мангилик Ел, 22</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-xs text-[#999] border-t border-[#9C1C4F]/10 pt-8">
+                © 2026 Creators.kz — Все права защищены
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchView(role) {
+            const btnBlogger = document.getElementById('btn-blogger');
+            const btnBrand = document.getElementById('btn-brand');
+            const viewBlogger = document.getElementById('view-blogger');
+            const viewBrand = document.getElementById('view-brand');
+
+            if (role === 'blogger') {
+                btnBlogger.classList.replace('inactive', 'active');
+                btnBrand.classList.replace('active', 'inactive');
+                viewBlogger.classList.remove('hidden');
+                if(viewBrand) viewBrand.classList.add('hidden');
+            } else {
+                btnBrand.classList.replace('inactive', 'active');
+                btnBlogger.classList.replace('active', 'inactive');
+                if(viewBrand) viewBrand.classList.remove('hidden');
+                viewBlogger.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

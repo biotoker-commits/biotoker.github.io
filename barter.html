@@ -43,6 +43,7 @@
             box-shadow: 0 4px 20px -4px rgba(var(--accent-rgb), 0.15);
             border-bottom: 1px solid rgba(var(--accent-rgb), 0.08);
         }
+        
       
         .btn-accent {
             background: var(--accent);
@@ -148,7 +149,7 @@
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
-   <nav class="fixed w-full z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 px-4 py-4 shadow-sm">
+    <nav class="fixed w-full z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 px-4 py-4 shadow-sm">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <a href="index.html" class="flex items-center space-x-2">
@@ -158,63 +159,55 @@
                 </a>
             </div>
             
-             <!-- Переключатель ролей (только десктоп) -->
             <div class="hidden lg:flex items-center ml-8">
-                <div id="role-toggle" class="role-toggle">
-                    <button onclick="switchRole('blogger')" id="btn-blogger">Блогер</button>
-                    <button onclick="switchRole('customer')" id="btn-customer" class="active">Заказчик</button>
+                <div class="role-toggle">
+                    <button onclick="switchRole('blogger')">Блогер</button>
+                    <button onclick="switchRole('customer')" class="active">Заказчик</button>
                 </div>
             </div>
             
-            <div class="hidden xl:flex items-center space-x-8 text-sm font-bold tracking-wide text-gray-800">
-                <a href="work.html" class="hover:text-[var(--accent)] transition uppercase">Как работает</a>
-                <a href="catalog.html" class="hover:text-[var(--accent)] transition uppercase">Каталог</a>
-                <a href="barter.html" class="text-[var(--accent)] border-b-2 border-[var(--accent)] pb-1 flex items-center uppercase">
-                    Бартер 
-                    <span class="bg-[#B85C7B] text-white text-[10px] px-2 py-0.5 rounded-full ml-2 font-semibold">NEW</span>
-                </a>
-                <a href="onas.html" class="hover:text-[var(--accent)] transition uppercase">О нас</a>
-                <a href="contacs.html" class="hover:text-[var(--accent)] transition uppercase">Контакты</a>
+            <div class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide text-gray-800">
+<a href="work.html" class="hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
+    <a href="catalog.html" class="hover:text-[var(--accent)] transition">КАТАЛОГ</a>
+               <a href="barter.html" class="text-[var(--accent)] border-b-2 border-[var(--accent)] pb-1">БАРТЕР <span class="bg-[var(--accent)] text-white text-[10px] px-2 py-0.5 rounded-full ml-1 animate-pulse">NEW</span></a>
+    <a href="onas.html" class="hover:text-[var(--accent)] transition">О НАС</a>
+    <a href="contacs.html" class="hover:text-[var(--accent)] transition">КОНТАКТЫ</a>
             </div>
             
-            <div class="hidden lg:flex items-center shrink-0">
-                <a href="#auth" class="px-6 py-2.5 rounded-full text-sm font-bold border border-gray-300 bg-transparent hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
-                    Вход / Регистрация
-                </a>
+            <div class="flex items-center gap-3">
+                <a href="index.html#register" class="hidden md:flex text-sm font-semibold px-5 py-2.5 rounded-3xl border border-[#9C1C4F]/20 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">Вход / Регистрация</a>
+                <button class="lg:hidden text-gray-800" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
             </div>
-            
-            <button onclick="toggleMobileMenu()" class="xl:hidden text-2xl text-gray-800 focus:outline-none">
-                <i class="fa-solid fa-bars"></i>
-            </button>
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[110] flex flex-col p-8 mobile-menu-closed xl:hidden">
-        <div class="flex justify-between items-center mb-12">
-            <span class="text-2xl font-black">MENU</span>
-            <button onclick="toggleMobileMenu()" class="text-3xl"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="flex flex-col space-y-6 text-xl font-bold">
-            <a href="work.html" onclick="toggleMobileMenu()">Как работает</a>
-            <a href="catalog.html" onclick="toggleMobileMenu()">Каталог</a>
-            <a href="barter.html" class="text-[var(--accent)]" onclick="toggleMobileMenu()">Бартер</a>
-            <a href="onas.html" onclick="toggleMobileMenu()">О нас</a>
-            <a href="contacs.html" onclick="toggleMobileMenu()">Контакты</a>
-        </div>
-        <div class="mt-auto space-y-4">
-            <a href="#auth" class="block w-full py-4 text-center rounded-2xl border border-gray-300 font-bold">Вход</a>
-            <div class="flex bg-gray-100 p-1 rounded-full">
-                <button class="flex-1 py-3 text-sm font-bold bg-[var(--accent)] text-white rounded-full">Заказчик</button>
-                <button class="flex-1 py-3 text-sm font-bold">Блогер</button>
+    <div class="fixed inset-0 z-40 bg-[#F8F7F5] pt-20" id="mobile-menu">
+        <div class="p-6 space-y-4">
+            <div class="mb-6">
+                <div class="role-toggle mx-auto w-fit">
+                    <button onclick="switchRole('blogger')">Блогер</button>
+                    <button onclick="switchRole('customer')" class="active">Заказчик</button>
+                </div>
             </div>
+                       <a href="index.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">ГЛАВНАЯ</a>
+            <a href="work.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
+            <a href="catalog.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КАТАЛОГ</a>
+            <a href="barter.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">БАРТЕР</a>
+            <a href="onas.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">О НАС</a>
+            <a href="contacs.html" class="block text-lg font-semibold text-[var(--accent)]">КОНТАКТЫ</a>
+            <hr class="border-gray-200">
+            <a href="index.html#register" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">Вход / Регистрация</a>
         </div>
     </div>
+</nav>
 
     <main class="flex-grow pt-32 pb-20">
         
         <section class="px-4 max-w-7xl mx-auto text-center mb-10">
             <h1 class="text-4xl md:text-5xl font-black mb-4 tracking-tight">Бартерная <span class="text-[var(--accent)]">биржа</span></h1>
-            <p class="text-gray-600 max-w-2xl mx-auto md:text-lg mb-10">Быстрый обмен: бренды предлагают продукты, блогеры забирают их за контент.</p>
+            <p class="text-gray-600 max-w-2xl mx-auto md:text-lg mb-10">Быстрый обмен: бренды предлагают свои продукты и услуги, блогеры забирают их за контент. Предложения сгорают через 24 часа!</p>
             
             <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-lg mx-auto bg-white p-2 rounded-[2rem] shadow-sm border border-gray-100">
                 <button id="btn-blogger" onclick="switchView('blogger')" class="tab-btn active flex-1 py-3 px-6 rounded-3xl font-bold text-sm flex items-center justify-center gap-2">
@@ -225,7 +218,8 @@
                 </button>
             </div>
         </section>
-    <section id="view-blogger" class="max-w-7xl mx-auto px-4">
+
+      <section id="view-blogger" class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <div class="card-panel p-6 flex flex-col relative overflow-hidden">
@@ -535,81 +529,9 @@
         </div>
     </section>
 
-        <section id="view-brand" class="max-w-3xl mx-auto px-4 hidden">
-            <div class="card-panel p-6 md:p-10">
-                <h2 class="text-2xl font-black mb-2">Создать бартерное предложение</h2>
-                <p class="text-sm text-gray-500 mb-8">Ваше предложение появится в ленте на 24 часа после модерации.</p>
-                
-                <form class="space-y-6">
-                    <div>
-                        <label class="block text-sm font-bold mb-2 uppercase tracking-wide">Ваш бренд / Компания *</label>
-                        <input type="text" placeholder="Название вашей компании" class="w-full p-4 bg-[#F8F7F5] border border-gray-200 rounded-2xl focus:border-[var(--accent)] outline-none text-sm transition">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-bold mb-2 uppercase tracking-wide">Что вы предлагаете? *</label>
-                        <input type="text" placeholder="Например: Депозит 15000₸ или Набор косметики" class="w-full p-4 bg-[#F8F7F5] border border-gray-200 rounded-2xl focus:border-[var(--accent)] outline-none text-sm transition">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-bold mb-2 uppercase tracking-wide">Условия бартера (ТЗ) *</label>
-                        <textarea rows="4" placeholder="Опишите, что именно должен сделать блогер (сколько сторис, какой формат)..." class="w-full p-4 bg-[#F8F7F5] border border-gray-200 rounded-2xl focus:border-[var(--accent)] outline-none text-sm transition"></textarea>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-bold mb-2 uppercase tracking-wide">Минимум подписчиков</label>
-                            <select class="w-full p-4 bg-[#F8F7F5] border border-gray-200 rounded-2xl focus:border-[var(--accent)] outline-none text-sm transition appearance-none">
-                                <option>От 1 000</option>
-                                <option>От 5 000</option>
-                                <option>От 10 000</option>
-                                <option>От 50 000</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold mb-2 uppercase tracking-wide">Город / Гео</label>
-                            <input type="text" placeholder="Алматы, Астана или 'Весь мир'" class="w-full p-4 bg-[#F8F7F5] border border-gray-200 rounded-2xl focus:border-[var(--accent)] outline-none text-sm transition">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-bold mb-3 uppercase tracking-wide">Формат контента</label>
-                        <div class="grid grid-cols-2 gap-3">
-                            <label class="flex items-center gap-2 bg-[#F8F7F5] px-4 py-3 rounded-xl border border-gray-200 cursor-pointer hover:border-[var(--accent)] transition">
-                                <input type="checkbox" class="accent-[var(--accent)] w-4 h-4">
-                                <span class="text-sm font-bold">Reels / Shorts</span>
-                            </label>
-                            <label class="flex items-center gap-2 bg-[#F8F7F5] px-4 py-3 rounded-xl border border-gray-200 cursor-pointer hover:border-[var(--accent)] transition">
-                                <input type="checkbox" class="accent-[var(--accent)] w-4 h-4">
-                                <span class="text-sm font-bold">Stories</span>
-                            </label>
-                            <label class="flex items-center gap-2 bg-[#F8F7F5] px-4 py-3 rounded-xl border border-gray-200 cursor-pointer hover:border-[var(--accent)] transition">
-                                <input type="checkbox" class="accent-[var(--accent)] w-4 h-4">
-                                <span class="text-sm font-bold">Пост в ленту</span>
-                            </label>
-                            <label class="flex items-center gap-2 bg-[#F8F7F5] px-4 py-3 rounded-xl border border-gray-200 cursor-pointer hover:border-[var(--accent)] transition">
-                                <input type="checkbox" class="accent-[var(--accent)] w-4 h-4">
-                                <span class="text-sm font-bold">YouTube</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="border-2 border-dashed border-gray-300 rounded-2xl p-8 text-center hover:border-[var(--accent)] transition cursor-pointer bg-gray-50">
-                        <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-400 mb-2"></i>
-                        <p class="text-sm font-bold uppercase">Загрузить фото товара</p>
-                        <p class="text-xs text-gray-500 mt-1">Квадратное фото (1:1) выглядит лучше всего</p>
-                    </div>
-
-                    <button type="button" class="btn-accent w-full py-5 rounded-2xl font-black uppercase tracking-widest text-sm mt-4 shadow-lg">
-                        Опубликовать бартер
-                    </button>
-                </form>
-            </div>
-        </section>
-
     </main>
 
-     <!-- FOOTER -->
+    <!-- FOOTER -->
     <footer class="border-t border-[#9C1C4F]/10 pt-16 pb-8" id="contacts">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-12">
@@ -650,54 +572,22 @@
     </footer>
 
     <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            if (menu.classList.contains('mobile-menu-closed')) {
-                menu.classList.remove('mobile-menu-closed');
-                menu.classList.add('mobile-menu-open');
-                document.body.style.overflow = 'hidden';
-            } else {
-                menu.classList.remove('mobile-menu-open');
-                menu.classList.add('mobile-menu-closed');
-                document.body.style.overflow = 'auto';
-            }
-        }
-
         function switchView(role) {
             const btnBlogger = document.getElementById('btn-blogger');
             const btnBrand = document.getElementById('btn-brand');
             const viewBlogger = document.getElementById('view-blogger');
             const viewBrand = document.getElementById('view-brand');
-            
-            // Кнопки в шапке (для синхронизации)
-            const navBtns = document.querySelectorAll('.nav-role-btn');
 
             if (role === 'blogger') {
-                btnBlogger.classList.add('active');
-                btnBlogger.classList.remove('inactive');
-                btnBrand.classList.add('inactive');
-                btnBrand.classList.remove('active');
+                btnBlogger.classList.replace('inactive', 'active');
+                btnBrand.classList.replace('active', 'inactive');
                 viewBlogger.classList.remove('hidden');
-                viewBrand.classList.add('hidden');
-                
-                // Стили шапки
-                navBtns[0].classList.add('bg-[var(--accent)]', 'text-white', 'shadow-md');
-                navBtns[0].classList.remove('text-gray-700');
-                navBtns[1].classList.remove('bg-[var(--accent)]', 'text-white', 'shadow-md');
-                navBtns[1].classList.add('text-gray-700');
+                if(viewBrand) viewBrand.classList.add('hidden');
             } else {
-                btnBrand.classList.add('active');
-                btnBrand.classList.remove('inactive');
-                btnBlogger.classList.add('inactive');
-                btnBlogger.classList.remove('active');
-                viewBrand.classList.remove('hidden');
+                btnBrand.classList.replace('inactive', 'active');
+                btnBlogger.classList.replace('active', 'inactive');
+                if(viewBrand) viewBrand.classList.remove('hidden');
                 viewBlogger.classList.add('hidden');
-
-                // Стили шапки
-                navBtns[1].classList.add('bg-[var(--accent)]', 'text-white', 'shadow-md');
-                navBtns[1].classList.remove('text-gray-700');
-                navBtns[0].classList.remove('bg-[var(--accent)]', 'text-white', 'shadow-md');
-                navBtns[0].classList.add('text-gray-700');
             }
         }
     </script>

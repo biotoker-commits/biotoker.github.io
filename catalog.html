@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Каталог блогеров | Creators.kz</title>
+   
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        base: '#F8F7F5',
+                        text: '#1A1A1A',
+                        accent: '#9C1C4F',
+                        'blogger-red': '#EF233C',
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                        'float-1': 'float 6s ease-in-out infinite',
+                        'float-2': 'float 5s ease-in-out infinite reverse',
+                        'float-3': 'float 7s ease-in-out infinite',
+                        'float-slow': 'floatSlow 14s ease-in-out infinite',
+                        'organic-float': 'organicFloat 18s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-32px) rotate(6deg)' },
+                        },
+                        floatSlow: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-28px) rotate(-8deg)' },
+                        },
+                        organicFloat: {
+                            '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                            '25%': { transform: 'translate(25px, -15px) rotate(8deg)' },
+                            '50%': { transform: 'translate(0, -30px) rotate(0deg)' },
+                            '75%': { transform: 'translate(-20px, -10px) rotate(-8deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #9C1C4F;
+            --accent-rgb: 156, 28, 79;
+        }
+       
+        html, body {
+            background-color: #F8F7F5;
+            color: #1A1A1A;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+       
+        nav {
+            background: rgba(248, 247, 245, 0.96) !important;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 4px 20px -4px rgba(var(--accent-rgb), 0.15);
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.08);
+        }
+       
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px -6px var(--accent);
+        }
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px -8px var(--accent);
+        }
+       
+        .card-panel {
+            background: #FFFFFF;
+            border: 1px solid rgba(var(--accent-rgb), 0.08);
+            border-radius: 24px;
+            box-shadow: 0 12px 30px -12px rgba(var(--accent-rgb), 0.12);
+            transition: all 0.3s ease;
+        }
+        .card-panel:hover {
+            box-shadow: 0 20px 40px -12px rgba(var(--accent-rgb), 0.22);
+            transform: translateY(-4px);
+        }
+       
+        .blogger-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .blogger-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px -12px rgba(var(--accent-rgb), 0.18);
+        }
+       
+        .role-toggle {
+            background: #F1F1F1;
+            border-radius: 9999px;
+            padding: 4px;
+            display: flex;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+        }
+        .role-toggle button {
+            flex: 1;
+            padding: 8px 20px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .role-toggle button.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 12px -4px var(--accent);
+        }
+       
+        select, input {
+            transition: all 0.3s ease;
+        }
+        select:focus, input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15);
+        }
+       
+        .filter-tag {
+            background: white;
+            border: 1px solid rgba(var(--accent-rgb), 0.2);
+        }
+       
+        @media (max-width: 640px) {
+            .section-padding { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+        }
+       
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            transform: translateY(-100%);
+        }
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+<div class="relative w-full overflow-hidden">
+    <!-- NAV — полностью идентичен главной странице -->
+    <nav class="fixed w-full z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 px-4 md:px-6 py-4 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="/" class="text-2xl md:text-3xl font-black tracking-[-2px]">
+                    CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                </a>
+            </div>
+            <!-- Переключатель Блогер / Заказчик — ТОЧНО как на главной -->
+            <div class="hidden lg:flex items-center ml-8">
+                <div id="role-toggle" class="role-toggle">
+                    <button onclick="switchRole('blogger')" id="btn-blogger" class="">Блогер</button>
+                    <button onclick="switchRole('customer')" id="btn-customer" class="active">Заказчик</button>
+                </div>
+            </div>
+            <div class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide text-gray-800">
+                <a href="/" class="hover:text-[var(--accent)] transition">ГЛАВНАЯ</a>
+                <a href="/catalog" class="text-[var(--accent)] font-bold">КАТАЛОГ</a>
+                <a href="#how-it-works" class="hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
+                <a href="#business" class="hover:text-[var(--accent)] transition">О НАС</a>
+                <a href="#contacts" class="hover:text-[var(--accent)] transition">КОНТАКТЫ</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="#register" class="hidden md:flex text-sm font-semibold px-5 py-2.5 rounded-3xl border border-[#9C1C4F]/20 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">Вход / Регистрация</a>
+                <button class="lg:hidden text-gray-800" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="fixed inset-0 z-40 bg-[#F8F7F5] pt-20" id="mobile-menu">
+        <div class="p-6 space-y-4">
+            <div class="mb-6">
+                <div id="mobile-role-toggle" class="role-toggle mx-auto w-fit">
+                    <button onclick="switchRole('blogger')" class="">Блогер</button>
+                    <button onclick="switchRole('customer')" class="active">Заказчик</button>
+                </div>
+            </div>
+            <a href="/" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">ГЛАВНАЯ</a>
+            <a href="/catalog" class="block text-lg font-semibold text-[var(--accent)]">КАТАЛОГ</a>
+            <a href="#how-it-works" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
+            <a href="#business" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">О НАС</a>
+            <a href="#contacts" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КОНТАКТЫ</a>
+            <hr class="border-gray-200">
+            <a href="#register" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">Вход / Регистрация</a>
+        </div>
+    </div>
+
+    <!-- КАТАЛОГ БЛОГЕРОВ -->
+    <section class="pt-20 pb-12 md:pt-24 section-padding min-h-screen" id="catalog">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            
+            <div class="flex justify-between items-end mb-8">
+                <h1 class="text-4xl md:text-5xl font-black tracking-[-2px]">Каталог блогеров</h1>
+                <div class="text-sm text-gray-500 hidden md:block">Найдено <span id="results-count" class="font-semibold text-[var(--accent)]">14</span> аккаунтов</div>
+            </div>
+
+            <!-- ФИЛЬТР — 2 строки по 3 параметра -->
+            <div class="card-panel p-6 md:p-8 mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="font-bold text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-[var(--accent)]"></i>
+                        Фильтр по блогерам
+                    </h2>
+                    <button onclick="clearFilters()" class="text-sm font-medium text-gray-500 hover:text-[var(--accent)] flex items-center gap-1">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        ОЧИСТИТЬ
+                    </button>
+                </div>
+
+                <!-- Первая строка (3 параметра) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 mb-2">Категории и ниши</label>
+                        <select class="w-full p-4 bg-white border border-gray-100 rounded-3xl text-sm focus:border-[var(--accent)]">
+                            <option value="">Все категории</option>
+                            <option value="business">Бизнес и СМИ</option>
+                            <option value="lifestyle">Образ жизни</option>
+                            <option value="news">Новости и СМИ</option>
+                            <option value="it">IT и технологии</option>
+                            <option value="travel">Путешествия</option>
+                            <option value="fashion">Мода и стиль</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 mb-2">Язык</label>
+                        <select class="w-full p-4 bg-white border border-gray-100 rounded-3xl text-sm focus:border-[var(--accent)]">
+                            <option value="">Все</option>
+                            <option value="ru">Русский</option>
+                            <option value="kz">Казахский</option>
+                            <option value="en">Английский</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 mb-2">Локация</label>
+                        <select id="location-filter" class="w-full p-4 bg-white border border-gray-100 rounded-3xl text-sm focus:border-[var(--accent)]">
+                            <option value="all">Казахстан</option>
+                            <option value="astana">Астана</option>
+                            <option value="almaty">Алматы</option>
+                            <option value="moscow">Москва</option>
+                            <option value="spb">Санкт-Петербург</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Вторая строка (3 параметра) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 mb-2">Количество подписчиков</label>
+                        <select class="w-full p-4 bg-white border border-gray-100 rounded-3xl text-sm focus:border-[var(--accent)]">
+                            <option value="">Любое</option>
+                            <option value="10k">от 10 000</option>
+                            <option value="50k">от 50 000</option>
+                            <option value="100k">от 100 000</option>
+                            <option value="500k">от 500 000</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 mb-2">Количество публикаций</label>
+                        <select class="w-full p-4 bg-white border border-gray-100 rounded-3xl text-sm focus:border-[var(--accent)]">
+                            <option value="">Любое</option>
+                            <option value="100">от 100</option>
+                            <option value="500">от 500</option>
+                            <option value="1000">от 1 000</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 mb-2">Пол блогера</label>
+                        <select class="w-full p-4 bg-white border border-gray-100 rounded-3xl text-sm focus:border-[var(--accent)]">
+                            <option value="">Любой</option>
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-end">
+                    <button onclick="performSearch()" 
+                            class="btn-accent px-10 py-4 rounded-3xl font-bold text-base uppercase tracking-widest flex items-center gap-3">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        ПОИСК
+                    </button>
+                </div>
+            </div>
+
+            <!-- Вторичные фильтры + поиск -->
+            <div class="flex flex-wrap items-center gap-3 mb-8">
+                <select id="platform-filter" class="bg-white border border-gray-100 rounded-3xl px-5 py-3 text-sm font-medium focus:border-[var(--accent)]">
+                    <option value="instagram">Instagram</option>
+                    <option value="tiktok">TikTok</option>
+                    <option value="youtube">YouTube</option>
+                </select>
+
+                <div class="flex-1 min-w-[280px]">
+                    <input id="search-input" 
+                           type="text" 
+                           placeholder="Поиск по никнейму, тематике, имени или описанию профиля"
+                           class="w-full p-4 bg-white border border-gray-100 rounded-3xl text-sm focus:border-[var(--accent)]">
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                    <div onclick="this.remove()" class="filter-tag text-sm px-4 py-2 rounded-3xl flex items-center gap-2 cursor-pointer">
+                        Локация: Казахстан
+                        <i class="fa-solid fa-xmark text-xs"></i>
+                    </div>
+                    <div onclick="this.remove()" class="filter-tag text-sm px-4 py-2 rounded-3xl flex items-center gap-2 cursor-pointer">
+                        Instagram
+                        <i class="fa-solid fa-xmark text-xs"></i>
+                    </div>
+                    <button onclick="clearActiveFilters()" 
+                            class="text-xs font-medium bg-black text-white px-5 py-2 rounded-3xl flex items-center gap-1 hover:bg-gray-800">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        Сбросить
+                    </button>
+                </div>
+
+                <div class="ml-auto flex items-center gap-2 text-sm">
+                    <span class="text-gray-500">Сортировка по</span>
+                    <select class="bg-white border border-gray-100 rounded-3xl px-4 py-2 text-sm font-medium focus:border-[var(--accent)]">
+                        <option value="">умолчанию</option>
+                        <option value="subscribers">подписчикам ↓</option>
+                        <option value="engagement">вовлеченности ↓</option>
+                        <option value="price">цене ↓</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- РЕЗУЛЬТАТЫ — 10 карточек (3 старых + 7 новых) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                <!-- 1. Абай Амиров (старый) -->
+                <div class="blogger-card card-panel overflow-hidden group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=1000&auto=format&fit=crop" 
+                             alt="Абай Амиров" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 flex gap-1">
+                            <i class="fa-brands fa-instagram text-white text-xl drop-shadow-md"></i>
+                            <i class="fa-brands fa-youtube text-white text-xl drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-black text-xl">Абай Амиров</h4>
+                                <p class="text-[var(--accent)] font-semibold">@abayamirov</p>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-pink-100 text-pink-600 rounded-2xl text-xl">♂</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Казахстан, Атырау</p>
+                        <p class="text-xs mt-3 flex gap-2">
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Бизнес</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Образ_жизни</span>
+                        </p>
+                        <div class="mt-6 grid grid-cols-3 text-center border-t pt-6 text-sm">
+                            <div><div class="font-black text-xl">38.9k</div><div class="text-xs text-gray-500">Подписчики</div></div>
+                            <div><div class="font-black text-xl">1k</div><div class="text-xs text-gray-500">Посты</div></div>
+                            <div class="text-emerald-600"><i class="fa-solid fa-circle-check"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. ASTANA PLUS (старый) -->
+                <div class="blogger-card card-panel overflow-hidden group">
+                    <div class="h-64 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center relative">
+                        <div class="text-white text-center">
+                            <div class="text-4xl font-black tracking-[-2px]">ASTANA</div>
+                            <div class="text-3xl font-light -mt-2">PLUS</div>
+                            <i class="fa-brands fa-instagram text-5xl mt-3"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-black text-xl">ASTANA PLUS</h4>
+                                <p class="text-[var(--accent)] font-semibold">@astana pluskz</p>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-pink-100 text-pink-600 rounded-2xl text-xl">♂</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Казахстан, Астана</p>
+                        <p class="text-xs mt-3 flex gap-2">
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Новости</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#СМИ</span>
+                        </p>
+                        <div class="mt-6 grid grid-cols-3 text-center border-t pt-6 text-sm">
+                            <div><div class="font-black text-xl">35.8k</div><div class="text-xs text-gray-500">Подписчики</div></div>
+                            <div><div class="font-black text-xl">330</div><div class="text-xs text-gray-500">Посты</div></div>
+                            <div class="text-emerald-600"><i class="fa-solid fa-circle-check"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. AYACOM (старый) -->
+                <div class="blogger-card card-panel overflow-hidden group">
+                    <div class="h-64 bg-white border-2 border-red-500 flex items-center justify-center relative">
+                        <div class="text-center">
+                            <div class="inline-block bg-red-600 text-white text-xs font-bold px-4 py-1 rounded">AYACOM</div>
+                            <div class="text-3xl font-black text-gray-900 mt-2 tracking-widest">IT SOLUTIONS</div>
+                            <div class="flex justify-center gap-3 mt-6">
+                                <i class="fa-brands fa-instagram text-3xl text-red-500"></i>
+                                <i class="fa-brands fa-telegram text-3xl text-red-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-black text-xl">AYACOM</h4>
+                                <p class="text-[var(--accent)] font-semibold">@AYACOM</p>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-pink-100 text-pink-600 rounded-2xl text-xl">♂</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Казахстан</p>
+                        <p class="text-xs mt-3 flex gap-2">
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#IT</span>
+                        </p>
+                        <div class="mt-6 grid grid-cols-3 text-center border-t pt-6 text-sm">
+                            <div><div class="font-black text-xl">3.4k</div><div class="text-xs text-gray-500">Подписчики</div></div>
+                            <div><div class="font-black text-xl">352</div><div class="text-xs text-gray-500">Посты</div></div>
+                            <div class="text-emerald-600"><i class="fa-solid fa-circle-check"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. НОВЫЙ: Диана Каримова -->
+                <div class="blogger-card card-panel overflow-hidden group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop" alt="Диана Каримова" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 flex gap-1">
+                            <i class="fa-brands fa-tiktok text-white text-xl drop-shadow-md"></i>
+                            <i class="fa-brands fa-instagram text-white text-xl drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-black text-xl">Диана Каримова</h4>
+                                <p class="text-[var(--accent)] font-semibold">@diana.karim</p>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-pink-100 text-pink-600 rounded-2xl text-xl">♀</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Казахстан, Алматы</p>
+                        <p class="text-xs mt-3 flex gap-2">
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Мода</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Лайфстайл</span>
+                        </p>
+                        <div class="mt-6 grid grid-cols-3 text-center border-t pt-6 text-sm">
+                            <div><div class="font-black text-xl">142k</div><div class="text-xs text-gray-500">Подписчики</div></div>
+                            <div><div class="font-black text-xl">874</div><div class="text-xs text-gray-500">Посты</div></div>
+                            <div class="text-emerald-600"><i class="fa-solid fa-circle-check"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. НОВЫЙ: Артём Волков -->
+                <div class="blogger-card card-panel overflow-hidden group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" alt="Артём Волков" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 flex gap-1">
+                            <i class="fa-brands fa-youtube text-white text-xl drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-black text-xl">Артём Волков</h4>
+                                <p class="text-[var(--accent)] font-semibold">@artem_travelkz</p>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-pink-100 text-pink-600 rounded-2xl text-xl">♂</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Россия, Москва</p>
+                        <p class="text-xs mt-3 flex gap-2">
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Путешествия</span>
+                        </p>
+                        <div class="mt-6 grid grid-cols-3 text-center border-t pt-6 text-sm">
+                            <div><div class="font-black text-xl">87.2k</div><div class="text-xs text-gray-500">Подписчики</div></div>
+                            <div><div class="font-black text-xl">312</div><div class="text-xs text-gray-500">Посты</div></div>
+                            <div class="text-emerald-600"><i class="fa-solid fa-circle-check"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. НОВЫЙ: Айгерим Султанова -->
+                <div class="blogger-card card-panel overflow-hidden group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1000&auto=format&fit=crop" alt="Айгерим Султанова" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 flex gap-1">
+                            <i class="fa-brands fa-instagram text-white text-xl drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-black text-xl">Айгерим Султанова</h4>
+                                <p class="text-[var(--accent)] font-semibold">@aigerim_sult</p>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-pink-100 text-pink-600 rounded-2xl text-xl">♀</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Казахстан, Астана</p>
+                        <p class="text-xs mt-3 flex gap-2">
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Красота</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Здоровье</span>
+                        </p>
+                        <div class="mt-6 grid grid-cols-3 text-center border-t pt-6 text-sm">
+                            <div><div class="font-black text-xl">214k</div><div class="text-xs text-gray-500">Подписчики</div></div>
+                            <div><div class="font-black text-xl">1.2k</div><div class="text-xs text-gray-500">Посты</div></div>
+                            <div class="text-emerald-600"><i class="fa-solid fa-circle-check"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. НОВЫЙ: Максим Ким -->
+                <div class="blogger-card card-panel overflow-hidden group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1000&auto=format&fit=crop" alt="Максим Ким" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 flex gap-1">
+                            <i class="fa-brands fa-tiktok text-white text-xl drop-shadow-md"></i>
+                            <i class="fa-brands fa-youtube text-white text-xl drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-black text-xl">Максим Ким</h4>
+                                <p class="text-[var(--accent)] font-semibold">@maxkimtech</p>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-pink-100 text-pink-600 rounded-2xl text-xl">♂</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Казахстан, Алматы</p>
+                        <p class="text-xs mt-3 flex gap-2">
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#IT</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Гаджеты</span>
+                        </p>
+                        <div class="mt-6 grid grid-cols-3 text-center border-t pt-6 text-sm">
+                            <div><div class="font-black text-xl">64.5k</div><div class="text-xs text-gray-500">Подписчики</div></div>
+                            <div><div class="font-black text-xl">289</div><div class="text-xs text-gray-500">Посты</div></div>
+                            <div class="text-emerald-600"><i class="fa-solid fa-circle-check"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. НОВЫЙ: Софья Морозова -->
+                <div class="blogger-card card-panel overflow-hidden group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1534528741775-4c3c4c9c2f2f?q=80&w=1000&auto=format&fit=crop" alt="Софья Морозова" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 flex gap-1">
+                            <i class="fa-brands fa-instagram text-white text-xl drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-black text-xl">Софья Морозова</h4>
+                                <p class="text-[var(--accent)] font-semibold">@sofia_morozova</p>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-pink-100 text-pink-600 rounded-2xl text-xl">♀</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Россия, Санкт-Петербург</p>
+                        <p class="text-xs mt-3 flex gap-2">
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Кулинария</span>
+                        </p>
+                        <div class="mt-6 grid grid-cols-3 text-center border-t pt-6 text-sm">
+                            <div><div class="font-black text-xl">98.7k</div><div class="text-xs text-gray-500">Подписчики</div></div>
+                            <div><div class="font-black text-xl">645</div><div class="text-xs text-gray-500">Посты</div></div>
+                            <div class="text-emerald-600"><i class="fa-solid fa-circle-check"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. НОВЫЙ: Руслан Беков -->
+                <div class="blogger-card card-panel overflow-hidden group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop" alt="Руслан Беков" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 flex gap-1">
+                            <i class="fa-brands fa-youtube text-white text-xl drop-shadow-md"></i>
+                            <i class="fa-brands fa-tiktok text-white text-xl drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-black text-xl">Руслан Беков</h4>
+                                <p class="text-[var(--accent)] font-semibold">@ruslan_bek</p>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-pink-100 text-pink-600 rounded-2xl text-xl">♂</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Казахстан, Астана</p>
+                        <p class="text-xs mt-3 flex gap-2">
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Авто</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Мотивация</span>
+                        </p>
+                        <div class="mt-6 grid grid-cols-3 text-center border-t pt-6 text-sm">
+                            <div><div class="font-black text-xl">51.3k</div><div class="text-xs text-gray-500">Подписчики</div></div>
+                            <div><div class="font-black text-xl">418</div><div class="text-xs text-gray-500">Посты</div></div>
+                            <div class="text-emerald-600"><i class="fa-solid fa-circle-check"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. НОВЫЙ: Алина Токаева -->
+                <div class="blogger-card card-panel overflow-hidden group">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8c5d?q=80&w=1000&auto=format&fit=crop" alt="Алина Токаева" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 flex gap-1">
+                            <i class="fa-brands fa-instagram text-white text-xl drop-shadow-md"></i>
+                            <i class="fa-brands fa-tiktok text-white text-xl drop-shadow-md"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-black text-xl">Алина Токаева</h4>
+                                <p class="text-[var(--accent)] font-semibold">@alina_tokaeva</p>
+                            </div>
+                            <span class="inline-flex items-center justify-center w-8 h-8 bg-pink-100 text-pink-600 rounded-2xl text-xl">♀</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-1">Казахстан, Алматы</p>
+                        <p class="text-xs mt-3 flex gap-2">
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Фитнес</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-3xl">#Мотивация</span>
+                        </p>
+                        <div class="mt-6 grid grid-cols-3 text-center border-t pt-6 text-sm">
+                            <div><div class="font-black text-xl">178k</div><div class="text-xs text-gray-500">Подписчики</div></div>
+                            <div><div class="font-black text-xl">921</div><div class="text-xs text-gray-500">Посты</div></div>
+                            <div class="text-emerald-600"><i class="fa-solid fa-circle-check"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-[#9C1C4F]/10 pt-16 pb-8" id="contacts">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="text-3xl font-black tracking-[-2px] mb-6">
+                        CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                    </div>
+                    <p class="text-[#666] text-sm max-w-sm leading-relaxed">
+                        Группа компаний AYACOM. ТОО «KAF». <br/> БИН: 221240005124. <br/> Официальная платформа для инфлюенс-маркетинга в Казахстане и России.
+                    </p>
+                    <div class="flex space-x-4 mt-8">
+                        <a href="#" class="w-12 h-12 rounded-3xl bg-white shadow flex items-center justify-center text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-2xl transition"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-3xl bg-white shadow flex items-center justify-center text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-2xl transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Навигация</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="/" class="hover:text-[var(--accent)]">Главная</a></li>
+                        <li><a href="/catalog" class="text-[var(--accent)]">Каталог блогеров</a></li>
+                        <li><a href="#how-it-works" class="hover:text-[var(--accent)]">Как это работает</a></li>
+                        <li><a href="#register" class="hover:text-[var(--accent)]">Регистрация</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Контакты</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="#" class="hover:text-[var(--accent)]">+7 (717) 555-12-34</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)]">info@creators.kz</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)]">Астана, ул. Мангилик Ел, 22</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-xs text-[#999] border-t border-[#9C1C4F]/10 pt-8">
+                © 2026 Creators.kz — Все права защищены
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: true, duration: 700, easing: 'ease-out-cubic' });
+    
+    let currentRole = 'customer';
+    const root = document.documentElement;
+    
+    function switchRole(role) {
+        currentRole = role;
+       
+        if (role === 'blogger') {
+            root.style.setProperty('--accent', '#EF233C');
+            root.style.setProperty('--accent-rgb', '239, 35, 60');
+        } else {
+            root.style.setProperty('--accent', '#9C1C4F');
+            root.style.setProperty('--accent-rgb', '156, 28, 79');
+        }
+        
+        document.querySelectorAll('.role-toggle button').forEach(btn => {
+            if ((role === 'blogger' && btn.textContent === 'Блогер') ||
+                (role === 'customer' && btn.textContent === 'Заказчик')) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+    
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+    }
+
+    function clearFilters() {
+        document.querySelectorAll('select').forEach(s => s.selectedIndex = 0);
+    }
+    
+    function clearActiveFilters() {
+        const tags = document.querySelectorAll('.filter-tag');
+        tags.forEach(tag => tag.remove());
+    }
+    
+    function performSearch() {
+        const countEl = document.getElementById('results-count');
+        countEl.textContent = Math.floor(Math.random() * 8) + 10;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Как работает | Creators.kz — Инфлюенсер-маркетинг в Казахстане и России</title>
+  
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        base: '#F8F7F5',
+                        text: '#1A1A1A',
+                        accent: '#9C1C4F',
+                        'blogger-red': '#EF233C',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #9C1C4F;
+            --accent-rgb: 156, 28, 79;
+        }
+      
+        html, body {
+            background-color: #F8F7F5;
+            color: #1A1A1A;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+      
+        nav {
+            background: rgba(248, 247, 245, 0.96) !important;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 4px 20px -4px rgba(var(--accent-rgb), 0.15);
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.08);
+        }
+      
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px -6px var(--accent);
+        }
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px -8px var(--accent);
+        }
+      
+        .card-panel {
+            background: #FFFFFF;
+            border: 1px solid rgba(var(--accent-rgb), 0.08);
+            border-radius: 24px;
+            box-shadow: 0 12px 30px -12px rgba(var(--accent-rgb), 0.12);
+            transition: all 0.3s ease;
+        }
+        .card-panel:hover {
+            box-shadow: 0 20px 40px -12px rgba(var(--accent-rgb), 0.22);
+            transform: translateY(-4px);
+        }
+      
+        @media (max-width: 640px) {
+            .section-padding { padding-top: 2rem; padding-bottom: 2.5rem; }
+            h1 { font-size: 2.75rem; line-height: 1.05; }
+            h2 { font-size: 1.85rem; }
+        }
+      
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            transform: translateY(-100%);
+        }
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, var(--accent), #EF233C);
+            color: white;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.75rem;
+            font-weight: 900;
+            box-shadow: 0 10px 25px -5px rgba(var(--accent-rgb), 0.4);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+<div class="relative w-full overflow-hidden">
+
+    <!-- NAV -->
+    <nav class="fixed w-full z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 px-4 py-4 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="text-2xl font-black tracking-[-2px]">
+                        CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Переключатель ролей -->
+            <div class="hidden lg:flex items-center ml-8">
+                <div class="role-toggle">
+                    <button onclick="switchRole('blogger')">Блогер</button>
+                    <button onclick="switchRole('customer')" class="active">Заказчик</button>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide text-gray-800">
+                <a href="index.html#home" class="hover:text-[var(--accent)] transition">ГЛАВНАЯ</a>
+                <a href="#" class="text-[var(--accent)] font-bold">КАК РАБОТАЕТ</a>
+                <a href="index.html#catalog" class="hover:text-[var(--accent)] transition">КАТАЛОГ</a>
+                <a href="o-nas.html" class="hover:text-[var(--accent)] transition">О НАС</a>
+                <a href="kontakty.html" class="hover:text-[var(--accent)] transition">КОНТАКТЫ</a>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <a href="index.html#register" class="hidden md:flex text-sm font-semibold px-5 py-2.5 rounded-3xl border border-[#9C1C4F]/20 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">Вход / Регистрация</a>
+                <button class="lg:hidden text-gray-800" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="fixed inset-0 z-40 bg-[#F8F7F5] pt-20" id="mobile-menu">
+        <div class="p-6 space-y-4">
+            <div class="mb-6">
+                <div class="role-toggle mx-auto w-fit">
+                    <button onclick="switchRole('blogger')">Блогер</button>
+                    <button onclick="switchRole('customer')" class="active">Заказчик</button>
+                </div>
+            </div>
+            <a href="index.html#home" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">ГЛАВНАЯ</a>
+            <a href="#" class="block text-lg font-semibold text-[var(--accent)]">КАК РАБОТАЕТ</a>
+            <a href="index.html#catalog" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КАТАЛОГ</a>
+            <a href="o-nas.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">О НАС</a>
+            <a href="kontakty.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КОНТАКТЫ</a>
+            <hr class="border-gray-200">
+            <a href="index.html#register" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">Вход / Регистрация</a>
+        </div>
+    </div>
+
+    <!-- HERO КАК РАБОТАЕТ -->
+    <section class="min-h-[100svh] relative flex items-center justify-center pt-20 pb-12 md:pt-24 overflow-hidden section-padding bg-gradient-to-br from-[#F8F7F5] to-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-6 py-2 rounded-3xl border border-[var(--accent)]/10 mb-6" data-aos="fade-up">
+                <span class="text-[var(--accent)] text-sm font-bold tracking-widest">4 ПРОСТЫХ ШАГА</span>
+            </div>
+            
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-3px] leading-none mb-6" data-aos="fade-up" data-aos-delay="100">
+                КАК РАБОТАЕТ
+            </h1>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A1A1A] max-w-2xl mx-auto leading-tight" data-aos="fade-up" data-aos-delay="200">
+                От первой заявки до готового отчёта — всё прозрачно и под контролем
+            </h2>
+            
+            <p class="mt-8 text-lg text-gray-600 max-w-xl mx-auto" data-aos="fade-up" data-aos-delay="300">
+                Мы взяли весь процесс на себя. Вам остаётся только выбрать блогеров и получать результат.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10" data-aos="fade-up" data-aos-delay="400">
+                <a href="kontakty.html" class="btn-accent px-10 py-6 rounded-3xl font-bold text-xl inline-flex items-center gap-3">
+                    Начать прямо сейчас
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#steps" class="px-10 py-6 rounded-3xl border-2 border-gray-300 hover:border-[var(--accent)] text-xl font-semibold text-gray-700 hover:text-[var(--accent)] transition-all">
+                    Посмотреть все этапы ↓
+                </a>
+            </div>
+        </div>
+
+        <!-- Декоративный элемент -->
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 text-gray-400 flex flex-col items-center" data-aos="fade-up">
+            <span class="text-xs font-bold tracking-widest uppercase mb-2">Листайте вниз</span>
+            <i class="fa-solid fa-chevron-down animate-bounce text-3xl"></i>
+        </div>
+    </section>
+
+    <!-- ОСНОВНЫЕ ШАГИ (расширенная версия) -->
+    <section id="steps" class="section-padding py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Шаг 1 -->
+                <div class="card-panel p-8 relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number mx-auto mb-6">1</div>
+                    <h3 class="text-2xl font-black mb-4 text-center">Консультация с менеджером</h3>
+                    <p class="text-gray-600 text-center mb-6">Вы оставляете заявку на сайте или в WhatsApp. В течение 10–15 минут с вами связывается личный менеджер.</p>
+                    <ul class="text-sm space-y-3 text-gray-700">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--accent)] mt-0.5"></i> Обсуждаем бюджет и цели</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--accent)] mt-0.5"></i> Подбираем подходящие форматы рекламы</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--accent)] mt-0.5"></i> Получаете готовое ТЗ</li>
+                    </ul>
+                </div>
+
+                <!-- Шаг 2 -->
+                <div class="card-panel p-8 relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number mx-auto mb-6">2</div>
+                    <h3 class="text-2xl font-black mb-4 text-center">Выбор блогеров</h3>
+                    <p class="text-gray-600 text-center mb-6">Мы показываем вам только релевантных инфлюенсеров из нашей базы 500+ креаторов.</p>
+                    <ul class="text-sm space-y-3 text-gray-700">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--accent)] mt-0.5"></i> Фильтры по нише, гео, охвату</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--accent)] mt-0.5"></i> Полная статистика и примеры работ</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--accent)] mt-0.5"></i> Менеджер помогает с финальным выбором</li>
+                    </ul>
+                </div>
+
+                <!-- Шаг 3 -->
+                <div class="card-panel p-8 relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number mx-auto mb-6">3</div>
+                    <h3 class="text-2xl font-black mb-4 text-center">Заключение сделки</h3>
+                    <p class="text-gray-600 text-center mb-6">Всё официально: договор, оплата через платформу, юридическая защита обеих сторон.</p>
+                    <ul class="text-sm space-y-3 text-gray-700">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--accent)] mt-0.5"></i> Договор в один клик</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--accent)] mt-0.5"></i> Оплата только после утверждения контента</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--accent)] mt-0.5"></i> Гарантия возврата при нарушении сроков</li>
+                    </ul>
+                </div>
+
+                <!-- Шаг 4 -->
+                <div class="card-panel p-8 relative" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number mx-auto mb-6">4</div>
+                    <h3 class="text-2xl font-black mb-4 text-center">Отчёт и результаты</h3>
+                    <p class="text-gray-600 text-center mb-6">Получаете подробный отчёт с реальными цифрами и статистикой.</p>
+                    <ul class="text-sm space-y-3 text-gray-700">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--accent)] mt-0.5"></i> Охваты, вовлечённость, ER</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--accent)] mt-0.5"></i> Ссылки на опубликованный контент</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--accent)] mt-0.5"></i> Рекомендации по следующим кампаниям</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ДОПОЛНИТЕЛЬНЫЕ ПРЕИМУЩЕСТВА -->
+    <section class="section-padding py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-4xl font-black">Почему с нами проще и безопаснее</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 mx-auto bg-[var(--accent)]/10 rounded-3xl flex items-center justify-center text-4xl mb-6">📲</div>
+                    <h3 class="font-bold text-xl mb-3">Личный менеджер 24/7</h3>
+                    <p class="text-gray-600">Один специалист ведёт вашу кампанию от начала до конца.</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 mx-auto bg-[var(--accent)]/10 rounded-3xl flex items-center justify-center text-4xl mb-6">🛡️</div>
+                    <h3 class="font-bold text-xl mb-3">Юридическая защита</h3>
+                    <p class="text-gray-600">Все сделки подкреплены договором. Риски полностью на нас.</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 mx-auto bg-[var(--accent)]/10 rounded-3xl flex items-center justify-center text-4xl mb-6">📊</div>
+                    <h3 class="font-bold text-xl mb-3">Прозрачная отчётность</h3>
+                    <p class="text-gray-600">Реальные цифры из рекламных кабинетов блогеров.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-gradient-to-r from-[var(--accent)] to-[#EF233C] text-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-black mb-6">Готовы запустить свою первую кампанию?</h2>
+            <a href="kontakty.html" class="inline-flex items-center gap-4 bg-white text-[var(--accent)] px-12 py-6 rounded-3xl font-bold text-2xl hover:scale-105 transition">
+                Написать в WhatsApp
+                <i class="fa-brands fa-whatsapp text-3xl"></i>
+            </a>
+            <p class="mt-6 text-white/80">Ответим за 7 минут</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-[#9C1C4F]/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+                <div class="md:col-span-2">
+                    <div class="text-3xl font-black tracking-[-2px] mb-6">
+                        CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                    </div>
+                    <p class="text-[#666] text-sm max-w-sm leading-relaxed">
+                        Группа компаний AYACOM. ТОО «KAF».<br>
+                        БИН: 221240005124.<br>
+                        Официальная платформа для инфлюенс-маркетинга в Казахстане и России.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Навигация</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="index.html#catalog" class="hover:text-[var(--accent)]">Каталог креаторов</a></li>
+                        <li><a href="o-nas.html" class="hover:text-[var(--accent)]">О нас</a></li>
+                        <li><a href="kontakty.html" class="hover:text-[var(--accent)]">Контакты</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Контакты</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="tel:+77715551234" class="hover:text-[var(--accent)]">+7 (717) 555-12-34</a></li>
+                        <li><a href="mailto:info@creators.kz" class="hover:text-[var(--accent)]">info@creators.kz</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-xs text-[#999] border-t border-[#9C1C4F]/10 pt-8">
+                © 2026 Creators.kz — Все права защищены
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: true, duration: 700, easing: 'ease-out-cubic' });
+    
+    function switchRole(role) {
+        if (role === 'blogger') {
+            document.documentElement.style.setProperty('--accent', '#EF233C');
+        } else {
+            document.documentElement.style.setProperty('--accent', '#9C1C4F');
+        }
+        
+        document.querySelectorAll('.role-toggle button').forEach(btn => {
+            btn.classList.toggle('active', 
+                (role === 'blogger' && btn.textContent === 'Блогер') || 
+                (role === 'customer' && btn.textContent === 'Заказчик')
+            );
+        });
+    }
+    
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+    }
+</script>
+</body>
+</html>

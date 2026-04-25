@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Контакты | Creators.kz — Инфлюенсер-маркетинг в Казахстане и России</title>
+  
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        base: '#F8F7F5',
+                        text: '#1A1A1A',
+                        accent: '#9C1C4F',
+                        'blogger-red': '#EF233C',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #9C1C4F;
+            --accent-rgb: 156, 28, 79;
+        }
+      
+        html, body {
+            background-color: #F8F7F5;
+            color: #1A1A1A;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+      
+        nav {
+            background: rgba(248, 247, 245, 0.96) !important;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 4px 20px -4px rgba(var(--accent-rgb), 0.15);
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.08);
+        }
+      
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px -6px var(--accent);
+        }
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px -8px var(--accent);
+        }
+      
+        .card-panel {
+            background: #FFFFFF;
+            border: 1px solid rgba(var(--accent-rgb), 0.08);
+            border-radius: 24px;
+            box-shadow: 0 12px 30px -12px rgba(var(--accent-rgb), 0.12);
+            transition: all 0.3s ease;
+        }
+        .card-panel:hover {
+            box-shadow: 0 20px 40px -12px rgba(var(--accent-rgb), 0.22);
+            transform: translateY(-4px);
+        }
+      
+        @media (max-width: 640px) {
+            .section-padding { padding-top: 2rem; padding-bottom: 2.5rem; }
+            h1 { font-size: 2.75rem; line-height: 1.05; }
+            h2 { font-size: 1.85rem; }
+            
+            .contact-hero {
+                min-height: 70svh !important;
+            }
+        }
+      
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            transform: translateY(-100%);
+        }
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+<div class="relative w-full overflow-hidden">
+
+    <!-- NAV -->
+    <nav class="fixed w-full z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 px-4 py-4 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="text-2xl font-black tracking-[-2px]">
+                        CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Переключатель ролей -->
+            <div class="hidden lg:flex items-center ml-8">
+                <div class="role-toggle">
+                    <button onclick="switchRole('blogger')">Блогер</button>
+                    <button onclick="switchRole('customer')" class="active">Заказчик</button>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide text-gray-800">
+                <a href="index.html#home" class="hover:text-[var(--accent)] transition">ГЛАВНАЯ</a>
+                <a href="index.html#how-it-works" class="hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
+                <a href="index.html#catalog" class="hover:text-[var(--accent)] transition">КАТАЛОГ</a>
+                <a href="o-nas.html" class="hover:text-[var(--accent)] transition">О НАС</a>
+                <a href="#" class="text-[var(--accent)] font-bold">КОНТАКТЫ</a>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <a href="index.html#register" class="hidden md:flex text-sm font-semibold px-5 py-2.5 rounded-3xl border border-[#9C1C4F]/20 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">Вход / Регистрация</a>
+                <button class="lg:hidden text-gray-800" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="fixed inset-0 z-40 bg-[#F8F7F5] pt-20" id="mobile-menu">
+        <div class="p-6 space-y-4">
+            <div class="mb-6">
+                <div class="role-toggle mx-auto w-fit">
+                    <button onclick="switchRole('blogger')">Блогер</button>
+                    <button onclick="switchRole('customer')" class="active">Заказчик</button>
+                </div>
+            </div>
+            <a href="index.html#home" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">ГЛАВНАЯ</a>
+            <a href="index.html#how-it-works" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
+            <a href="index.html#catalog" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КАТАЛОГ</a>
+            <a href="o-nas.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">О НАС</a>
+            <a href="#" class="block text-lg font-semibold text-[var(--accent)]">КОНТАКТЫ</a>
+            <hr class="border-gray-200">
+            <a href="index.html#register" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">Вход / Регистрация</a>
+        </div>
+    </div>
+
+    <!-- HERO КОНТАКТЫ -->
+    <section class="contact-hero min-h-[100svh] relative flex items-center justify-center pt-20 pb-12 md:pt-24 overflow-hidden section-padding bg-gradient-to-br from-[#F8F7F5] via-white to-[#F8F7F5]">
+        <div class="max-w-7xl mx-auto px-4 text-center z-10">
+            <div class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-6 py-2 rounded-3xl border border-[var(--accent)]/10 mb-6" data-aos="fade-up">
+                <i class="fa-solid fa-headset text-[var(--accent)]"></i>
+                <span class="text-[var(--accent)] text-sm font-bold tracking-widest">МЫ ВСЕГДА НА СВЯЗИ</span>
+            </div>
+            
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-3px] leading-none mb-6" data-aos="fade-up" data-aos-delay="100">
+                КОНТАКТЫ
+            </h1>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1A1A1A] max-w-2xl mx-auto leading-tight" data-aos="fade-up" data-aos-delay="200">
+                Готовы обсудить вашу кампанию?<br>Напишите или позвоните нам прямо сейчас
+            </h2>
+            
+            <div class="flex flex-wrap justify-center gap-4 mt-10" data-aos="fade-up" data-aos-delay="300">
+                <a href="https://wa.me/77715551234" target="_blank" 
+                   class="flex items-center gap-3 bg-[#25D366] text-white px-8 py-5 rounded-3xl font-bold text-lg hover:scale-105 transition">
+                    <i class="fa-brands fa-whatsapp text-3xl"></i>
+                    WhatsApp
+                </a>
+                <a href="https://t.me/creatorskz" target="_blank" 
+                   class="flex items-center gap-3 bg-[#229ED9] text-white px-8 py-5 rounded-3xl font-bold text-lg hover:scale-105 transition">
+                    <i class="fa-brands fa-telegram text-3xl"></i>
+                    Telegram
+                </a>
+                <a href="tel:+77715551234" 
+                   class="flex items-center gap-3 bg-white border-2 border-[var(--accent)] text-[var(--accent)] px-8 py-5 rounded-3xl font-bold text-lg hover:bg-[var(--accent)] hover:text-white transition">
+                    <i class="fa-solid fa-phone text-2xl"></i>
+                    +7 (717) 555-12-34
+                </a>
+            </div>
+            
+            <p class="mt-8 text-base text-gray-600 max-w-md mx-auto" data-aos="fade-up" data-aos-delay="400">
+                Среднее время ответа — 7 минут в рабочее время
+            </p>
+        </div>
+
+        <!-- Декоративный элемент -->
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 text-gray-400 flex flex-col items-center" data-aos="fade-up">
+            <span class="text-xs font-bold tracking-widest uppercase mb-2">Листайте вниз</span>
+            <i class="fa-solid fa-chevron-down animate-bounce text-3xl"></i>
+        </div>
+    </section>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <section class="section-padding py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Левая колонка — информация -->
+                <div class="lg:col-span-5" data-aos="fade-right">
+                    <div class="card-panel p-8 md:p-10">
+                        <h3 class="text-3xl font-black mb-8">Как с нами связаться</h3>
+                        
+                        <div class="space-y-8">
+                            <!-- Телефон -->
+                            <div class="flex gap-6">
+                                <div class="w-12 h-12 bg-[var(--accent)]/10 text-[var(--accent)] rounded-2xl flex items-center justify-center flex-shrink-0 text-3xl">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-lg">Телефон</div>
+                                    <a href="tel:+77715551234" class="text-2xl font-bold text-[var(--accent)] hover:underline">+7 (717) 555-12-34</a>
+                                    <p class="text-sm text-gray-500 mt-1">Пн–Пт с 9:00 до 19:00 (по времени Астаны)</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Email -->
+                            <div class="flex gap-6">
+                                <div class="w-12 h-12 bg-[var(--accent)]/10 text-[var(--accent)] rounded-2xl flex items-center justify-center flex-shrink-0 text-3xl">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-lg">Электронная почта</div>
+                                    <a href="mailto:info@creators.kz" class="text-2xl font-bold text-[var(--accent)] hover:underline">info@creators.kz</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Адрес -->
+                            <div class="flex gap-6">
+                                <div class="w-12 h-12 bg-[var(--accent)]/10 text-[var(--accent)] rounded-2xl flex items-center justify-center flex-shrink-0 text-3xl">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-lg">Адрес</div>
+                                    <p class="text-xl leading-tight">Астана, ул. Мангилик Ел, 22<br>БЦ «Мангилик Ел», 5 этаж</p>
+                                    <p class="text-sm text-gray-500 mt-2">ТОО «KAF» • БИН 221240005124</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Правая колонка — форма -->
+                <div class="lg:col-span-7" data-aos="fade-left">
+                    <div class="card-panel p-8 md:p-10">
+                        <h3 class="text-3xl font-black mb-6">Напишите нам</h3>
+                        <p class="text-gray-600 mb-8">Оставьте заявку — менеджер свяжется с вами в течение 15 минут</p>
+                        
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <input type="text" placeholder="Ваше имя" 
+                                       class="w-full p-5 bg-white border border-gray-100 rounded-3xl focus:border-[var(--accent)] outline-none text-base">
+                                <input type="tel" placeholder="+7 (___) ___-__-__" 
+                                       class="w-full p-5 bg-white border border-gray-100 rounded-3xl focus:border-[var(--accent)] outline-none text-base">
+                            </div>
+                            
+                            <input type="email" placeholder="Электронная почта" 
+                                   class="w-full p-5 bg-white border border-gray-100 rounded-3xl focus:border-[var(--accent)] outline-none text-base">
+                            
+                            <textarea placeholder="Опишите вашу задачу или вопрос..." rows="5"
+                                      class="w-full p-5 bg-white border border-gray-100 rounded-3xl focus:border-[var(--accent)] outline-none text-base resize-none"></textarea>
+                            
+                            <div class="flex items-center gap-3 text-xs text-gray-500">
+                                <input type="checkbox" checked class="accent-[var(--accent)]">
+                                <span>Соглашаюсь на обработку персональных данных</span>
+                            </div>
+                            
+                            <button type="submit" 
+                                    class="btn-accent w-full py-6 rounded-3xl font-bold text-xl uppercase tracking-widest">
+                                ОТПРАВИТЬ ЗАЯВКУ
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-[#9C1C4F]/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+                <div class="md:col-span-2">
+                    <div class="text-3xl font-black tracking-[-2px] mb-6">
+                        CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                    </div>
+                    <p class="text-[#666] text-sm max-w-sm leading-relaxed">
+                        Группа компаний AYACOM. ТОО «KAF».<br>
+                        БИН: 221240005124.<br>
+                        Официальная платформа для инфлюенс-маркетинга в Казахстане и России.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Навигация</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="index.html#how-it-works" class="hover:text-[var(--accent)]">Как это работает</a></li>
+                        <li><a href="index.html#catalog" class="hover:text-[var(--accent)]">Каталог креаторов</a></li>
+                        <li><a href="o-nas.html" class="hover:text-[var(--accent)]">О нас</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Контакты</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="tel:+77715551234" class="hover:text-[var(--accent)]">+7 (717) 555-12-34</a></li>
+                        <li><a href="mailto:info@creators.kz" class="hover:text-[var(--accent)]">info@creators.kz</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)]">Астана, ул. Мангилик Ел, 22</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-xs text-[#999] border-t border-[#9C1C4F]/10 pt-8">
+                © 2026 Creators.kz — Все права защищены
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ once: true, duration: 700, easing: 'ease-out-cubic' });
+    
+    function switchRole(role) {
+        if (role === 'blogger') {
+            document.documentElement.style.setProperty('--accent', '#EF233C');
+        } else {
+            document.documentElement.style.setProperty('--accent', '#9C1C4F');
+        }
+        
+        document.querySelectorAll('.role-toggle button').forEach(btn => {
+            btn.classList.toggle('active', 
+                (role === 'blogger' && btn.textContent === 'Блогер') || 
+                (role === 'customer' && btn.textContent === 'Заказчик')
+            );
+        });
+    }
+    
+    // Mobile menu
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+    }
+    
+    // Простая валидация формы (демо)
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('✅ Заявка отправлена! Менеджер свяжется с вами в ближайшее время.');
+            form.reset();
+        });
+    }
+</script>
+</body>
+</html>

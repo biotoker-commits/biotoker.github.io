@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Отзывы: Абай Амиров | Creators.kz</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        base: '#F8F7F5',
+                        text: '#1A1A1A',
+                        accent: '#9C1C4F',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+     <style>
+        :root {
+            --accent: #9C1C4F;
+            --accent-rgb: 156, 28, 79;
+        }
+      
+        html, body {
+            background-color: #F8F7F5;
+            color: #1A1A1A;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+      
+        nav {
+            background: rgba(248, 247, 245, 0.96) !important;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 4px 20px -4px rgba(var(--accent-rgb), 0.15);
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.08);
+        }
+      
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px -6px var(--accent);
+        }
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px -8px var(--accent);
+        }
+      
+        .card-panel {
+            background: #FFFFFF;
+            border: 1px solid rgba(var(--accent-rgb), 0.08);
+            border-radius: 24px;
+            box-shadow: 0 12px 30px -12px rgba(var(--accent-rgb), 0.12);
+            transition: all 0.3s ease;
+        }
+        .card-panel:hover {
+            box-shadow: 0 20px 40px -12px rgba(var(--accent-rgb), 0.22);
+            transform: translateY(-4px);
+        }
+      
+        .role-toggle {
+            background: #F1F1F1;
+            border-radius: 9999px;
+            padding: 4px;
+            display: flex;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+        }
+        .role-toggle button {
+            flex: 1;
+            padding: 8px 20px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .role-toggle button.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 12px -4px var(--accent);
+        }
+      
+        .star-filled { color: #F59E0B; }
+        .star-empty { color: #E5E7EB; }
+
+        .progress-bar {
+            height: 6px;
+            background: #F3F4F6;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #F59E0B;
+            border-radius: 999px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid #E5E7EB;
+            color: #4B5563;
+            transition: all 0.2s ease;
+        }
+        .filter-btn:hover { background: #F3F4F6; }
+        .filter-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 2rem; }
+            .card-panel { padding: 1.25rem !important; }
+        }
+      
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            transform: translateY(-100%);
+        }
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen relative">
+
+    <div class="absolute top-0 left-0 w-full h-[400px] bg-gradient-to-b from-[#9C1C4F]/10 to-[#F8F7F5] -z-10"></div>
+
+
+     <!-- NAV -->
+    <nav class="fixed w-full z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 px-4 py-4 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+<a href="index.html" class="text-2xl font-black tracking-[-2px]">
+    CREATORS<span class="text-[var(--accent)]">.</span>KZ
+</a>
+            </div>
+            
+            <!-- Переключатель ролей (только десктоп) -->
+            <div class="hidden lg:flex items-center ml-8">
+                <div id="role-toggle" class="role-toggle">
+                    <button onclick="switchRole('blogger')" id="btn-blogger">Блогер</button>
+                    <button onclick="switchRole('customer')" id="btn-customer" class="active">Заказчик</button>
+                </div>
+            </div>
+            
+           <div class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide text-gray-800">
+    <a href="work.html" class="hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
+    <a href="catalog.html" class="hover:text-[var(--accent)] transition">КАТАЛОГ</a>
+               <a href="barter.html" class="text-[var(--accent)] border-b-2 border-[var(--accent)] pb-1">БАРТЕР <span class="bg-[var(--accent)] text-white text-[10px] px-2 py-0.5 rounded-full ml-1 animate-pulse">NEW</span></a>
+    <a href="onas.html" class="hover:text-[var(--accent)] transition">О НАС</a>
+    <a href="contacs.html" class="hover:text-[var(--accent)] transition">КОНТАКТЫ</a>
+</div>
+            
+            <div class="flex items-center gap-3">
+                <a href="#register" class="hidden md:flex text-sm font-semibold px-5 py-2.5 rounded-3xl border border-[#9C1C4F]/20 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">Вход / Регистрация</a>
+                <button class="lg:hidden text-gray-800" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="fixed inset-0 z-40 bg-[#F8F7F5] pt-20" id="mobile-menu">
+        <div class="p-6 space-y-4">
+            <div class="mb-6">
+                <div id="mobile-role-toggle" class="role-toggle mx-auto w-fit">
+                    <button onclick="switchRole('blogger')">Блогер</button>
+                    <button onclick="switchRole('customer')" class="active">Заказчик</button>
+                </div>
+            </div>
+            <a href="index.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">ГЛАВНАЯ</a>
+            <a href="catalog.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КАТАЛОГ</a>
+            <hr class="border-gray-200">
+            <a href="#register" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition menu-link">Вход / Регистрация</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow pt-28 pb-12 px-4 max-w-5xl mx-auto w-full space-y-6">
+        
+        <!-- Кнопка назад -->
+        <div>
+            <a href="profile.html" class="inline-flex items-center text-sm font-semibold text-gray-500 hover:text-[var(--accent)] transition-colors">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Вернуться в профиль
+            </a>
+        </div>
+
+        <!-- Заголовок и Сводка -->
+        <div class="card-panel p-6 sm:p-8">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-gray-100 pb-6 mb-6">
+                <div class="flex items-center gap-4 mb-4 md:mb-0">
+                    <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=150&auto=format&fit=crop" alt="Абай Амиров" class="w-16 h-16 rounded-full object-cover shadow-sm">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-black text-gray-900">Отзывы заказчиков</h1>
+                        <p class="text-sm text-gray-500 mt-1">О работе с блогером <span class="font-bold text-gray-800">Абай Амиров</span></p>
+                    </div>
+                </div>
+                <button class="btn-accent px-6 py-2.5 rounded-2xl font-bold text-sm shadow-md w-full md:w-auto">
+                    Оставить отзыв
+                </button>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-8 items-center">
+                <!-- Оценка цифрой -->
+                <div class="flex flex-col items-center text-center px-4">
+                    <span class="text-5xl font-black text-gray-900">4.9</span>
+                    <div class="flex gap-1 mt-2 text-lg star-filled">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-500 mt-2">34 отзыва</span>
+                </div>
+
+                <!-- Полосы рейтинга -->
+                <div class="flex-grow w-full space-y-2 border-l border-gray-100 sm:pl-8">
+                    <div class="flex items-center gap-3 text-sm">
+                        <span class="font-bold text-gray-600 w-3">5</span>
+                        <i class="fa-solid fa-star star-filled text-xs"></i>
+                        <div class="progress-bar flex-grow"><div class="progress-fill" style="width: 88%"></div></div>
+                        <span class="text-gray-400 w-6 text-right">30</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm">
+                        <span class="font-bold text-gray-600 w-3">4</span>
+                        <i class="fa-solid fa-star star-filled text-xs"></i>
+                        <div class="progress-bar flex-grow"><div class="progress-fill" style="width: 9%"></div></div>
+                        <span class="text-gray-400 w-6 text-right">3</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm">
+                        <span class="font-bold text-gray-600 w-3">3</span>
+                        <i class="fa-solid fa-star star-filled text-xs"></i>
+                        <div class="progress-bar flex-grow"><div class="progress-fill" style="width: 3%"></div></div>
+                        <span class="text-gray-400 w-6 text-right">1</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm opacity-50">
+                        <span class="font-bold text-gray-600 w-3">2</span>
+                        <i class="fa-solid fa-star star-filled text-xs"></i>
+                        <div class="progress-bar flex-grow"><div class="progress-fill" style="width: 0%"></div></div>
+                        <span class="text-gray-400 w-6 text-right">0</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm opacity-50">
+                        <span class="font-bold text-gray-600 w-3">1</span>
+                        <i class="fa-solid fa-star star-filled text-xs"></i>
+                        <div class="progress-bar flex-grow"><div class="progress-fill" style="width: 0%"></div></div>
+                        <span class="text-gray-400 w-6 text-right">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Фильтры -->
+        <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="flex flex-wrap gap-2">
+                <button class="filter-btn active">Все (34)</button>
+                <button class="filter-btn">С фото (12)</button>
+                <button class="filter-btn">Reels</button>
+                <button class="filter-btn">Stories</button>
+            </div>
+            <div class="relative">
+                <select class="appearance-none bg-white border border-gray-200 text-gray-700 py-2 pl-4 pr-10 rounded-xl text-sm font-semibold focus:outline-none focus:border-[var(--accent)] cursor-pointer shadow-sm">
+                    <option>Сначала новые</option>
+                    <option>Сначала с высоким рейтингом</option>
+                    <option>Сначала популярные</option>
+                </select>
+                <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+            </div>
+        </div>
+
+        <!-- СПИСОК ОТЗЫВОВ -->
+        <div class="space-y-4">
+            
+            <!-- Отзыв 1 -->
+            <div class="card-panel p-6 sm:p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg">
+                            K
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Kaspi.kz</h4>
+                            <div class="text-xs text-gray-500 mt-0.5">Представитель бренда</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="flex gap-1 text-sm star-filled justify-end">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="text-xs text-gray-400 mt-1">20 апреля 2026</div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <span class="inline-block px-2.5 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-semibold mb-2">Формат: Reels</span>
+                    <p class="text-gray-700 text-sm leading-relaxed">
+                        Работали с Абаем по продвижению нового сервиса для бизнеса. Очень порадовал подход: блогер сам предложил доработать сценарий под свою аудиторию, чтобы реклама выглядела нативно. Видео залетело в рекомендации, получили стоимость клика (CPC) ниже ожидаемой на 30%. Отчет по статистике скинул ровно через 24 часа. Будем сотрудничать еще!
+                    </p>
+                </div>
+
+                <!-- Ответ блогера -->
+                <div class="mt-4 bg-gray-50 p-4 rounded-2xl border border-gray-100 relative">
+                    <i class="fa-solid fa-reply absolute top-4 left-4 text-[var(--accent)]/50"></i>
+                    <div class="pl-6">
+                        <h5 class="text-xs font-bold text-gray-900 mb-1">Ответ Абая:</h5>
+                        <p class="text-sm text-gray-600">Спасибо за доверие! С классным продуктом всегда легко и приятно работать. Жду новых задач! 🤝</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Отзыв 2 -->
+            <div class="card-panel p-6 sm:p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Айгерим" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-bold text-gray-900">Айгерим С.</h4>
+                            <div class="text-xs text-gray-500 mt-0.5">Владелица кофейни</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="flex gap-1 text-sm star-filled justify-end">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-empty"></i>
+                        </div>
+                        <div class="text-xs text-gray-400 mt-1">12 марта 2026</div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <span class="inline-block px-2.5 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-semibold mb-2">Формат: Пост + Stories</span>
+                    <p class="text-gray-700 text-sm leading-relaxed">
+                        Брали рекламу локального бизнеса (Атырау). Охваты в сторис были шикарные, в день выхода пришло много новых людей. Единственный минус — немного задержали публикацию (вышла на 2 часа позже обговоренного времени), но результат перекрыл этот недочет.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Отзыв 3 (С медиа) -->
+            <div class="card-panel p-6 sm:p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-lg">
+                            M
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Маркетинг-агентство "Pulse"</h4>
+                            <div class="text-xs text-gray-500 mt-0.5">Рекламное агентство</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="flex gap-1 text-sm star-filled justify-end">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="text-xs text-gray-400 mt-1">28 февраля 2026</div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <span class="inline-block px-2.5 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-semibold mb-2">Формат: Серия Stories</span>
+                    <p class="text-gray-700 text-sm leading-relaxed">
+                        Стабильно закупаем рекламу для разных клиентов. Абай — один из немногих блогеров, у которого аудитория реально вовлечена, а не просто "смотрит". Прикрепляю скриншоты переходов по ссылке с последней интеграции.
+                    </p>
+                </div>
+                
+                <!-- Вложенные медиа (превью) -->
+                <div class="flex gap-3 mt-3">
+                    <div class="w-20 h-20 rounded-xl bg-gray-200 overflow-hidden relative group cursor-pointer border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa-solid fa-magnifying-glass text-white text-sm"></i>
+                        </div>
+                    </div>
+                    <div class="w-20 h-20 rounded-xl bg-gray-200 overflow-hidden relative group cursor-pointer border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=200&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform">
+                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa-solid fa-magnifying-glass text-white text-sm"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Пагинация -->
+        <div class="flex justify-center mt-8">
+            <nav class="flex items-center gap-1">
+                <button class="w-10 h-10 flex items-center justify-center rounded-xl text-gray-400 hover:bg-gray-100 transition-colors" disabled>
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--accent)] text-white font-bold shadow-md">1</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-xl text-gray-700 font-semibold hover:bg-gray-100 transition-colors">2</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-xl text-gray-700 font-semibold hover:bg-gray-100 transition-colors">3</button>
+                <span class="w-10 h-10 flex items-center justify-center text-gray-400">...</span>
+                <button class="w-10 h-10 flex items-center justify-center rounded-xl text-gray-700 font-semibold hover:bg-gray-100 transition-colors">8</button>
+                <button class="w-10 h-10 flex items-center justify-center rounded-xl text-gray-700 hover:bg-gray-100 transition-colors">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+            </nav>
+        </div>
+
+    </main>
+	 <!-- FOOTER -->
+    <footer class="border-t border-[#9C1C4F]/10 pt-16 pb-8" id="contacts">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="text-3xl font-black tracking-[-2px] mb-6">
+                        CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                    </div>
+                    <p class="text-[#666] text-sm max-w-sm leading-relaxed">
+                        Группа компаний AYACOM. ТОО «KAF». <br/> БИН: 221240005124. <br/> Официальная платформа для инфлюенс-маркетинга в Казахстане и России.
+                    </p>
+                    <div class="flex space-x-4 mt-8">
+                        <a href="#" class="w-12 h-12 rounded-3xl bg-white shadow flex items-center justify-center text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-2xl transition"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-3xl bg-white shadow flex items-center justify-center text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-2xl transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Навигация</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="#how-it-works" class="hover:text-[var(--accent)]">Как это работает</a></li>
+                       <li><a href="catalog.html" class="hover:text-[var(--accent)]">База блогеров</a></li>
+                        <li><a href="#register" class="hover:text-[var(--accent)]">Регистрация</a></li>
+                        <li><a href="#business" class="hover:text-[var(--accent)]">Для кого мы работаем</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Контакты</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="#" class="hover:text-[var(--accent)]">+7 (717) 555-12-34</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)]">info@creators.kz</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)]">Астана, ул. Мангилик Ел, 22</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-xs text-[#999] border-t border-[#9C1C4F]/10 pt-8">
+                © 2026 Creators.kz — Все права защищены
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипт для меню -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            const icon = btn.querySelector('i');
+            if(menu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-xmark');
+            }
+        });
+
+        function switchRole(role) {
+            document.querySelectorAll('.role-toggle button').forEach(b => b.classList.remove('active'));
+            if(role === 'blogger') {
+                document.querySelectorAll('button[onclick="switchRole(\'blogger\')"]').forEach(b => b.classList.add('active'));
+            } else {
+                document.querySelectorAll('button[onclick="switchRole(\'customer\')"]').forEach(b => b.classList.add('active'));
+            }
+        }
+    </script>
+</body>
+</html>

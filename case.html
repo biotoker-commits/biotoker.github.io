@@ -395,6 +395,106 @@
             </div>
         </div>
     </footer>
+<!-- ЧАТ-ВИДЖЕТ -->
+    
+    <!-- Плавающая кнопка -->
+    <button id="chat-toggle-btn" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-14 h-14 bg-[var(--accent)] text-white rounded-full flex items-center justify-center shadow-[0_8px_25px_-6px_rgba(156,28,79,0.6)] hover:scale-110 transition-all duration-300 z-50">
+        <i id="chat-icon" class="fa-solid fa-comment-dots text-2xl transition-transform duration-300"></i>
+    </button>
 
+    <!-- Окно чата -->
+    <div id="chat-window" class="fixed bottom-24 right-6 sm:right-8 w-[calc(100vw-3rem)] sm:w-96 bg-white rounded-2xl shadow-[0_12px_40px_-12px_rgba(0,0,0,0.2)] border border-gray-100 flex flex-col z-50 overflow-hidden transition-all duration-300 origin-bottom-right scale-0 opacity-0 pointer-events-none" style="height: 500px; max-height: 75vh;">
+        
+        <!-- Шапка чата -->
+        <div class="bg-gradient-to-r from-[var(--accent)] to-[#b8215d] p-4 flex justify-between items-center shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop" alt="Менеджер" class="w-10 h-10 rounded-full object-cover border-2 border-white/20">
+                    <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-[var(--accent)] rounded-full"></div>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-sm">Данияр</h3>
+                    <p class="text-white/80 text-xs">Менеджер • Онлайн</p>
+                </div>
+            </div>
+            <button id="chat-close-btn" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+
+        <!-- Тело чата -->
+        <div class="flex-grow p-4 bg-gray-50/50 overflow-y-auto flex flex-col gap-4 hide-scrollbar" id="chat-messages">
+            <!-- Сообщение от менеджера -->
+            <div class="flex gap-2 max-w-[85%]">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop" class="w-6 h-6 rounded-full shrink-0">
+                <div>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-sm border border-gray-100 text-sm text-gray-700 shadow-sm">
+                        Здравствуйте! 👋 Я менеджер CREATORS.KZ. Если у вас есть вопросы по статистике, свободным датам или вы хотите обсудить нестандартный формат — пишите, я на связи!
+                    </div>
+                    <div class="text-[10px] text-gray-400 mt-1 ml-1">12:40</div>
+                </div>
+            </div>
+            
+            <!-- Сообщение от пользователя (пример) -->
+            <div class="flex gap-2 max-w-[85%] ml-auto justify-end">
+                <div>
+                    <div class="bg-[var(--accent)]/10 p-3 rounded-2xl rounded-tr-sm text-sm text-gray-800">
+                        Добрый день! Подскажите, свободна ли дата 15 апреля для Reels?
+                    </div>
+                    <div class="text-[10px] text-gray-400 mt-1 mr-1 text-right">12:41 <i class="fa-solid fa-check-double text-[var(--accent)]/60 ml-0.5"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Поле ввода -->
+        <div class="p-3 border-t border-gray-100 bg-white shrink-0">
+            <form onsubmit="event.preventDefault();" class="flex items-end gap-2 relative">
+                <button type="button" class="p-2 text-gray-400 hover:text-[var(--accent)] transition-colors shrink-0">
+                    <i class="fa-solid fa-paperclip"></i>
+                </button>
+                <textarea rows="1" placeholder="Ваше сообщение..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] transition-all resize-none overflow-hidden max-h-24 min-h-[42px]"></textarea>
+                <button type="submit" class="w-10 h-[42px] bg-[var(--accent)] text-white rounded-xl flex items-center justify-center hover:bg-[#b8215d] transition-colors shrink-0 shadow-sm">
+                    <i class="fa-solid fa-paper-plane text-sm"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Скрипт логики чата -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatToggleBtn = document.getElementById('chat-toggle-btn');
+            const chatCloseBtn = document.getElementById('chat-close-btn');
+            const chatWindow = document.getElementById('chat-window');
+            const chatIcon = document.getElementById('chat-icon');
+            
+            function toggleChat() {
+                const isOpen = !chatWindow.classList.contains('scale-0');
+                
+                if (isOpen) {
+                    // Закрываем чат
+                    chatWindow.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+                    chatWindow.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
+                    
+                    // Меняем иконку обратно на сообщение
+                    chatIcon.classList.remove('fa-xmark');
+                    chatIcon.classList.add('fa-comment-dots');
+                    chatIcon.style.transform = 'rotate(0deg)';
+                } else {
+                    // Открываем чат
+                    chatWindow.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+                    chatWindow.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
+                    
+                    // Меняем иконку на крестик
+                    chatIcon.classList.remove('fa-comment-dots');
+                    chatIcon.classList.add('fa-xmark');
+                    chatIcon.style.transform = 'rotate(90deg)';
+                }
+            }
+
+            chatToggleBtn.addEventListener('click', toggleChat);
+            chatCloseBtn.addEventListener('click', toggleChat);
+        });
+    </script>
 </body>
 </html>

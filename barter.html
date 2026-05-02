@@ -98,7 +98,7 @@
             color: white;
             box-shadow: 0 4px 12px -4px var(--accent);
         }
-      
+		
         select, input {
             transition: all 0.3s ease;
         }
@@ -145,6 +145,97 @@
         .hero-visual {
             animation: heroPulse 8s ease-in-out infinite;
         }
+		/* Стили для переключателя Лента/Предложить бартер */
+        .tab-btn {
+            transition: all 0.3s ease;
+            color: #1A1A1A;
+        }
+        .tab-btn:hover:not(.active) {
+            background: #f3f4f6;
+        }
+        .tab-btn.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 12px -4px var(--accent);
+        }
+		/* Скрываем полосу прокрутки для горизонтального фильтра */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Стили для кнопок фильтра городов */
+        .city-filter-btn {
+            transition: all 0.3s ease;
+        }
+        .city-filter-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px -4px var(--accent);
+        }
+		/* Анимация появления модалки */
+        #city-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Красивый скролл в списке городов */
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+        .city-item {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .city-item:hover {
+            background-color: rgba(var(--accent-rgb), 0.05);
+            color: var(--accent);
+            padding-left: 10px;
+        }
+		/* Обновленный фильтр городов — теперь он не растягивается */
+.city-filter-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Модальное окно — теперь оно компактное и центрированное */
+#city-modal .modal-content {
+    max-height: 80vh; /* Ограничиваем высоту, чтобы не вытягивалось */
+    width: 90%;
+    max-width: 400px;
+    border-radius: 32px; /* Чуть менее агрессивное скругление */
+    transform: scale(0.9);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#city-modal.active .modal-content {
+    transform: scale(1);
+}
+
+/* Поле поиска — делаем его ниже и аккуратнее */
+#city-search {
+    height: 48px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Список городов — фиксированная высота со скроллом */
+#modal-city-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
@@ -170,12 +261,11 @@
 <a href="work.html" class="hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
     <a href="catalog.html" class="hover:text-[var(--accent)] transition">КАТАЛОГ</a>
                <a href="barter.html" class="text-[var(--accent)] border-b-2 border-[var(--accent)] pb-1">БАРТЕР <span class="bg-[var(--accent)] text-white text-[10px] px-2 py-0.5 rounded-full ml-1 animate-pulse">NEW</span></a>
-    <a href="onas.html" class="hover:text-[var(--accent)] transition">О НАС</a>
-    <a href="contacs.html" class="hover:text-[var(--accent)] transition">КОНТАКТЫ</a>
+
             </div>
             
             <div class="flex items-center gap-3">
-                <a href="index.html#register" class="hidden md:flex text-sm font-semibold px-5 py-2.5 rounded-3xl border border-[#9C1C4F]/20 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">Вход / Регистрация</a>
+                <a href="index.html#register" class="hidden md:flex text-sm font-semibold px-5 py-2.5 rounded-3xl border border-[#9C1C4F]/20 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">Астана</a>
                 <button class="lg:hidden text-gray-800" id="mobile-menu-btn">
                     <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
@@ -220,6 +310,21 @@
         </section>
 
       <section id="view-blogger" class="max-w-7xl mx-auto px-4">
+	  <!-- ФИЛЬТР ГОРОДОВ -->
+            <div class="mb-6 overflow-x-auto pb-2 scrollbar-hide">
+                <div class="flex gap-2 min-w-max">
+                    <button onclick="filterCity(event, 'all')" class="city-filter-btn active px-5 py-2.5 rounded-full border border-gray-200 text-sm font-semibold hover:border-[var(--accent)] hover:text-[var(--accent)]">Все города</button>
+                    <button onclick="filterCity(event, 'almaty')" class="city-filter-btn px-5 py-2.5 rounded-full border border-gray-200 text-sm font-semibold hover:border-[var(--accent)] hover:text-[var(--accent)]">Алматы</button>
+                    <button onclick="filterCity(event, 'astana')" class="city-filter-btn px-5 py-2.5 rounded-full border border-gray-200 text-sm font-semibold hover:border-[var(--accent)] hover:text-[var(--accent)]">Астана</button>
+                    <button onclick="filterCity(event, 'tashkent')" class="city-filter-btn px-5 py-2.5 rounded-full border border-gray-200 text-sm font-semibold hover:border-[var(--accent)] hover:text-[var(--accent)]">Павлодар</button>
+                    <button onclick="filterCity(event, 'online')" class="city-filter-btn px-5 py-2.5 rounded-full border border-gray-200 text-sm font-semibold hover:border-[var(--accent)] hover:text-[var(--accent)]">Атырау</button>
+					<!-- Кнопка вызова модалки -->
+<button onclick="openCityModal()" class="px-5 py-2.5 rounded-full border border-dashed border-[var(--accent)] text-[var(--accent)] text-sm font-bold hover:bg-[var(--accent)] hover:text-white transition-all flex items-center gap-2">
+    <i class="fa-solid fa-earth-americas"></i> Другой...
+</button>
+                </div>
+            </div>
+            <!-- КОНЕЦ ФИЛЬТРА -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 <div class="card-panel p-6 flex flex-col relative overflow-hidden">
@@ -690,6 +795,154 @@
 
             chatToggleBtn.addEventListener('click', toggleChat);
             chatCloseBtn.addEventListener('click', toggleChat);
+        });
+    </script>
+	<!-- МОДАЛЬНОЕ ОКНО ВЫБОРА ГОРОДА -->
+<div id="city-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeCityModal()"></div>
+    
+    <div class="modal-content relative bg-white shadow-2xl flex flex-col overflow-hidden">
+        <!-- Шапка -->
+        <div class="p-6 pb-0 flex justify-between items-center">
+            <h3 class="text-xl font-extrabold tracking-tight">Выбор города</h3>
+            <button onclick="closeCityModal()" class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        
+        <!-- Поиск -->
+        <div class="p-6">
+            <div class="relative group">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[var(--accent)] transition-colors"></i>
+                <input type="text" id="city-search" placeholder="Поиск города..." 
+                       class="w-full pl-11 pr-4 bg-gray-50 rounded-2xl outline-none focus:bg-white focus:ring-2 focus:ring-[var(--accent)]/20 transition-all text-sm font-medium">
+            </div>
+        </div>
+        
+        <!-- Список -->
+        <div class="px-3 pb-6">
+            <div id="modal-city-list" class="custom-scrollbar space-y-1 px-3">
+                <!-- Сюда JS вставит города -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ВЕСЬ JS ФУНКЦИОНАЛ -->
+    <script>
+        // --- 1. ПЕРЕКЛЮЧЕНИЕ РОЛИ (Блогер / Заказчик) ---
+        function switchRole(role) {
+            const toggles = document.querySelectorAll('.role-toggle');
+            toggles.forEach(toggle => {
+                const buttons = toggle.querySelectorAll('button');
+                if (role === 'blogger') {
+                    buttons[0].classList.add('active');
+                    buttons[1].classList.remove('active');
+                } else {
+                    buttons[0].classList.remove('active');
+                    buttons[1].classList.add('active');
+                }
+            });
+            // Здесь можно добавить логику смены контента для всей страницы, если нужно
+        }
+
+        // --- 2. ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК (Лента / Предложить бартер) ---
+        function switchView(view) {
+            const viewBlogger = document.getElementById('view-blogger');
+            const viewBrand = document.getElementById('view-brand');
+            const btnBlogger = document.getElementById('btn-blogger');
+            const btnBrand = document.getElementById('btn-brand');
+
+            if (view === 'blogger') {
+                viewBlogger.classList.remove('hidden');
+                viewBrand.classList.add('hidden');
+                btnBlogger.classList.add('active');
+                btnBrand.classList.remove('active');
+            } else {
+                viewBlogger.classList.add('hidden');
+                viewBrand.classList.remove('hidden');
+                btnBrand.classList.add('active');
+                btnBlogger.classList.remove('active');
+            }
+        }
+
+        // --- 3. ФИЛЬТР ГОРОДОВ (БЫСТРЫЕ КНОПКИ) ---
+        function filterCity(event, city) {
+            const buttons = document.querySelectorAll('.city-filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (event) event.currentTarget.classList.add('active');
+
+            const cards = document.querySelectorAll('#view-blogger .grid .card-panel');
+            
+            cards.forEach(card => {
+                if (city === 'all' || card.getAttribute('data-city') === city) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- 4. МОДАЛЬНОЕ ОКНО И ПОИСК ГОРОДА ---
+        const cities = ["Алматы", "Астана", "Шымкент", "Караганда", "Актобе", "Тараз", "Павлодар", "Усть-Каменогорск", "Семей", "Атырау", "Костанай", "Кызылорда", "Уральск", "Петропавловск", "Москва", "Санкт-Петербург", "Ташкент", "Бишкек"];
+
+        function openCityModal() {
+            document.getElementById('city-modal').classList.add('active');
+            renderCityList(cities);
+        }
+
+        function closeCityModal() {
+            document.getElementById('city-modal').classList.remove('active');
+        }
+
+function renderCityList(cityArray) {
+    const list = document.getElementById('modal-city-list');
+    if (!cityArray.length) {
+        list.innerHTML = '<div class="p-4 text-center text-gray-400 text-sm">Ничего не найдено</div>';
+        return;
+    }
+    list.innerHTML = cityArray.map(city => `
+        <div class="group flex items-center justify-between p-3 rounded-xl hover:bg-[var(--accent)]/5 cursor-pointer transition-all" onclick="selectCity('${city}')">
+            <span class="text-sm font-semibold text-gray-700 group-hover:text-[var(--accent)]">${city}</span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-gray-300 group-hover:text-[var(--accent)] transition-all"></i>
+        </div>
+    `).join('');
+}
+
+        // Поиск в модалке
+        document.getElementById('city-search')?.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = cities.filter(c => c.toLowerCase().includes(term));
+            renderCityList(filtered);
+        });
+
+        function selectCity(cityName) {
+            closeCityModal();
+            const cards = document.querySelectorAll('#view-blogger .grid .card-panel');
+            
+            cards.forEach(card => {
+                // Ищем текст города внутри карточки (в блоке с локацией)
+                const cardText = card.innerText.toLowerCase();
+                if (cardText.includes(cityName.toLowerCase())) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Сбрасываем активную кнопку на "Все города", чтобы не путаться
+            const buttons = document.querySelectorAll('.city-filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+        }
+
+        // --- 5. МОБИЛЬНОЕ МЕНЮ ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                });
+            }
         });
     </script>
 </body>

@@ -69,7 +69,7 @@
 
         <!-- Левая часть -->
         <div class="flex items-center gap-8">
-            <a href="index.html" class="text-2xl font-black tracking-[-2px] uppercase">
+            <a href="index.html" class="text-xl sm:text-2xl font-black tracking-[-2px] uppercase">
                 CREATORS<span class="text-[#9C1C4F]">.</span>KZ
             </a>
 
@@ -115,7 +115,7 @@
             </a>
         </nav>
 
-        <!-- Правая часть (оставляем кабинет) -->
+        <!-- Правая часть -->
         <div class="flex items-center gap-3">
 
             <button class="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-3xl border border-[#9C1C4F]/20 hover:border-[#9C1C4F] transition text-sm font-semibold bg-white">
@@ -128,10 +128,15 @@
                 <span class="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
             </button>
 
-            <div class="w-10 h-10 rounded-full border-2 border-[#9C1C4F] overflow-hidden cursor-pointer hover:scale-105 transition">
+            <div class="hidden md:block w-10 h-10 rounded-full border-2 border-[#9C1C4F] overflow-hidden cursor-pointer hover:scale-105 transition">
                 <img src="https://ui-avatars.com/api/?name=Daniil+B&background=9C1C4F&color=fff"
                      class="w-full h-full object-cover">
             </div>
+
+            <!-- Гамбургер меню для мобильных -->
+            <button @click="mobileMenuOpen = true" class="md:hidden w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-200 transition">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
 
         </div>
 
@@ -139,10 +144,10 @@
 </header>
 
     <!-- КОМПАКТНЫЙ ОСНОВНОЙ КОНТЕЙНЕР -->
-    <div class="max-w-7xl mx-auto w-full px-4 md:px-6 flex gap-6 pt-32 pb-6 flex-1 relative items-start">
+    <div class="max-w-7xl mx-auto w-full px-4 md:px-6 flex gap-6 pt-24 sm:pt-32 pb-6 flex-1 relative items-start">
         
         <!-- ПЛАВАЮЩИЙ САЙДБАР (STICKY CARD) -->
-        <aside class="w-72 bg-white border border-slate-200 rounded-3xl flex flex-col justify-between hidden md:flex shrink-0 sticky top-24 shadow-card max-h-[calc(100vh-8rem)] overflow-y-auto">
+        <aside class="w-72 bg-white border border-slate-200 rounded-3xl flex flex-col justify-between hidden md:flex shrink-0 sticky top-28 shadow-card max-h-[calc(100vh-9rem)] overflow-y-auto">
             <div class="p-6 flex-1">
                 <div class="mb-6 text-center">
                     <div class="w-20 h-20 rounded-full border-4 border-brand-50 mx-auto mb-3 overflow-hidden relative group cursor-pointer">
@@ -202,16 +207,16 @@
             <div class="bg-white border border-slate-200 rounded-3xl px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 shadow-card" x-show="role === 'blogger'">
                 <h1 class="text-xl font-black text-slate-800 tracking-tight" x-text="getPageTitle()"></h1>
                 
-                <div class="flex flex-wrap bg-slate-50 p-1 rounded-xl border border-slate-200/60">
+                <div class="flex flex-wrap bg-slate-50 p-1 rounded-xl border border-slate-200/60 w-full sm:w-auto">
                     <template x-for="acc in socialAccounts" :key="acc.id">
                         <button @click="activeAccount = acc.id"
-                                class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-2"
+                                class="px-4 py-2 sm:py-1.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-2 flex-1 sm:flex-none"
                                 :class="activeAccount === acc.id ? 'bg-white text-slate-900 shadow-sm border border-slate-200/40' : 'text-slate-500 hover:text-slate-700'">
                             <i :class="acc.icon"></i>
                             <span x-text="acc.name" class="hidden sm:inline"></span>
                         </button>
                     </template>
-                    <button @click="modals.linkAccount = true" class="px-3 py-1.5 rounded-lg text-xs text-brand-600 font-bold hover:bg-brand-50 transition-colors flex items-center gap-1.5">
+                    <button @click="modals.linkAccount = true" class="px-3 py-2 sm:py-1.5 rounded-lg text-xs text-brand-600 font-bold hover:bg-brand-50 transition-colors flex items-center justify-center gap-1.5 flex-1 sm:flex-none">
                         <i class="fa-solid fa-plus"></i> <span class="hidden sm:inline">Привязать</span>
                     </button>
                 </div>
@@ -231,8 +236,8 @@
                             <h3 class="text-xl font-black mb-1 flex items-center gap-2">Отличная динамика! 🔥</h3>
                             <p class="text-brand-100 opacity-90 max-w-xl text-xs leading-relaxed">Ваши охваты за последнюю неделю выросли на 15%. Убедитесь, что ваш прайс-лист актуален, чтобы получать максимум от новых предложений брендов.</p>
                         </div>
-                        <div class="relative z-10 shrink-0">
-                            <button @click="activeTab = 'formats'" class="bg-white text-brand-800 px-5 py-2.5 rounded-xl text-xs font-bold hover:shadow-md transition-all">
+                        <div class="relative z-10 shrink-0 w-full md:w-auto">
+                            <button @click="activeTab = 'formats'" class="w-full md:w-auto bg-white text-brand-800 px-5 py-3 md:py-2.5 rounded-xl text-xs font-bold hover:shadow-md transition-all">
                                 Проверить прайс
                             </button>
                         </div>
@@ -256,7 +261,7 @@
                                         <input type="text" value="daniikk_b" class="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 focus:bg-white text-sm font-semibold transition-colors">
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-2 gap-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
                                         <label class="text-[10px] font-bold text-slate-500 mb-1 block uppercase tracking-wide">Город</label>
                                         <select class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold cursor-pointer">
@@ -299,23 +304,23 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-between items-end mb-4 mt-8">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 mb-4 mt-8">
                         <div>
                             <h3 class="text-base font-bold text-slate-800">Метрики соцсети</h3>
                             <p class="text-xs text-slate-500 mt-0.5">Показатели для аккаунта <strong class="text-brand-700" x-text="getActiveAccountName()"></strong>.</p>
                         </div>
-                        <button class="text-brand-700 hover:text-brand-800 text-xs font-bold flex items-center gap-1.5 bg-white border border-brand-200 px-3 py-1.5 rounded-xl transition-all shadow-sm">
+                        <button class="w-full sm:w-auto justify-center text-brand-700 hover:text-brand-800 text-xs font-bold flex items-center gap-1.5 bg-white border border-brand-200 px-3 py-2 sm:py-1.5 rounded-xl transition-all shadow-sm">
                             <i class="fa-solid fa-arrows-rotate"></i> Синхронизировать API
                         </button>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                         <div class="bg-white p-4 rounded-2xl shadow-card border border-slate-200 hover:border-brand-300 transition-colors relative group">
                             <div class="w-9 h-9 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center mb-3"><i class="fa-solid fa-users text-sm"></i></div>
                             <label class="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Подписчики</label>
-                            <input type="text" value="177 000" class="w-full text-xl font-black text-slate-800 bg-transparent editable-input pb-0.5">
-                            <div class="flex items-center gap-1.5 mt-1">
-                                <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded flex items-center gap-0.5"><i class="fa-solid fa-arrow-trend-up"></i> 5.2%</span>
+                            <input type="text" value="177 000" class="w-full text-lg sm:text-xl font-black text-slate-800 bg-transparent editable-input pb-0.5">
+                            <div class="flex flex-wrap items-center gap-1 mt-1">
+                                <span class="text-[9px] sm:text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded flex items-center gap-0.5"><i class="fa-solid fa-arrow-trend-up"></i> 5.2%</span>
                                 <span class="text-[9px] font-bold text-slate-400">за месяц</span>
                             </div>
                         </div>
@@ -323,16 +328,16 @@
                         <div class="bg-white p-4 rounded-2xl shadow-card border border-slate-200 hover:border-brand-300 transition-colors relative group">
                             <div class="w-9 h-9 rounded-full bg-purple-50 text-purple-500 flex items-center justify-center mb-3"><i class="fa-solid fa-eye text-sm"></i></div>
                             <label class="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Охват (мес.)</label>
-                            <input type="text" value="3 773 553" class="w-full text-xl font-black text-slate-800 bg-transparent editable-input pb-0.5">
+                            <input type="text" value="3 773 553" class="w-full text-lg sm:text-xl font-black text-slate-800 bg-transparent editable-input pb-0.5">
                             <div class="flex items-center gap-1.5 mt-1">
-                                <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded flex items-center gap-0.5"><i class="fa-solid fa-arrow-trend-up"></i> 68.1%</span>
+                                <span class="text-[9px] sm:text-[10px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded flex items-center gap-0.5"><i class="fa-solid fa-arrow-trend-up"></i> 68.1%</span>
                             </div>
                         </div>
 
                         <div class="bg-white p-4 rounded-2xl shadow-card border border-slate-200 hover:border-brand-300 transition-colors relative group">
                             <div class="w-9 h-9 rounded-full bg-pink-50 text-pink-500 flex items-center justify-center mb-3"><i class="fa-solid fa-heart-pulse text-sm"></i></div>
                             <label class="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Вовлечённость (ER)</label>
-                            <input type="text" value="2.8%" class="w-full text-xl font-black text-slate-800 bg-transparent editable-input pb-0.5">
+                            <input type="text" value="2.8%" class="w-full text-lg sm:text-xl font-black text-slate-800 bg-transparent editable-input pb-0.5">
                             <p class="text-[9px] font-bold text-slate-400 mt-1.5">Среднее по постам</p>
                         </div>
 
@@ -340,28 +345,28 @@
                             <div class="w-9 h-9 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mb-3"><i class="fa-solid fa-bullseye text-sm"></i></div>
                             <label class="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">CPM (Цена за 1000)</label>
                             <div class="flex items-end gap-0.5">
-                                <input type="text" value="1 300" class="w-16 text-xl font-black text-slate-800 bg-transparent editable-input pb-0.5">
-                                <span class="text-base font-bold text-slate-800 pb-1">₸</span>
+                                <input type="text" value="1 300" class="w-16 text-lg sm:text-xl font-black text-slate-800 bg-transparent editable-input pb-0.5">
+                                <span class="text-sm sm:text-base font-bold text-slate-800 pb-1">₸</span>
                             </div>
                         </div>
 
                         <div class="bg-white p-4 rounded-2xl shadow-card border border-slate-200 hover:border-brand-300 transition-colors relative group">
                             <div class="w-9 h-9 rounded-full bg-indigo-50 text-indigo-500 flex items-center justify-center mb-3"><i class="fa-solid fa-mobile-screen text-sm"></i></div>
                             <label class="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Просмотры Stories</label>
-                            <input type="text" value="45 200" class="w-full text-xl font-black text-slate-800 bg-transparent editable-input pb-0.5">
+                            <input type="text" value="45 200" class="w-full text-lg sm:text-xl font-black text-slate-800 bg-transparent editable-input pb-0.5">
                             <p class="text-[9px] font-bold text-slate-400 mt-1.5">В среднем за 24ч</p>
                         </div>
 
                         <div class="bg-white p-4 rounded-2xl shadow-card border border-slate-200 hover:border-brand-300 transition-colors relative group">
                             <div class="w-9 h-9 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center mb-3"><i class="fa-solid fa-share-nodes text-sm"></i></div>
                             <label class="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Сохранения / Репосты</label>
-                            <input type="text" value="12 405" class="w-full text-xl font-black text-slate-800 bg-transparent editable-input pb-0.5">
+                            <input type="text" value="12 405" class="w-full text-lg sm:text-xl font-black text-slate-800 bg-transparent editable-input pb-0.5">
                             <p class="text-[9px] font-bold text-slate-400 mt-1.5">Индекс виральности</p>
                         </div>
                     </div>
 
                     <div class="flex justify-end pt-2">
-                        <button class="bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-md text-xs uppercase tracking-wide">
+                        <button class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-md text-xs uppercase tracking-wide">
                             Сохранить профиль
                         </button>
                     </div>
@@ -374,7 +379,7 @@
                             <h3 class="text-xl font-black text-slate-800">Форматы рекламы</h3>
                             <p class="text-xs font-medium text-slate-500 mt-0.5">Добавляйте услуги и устанавливайте цены для заказчиков.</p>
                         </div>
-                        <button @click="modals.addFormat = true" class="bg-brand-700 hover:bg-brand-800 text-white px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-md">
+                        <button @click="modals.addFormat = true" class="w-full sm:w-auto justify-center bg-brand-700 hover:bg-brand-800 text-white px-5 py-3 sm:py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-md">
                             <i class="fa-solid fa-plus"></i> Добавить формат
                         </button>
                     </div>
@@ -384,8 +389,8 @@
                             <div class="flex justify-between items-start mb-2">
                                 <div class="w-10 h-10 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center text-lg shadow-sm"><i class="fa-solid fa-clock-rotate-left"></i></div>
                                 <div class="flex gap-1.5">
-                                    <button class="w-7 h-7 rounded-lg bg-slate-50 text-slate-400 hover:text-brand-600 hover:bg-brand-50 transition-colors flex items-center justify-center text-xs"><i class="fa-solid fa-pen"></i></button>
-                                    <button class="w-7 h-7 rounded-lg bg-slate-50 text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors flex items-center justify-center text-xs"><i class="fa-regular fa-trash-can"></i></button>
+                                    <button class="w-8 h-8 sm:w-7 sm:h-7 rounded-lg bg-slate-50 text-slate-400 hover:text-brand-600 hover:bg-brand-50 transition-colors flex items-center justify-center text-xs"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="w-8 h-8 sm:w-7 sm:h-7 rounded-lg bg-slate-50 text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors flex items-center justify-center text-xs"><i class="fa-regular fa-trash-can"></i></button>
                                 </div>
                             </div>
                             <h4 class="text-lg font-black text-slate-900 mb-1">Сториc</h4>
@@ -408,8 +413,8 @@
                             <div class="flex justify-between items-start mb-2">
                                 <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-500 flex items-center justify-center text-lg shadow-sm"><i class="fa-solid fa-play"></i></div>
                                 <div class="flex gap-1.5">
-                                    <button class="w-7 h-7 rounded-lg bg-slate-50 text-slate-400 hover:text-brand-600 hover:bg-brand-50 transition-colors flex items-center justify-center text-xs"><i class="fa-solid fa-pen"></i></button>
-                                    <button class="w-7 h-7 rounded-lg bg-slate-50 text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors flex items-center justify-center text-xs"><i class="fa-regular fa-trash-can"></i></button>
+                                    <button class="w-8 h-8 sm:w-7 sm:h-7 rounded-lg bg-slate-50 text-slate-400 hover:text-brand-600 hover:bg-brand-50 transition-colors flex items-center justify-center text-xs"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="w-8 h-8 sm:w-7 sm:h-7 rounded-lg bg-slate-50 text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors flex items-center justify-center text-xs"><i class="fa-regular fa-trash-can"></i></button>
                                 </div>
                             </div>
                             <h4 class="text-lg font-black text-slate-900 mb-1">Рилс (Reels)</h4>
@@ -432,8 +437,8 @@
                             <div class="flex justify-between items-start mb-2">
                                 <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-500 flex items-center justify-center text-lg shadow-sm"><i class="fa-solid fa-layer-group"></i></div>
                                 <div class="flex gap-1.5">
-                                    <button class="w-7 h-7 rounded-lg bg-slate-50 text-slate-400 hover:text-brand-600 hover:bg-brand-50 transition-colors flex items-center justify-center text-xs"><i class="fa-solid fa-pen"></i></button>
-                                    <button class="w-7 h-7 rounded-lg bg-slate-50 text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors flex items-center justify-center text-xs"><i class="fa-regular fa-trash-can"></i></button>
+                                    <button class="w-8 h-8 sm:w-7 sm:h-7 rounded-lg bg-slate-50 text-slate-400 hover:text-brand-600 hover:bg-brand-50 transition-colors flex items-center justify-center text-xs"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="w-8 h-8 sm:w-7 sm:h-7 rounded-lg bg-slate-50 text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors flex items-center justify-center text-xs"><i class="fa-regular fa-trash-can"></i></button>
                                 </div>
                             </div>
                             <h4 class="text-lg font-black text-slate-900 mb-1">Серия сторис (3-4 шт)</h4>
@@ -470,7 +475,7 @@
 4. В стоимость включена одна итерация бесплатных правок.</textarea>
                             </div>
                             <div class="mt-4 flex justify-end">
-                                <button class="bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-wide shadow-sm">
+                                <button class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-wide shadow-sm">
                                     Сохранить условия
                                 </button>
                             </div>
@@ -480,7 +485,7 @@
 
                 <!-- Календарь -->
                 <div x-show="activeTab === 'calendar'" x-cloak x-transition.opacity.duration.300ms>
-                    <div class="bg-white rounded-3xl shadow-card border border-slate-200 p-6">
+                    <div class="bg-white rounded-3xl shadow-card border border-slate-200 p-4 sm:p-6">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                             <div>
                                 <h3 class="text-lg font-black text-slate-900 flex items-center gap-2">
@@ -488,7 +493,7 @@
                                 </h3>
                                 <p class="text-xs font-medium text-slate-500 mt-0.5">Заказчики видят этот календарь перед отправкой заявки.</p>
                             </div>
-                            <div class="flex items-center gap-3 bg-slate-50 p-1.5 rounded-xl border border-slate-100 shadow-inner">
+                            <div class="flex items-center gap-3 bg-slate-50 p-1.5 rounded-xl border border-slate-100 shadow-inner w-full sm:w-auto justify-between">
                                 <button class="w-8 h-8 rounded-lg hover:bg-white flex items-center justify-center text-slate-600 transition-all text-xs font-bold"><i class="fa-solid fa-chevron-left"></i></button>
                                 <span class="font-black text-slate-800 w-28 text-center text-sm uppercase tracking-wider">Июль 2026</span>
                                 <button class="w-8 h-8 rounded-lg hover:bg-white flex items-center justify-center text-slate-600 transition-all text-xs font-bold"><i class="fa-solid fa-chevron-right"></i></button>
@@ -496,7 +501,7 @@
                         </div>
 
                         <div class="mb-6 p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap gap-4 items-center">
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Инструмент:</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest hidden sm:inline-block">Инструмент:</span>
                             <label class="flex items-center gap-2 cursor-pointer group">
                                 <input type="radio" name="cal_mode" value="free" x-model="calendarMode" class="w-4 h-4 accent-slate-400">
                                 <span class="text-xs font-bold text-slate-700">Свободно</span>
@@ -507,30 +512,30 @@
                             </label>
                             <label class="flex items-center gap-2 cursor-pointer group">
                                 <input type="radio" name="cal_mode" value="special" x-model="calendarMode" class="w-4 h-4 accent-orange-400">
-                                <span class="text-xs font-bold text-slate-700"><span class="w-2.5 h-2.5 inline-block border-2 border-orange-400 rounded-full mr-1"></span> Особый тариф</span>
+                                <span class="text-xs font-bold text-slate-700"><span class="w-2.5 h-2.5 inline-block border-2 border-orange-400 rounded-full mr-1"></span> Особый</span>
                             </label>
                         </div>
 
-                        <div class="grid grid-cols-7 gap-2 mb-2 text-center border-b border-slate-100 pb-2">
-                            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Пн</div>
-                            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Вт</div>
-                            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Ср</div>
-                            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Чт</div>
-                            <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Пт</div>
-                            <div class="text-[10px] font-black text-brand-500 uppercase tracking-widest">Сб</div>
-                            <div class="text-[10px] font-black text-brand-500 uppercase tracking-widest">Вс</div>
+                        <div class="grid grid-cols-7 gap-1 sm:gap-2 mb-2 text-center border-b border-slate-100 pb-2">
+                            <div class="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest">Пн</div>
+                            <div class="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest">Вт</div>
+                            <div class="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest">Ср</div>
+                            <div class="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest">Чт</div>
+                            <div class="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest">Пт</div>
+                            <div class="text-[9px] sm:text-[10px] font-black text-brand-500 uppercase tracking-widest">Сб</div>
+                            <div class="text-[9px] sm:text-[10px] font-black text-brand-500 uppercase tracking-widest">Вс</div>
                         </div>
 
-                        <div class="grid grid-cols-7 gap-2 select-none">
-                            <div class="h-14 sm:h-20"></div>
-                            <div class="h-14 sm:h-20"></div>
+                        <div class="grid grid-cols-7 gap-1 sm:gap-2 select-none">
+                            <div class="h-10 sm:h-20"></div>
+                            <div class="h-10 sm:h-20"></div>
                             <template x-for="day in 31" :key="day">
                                 <div @click="toggleDayStatus(day)"
-                                     class="h-14 sm:h-20 rounded-xl flex flex-col items-center justify-center cursor-pointer transition-all duration-200 border-2 relative overflow-hidden group"
+                                     class="h-10 sm:h-20 rounded-lg sm:rounded-xl flex flex-col items-center justify-center cursor-pointer transition-all duration-200 border-2 relative overflow-hidden group"
                                      :class="getDayClasses(day)">
-                                    <span class="text-base sm:text-lg font-black z-10" :class="getDayTextClass(day)" x-text="day"></span>
-                                    <div x-show="getDayStatus(day) === 'special'" class="absolute top-1 right-1 text-orange-400 text-[8px] sm:text-[10px]"><i class="fa-solid fa-star"></i></div>
-                                    <div x-show="getDayStatus(day) === 'busy'" class="absolute bottom-1.5 w-8 h-0.5 rounded-full bg-white/50"></div>
+                                    <span class="text-sm sm:text-lg font-black z-10" :class="getDayTextClass(day)" x-text="day"></span>
+                                    <div x-show="getDayStatus(day) === 'special'" class="absolute top-0.5 right-0.5 text-orange-400 text-[6px] sm:text-[10px]"><i class="fa-solid fa-star"></i></div>
+                                    <div x-show="getDayStatus(day) === 'busy'" class="absolute bottom-1 sm:bottom-1.5 w-4 sm:w-8 h-0.5 rounded-full bg-white/50"></div>
                                 </div>
                             </template>
                         </div>
@@ -544,7 +549,7 @@
                             <h3 class="text-xl font-black text-slate-800">Портфолио интеграций</h3>
                             <p class="text-xs font-medium text-slate-500 mt-0.5">Добавляйте лучшие кейсы, чтобы повысить доверие брендов.</p>
                         </div>
-                        <button @click="modals.addCase = true" class="bg-brand-700 hover:bg-brand-800 text-white px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-md">
+                        <button @click="modals.addCase = true" class="w-full sm:w-auto justify-center bg-brand-700 hover:bg-brand-800 text-white px-5 py-3 sm:py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-md">
                             <i class="fa-solid fa-plus"></i> Опубликовать кейс
                         </button>
                     </div>
@@ -573,13 +578,13 @@
                                     <p class="text-xs font-medium text-slate-700 leading-relaxed">Осветить запуск нового сервиса в приложении, нативно показать процесс использования и стимулировать аудиторию через юмористический скетч.</p>
                                 </div>
 
-                                <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex justify-between items-center">
-                                    <div>
+                                <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-wrap sm:flex-nowrap justify-between items-center gap-4">
+                                    <div class="w-full sm:w-auto">
                                         <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Охват видео</p>
                                         <p class="text-xl font-black text-brand-700">450 000+</p>
                                     </div>
-                                    <div class="w-px h-8 bg-slate-200"></div>
-                                    <div>
+                                    <div class="hidden sm:block w-px h-8 bg-slate-200"></div>
+                                    <div class="w-full sm:w-auto">
                                         <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Переходы (Клики)</p>
                                         <p class="text-xl font-black text-slate-900 flex items-center gap-1.5">12 400 <span class="bg-emerald-100 text-emerald-600 text-[9px] px-1.5 py-0.5 rounded flex items-center gap-0.5"><i class="fa-solid fa-arrow-trend-up"></i> Топ</span></p>
                                     </div>
@@ -596,9 +601,9 @@
                             <h3 class="text-xl font-black text-slate-800">Входящие заявки</h3>
                             <p class="text-xs font-medium text-slate-500 mt-0.5">Предложения от брендов. Отвечайте вовремя для сохранения рейтинга.</p>
                         </div>
-                        <div class="flex gap-1.5">
-                            <button class="bg-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold shadow-sm">Активные (2)</button>
-                            <button class="bg-transparent text-slate-500 px-3 py-1.5 rounded-xl text-xs font-bold hover:bg-slate-100">Архив</button>
+                        <div class="flex gap-1.5 w-full sm:w-auto">
+                            <button class="flex-1 sm:flex-none bg-white border border-slate-200 text-slate-700 px-3 py-2 sm:py-1.5 rounded-xl text-xs font-bold shadow-sm">Активные (2)</button>
+                            <button class="flex-1 sm:flex-none bg-transparent border border-transparent text-slate-500 px-3 py-2 sm:py-1.5 rounded-xl text-xs font-bold hover:bg-slate-100">Архив</button>
                         </div>
                     </div>
 
@@ -620,16 +625,16 @@
 
                                 <div class="flex-1 md:border-l md:border-slate-100 md:pl-4">
                                     <p class="text-xs font-bold text-slate-900 mb-0.5" x-text="req.title"></p>
-                                    <p class="text-xs font-medium text-slate-500 line-clamp-1 leading-relaxed" x-text="req.desc"></p>
+                                    <p class="text-xs font-medium text-slate-500 line-clamp-2 sm:line-clamp-1 leading-relaxed" x-text="req.desc"></p>
                                     <div class="flex items-center gap-3 mt-2 text-[10px] font-bold text-slate-400">
                                         <span class="flex items-center gap-1"><i class="fa-regular fa-calendar"></i> <span x-text="req.date"></span></span>
                                         <span class="flex items-center gap-1"><i class="fa-solid fa-shapes"></i> <span x-text="req.format"></span></span>
                                     </div>
                                 </div>
 
-                                <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-2 shrink-0 md:w-1/4 pt-3 md:pt-0 border-t md:border-t-0 border-slate-100">
+                                <div class="flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-2 shrink-0 md:w-1/4 pt-4 md:pt-0 border-t md:border-t-0 border-slate-100">
                                     <div class="text-lg font-black text-brand-700" x-text="req.price"></div>
-                                    <button @click="modals.viewRequest = true" class="bg-slate-900 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-sm">Смотреть ТЗ</button>
+                                    <button @click="modals.viewRequest = true" class="bg-slate-900 text-white px-4 py-2.5 sm:py-2 rounded-xl text-xs font-bold shadow-sm">Смотреть ТЗ</button>
                                 </div>
                             </div>
                         </template>
@@ -647,7 +652,7 @@
                         <div class="bg-gradient-to-br from-brand-700 to-brand-900 rounded-3xl p-6 text-white shadow-md relative overflow-hidden">
                             <h4 class="text-brand-100 font-bold uppercase tracking-widest text-[9px] mb-1">Доступно к выводу</h4>
                             <div class="text-3xl font-black mb-4">450 000 ₸</div>
-                            <button @click="modals.withdraw = true" class="bg-white text-brand-800 px-5 py-2.5 rounded-xl text-xs font-bold shadow-sm">
+                            <button @click="modals.withdraw = true" class="bg-white text-brand-800 px-5 py-3 sm:py-2.5 rounded-xl text-xs font-bold shadow-sm w-full sm:w-auto">
                                 Вывести средства
                             </button>
                         </div>
@@ -660,12 +665,12 @@
                     </div>
 
                     <div class="bg-white rounded-3xl shadow-card border border-slate-200 overflow-hidden">
-                        <div class="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                        <div class="p-4 sm:p-5 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 bg-slate-50/50">
                             <h4 class="text-sm font-bold text-slate-800">История операций</h4>
                             <button class="text-xs font-bold text-brand-700"><i class="fa-solid fa-file-invoice"></i> Скачать акт</button>
                         </div>
                         <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse">
+                            <table class="w-full text-left border-collapse min-w-[500px]">
                                 <thead>
                                     <tr class="bg-slate-50/50 text-[9px] uppercase tracking-widest text-slate-400 font-bold">
                                         <th class="p-4 border-b border-slate-100">Дата</th>
@@ -682,9 +687,9 @@
                                                 <div class="font-bold text-slate-800 text-xs" x-text="trx.type"></div>
                                                 <div class="text-[10px] text-slate-400 font-medium" x-text="trx.brand"></div>
                                             </td>
-                                            <td class="p-4 border-b border-slate-100 font-black text-xs" :class="trx.amount.startsWith('+') ? 'text-emerald-600' : 'text-slate-900'" x-text="trx.amount"></td>
+                                            <td class="p-4 border-b border-slate-100 font-black text-xs whitespace-nowrap" :class="trx.amount.startsWith('+') ? 'text-emerald-600' : 'text-slate-900'" x-text="trx.amount"></td>
                                             <td class="p-4 border-b border-slate-100">
-                                                <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider"
+                                                <span class="px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider whitespace-nowrap"
                                                       :class="trx.status === 'Выполнено' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-600'" x-text="trx.status"></span>
                                             </td>
                                         </tr>
@@ -699,21 +704,91 @@
 
             <!-- Заказчик -->
             <div class="h-full flex items-center justify-center py-12" x-show="role === 'advertiser'" x-cloak>
-                <div class="text-center bg-white p-8 rounded-3xl shadow-card border border-slate-200 max-w-md w-full">
+                <div class="text-center bg-white p-8 rounded-3xl shadow-card border border-slate-200 max-w-md w-full mx-4">
                     <div class="w-16 h-16 bg-brand-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
                         <i class="fa-solid fa-briefcase text-2xl text-brand-700"></i>
                     </div>
-                    <h2 class="text-2xl font-black text-slate-800 mb-2 tracking-tight">Кабинет заказчика</h2>
+                    <h2 class="text-xl sm:text-2xl font-black text-slate-800 mb-2 tracking-tight">Кабинет заказчика</h2>
                     <p class="text-slate-500 font-medium text-xs leading-relaxed mb-6">Создавайте задания для блогеров, отслеживайте результаты рекламных кампаний и управляйте бартерными предложениями.</p>
-                    <button @click="role = 'blogger'" class="bg-slate-900 text-white px-6 py-2.5 rounded-xl text-xs font-bold shadow-sm">Вернуться к блогеру</button>
+                    <button @click="role = 'blogger'" class="bg-slate-900 text-white px-6 py-3 sm:py-2.5 rounded-xl text-xs font-bold shadow-sm w-full sm:w-auto">Вернуться к блогеру</button>
                 </div>
             </div>
 
         </main>
     </div>
 
-    <!-- МОДАЛЬНЫЕ ОКНА (БЕЗ ИЗМЕНЕНИЙ В ЛОГИКЕ) -->
-    <div x-show="modals.linkAccount" x-cloak class="relative z-50">
+    <!-- МОБИЛЬНОЕ МЕНЮ (САЙДБАР) -->
+    <div x-show="mobileMenuOpen" x-cloak class="relative z-[100] md:hidden">
+        <div x-show="mobileMenuOpen" 
+             x-transition.opacity 
+             class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm" 
+             @click="mobileMenuOpen = false"></div>
+        
+        <div class="fixed inset-0 z-10 flex">
+            <div x-show="mobileMenuOpen"
+                 x-transition:enter="transition ease-out duration-300"
+                 x-transition:enter-start="-translate-x-full"
+                 x-transition:enter-end="translate-x-0"
+                 x-transition:leave="transition ease-in duration-300"
+                 x-transition:leave-start="translate-x-0"
+                 x-transition:leave-end="-translate-x-full"
+                 class="relative flex w-full max-w-[280px] flex-col bg-white h-full shadow-2xl overflow-y-auto">
+
+                <!-- Профиль -->
+                <div class="p-6 bg-slate-50 border-b border-slate-100 flex items-start justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full border-2 border-brand-500 overflow-hidden">
+                            <img src="https://ui-avatars.com/api/?name=Daniil+B&background=9C1C4F&color=fff" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h2 class="text-sm font-bold text-slate-900">daniikk_b</h2>
+                            <div class="text-[10px] font-bold text-brand-700 bg-brand-50 px-2 py-0.5 rounded-md inline-block mt-0.5">Блогер PRO</div>
+                        </div>
+                    </div>
+                    <button @click="mobileMenuOpen = false" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-200 text-slate-600 hover:bg-slate-300">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Переключатель роли -->
+                <div class="p-4 border-b border-slate-100">
+                    <div class="bg-slate-100 rounded-xl p-1 flex">
+                        <button @click="role='blogger'" class="flex-1 py-2 rounded-lg text-xs font-semibold transition-all" :class="role==='blogger' ? 'bg-brand-600 text-white shadow-md' : 'text-slate-600'">Блогер</button>
+                        <button @click="role='advertiser'" class="flex-1 py-2 rounded-lg text-xs font-semibold transition-all" :class="role==='advertiser' ? 'bg-brand-600 text-white shadow-md' : 'text-slate-600'">Заказчик</button>
+                    </div>
+                </div>
+
+                <!-- Навигация -->
+                <nav class="flex-1 px-4 py-4 space-y-1" x-show="role === 'blogger'">
+                    <template x-for="item in navItems" :key="item.id">
+                        <button @click="activeTab = item.id; mobileMenuOpen = false"
+                                class="w-full flex items-center justify-between px-4 py-3.5 rounded-xl transition-all duration-200 text-left"
+                                :class="activeTab === item.id ? 'bg-brand-50 text-brand-700 font-bold' : 'text-slate-600 hover:bg-slate-50 font-semibold'">
+                            <div class="flex items-center gap-3">
+                                <i :class="item.icon + (activeTab === item.id ? ' text-brand-600' : ' text-slate-400')"></i>
+                                <span x-text="item.name" class="text-sm"></span>
+                            </div>
+                            <span x-show="item.badge" class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full" x-text="item.badge"></span>
+                        </button>
+                    </template>
+                </nav>
+                
+                <div class="p-4 space-y-3" x-show="role === 'advertiser'">
+                    <p class="text-xs text-slate-500 text-center py-4">Перейдите в кабинет заказчика, чтобы увидеть меню.</p>
+                </div>
+
+                <!-- Футер меню -->
+                <div class="p-4 border-t border-slate-100 bg-slate-50">
+                    <button class="w-full flex items-center justify-center gap-2 text-xs font-bold text-slate-500 hover:text-red-500 bg-white border border-slate-200 py-3 rounded-xl transition-colors">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Выйти из аккаунта
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНЫЕ ОКНА -->
+    <div x-show="modals.linkAccount" x-cloak class="relative z-[110]">
         <div x-show="modals.linkAccount" x-transition.opacity class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div class="flex min-h-full items-center justify-center p-4">
@@ -731,7 +806,7 @@
         </div>
     </div>
 
-    <div x-show="modals.addFormat" x-cloak class="relative z-50">
+    <div x-show="modals.addFormat" x-cloak class="relative z-[110]">
         <div x-show="modals.addFormat" x-transition.opacity class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div class="flex min-h-full items-center justify-center p-4">
@@ -750,16 +825,16 @@
                             <input type="number" placeholder="0" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none text-base font-black">
                         </div>
                     </div>
-                    <div class="mt-6 flex justify-end gap-2">
-                        <button @click="modals.addFormat = false" class="px-4 py-2 rounded-xl font-bold text-slate-500 hover:bg-slate-100 text-xs">Отмена</button>
-                        <button @click="modals.addFormat = false" class="px-5 py-2.5 rounded-xl font-bold bg-brand-700 text-white text-xs shadow-sm">Добавить</button>
+                    <div class="mt-6 flex flex-col sm:flex-row justify-end gap-2">
+                        <button @click="modals.addFormat = false" class="w-full sm:w-auto px-4 py-3 sm:py-2 rounded-xl font-bold text-slate-500 hover:bg-slate-100 text-xs">Отмена</button>
+                        <button @click="modals.addFormat = false" class="w-full sm:w-auto px-5 py-3 sm:py-2.5 rounded-xl font-bold bg-brand-700 text-white text-xs shadow-sm">Добавить</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div x-show="modals.viewRequest" x-cloak class="relative z-50">
+    <div x-show="modals.viewRequest" x-cloak class="relative z-[110]">
         <div x-show="modals.viewRequest" x-transition.opacity class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div class="flex min-h-full items-center justify-center p-4">
@@ -780,16 +855,16 @@
                             <p class="text-xs font-medium text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100">Нужно снять распаковку нашего нового бокса уходовой косметики в формате Stories (3 шт). Обязательно показать текстуру сыворотки и сказать промокод "DANYA15". Продукт уже отправлен курьером.</p>
                         </div>
                     </div>
-                    <div class="mt-6 flex justify-end gap-2 pt-4 border-t border-slate-100">
-                        <button class="px-4 py-2 rounded-xl font-bold bg-slate-100 text-slate-600 hover:text-red-600 text-xs transition-colors">Отклонить</button>
-                        <button class="px-5 py-2.5 rounded-xl font-bold bg-brand-700 text-white text-xs shadow-sm">Принять в работу</button>
+                    <div class="mt-6 flex flex-col sm:flex-row justify-end gap-2 pt-4 border-t border-slate-100">
+                        <button class="w-full sm:w-auto px-4 py-3 sm:py-2 rounded-xl font-bold bg-slate-100 text-slate-600 hover:text-red-600 text-xs transition-colors">Отклонить</button>
+                        <button class="w-full sm:w-auto px-5 py-3 sm:py-2.5 rounded-xl font-bold bg-brand-700 text-white text-xs shadow-sm">Принять в работу</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div x-show="modals.withdraw" x-cloak class="relative z-50">
+    <div x-show="modals.withdraw" x-cloak class="relative z-[110]">
         <div x-show="modals.withdraw" x-transition.opacity class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div class="flex min-h-full items-center justify-center p-4">
@@ -809,7 +884,7 @@
                         </div>
                     </div>
                     <div class="mt-6">
-                        <button @click="modals.withdraw = false" class="w-full bg-slate-900 text-white py-2.5 rounded-xl text-xs font-bold shadow-sm hover:bg-slate-800 transition-colors">Подтвердить вывод</button>
+                        <button @click="modals.withdraw = false" class="w-full bg-slate-900 text-white py-3 sm:py-2.5 rounded-xl text-xs font-bold shadow-sm hover:bg-slate-800 transition-colors">Подтвердить вывод</button>
                     </div>
                 </div>
             </div>
@@ -821,6 +896,7 @@
             Alpine.data('dashboardData', () => ({
                 role: 'blogger',
                 activeTab: 'stats',
+                mobileMenuOpen: false,
                 
                 modals: {
                     linkAccount: false,
@@ -894,7 +970,7 @@
                 },
 
                 isAnyModalOpen() {
-                    return Object.values(this.modals).some(isOpen => isOpen);
+                    return Object.values(this.modals).some(isOpen => isOpen) || this.mobileMenuOpen;
                 }
             }))
         })

@@ -131,33 +131,24 @@
         select:focus, input:focus {
             border-color: var(--accent);
         }
+
+        /* Анимация для вертикальной ленты */
+        .animate-vertical-scroll { animation: verticalScroll 20s linear infinite; }
+        .animate-vertical-scroll:hover { animation-play-state: paused; }
+        @keyframes verticalScroll { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+        .mask-fade-vertical { 
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); 
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent); 
+        }
       
         /* УСИЛЕННЫЕ СТИЛИ ДЛЯ ТЕЛЕФОНА */
         @media (max-width: 640px) {
             .section-padding { padding-top: 2rem; padding-bottom: 2.5rem; }
-            h1 { font-size: 2.75rem; line-height: 1.05; }
-            h2 { font-size: 1.75rem; }
+            h1 { font-size: 2.75rem !important; line-height: 1.05 !important; }
+            h2 { font-size: 1.75rem !important; }
             
-            /* Hero на телефоне — компактнее */
-            .hero-visual {
-                max-width: 340px !important;
-                height: 340px !important;
-            }
-            .social-float {
-                width: 64px !important;
-                height: 64px !important;
-                font-size: 2rem !important;
-            }
-            
-            /* Уменьшаем отступы в карточках и секциях */
-            .card-panel {
-                padding: 1.25rem !important;
-            }
-            
-            /* Форма регистрации — 1 колонка */
-            .register-grid {
-                grid-template-columns: 1fr !important;
-            }
+            .card-panel { padding: 1.25rem !important; }
+            .register-grid { grid-template-columns: 1fr !important; }
         }
       
         #mobile-menu {
@@ -168,9 +159,8 @@
             transform: translateY(0);
         }
         
-        .hero-visual {
-            animation: heroPulse 8s ease-in-out infinite;
-        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="antialiased">
@@ -179,7 +169,7 @@
     <nav class="fixed w-full z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 px-4 py-4 shadow-sm">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <div  href="/" class="text-2xl font-black tracking-[-2px]">
+                <div href="/" class="text-2xl font-black tracking-[-2px]">
                     CREATORS<span class="text-[var(--accent)]">.</span>KZ
                 </div>
             </div>
@@ -192,13 +182,13 @@
                 </div>
             </div>
             
-           <div class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide text-gray-800">
-    <a href="work.html" class="hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
-    <a href="catalog.html" class="hover:text-[var(--accent)] transition">КАТАЛОГ</a>
-               <a href="barter.html" class="text-[var(--accent)] border-b-2 border-[var(--accent)] pb-1">БАРТЕР <span class="bg-[var(--accent)] text-white text-[10px] px-2 py-0.5 rounded-full ml-1 animate-pulse">NEW</span></a>
-    <a href="onas.html" class="hover:text-[var(--accent)] transition">О НАС</a>
-    <a href="contacs.html" class="hover:text-[var(--accent)] transition">КОНТАКТЫ</a>
-</div>
+            <div class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide text-gray-800">
+                <a href="work.html" class="hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
+                <a href="catalog.html" class="hover:text-[var(--accent)] transition">КАТАЛОГ</a>
+                <a href="barter.html" class="text-[var(--accent)] border-b-2 border-[var(--accent)] pb-1">БАРТЕР <span class="bg-[var(--accent)] text-white text-[10px] px-2 py-0.5 rounded-full ml-1 animate-pulse">NEW</span></a>
+                <a href="onas.html" class="hover:text-[var(--accent)] transition">О НАС</a>
+                <a href="contacs.html" class="hover:text-[var(--accent)] transition">КОНТАКТЫ</a>
+            </div>
             
             <div class="flex items-center gap-3">
                 <a href="#register" class="hidden md:flex text-sm font-semibold px-5 py-2.5 rounded-3xl border border-[#9C1C4F]/20 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">Вход / Регистрация</a>
@@ -218,11 +208,10 @@
                     <button onclick="switchRole('customer')" class="active">Заказчик</button>
                 </div>
             </div>
-                      <a href="index.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">ГЛАВНАЯ</a>
+            <a href="index.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">ГЛАВНАЯ</a>
             <a href="work.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
             <a href="catalog.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КАТАЛОГ</a>
-                        <a href="barter.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">БАРТЕР</a>
-
+            <a href="barter.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">БАРТЕР</a>
             <a href="onas.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">О НАС</a>
             <a href="contacs.html" class="block text-lg font-semibold text-[var(--accent)]">КОНТАКТЫ</a>
             <hr class="border-gray-200">
@@ -230,41 +219,46 @@
         </div>
     </div>
 
-    <!-- HERO — полностью адаптирован под телефон -->
+    <!-- HERO -->
     <section class="min-h-[100svh] relative flex items-center justify-center pt-20 pb-12 md:pt-24 md:pb-20 overflow-hidden section-padding" id="home">
         <!-- Фоновые блобы -->
-        <div class="organic-blob absolute top-[-12%] left-[-12%] w-[520px] h-[520px] bg-[var(--accent)]/10 rounded-[40%] blur-[110px] -z-10"></div>
-        <div class="organic-blob absolute bottom-[8%] right-[-12%] w-[580px] h-[580px] bg-[var(--accent)]/8 rounded-[45%] blur-[120px] -z-10" style="animation-delay: 5s;"></div>
+        <div class="organic-blob absolute top-[-12%] left-[-12%] w-[520px] h-[520px] bg-[var(--accent)]/10 rounded-[40%] blur-[110px] -z-10 animate-organic-float"></div>
+        <div class="organic-blob absolute bottom-[8%] right-[-12%] w-[580px] h-[580px] bg-[var(--accent)]/8 rounded-[45%] blur-[120px] -z-10 animate-organic-float" style="animation-delay: -5s;"></div>
         
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center z-10">
-           
-            <!-- ЛЕВАЯ ЧАСТЬ (текст) -->
-            <div class="text-center lg:text-left">
-                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[-3px] leading-none mb-4">
-                    CREATORS.KZ
+        <div class="max-w-7xl mx-auto px-4 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center z-10">
+            
+            <!-- ЛЕВАЯ ЧАСТЬ (Оригинальные шрифты и отступы) -->
+            <div class="text-center lg:text-left" data-aos="fade-right">
+                
+                <div class="inline-flex items-center gap-2 bg-[#00c853]/10 text-[#1A1A1A] text-[10px] sm:text-xs font-extrabold uppercase px-4 py-2 rounded-full mb-6 tracking-wide border border-[#00c853]/20 mx-auto lg:mx-0">
+                    <span class="w-2 h-2 bg-[#00c853] rounded-full animate-pulse shadow-[0_0_8px_#00c853]"></span>
+                    Платформа №1 в СНГ
+                </div>
+
+                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-[-3px] leading-none mb-4 uppercase text-[#1A1A1A]">
+                    CREATORS<span class="text-[var(--accent)]">.</span>KZ
                 </h1>
-              
+                
                 <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 text-[#1A1A1A] leading-tight">
-                    Объединяем блогеров и рекламодателей 
-					<br>
-					в <span class="text-[var(--accent)]">Казахстане</span>
+                    Объединяем блогеров и рекламодателей <br class="hidden lg:block">
+                    в <span class="text-[var(--accent)]">Казахстане</span>
                 </h2>
-              
-                <p class="text-base md:text-xl text-gray-600 mb-8 md:mb-12 max-w-xl mx-auto lg:mx-0">
-                    Личный менеджер • Юридическая защита • Стабильный поток заказов
+                
+                <p class="text-base md:text-xl text-gray-600 mb-8 md:mb-12 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    Личный менеджер • Юридическая защита • Стабильный поток заказов • Комиссия <span class="text-[var(--accent)] font-bold bg-[var(--accent)]/10 px-2 py-0.5 rounded-md">12%</span>
                 </p>
-               
+                
                 <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                     <a href="#register" class="btn-accent px-8 py-5 md:px-12 md:py-6 rounded-3xl font-bold text-base md:text-xl uppercase tracking-widest inline-flex items-center gap-3 w-full sm:w-auto justify-center">
                         ПОДКЛЮЧИТЬСЯ БЕСПЛАТНО
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
-                    <a href="#contacts" class="px-8 py-5 md:px-12 md:py-6 rounded-3xl border-2 border-gray-300 hover:border-[var(--accent)] text-base md:text-xl font-semibold text-gray-700 hover:text-[var(--accent)] transition-all flex items-center gap-3 w-full sm:w-auto justify-center">
-                        <i class="fa-brands fa-whatsapp"></i>
+                    <a href="#contacts" class="px-8 py-5 md:px-12 md:py-6 rounded-3xl border-2 border-gray-300 hover:border-[var(--accent)] text-base md:text-xl font-semibold text-gray-700 hover:text-[var(--accent)] transition-all flex items-center gap-3 w-full sm:w-auto justify-center bg-transparent">
+                        <i class="fa-brands fa-whatsapp text-[#25D366]"></i>
                         WhatsApp
                     </a>
                 </div>
-               
+                
                 <div class="mt-10 flex items-center justify-center lg:justify-start gap-x-6 text-sm font-medium text-gray-600 bg-white/80 backdrop-blur-md px-6 py-3 rounded-3xl border border-gray-100 shadow-sm mx-auto lg:mx-0 max-w-fit">
                     <span>500+ креаторов</span>
                     <span class="w-px h-3 bg-gray-300"></span>
@@ -274,51 +268,92 @@
                 </div>
             </div>
 
-            <!-- ПРАВАЯ ЧАСТЬ — ВИЗУАЛ (адаптирован под телефон) -->
-            <div class="relative flex items-center justify-center lg:justify-end min-h-[400px] lg:min-h-[620px]">
-                <div class="relative w-full max-w-[340px] h-[340px] sm:max-w-[420px] sm:h-[420px] lg:max-w-[520px] lg:h-[520px] mx-auto lg:mx-0 hero-visual">
-                   
-                    <!-- Плавающие иконки — полностью responsive -->
-                    <div class="social-float flex absolute top-4 sm:top-8 left-4 sm:left-8 animate-float-1 text-4xl sm:text-5xl text-[#FF0000] w-16 h-16 sm:w-20 sm:h-20 rounded-3xl items-center justify-center rotate-[-10deg] shadow-2xl">
-                        <i class="fa-brands fa-youtube"></i>
-                    </div>
-                    <div class="social-float flex absolute bottom-12 sm:bottom-20 left-4 sm:left-6 animate-float-2 text-4xl sm:text-5xl text-black w-16 h-16 sm:w-20 sm:h-20 rounded-3xl items-center justify-center rotate-[15deg] shadow-2xl">
-                        <i class="fa-brands fa-tiktok"></i>
-                    </div>
-                    <div class="social-float flex absolute top-20 sm:top-32 right-8 sm:right-12 animate-float-3 text-4xl sm:text-5xl text-white bg-[var(--accent)] w-16 h-16 sm:w-20 sm:h-20 rounded-3xl items-center justify-center rotate-[10deg] shadow-2xl">
-                        <i class="fa-brands fa-instagram"></i>
-                    </div>
-                    <div class="social-float flex absolute bottom-6 sm:bottom-8 right-6 sm:right-8 animate-float-1 text-4xl sm:text-5xl text-[#0088cc] w-16 h-16 sm:w-20 sm:h-20 rounded-3xl items-center justify-center rotate-[-15deg] shadow-2xl">
-                        <i class="fa-brands fa-telegram"></i>
-                    </div>
+            <!-- ПРАВАЯ ЧАСТЬ (Многослойные карточки) -->
+            <div class="relative flex items-center justify-center lg:justify-end min-h-[400px] lg:min-h-[520px] mt-8 lg:mt-0" data-aos="fade-left">
+                
+                <div class="relative w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[460px] h-[400px] lg:h-[450px] mx-auto lg:mx-0">
                     
-                    <!-- Центральный элемент — адаптивный -->
-                    <div class="absolute inset-0 flex items-center justify-center z-10">
-                        <div class="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-3xl bg-white/95 backdrop-blur-3xl shadow-2xl border border-[var(--accent)]/10 flex flex-col items-center justify-center text-center p-6 sm:p-8 transition-all hover:scale-105">
-                            <i class="fa-solid fa-handshake text-6xl sm:text-7xl mb-6 text-[var(--accent)]"></i>
-                            <h3 class="font-black text-2xl sm:text-3xl tracking-[-1px] text-[#1A1A1A] leading-none">Соединяем</h3>
-                            <p class="text-[var(--accent)] text-lg sm:text-xl font-semibold mt-1">блогеров и бренды</p>
-                           
-                            <div class="mt-8 flex items-center gap-8 text-sm">
-                                <div class="text-center">
-                                    <div class="font-black text-2xl sm:text-3xl text-[var(--accent)]">500+</div>
-                                    <div class="text-xs uppercase tracking-widest text-gray-500">креаторов</div>
+                    <!-- Темная лента заявок -->
+                    <div class="absolute top-0 right-0 w-[85%] h-full lg:h-[400px] bg-[#1A1A1A] rounded-[2rem] p-6 shadow-2xl border border-[#2A2A2A] flex flex-col z-10 overflow-hidden">
+                        <div class="flex items-center justify-between mb-6 shrink-0">
+                            <h4 class="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                                Live Лента
+                            </h4>
+                            <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                        </div>
+                        
+                        <div class="flex-1 overflow-hidden relative mask-fade-vertical">
+                            <div class="animate-vertical-scroll flex flex-col gap-3">
+                                <!-- Элементы ленты -->
+                                <div class="bg-[#2A2A2A]/60 border border-[#333333]/50 rounded-xl p-4">
+                                    <h5 class="text-white font-bold text-sm mb-1">Reels ресторана</h5>
+                                    <p class="text-gray-400 text-[12px]">Бюджет: 150 000 ₸ • Астана</p>
                                 </div>
-                                <div class="h-10 w-px bg-[var(--accent)]/20"></div>
-                                <div class="text-center">
-                                    <div class="font-black text-2xl sm:text-3xl text-[var(--accent)]">180+</div>
-                                    <div class="text-xs uppercase tracking-widest text-gray-500">кампаний</div>
+                                <div class="bg-[var(--accent)]/20 border border-[var(--accent)]/50 rounded-xl p-4">
+                                    <h5 class="text-white font-bold text-sm mb-1">Бартер: Одежда</h5>
+                                    <p class="text-white/80 text-[12px]">Женская ЦА • Алматы</p>
                                 </div>
-                            </div>
-                           
-                            <div class="mt-8 text-xs font-medium px-5 py-2 bg-[var(--accent)]/10 text-[var(--accent)] rounded-3xl flex items-center gap-2">
-                                <span class="relative flex h-3 w-3">
-                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
-                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-[var(--accent)]"></span>
-                                </span>
-                                Работает в реальном времени
+                                <div class="bg-[#2A2A2A]/60 border border-[#333333]/50 rounded-xl p-4">
+                                    <h5 class="text-white font-bold text-sm mb-1">Tech-обзор YouTube</h5>
+                                    <p class="text-gray-400 text-[12px]">Финансы • 100k+ subs</p>
+                                </div>
+                                <div class="bg-[#2A2A2A]/60 border border-[#333333]/50 rounded-xl p-4">
+                                    <h5 class="text-white font-bold text-sm mb-1">Stories Интеграция</h5>
+                                    <p class="text-gray-400 text-[12px]">Beauty сфера • от 50к охвата</p>
+                                </div>
+                                <!-- Дубликаты -->
+                                <div class="bg-[#2A2A2A]/60 border border-[#333333]/50 rounded-xl p-4">
+                                    <h5 class="text-white font-bold text-sm mb-1">Reels ресторана</h5>
+                                    <p class="text-gray-400 text-[12px]">Бюджет: 150 000 ₸ • Астана</p>
+                                </div>
+                                <div class="bg-[var(--accent)]/20 border border-[var(--accent)]/50 rounded-xl p-4">
+                                    <h5 class="text-white font-bold text-sm mb-1">Бартер: Одежда</h5>
+                                    <p class="text-white/80 text-[12px]">Женская ЦА • Алматы</p>
+                                </div>
+                                <div class="bg-[#2A2A2A]/60 border border-[#333333]/50 rounded-xl p-4">
+                                    <h5 class="text-white font-bold text-sm mb-1">Tech-обзор YouTube</h5>
+                                    <p class="text-gray-400 text-[12px]">Финансы • 100k+ subs</p>
+                                </div>
+                                <div class="bg-[#2A2A2A]/60 border border-[#333333]/50 rounded-xl p-4">
+                                    <h5 class="text-white font-bold text-sm mb-1">Stories Интеграция</h5>
+                                    <p class="text-gray-400 text-[12px]">Beauty сфера • от 50к охвата</p>
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Стеклянная карточка "Соединяем" -->
+                    <div class="absolute bottom-[5%] left-0 w-[85%] sm:w-[75%] bg-white/95 backdrop-blur-xl rounded-3xl p-6 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.15)] border border-white z-20">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-[var(--accent)]/10 text-[var(--accent)] rounded-2xl flex items-center justify-center text-xl sm:text-2xl shrink-0">
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg sm:text-xl font-black text-[#1A1A1A] leading-tight mb-1">Соединяем</h3>
+                                <p class="text-xs sm:text-sm font-bold text-gray-500 mb-3">блогеров и бренды</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-green-100 text-green-700 text-[9px] sm:text-[10px] font-bold px-2 py-1 rounded-md">Безопасная сделка</span>
+                                    <span class="bg-gray-100 text-gray-600 text-[9px] sm:text-[10px] font-bold px-2 py-1 rounded-md">Договор</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Плавающие иконки -->
+                    <div class="social-float flex absolute -top-4 sm:-top-8 left-0 sm:left-4 animate-float-1 text-3xl sm:text-4xl text-[#FF0000] w-14 h-14 sm:w-16 sm:h-16 rounded-[1.25rem] items-center justify-center rotate-[-10deg] shadow-xl z-30 pointer-events-none">
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                    
+                    <div class="social-float flex absolute top-[20%] -right-4 sm:-right-8 animate-float-3 text-3xl sm:text-4xl text-white bg-[var(--accent)] w-14 h-14 sm:w-16 sm:h-16 rounded-[1.25rem] items-center justify-center rotate-[10deg] shadow-xl z-30 pointer-events-none">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    
+                    <div class="social-float flex absolute bottom-[30%] -left-6 sm:-left-10 animate-float-2 text-2xl sm:text-3xl text-black w-12 h-12 sm:w-14 sm:h-14 rounded-2xl items-center justify-center rotate-[15deg] shadow-xl z-30 pointer-events-none">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </div>
+                    
+                    <div class="social-float flex absolute -bottom-4 sm:-bottom-8 right-[10%] sm:right-[15%] animate-float-1 text-2xl sm:text-3xl text-[#0088cc] w-12 h-12 sm:w-14 sm:h-14 rounded-2xl items-center justify-center rotate-[-15deg] shadow-xl z-30 pointer-events-none" style="animation-delay: -2s;">
+                        <i class="fa-brands fa-telegram"></i>
                     </div>
                 </div>
             </div>
@@ -329,249 +364,429 @@
             <a href="#how-it-works" class="flex flex-col items-center text-gray-400 hover:text-[var(--accent)] transition">
                 <span class="text-xs font-bold tracking-widest uppercase mb-2">Вниз</span>
                 <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center shadow">
-                    <i class="fa-solid fa-chevron-down text-lg"></i>
+                    <i class="fa-solid fa-chevron-down text-lg animate-bounce mt-1"></i>
                 </div>
             </a>
         </div>
     </section>
 
-    <!-- Остальные секции (без изменений, уже отлично работают на телефоне) -->
-    <!-- КАК РАБОТАЕТ -->
-    <section class="section-padding py-10 md:py-20" id="how-it-works">
+  <!-- КАК РАБОТАЕТ (Уменьшен отступ снизу) -->
+    <section class="section-padding pt-10 pb-4 md:pt-16 md:pb-8" id="how-it-works">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="card-panel p-6 md:p-12 text-center mb-8 md:mb-12" data-aos="fade-up">
-                <h2 class="text-3xl md:text-5xl font-black mb-4 text-[#1A1A1A]">Как работает платформа?</h2>
-                <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-8">Оставьте заявку на сайте или в WhatsApp с указанием типа рекламы. Мы подберем подходящих блогеров для вашей задачи.</p>
-                <a href="#contacts" class="btn-accent px-8 py-4 rounded-3xl font-bold text-base uppercase tracking-widest">СВЯЗАТЬСЯ С МЕНЕДЖЕРОМ</a>
+            <!-- Главная плашка -->
+            <div class="card-panel p-6 md:p-10 text-center mb-8 md:mb-10 relative overflow-hidden bg-white" data-aos="fade-up">
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10 text-left">
+                    <div class="flex-1">
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black mb-4 text-[#1A1A1A] tracking-tight">Как работает платформа?</h2>
+                        <p class="text-base text-gray-600 max-w-xl leading-relaxed">Оставьте заявку на сайте или в WhatsApp с указанием типа рекламы. Мы подберем подходящих блогеров для вашей задачи.</p>
+                    </div>
+                    <div class="shrink-0 w-full md:w-auto text-center md:text-right">
+                        <a href="#contacts" class="btn-accent px-8 py-4 rounded-3xl font-bold text-sm uppercase tracking-widest inline-flex items-center justify-center gap-3 w-full md:w-auto transition-transform hover:-translate-y-1 hover:shadow-lg">
+                            СВЯЗАТЬСЯ С МЕНЕДЖЕРОМ
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                <div class="card-panel p-6 flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-[var(--accent)] font-semibold text-sm mb-3 uppercase">1 шаг</div>
-                    <h3 class="text-xl font-black mb-3 text-[#1A1A1A]">Консультация с менеджером</h3>
-                    <p class="text-gray-600 text-sm mt-auto">Менеджер свяжется для обсуждения бюджета и форматов. Вы получите рекомендации по кампании.</p>
+
+            <!-- Шаги -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+                <div class="card-panel p-6 md:p-8 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 bg-white" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute -right-4 -bottom-6 text-[140px] font-black text-gray-50 group-hover:text-[var(--accent)]/5 transition-colors duration-500 select-none leading-none z-0">1</div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-14 h-14 bg-[var(--accent)]/10 text-[var(--accent)] rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-black mb-3 text-[#1A1A1A] leading-tight">Консультация с менеджером</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mt-auto">Менеджер свяжется для обсуждения бюджета и форматов. Вы получите рекомендации по кампании.</p>
+                    </div>
                 </div>
-                <div class="card-panel p-6 flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-[var(--accent)] font-semibold text-sm mb-3 uppercase">2 шаг</div>
-                    <h3 class="text-xl font-black mb-3 text-[#1A1A1A]">Выбор блогеров</h3>
-                    <p class="text-gray-600 text-sm mt-auto">Изучите базу блогеров с их статистикой. Мы поможем выбрать лучших для вашей аудитории.</p>
+
+                <div class="card-panel p-6 md:p-8 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 bg-white" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute -right-4 -bottom-6 text-[140px] font-black text-gray-50 group-hover:text-[var(--accent)]/5 transition-colors duration-500 select-none leading-none z-0">2</div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-14 h-14 bg-[var(--accent)]/10 text-[var(--accent)] rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-users-viewfinder"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-black mb-3 text-[#1A1A1A] leading-tight">Выбор блогеров</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mt-auto">Изучите базу блогеров с их статистикой. Мы поможем выбрать лучших для вашей аудитории.</p>
+                    </div>
                 </div>
-                <div class="card-panel p-6 flex flex-col h-full" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-[var(--accent)] font-semibold text-sm mb-3 uppercase">3 шаг</div>
-                    <h3 class="text-xl font-black mb-3 text-[#1A1A1A]">Заключение сделки</h3>
-                    <p class="text-gray-600 text-sm mt-auto">Сделка пройдет с юридической гарантией. Вы будете защищены от рисков.</p>
+
+                <div class="card-panel p-6 md:p-8 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 bg-white" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute -right-4 -bottom-6 text-[140px] font-black text-gray-50 group-hover:text-[var(--accent)]/5 transition-colors duration-500 select-none leading-none z-0">3</div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-14 h-14 bg-[var(--accent)]/10 text-[var(--accent)] rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-file-signature"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-black mb-3 text-[#1A1A1A] leading-tight">Заключение сделки</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mt-auto">Сделка пройдет с юридической гарантией. Вы будете защищены от рисков.</p>
+                    </div>
                 </div>
-                <div class="card-panel p-6 flex flex-col h-full" data-aos="fade-up" data-aos-delay="400">
-                    <div class="text-[var(--accent)] font-semibold text-sm mb-3 uppercase">4 шаг</div>
-                    <h3 class="text-xl font-black mb-3 text-[#1A1A1A]">Отчёт и результаты</h3>
-                    <p class="text-gray-600 text-sm mt-auto">Получите отчёт с охватами и статистикой. Оплата проводится после подтверждения.</p>
+
+                <div class="card-panel p-6 md:p-8 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 bg-white" data-aos="fade-up" data-aos-delay="400">
+                    <div class="absolute -right-4 -bottom-6 text-[140px] font-black text-gray-50 group-hover:text-[var(--accent)]/5 transition-colors duration-500 select-none leading-none z-0">4</div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-14 h-14 bg-[var(--accent)]/10 text-[var(--accent)] rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-black mb-3 text-[#1A1A1A] leading-tight">Отчёт и результаты</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mt-auto">Получите отчёт с охватами и статистикой. Оплата проводится после подтверждения.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- ПОЧЕМУ ВЫБИРАЮТ НАС -->
-    <section class="section-padding py-10 md:py-20">
+    
+   <!-- ПОЧЕМУ ВЫБИРАЮТ НАС -->
+    <section class="pt-2 pb-2 md:pt-4 md:pb-4">
         <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="text-center mb-8 md:mb-12" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-3">Почему выбирают нас</h2>
-                <div class="w-12 h-1 bg-[var(--accent)] mx-auto rounded-full"></div>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                <div class="card-panel p-6 text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-12 h-12 mx-auto bg-[var(--accent)]/10 rounded-2xl flex items-center justify-center text-3xl text-[var(--accent)] mb-4"><i class="fa-solid fa-users"></i></div>
-                    <h3 class="font-bold mb-2">База блогеров</h3>
-                    <p class="text-gray-600 text-sm">Профиль подходящих блогеров под вашу нишу и геолокацию в Казахстане и России.</p>
-                </div>
-                <div class="card-panel p-6 text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-12 h-12 mx-auto bg-[var(--accent)]/10 rounded-2xl flex items-center justify-center text-3xl text-[var(--accent)] mb-4"><i class="fa-solid fa-chart-pie"></i></div>
-                    <h3 class="font-bold mb-2">Аналитика</h3>
-                    <p class="text-gray-600 text-sm">Детальные отчеты по охвату, вовлеченности (ER) и эффективности рекламы.</p>
-                </div>
-                <div class="card-panel p-6 text-center" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-12 h-12 mx-auto bg-[var(--accent)]/10 rounded-2xl flex items-center justify-center text-3xl text-[var(--accent)] mb-4"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3 class="font-bold mb-2">Защита</h3>
-                    <p class="text-gray-600 text-sm">Поддержка через контракты, модерацию контента и соблюдение законов РК и РФ.</p>
-                </div>
-                <div class="card-panel p-6 text-center" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-12 h-12 mx-auto bg-[var(--accent)]/10 rounded-2xl flex items-center justify-center text-3xl text-[var(--accent)] mb-4"><i class="fa-solid fa-handshake-simple"></i></div>
-                    <h3 class="font-bold mb-2">Свой менеджер</h3>
-                    <p class="text-gray-600 text-sm">Подключайтесь к платформе и получите менеджера для обработки заявок.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="bg-[#1A1A1A] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 lg:p-12 relative overflow-hidden shadow-2xl">
+                <!-- Декоративные свечения -->
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--accent)]/15 rounded-full blur-[100px] pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
+                <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[var(--accent)]/10 rounded-full blur-[100px] pointer-events-none -translate-x-1/3 translate-y-1/3"></div>
 
-    <!-- КАТАЛОГ -->
-    <section class="section-padding py-10 md:py-20" id="catalog">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="text-center mb-8 md:mb-12" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-3">Каталог <span class="text-[var(--accent)]">Креаторов</span></h2>
-                <div class="w-12 h-1 bg-[var(--accent)] mx-auto rounded-full mb-4"></div>
-                <p class="text-gray-600">Найдите идеального инфлюенсера для вашего бренда в нашей верифицированной базе.</p>
-            </div>
-            <form class="card-panel p-4 md:p-6 mb-8 grid grid-cols-1 md:grid-cols-4 gap-4 items-end" data-aos="fade-up">
-                <div>
-                    <label class="block text-xs text-gray-500 font-semibold mb-2">Поиск по имени</label>
-                    <input type="text" placeholder="Введите имя..." class="w-full p-4 bg-white border border-gray-100 rounded-3xl focus:border-[var(--accent)] outline-none text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-500 font-semibold mb-2">Локация</label>
-                    <select class="w-full p-4 bg-white border border-gray-100 rounded-3xl focus:border-[var(--accent)] outline-none text-sm">
-                        <option value="">Все города</option>
-                        <option value="astana">Астана</option>
-                        <option value="almaty">Алматы</option>
-                        <option value="moscow">Москва</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-500 font-semibold mb-2">Платформа</label>
-                    <select class="w-full p-4 bg-white border border-gray-100 rounded-3xl focus:border-[var(--accent)] outline-none text-sm">
-                        <option value="">Все сети</option>
-                        <option value="instagram">Instagram</option>
-                        <option value="tiktok">TikTok</option>
-                    </select>
-                </div>
-                <div>
-                    <button type="submit" class="btn-accent w-full py-4 rounded-3xl font-bold uppercase text-sm">ПОИСК</button>
-                </div>
-            </form>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                <div class="card-panel overflow-hidden group" data-aos="zoom-in">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=1000&auto=format&fit=crop" alt="Blogger" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <h4 class="font-bold text-lg text-white">Абай Амиров</h4>
-                            <p class="text-sm text-[var(--accent)] font-semibold">@amir_live</p>
-                        </div>
-                    </div>
-                    <div class="p-4 grid grid-cols-2 gap-2 text-center text-sm">
-                        <div class="border-r border-[#F8F7F5]">
-                            <div class="text-xs text-[#666]">Instagram</div>
-                            <div class="font-bold">38.9k</div>
-                        </div>
-                        <div>
-                            <div class="text-xs text-[#666]">YouTube</div>
-                            <div class="font-bold">6.4k</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-panel overflow-hidden group" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1000&auto=format&fit=crop" alt="Blogger" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <h4 class="font-bold text-lg text-white">Алексей Алексеевский</h4>
-                            <p class="text-sm text-[var(--accent)] font-semibold">@alex_travel</p>
-                        </div>
-                    </div>
-                    <div class="p-4 grid grid-cols-2 gap-2 text-center text-sm">
-                        <div class="border-r border-[#F8F7F5]">
-                            <div class="text-xs text-[#666]">Instagram</div>
-                            <div class="font-bold">38.1k</div>
-                        </div>
-                        <div>
-                            <div class="text-xs text-[#666]">TikTok</div>
-                            <div class="font-bold">12k</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-panel overflow-hidden group" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop" alt="Blogger" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <h4 class="font-bold text-lg text-white">Влада Уварова</h4>
-                            <p class="text-sm text-[var(--accent)] font-semibold">@vlada_style</p>
-                        </div>
-                    </div>
-                    <div class="p-4 grid grid-cols-2 gap-2 text-center text-sm">
-                        <div class="border-r border-[#F8F7F5]">
-                            <div class="text-xs text-[#666]">Instagram</div>
-                            <div class="font-bold">31.9k</div>
-                        </div>
-                        <div>
-                            <div class="text-xs text-[#666]">TikTok</div>
-                            <div class="font-bold">110k</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="catalog.html" class="card-panel overflow-hidden group flex items-center justify-center hover:bg-[#F8F7F5] transition cursor-pointer" data-aos="zoom-in" data-aos-delay="300">
-    <div class="text-center p-8">
-        <div class="w-16 h-16 rounded-3xl bg-[var(--accent)]/10 text-[var(--accent)] mx-auto flex items-center justify-center mb-4 transition group-hover:scale-110">
-            <i class="fa-solid fa-arrow-right text-3xl"></i>
-        </div>
-        <h4 class="font-bold text-[#1A1A1A]">Перейти в каталог</h4>
-        <p class="text-xs text-[#666] mt-2">Более 500+ авторов</p>
-    </div>
-</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- РЕГИСТРАЦИЯ — адаптирована под телефон -->
-    <section class="section-padding py-10 md:py-20" id="register">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
-            <div data-aos="fade-right">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-4 md:mb-6 text-[#1A1A1A]">Создайте Аккаунт на <br/> CREATORS.KZ</h2>
-                <div class="w-12 h-1 bg-[var(--accent)] rounded-full mb-6 md:mb-8"></div>
-                <p class="text-gray-600 text-lg leading-relaxed mb-8">Станьте частью самой динамичной платформы инфлюенс-маркетинга. Получите стабильный поток заказов или найдите идеальных послов бренда.</p>
-                <div class="flex gap-4">
-                    <div class="w-14 h-14 rounded-3xl bg-white shadow-inner flex items-center justify-center text-3xl text-[var(--accent)] shrink-0">🚀</div>
+                <div class="text-center sm:text-left mb-10 md:mb-12 relative z-10 flex flex-col sm:flex-row justify-between items-center gap-6" data-aos="fade-up">
                     <div>
-                        <h4 class="font-bold text-[#1A1A1A]">Быстрый старт</h4>
-                        <p class="text-sm text-[#666]">Регистрация займёт меньше минуты</p>
+                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-black mb-3 text-white tracking-tight">Почему выбирают нас</h2>
+                        <div class="w-12 h-1.5 bg-[var(--accent)] mx-auto sm:mx-0 rounded-full"></div>
+                    </div>
+                    <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-white/80 text-[10px] sm:text-xs font-bold uppercase px-4 py-2 rounded-full backdrop-blur-sm">
+                        Надёжность и прозрачность
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 relative z-10">
+                    <!-- Карточка 1 -->
+                    <div class="md:col-span-2 bg-[#252525]/80 backdrop-blur-md border border-[#333333] p-6 md:p-8 rounded-[1.5rem] md:rounded-3xl group hover:border-[var(--accent)]/50 transition-colors flex flex-col justify-between overflow-hidden relative" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fa-solid fa-users absolute -right-6 -bottom-6 text-[120px] text-white/5 group-hover:text-[var(--accent)]/10 transition-all duration-500 rotate-12 group-hover:rotate-0"></i>
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[var(--accent)]/20 text-[var(--accent)] rounded-2xl flex items-center justify-center text-xl md:text-2xl mb-6 relative z-10">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <h3 class="text-xl md:text-2xl font-black mb-2 text-white">База блогеров</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed max-w-md">Профиль подходящих блогеров под вашу нишу и геолокацию в Казахстане и России. Детальный отбор по качеству аудитории.</p>
+                        </div>
+                    </div>
+
+                    <!-- Карточка 2 -->
+                    <div class="md:col-span-1 bg-[#252525]/80 backdrop-blur-md border border-[#333333] p-6 md:p-8 rounded-[1.5rem] md:rounded-3xl group hover:border-[var(--accent)]/50 transition-colors flex flex-col justify-between overflow-hidden relative" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fa-solid fa-chart-pie absolute -right-4 -bottom-4 text-[100px] text-white/5 group-hover:text-[var(--accent)]/10 transition-all duration-500 -rotate-12 group-hover:rotate-0"></i>
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[var(--accent)]/20 text-[var(--accent)] rounded-2xl flex items-center justify-center text-xl md:text-2xl mb-6 relative z-10">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <h3 class="text-lg md:text-xl font-black mb-2 text-white">Аналитика</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Глубокие отчеты по охвату и вовлеченности (ER).</p>
+                        </div>
+                    </div>
+
+                    <!-- Карточка 3 -->
+                    <div class="md:col-span-1 bg-[#252525]/80 backdrop-blur-md border border-[#333333] p-6 md:p-8 rounded-[1.5rem] md:rounded-3xl group hover:border-[var(--accent)]/50 transition-colors flex flex-col justify-between overflow-hidden relative" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fa-solid fa-shield-halved absolute -right-4 -bottom-4 text-[100px] text-white/5 group-hover:text-[var(--accent)]/10 transition-all duration-500 rotate-12 group-hover:rotate-0"></i>
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[var(--accent)]/20 text-[var(--accent)] rounded-2xl flex items-center justify-center text-xl md:text-2xl mb-6 relative z-10">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <h3 class="text-lg md:text-xl font-black mb-2 text-white">Защита</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">Поддержка через контракты и соблюдение законов РК и РФ.</p>
+                        </div>
+                    </div>
+
+                    <!-- Карточка 4 -->
+                    <div class="md:col-span-2 bg-[#252525]/80 backdrop-blur-md border border-[#333333] p-6 md:p-8 rounded-[1.5rem] md:rounded-3xl group hover:border-[var(--accent)]/50 transition-colors flex flex-col justify-between overflow-hidden relative" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fa-solid fa-handshake-simple absolute -right-6 -bottom-6 text-[120px] text-white/5 group-hover:text-[var(--accent)]/10 transition-all duration-500 -rotate-12 group-hover:rotate-0"></i>
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-[var(--accent)]/20 text-[var(--accent)] rounded-2xl flex items-center justify-center text-xl md:text-2xl mb-6 relative z-10">
+                            <i class="fa-solid fa-handshake-simple"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <h3 class="text-xl md:text-2xl font-black mb-2 text-white">Свой менеджер</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed max-w-md">Подключайтесь к платформе и получите личного менеджера для обработки заявок и контроля дедлайнов.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <form class="card-panel p-6 md:p-10" data-aos="fade-left">
-                <h3 class="text-2xl font-bold mb-8 text-[#1A1A1A]">Регистрация</h3>
-                <div class="mb-6">
-                    <label class="block text-xs text-[#666] font-bold uppercase mb-3">Я регистрируюсь как:</label>
-                    <div class="flex gap-3">
-                        <button type="button" class="flex-1 p-4 rounded-3xl font-bold bg-[var(--accent)] text-white">Блогер</button>
-                        <button type="button" class="flex-1 p-4 rounded-3xl font-bold bg-[#F8F7F5] text-[#1A1A1A] border border-[var(--accent)]/10">Заказчик</button>
-                    </div>
-                </div>
-                <!-- Адаптивная сетка под телефон -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 register-grid">
-                    <input type="text" placeholder="Ваше Имя / Название" class="w-full p-4 bg-white border border-gray-100 rounded-3xl focus:border-[var(--accent)] outline-none">
-                    <input type="text" placeholder="Город (например, Астана)" class="w-full p-4 bg-white border border-gray-100 rounded-3xl focus:border-[var(--accent)] outline-none">
-                </div>
-                <input type="email" placeholder="Электронная почта" class="w-full p-4 bg-white border border-gray-100 rounded-3xl focus:border-[var(--accent)] outline-none mb-5">
-                <input type="password" placeholder="Пароль (мин. 8 символов)" class="w-full p-4 bg-white border border-gray-100 rounded-3xl focus:border-[var(--accent)] outline-none mb-8">
-                <button type="submit" class="btn-accent w-full py-5 rounded-3xl font-bold text-lg uppercase">Создать аккаунт</button>
-                <p class="text-center text-sm text-[#666] mt-6">Уже есть аккаунт? <a href="kabinet.html" class="text-[var(--accent)] font-bold hover:underline">Войти</a></p>
-            </form>
         </div>
     </section>
 
     <!-- ДЛЯ КОГО МЫ РАБОТАЕМ -->
-    <section class="section-padding py-10 md:py-20" id="business">
-        <div class="max-w-7xl mx-auto px-4 md:px-6">
-            <div class="text-center mb-8 md:mb-12" data-aos="fade-up">
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-4 text-[#1A1A1A]">Для кого мы работаем</h2>
-                <div class="w-12 h-1 bg-[var(--accent)] mx-auto rounded-full"></div>
+    <section class="pt-6 pb-16 md:pt-10 md:pb-24 relative overflow-hidden" id="business">
+        <!-- Декоративные элементы фона секции -->
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-[var(--accent)]/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+
+        <div class="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-black mb-4 text-[#1A1A1A] tracking-tight">Для кого мы работаем</h2>
+                <div class="w-12 h-1.5 bg-[var(--accent)] mx-auto rounded-full"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                <div class="card-panel p-6 md:p-10" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-4xl text-[var(--accent)] mb-6"><i class="fa-solid fa-camera-retro"></i></div>
-                    <h3 class="text-xl font-black mb-4 text-[#1A1A1A] uppercase">Блогерам</h3>
-                    <p class="text-gray-600">Забудьте о поиске рекламодателей и долгих переписках в Direct. Получайте стабильный поток предложений.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                
+                <!-- Карточка 1: Блогерам -->
+                <div class="bg-white rounded-[2rem] p-8 lg:p-10 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100 relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_-10px_rgba(156,28,79,0.15)] flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fa-solid fa-camera-retro absolute -right-6 -bottom-6 text-[140px] text-gray-50 group-hover:text-[var(--accent)]/5 transition-all duration-500 group-hover:-rotate-12 group-hover:scale-110 pointer-events-none z-0"></i>
+                    
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-16 h-16 bg-[var(--accent)]/10 text-[var(--accent)] rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shadow-inner">
+                            <i class="fa-solid fa-camera-retro"></i>
+                        </div>
+                        <h3 class="text-2xl font-black mb-4 text-[#1A1A1A] uppercase tracking-tight group-hover:text-[var(--accent)] transition-colors">Блогерам</h3>
+                        <p class="text-gray-600 text-base leading-relaxed mb-8 flex-grow">Забудьте о поиске рекламодателей и долгих переписках в Direct. Получайте стабильный поток предложений.</p>
+                        
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg group-hover:bg-[var(--accent)]/10 group-hover:text-[var(--accent)] transition-colors">Монетизация</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg group-hover:bg-[var(--accent)]/10 group-hover:text-[var(--accent)] transition-colors">Безопасность</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-panel p-6 md:p-10" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-4xl text-[var(--accent)] mb-6"><i class="fa-solid fa-briefcase"></i></div>
-                    <h3 class="text-xl font-black mb-4 text-[#1A1A1A] uppercase">Бизнесу</h3>
-                    <p class="text-gray-600">Единая база проверенных инфлюенсеров. Удобный поиск, безопасные сделки и детальная отчетность.</p>
+
+                <!-- Карточка 2: Бизнесу -->
+                <div class="bg-white rounded-[2rem] p-8 lg:p-10 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100 relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_-10px_rgba(156,28,79,0.15)] flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fa-solid fa-briefcase absolute -right-6 -bottom-6 text-[140px] text-gray-50 group-hover:text-[var(--accent)]/5 transition-all duration-500 group-hover:-rotate-12 group-hover:scale-110 pointer-events-none z-0"></i>
+                    
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-16 h-16 bg-[var(--accent)]/10 text-[var(--accent)] rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shadow-inner">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <h3 class="text-2xl font-black mb-4 text-[#1A1A1A] uppercase tracking-tight group-hover:text-[var(--accent)] transition-colors">Бизнесу</h3>
+                        <p class="text-gray-600 text-base leading-relaxed mb-8 flex-grow">Единая база проверенных инфлюенсеров. Удобный поиск, безопасные сделки и детальная отчетность.</p>
+                        
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg group-hover:bg-[var(--accent)]/10 group-hover:text-[var(--accent)] transition-colors">Охваты</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg group-hover:bg-[var(--accent)]/10 group-hover:text-[var(--accent)] transition-colors">Live-Отчеты</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-panel p-6 md:p-10" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-4xl text-[var(--accent)] mb-6"><i class="fa-solid fa-server"></i></div>
-                    <h3 class="text-xl font-black mb-4 text-[#1A1A1A] uppercase">Агентствам</h3>
-                    <p class="text-gray-600">Автоматизируйте рутину и масштабируйте рекламные кампании ваших клиентов.</p>
+
+                <!-- Карточка 3: Агентствам -->
+                <div class="bg-white rounded-[2rem] p-8 lg:p-10 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100 relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 hover:shadow-[0_20px_50px_-10px_rgba(156,28,79,0.15)] flex flex-col h-full" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-server absolute -right-6 -bottom-6 text-[140px] text-gray-50 group-hover:text-[var(--accent)]/5 transition-all duration-500 group-hover:-rotate-12 group-hover:scale-110 pointer-events-none z-0"></i>
+                    
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div class="w-16 h-16 bg-[var(--accent)]/10 text-[var(--accent)] rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 shadow-inner">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <h3 class="text-2xl font-black mb-4 text-[#1A1A1A] uppercase tracking-tight group-hover:text-[var(--accent)] transition-colors">Агентствам</h3>
+                        <p class="text-gray-600 text-base leading-relaxed mb-8 flex-grow">Автоматизируйте рутину и легко масштабируйте рекламные кампании ваших клиентов.</p>
+                        
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg group-hover:bg-[var(--accent)]/10 group-hover:text-[var(--accent)] transition-colors">B2B Условия</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-gray-100 text-gray-500 px-3 py-1.5 rounded-lg group-hover:bg-[var(--accent)]/10 group-hover:text-[var(--accent)] transition-colors">Масштаб</span>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
+	
+	 <!-- ОСТАВИТЬ ЗАЯВКУ (С красивым разделителем и сбалансированными отступами) -->
+    <section class="pt-4 pb-6 md:pt-6 md:pb-10 relative" id="register">
+        
+        <!-- Декоративный разделитель-мост между секциями -->
+        <div class="max-w-7xl mx-auto px-4 md:px-6 mb-12 md:mb-16">
+            <div class="relative flex items-center justify-center">
+                <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="w-full border-t border-gray-200/80"></div>
+                </div>
+                <div class="relative bg-[#F8F7F5] px-6 text-gray-400 text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span>
+                    Начать сотрудничество
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
+            
+            <!-- Текстовая часть -->
+            <div data-aos="fade-right">
+                <h2 class="text-3xl md:text-5xl font-black mb-4 md:mb-6 text-[#1A1A1A] tracking-tight">Оставьте заявку на <br/> CREATORS.KZ</h2>
+                <div class="w-12 h-1.5 bg-[var(--accent)] rounded-full mb-6 md:mb-8"></div>
+                <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-8 max-w-lg">Станьте частью самой динамичной платформы инфлюенс-маркетинга. Заполните форму, и наш координатор свяжется с вами для обсуждения деталей подключения.</p>
+                <div class="flex gap-4 items-center">
+                    <div class="w-14 h-14 rounded-2xl bg-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.08)] border border-gray-50 flex items-center justify-center text-2xl text-[var(--accent)] shrink-0">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm md:text-base" style="color: var(--accent);">Быстрая связь</h4>
+                        <p class="text-xs md:text-sm text-gray-500">Ответим в течение рабочего дня</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Форма заявки -->
+            <form class="bg-white rounded-[2rem] p-6 md:p-10 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100" data-aos="fade-left">
+                <h3 class="text-2xl font-black mb-8 text-[#1A1A1A]">Заявка на подключение</h3>
+                
+                <div class="flex flex-col gap-4 mb-8">
+                    <!-- Имя -->
+                    <div>
+                        <input type="text" placeholder="Ваше Имя / Название бренда" class="w-full px-6 py-4 bg-white border border-gray-200 rounded-[1.25rem] focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] outline-none text-sm transition-all text-gray-700 placeholder-gray-400 shadow-sm">
+                    </div>
+                    
+                    <!-- Город -->
+                    <div>
+                        <input type="text" placeholder="Ваш город (например, Астана)" class="w-full px-6 py-4 bg-white border border-gray-200 rounded-[1.25rem] focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] outline-none text-sm transition-all text-gray-700 placeholder-gray-400 shadow-sm">
+                    </div>
+
+                    <!-- Телефон и Почта -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="tel" placeholder="Номер телефона" class="w-full px-6 py-4 bg-white border border-gray-200 rounded-[1.25rem] focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] outline-none text-sm transition-all text-gray-700 placeholder-gray-400 shadow-sm">
+                        
+                        <input type="email" placeholder="Электронная почта" class="w-full px-6 py-4 bg-white border border-gray-200 rounded-[1.25rem] focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] outline-none text-sm transition-all text-gray-700 placeholder-gray-400 shadow-sm">
+                    </div>
+                </div>
+                
+                <button type="submit" class="w-full bg-[var(--accent)] text-white py-5 rounded-2xl font-black text-sm uppercase tracking-widest shadow-[0_8px_25px_-6px_var(--accent)] hover:-translate-y-1 hover:shadow-[0_12px_30px_-8px_var(--accent)] transition-all">
+                    ОТПРАВИТЬ ЗАЯВКУ
+                </button>
+                
+                <p class="text-center text-[10px] text-gray-400 mt-5 max-w-xs mx-auto">
+                    Нажимая кнопку, вы соглашаетесь с <a href="#" class="text-[var(--accent)] hover:underline">политикой обработки данных</a>
+                </p>
+            </form>
+        </div>
+    </section>
+    <!-- КАТАЛОГ -->
+    <section class="pt-4 pb-12 md:pt-6 md:pb-20 bg-[#F8F7F5]" id="catalog">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            
+            <!-- Заголовок секции -->
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-5xl font-black mb-4 text-[#1A1A1A] tracking-tight">
+                    Наши
+                    <span class="text-[var(--accent)] relative inline-block">
+                        Креаторы
+                        <!-- Декоративное подчеркивание -->
+                        
+                    </span>
+                </h2>
+                <p class="text-gray-500 font-medium mt-6">Найдите идеального инфлюенсера для вашего бренда в нашей верифицированной базе.</p>
+            </div>
+
+            <!-- Панель поиска (Единый контейнер) -->
+            <div class="bg-white rounded-[2rem] p-6 md:p-8 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100 mb-12" data-aos="fade-up" data-aos-delay="100">
+                <form class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 items-end">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-[11px] text-gray-500 font-bold ml-4 uppercase tracking-wider">Поиск по имени</label>
+                        <input type="text" placeholder="Введите имя..." class="w-full px-6 py-4 bg-white border border-gray-200 rounded-full focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] outline-none text-sm transition-all shadow-sm placeholder-gray-400">
+                    </div>
+                    <div class="flex flex-col gap-2 relative">
+                        <label class="text-[11px] text-gray-500 font-bold ml-4 uppercase tracking-wider">Локация</label>
+                        <select class="w-full px-6 py-4 bg-white border border-gray-200 rounded-full focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] outline-none text-sm transition-all shadow-sm text-gray-700 cursor-pointer appearance-none">
+                            <option value="">Все города</option>
+                            <option value="astana">Астана</option>
+                            <option value="almaty">Алматы</option>
+                            <option value="moscow">Москва</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-6 bottom-5 text-gray-400 text-xs pointer-events-none"></i>
+                    </div>
+                    <div class="flex flex-col gap-2 relative">
+                        <label class="text-[11px] text-gray-500 font-bold ml-4 uppercase tracking-wider">Платформа</label>
+                        <select class="w-full px-6 py-4 bg-white border border-gray-200 rounded-full focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] outline-none text-sm transition-all shadow-sm text-gray-700 cursor-pointer appearance-none">
+                            <option value="">Все сети</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="tiktok">TikTok</option>
+                            <option value="youtube">YouTube</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down absolute right-6 bottom-5 text-gray-400 text-xs pointer-events-none"></i>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full bg-[var(--accent)] text-white px-8 py-4 rounded-full font-black text-sm uppercase tracking-widest shadow-[0_8px_25px_-6px_var(--accent)] hover:-translate-y-1 hover:shadow-[0_12px_30px_-8px_var(--accent)] transition-all">
+                            ПОИСК
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Сетка карточек -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                
+                <!-- Карточка 1 -->
+                <div class="bg-white rounded-[2rem] overflow-hidden shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100 group hover:-translate-y-2 transition-transform duration-300 flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-64 sm:h-72 w-full relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=600&auto=format&fit=crop" alt="Абай Амиров" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-5 left-6">
+                            <h4 class="font-black text-xl text-white mb-0.5 tracking-tight">Абай Амиров</h4>
+                            <p class="text-[13px] text-[var(--accent)] font-bold">@amir_live</p>
+                        </div>
+                    </div>
+                    <div class="p-5 grid grid-cols-2 text-center relative mt-auto">
+                        <div class="absolute inset-y-4 left-1/2 w-px bg-gray-100 -translate-x-1/2"></div>
+                        <div>
+                            <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">Instagram</div>
+                            <div class="font-black text-[#1A1A1A] text-lg">38.9k</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">YouTube</div>
+                            <div class="font-black text-[#1A1A1A] text-lg">6.4k</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="bg-white rounded-[2rem] overflow-hidden shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100 group hover:-translate-y-2 transition-transform duration-300 flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-64 sm:h-72 w-full relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=600&auto=format&fit=crop" alt="Алексей Алексеевский" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale opacity-90 group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-5 left-6">
+                            <h4 class="font-black text-xl text-white mb-0.5 tracking-tight">Алексей Алексеевский</h4>
+                            <p class="text-[13px] text-[var(--accent)] font-bold">@alex_travel</p>
+                        </div>
+                    </div>
+                    <div class="p-5 grid grid-cols-2 text-center relative mt-auto">
+                        <div class="absolute inset-y-4 left-1/2 w-px bg-gray-100 -translate-x-1/2"></div>
+                        <div>
+                            <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">Instagram</div>
+                            <div class="font-black text-[#1A1A1A] text-lg">38.1k</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">TikTok</div>
+                            <div class="font-black text-[#1A1A1A] text-lg">12k</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="bg-white rounded-[2rem] overflow-hidden shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100 group hover:-translate-y-2 transition-transform duration-300 flex flex-col" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-64 sm:h-72 w-full relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop" alt="Влада Уварова" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-5 left-6">
+                            <h4 class="font-black text-xl text-white mb-0.5 tracking-tight">Влада Уварова</h4>
+                            <p class="text-[13px] text-[var(--accent)] font-bold">@vlada_style</p>
+                        </div>
+                    </div>
+                    <div class="p-5 grid grid-cols-2 text-center relative mt-auto">
+                        <div class="absolute inset-y-4 left-1/2 w-px bg-gray-100 -translate-x-1/2"></div>
+                        <div>
+                            <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">Instagram</div>
+                            <div class="font-black text-[#1A1A1A] text-lg">31.9k</div>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1">TikTok</div>
+                            <div class="font-black text-[#1A1A1A] text-lg">110k</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Карточка 4 (Перейти в каталог) -->
+                <a href="catalog.html" class="bg-white rounded-[2rem] overflow-hidden shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100 group hover:-translate-y-2 transition-all duration-300 flex flex-col items-center justify-center p-8 min-h-[350px]" data-aos="fade-up" data-aos-delay="500">
+                    <div class="text-[var(--accent)] text-4xl mb-6 group-hover:translate-x-3 transition-transform duration-300">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                    <h4 class="font-black text-xl text-[#1A1A1A] mb-2 tracking-tight">Перейти в каталог</h4>
+                    <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest">Более 500+ авторов</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+ 
+
+  
 
     <!-- FOOTER -->
     <footer class="border-t border-[#9C1C4F]/10 pt-16 pb-8" id="contacts">
@@ -593,7 +808,7 @@
                     <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Навигация</h4>
                     <ul class="space-y-3 text-sm text-[#666]">
                         <li><a href="#how-it-works" class="hover:text-[var(--accent)]">Как это работает</a></li>
-                       <li><a href="catalog.html" class="hover:text-[var(--accent)]">База блогеров</a></li>
+                        <li><a href="catalog.html" class="hover:text-[var(--accent)]">База блогеров</a></li>
                         <li><a href="#register" class="hover:text-[var(--accent)]">Регистрация</a></li>
                         <li><a href="#business" class="hover:text-[var(--accent)]">Для кого мы работаем</a></li>
                     </ul>
@@ -612,6 +827,62 @@
             </div>
         </div>
     </footer>
+</div>
+
+<!-- ЧАТ-ВИДЖЕТ -->
+<button id="chat-toggle-btn" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-14 h-14 bg-[var(--accent)] text-white rounded-full flex items-center justify-center shadow-[0_8px_25px_-6px_rgba(156,28,79,0.6)] hover:scale-110 transition-all duration-300 z-50">
+    <i id="chat-icon" class="fa-solid fa-comment-dots text-2xl transition-transform duration-300"></i>
+</button>
+
+<div id="chat-window" class="fixed bottom-24 right-6 sm:right-8 w-[calc(100vw-3rem)] sm:w-96 bg-white rounded-2xl shadow-[0_12px_40px_-12px_rgba(0,0,0,0.2)] border border-gray-100 flex flex-col z-50 overflow-hidden transition-all duration-300 origin-bottom-right scale-0 opacity-0 pointer-events-none" style="height: 500px; max-height: 75vh;">
+    <div class="bg-gradient-to-r from-[var(--accent)] to-[#b8215d] p-4 flex justify-between items-center shrink-0">
+        <div class="flex items-center gap-3">
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop" alt="Менеджер" class="w-10 h-10 rounded-full object-cover border-2 border-white/20">
+                <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-[var(--accent)] rounded-full"></div>
+            </div>
+            <div>
+                <h3 class="text-white font-bold text-sm">Данияр</h3>
+                <p class="text-white/80 text-xs">Менеджер • Онлайн</p>
+            </div>
+        </div>
+        <button id="chat-close-btn" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+            <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+    </div>
+
+    <div class="flex-grow p-4 bg-gray-50/50 overflow-y-auto flex flex-col gap-4 hide-scrollbar" id="chat-messages">
+        <div class="flex gap-2 max-w-[85%]">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop" class="w-6 h-6 rounded-full shrink-0">
+            <div>
+                <div class="bg-white p-3 rounded-2xl rounded-tl-sm border border-gray-100 text-sm text-gray-700 shadow-sm">
+                    Здравствуйте! 👋 Я менеджер CREATORS.KZ. Если у вас есть вопросы по статистике, свободным датам или вы хотите обсудить нестандартный формат — пишите, я на связи!
+                </div>
+                <div class="text-[10px] text-gray-400 mt-1 ml-1">12:40</div>
+            </div>
+        </div>
+        
+        <div class="flex gap-2 max-w-[85%] ml-auto justify-end">
+            <div>
+                <div class="bg-[var(--accent)]/10 p-3 rounded-2xl rounded-tr-sm text-sm text-gray-800">
+                    Добрый день! Подскажите, свободна ли дата 15 апреля для Reels?
+                </div>
+                <div class="text-[10px] text-gray-400 mt-1 mr-1 text-right">12:41 <i class="fa-solid fa-check-double text-[var(--accent)]/60 ml-0.5"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-3 border-t border-gray-100 bg-white shrink-0">
+        <form onsubmit="event.preventDefault();" class="flex items-end gap-2 relative">
+            <button type="button" class="p-2 text-gray-400 hover:text-[var(--accent)] transition-colors shrink-0">
+                <i class="fa-solid fa-paperclip"></i>
+            </button>
+            <textarea rows="1" placeholder="Ваше сообщение..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] transition-all resize-none overflow-hidden max-h-24 min-h-[42px]"></textarea>
+            <button type="submit" class="w-10 h-[42px] bg-[var(--accent)] text-white rounded-xl flex items-center justify-center hover:bg-[#b8215d] transition-colors shrink-0 shadow-sm">
+                <i class="fa-solid fa-paper-plane text-sm"></i>
+            </button>
+        </form>
+    </div>
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -653,107 +924,37 @@
             icon.classList.toggle('fa-xmark');
         });
     }
-</script>
-	<!-- ЧАТ-ВИДЖЕТ -->
     
-    <!-- Плавающая кнопка -->
-    <button id="chat-toggle-btn" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-14 h-14 bg-[var(--accent)] text-white rounded-full flex items-center justify-center shadow-[0_8px_25px_-6px_rgba(156,28,79,0.6)] hover:scale-110 transition-all duration-300 z-50">
-        <i id="chat-icon" class="fa-solid fa-comment-dots text-2xl transition-transform duration-300"></i>
-    </button>
-
-    <!-- Окно чата -->
-    <div id="chat-window" class="fixed bottom-24 right-6 sm:right-8 w-[calc(100vw-3rem)] sm:w-96 bg-white rounded-2xl shadow-[0_12px_40px_-12px_rgba(0,0,0,0.2)] border border-gray-100 flex flex-col z-50 overflow-hidden transition-all duration-300 origin-bottom-right scale-0 opacity-0 pointer-events-none" style="height: 500px; max-height: 75vh;">
+    // Chat widget
+    document.addEventListener('DOMContentLoaded', () => {
+        const chatToggleBtn = document.getElementById('chat-toggle-btn');
+        const chatCloseBtn = document.getElementById('chat-close-btn');
+        const chatWindow = document.getElementById('chat-window');
+        const chatIcon = document.getElementById('chat-icon');
         
-        <!-- Шапка чата -->
-        <div class="bg-gradient-to-r from-[var(--accent)] to-[#b8215d] p-4 flex justify-between items-center shrink-0">
-            <div class="flex items-center gap-3">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop" alt="Менеджер" class="w-10 h-10 rounded-full object-cover border-2 border-white/20">
-                    <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-[var(--accent)] rounded-full"></div>
-                </div>
-                <div>
-                    <h3 class="text-white font-bold text-sm">Данияр</h3>
-                    <p class="text-white/80 text-xs">Менеджер • Онлайн</p>
-                </div>
-            </div>
-            <button id="chat-close-btn" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
-                <i class="fa-solid fa-xmark text-sm"></i>
-            </button>
-        </div>
-
-        <!-- Тело чата -->
-        <div class="flex-grow p-4 bg-gray-50/50 overflow-y-auto flex flex-col gap-4 hide-scrollbar" id="chat-messages">
-            <!-- Сообщение от менеджера -->
-            <div class="flex gap-2 max-w-[85%]">
-                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop" class="w-6 h-6 rounded-full shrink-0">
-                <div>
-                    <div class="bg-white p-3 rounded-2xl rounded-tl-sm border border-gray-100 text-sm text-gray-700 shadow-sm">
-                        Здравствуйте! 👋 Я менеджер CREATORS.KZ. Если у вас есть вопросы по статистике, свободным датам или вы хотите обсудить нестандартный формат — пишите, я на связи!
-                    </div>
-                    <div class="text-[10px] text-gray-400 mt-1 ml-1">12:40</div>
-                </div>
-            </div>
+        function toggleChat() {
+            const isOpen = !chatWindow.classList.contains('scale-0');
             
-            <!-- Сообщение от пользователя (пример) -->
-            <div class="flex gap-2 max-w-[85%] ml-auto justify-end">
-                <div>
-                    <div class="bg-[var(--accent)]/10 p-3 rounded-2xl rounded-tr-sm text-sm text-gray-800">
-                        Добрый день! Подскажите, свободна ли дата 15 апреля для Reels?
-                    </div>
-                    <div class="text-[10px] text-gray-400 mt-1 mr-1 text-right">12:41 <i class="fa-solid fa-check-double text-[var(--accent)]/60 ml-0.5"></i></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Поле ввода -->
-        <div class="p-3 border-t border-gray-100 bg-white shrink-0">
-            <form onsubmit="event.preventDefault();" class="flex items-end gap-2 relative">
-                <button type="button" class="p-2 text-gray-400 hover:text-[var(--accent)] transition-colors shrink-0">
-                    <i class="fa-solid fa-paperclip"></i>
-                </button>
-                <textarea rows="1" placeholder="Ваше сообщение..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] transition-all resize-none overflow-hidden max-h-24 min-h-[42px]"></textarea>
-                <button type="submit" class="w-10 h-[42px] bg-[var(--accent)] text-white rounded-xl flex items-center justify-center hover:bg-[#b8215d] transition-colors shrink-0 shadow-sm">
-                    <i class="fa-solid fa-paper-plane text-sm"></i>
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Скрипт логики чата -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const chatToggleBtn = document.getElementById('chat-toggle-btn');
-            const chatCloseBtn = document.getElementById('chat-close-btn');
-            const chatWindow = document.getElementById('chat-window');
-            const chatIcon = document.getElementById('chat-icon');
-            
-            function toggleChat() {
-                const isOpen = !chatWindow.classList.contains('scale-0');
+            if (isOpen) {
+                chatWindow.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+                chatWindow.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
                 
-                if (isOpen) {
-                    // Закрываем чат
-                    chatWindow.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
-                    chatWindow.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
-                    
-                    // Меняем иконку обратно на сообщение
-                    chatIcon.classList.remove('fa-xmark');
-                    chatIcon.classList.add('fa-comment-dots');
-                    chatIcon.style.transform = 'rotate(0deg)';
-                } else {
-                    // Открываем чат
-                    chatWindow.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
-                    chatWindow.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
-                    
-                    // Меняем иконку на крестик
-                    chatIcon.classList.remove('fa-comment-dots');
-                    chatIcon.classList.add('fa-xmark');
-                    chatIcon.style.transform = 'rotate(90deg)';
-                }
+                chatIcon.classList.remove('fa-xmark');
+                chatIcon.classList.add('fa-comment-dots');
+                chatIcon.style.transform = 'rotate(0deg)';
+            } else {
+                chatWindow.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+                chatWindow.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
+                
+                chatIcon.classList.remove('fa-comment-dots');
+                chatIcon.classList.add('fa-xmark');
+                chatIcon.style.transform = 'rotate(90deg)';
             }
+        }
 
-            chatToggleBtn.addEventListener('click', toggleChat);
-            chatCloseBtn.addEventListener('click', toggleChat);
-        });
-    </script>
+        chatToggleBtn.addEventListener('click', toggleChat);
+        chatCloseBtn.addEventListener('click', toggleChat);
+    });
+</script>
 </body>
 </html>

@@ -44,7 +44,7 @@
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col" x-data="dashboardData()" :class="{'overflow-hidden': mobileMenuOpen || modals.contract}">
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col" x-data="dashboardData()" :class="{'overflow-hidden': mobileMenuOpen || modals.contract || modals.payment}">
 
     <!-- Шапка сайта -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 shadow-sm">
@@ -82,8 +82,6 @@
 
             <div class="flex items-center gap-3">
                 
-          
-
                 <!-- Уведомления (Dropdown) -->
                 <div class="relative">
                     <button @click="showNotifMenu = !showNotifMenu; showProfileMenu = false" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center relative hover:text-[#9C1C4F] transition">
@@ -315,7 +313,6 @@
                 <div class="bg-white rounded-3xl shadow-card border border-slate-200 p-6 mb-6">
                     <h3 class="text-base font-bold text-slate-800 mb-5">Уведомления</h3>
                     <div class="space-y-6 max-w-xl">
-                        <!-- Уведомления на сайте -->
                         <div class="flex items-center justify-between gap-4">
                             <div>
                                 <h4 class="text-sm font-bold text-slate-800">Уведомления на сайте</h4>
@@ -331,7 +328,6 @@
                             </div>
                         </div>
                         <div class="h-px bg-slate-100"></div>
-                        <!-- Уведомления на почту -->
                         <div class="flex items-center justify-between gap-4" :class="{ 'opacity-60': !isPro }">
                             <div>
                                 <div class="flex items-center gap-2 mb-1">
@@ -351,7 +347,7 @@
                         </div>
                     </div>
                 </div>
- <!-- Блок связи с менеджером -->
+                
                 <div class="bg-brand-50 border border-brand-200 rounded-3xl p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
                         <h3 class="text-base font-bold text-slate-800">Метрики и статистика</h3>
@@ -366,7 +362,8 @@
                         </a>
                     </div>
                 </div>
-                 <div class="flex justify-end pt-6">
+
+                <div class="flex justify-end pt-6">
                     <button class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-md text-xs uppercase tracking-wide">
                         Сохранить настройки
                     </button>
@@ -376,61 +373,185 @@
             <!-- ВКЛАДКА 2: Баланс и подписки -->
             <div x-show="activeTab === 'balance'" x-cloak x-transition.opacity.duration.300ms>
                 
-                <div class="bg-slate-900 rounded-3xl p-6 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 shadow-lg">
-                    <div>
-                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Баланс кошелька</p>
-                        <div class="text-3xl font-black">5 000 ₸</div>
-                        <p class="text-xs text-slate-400 mt-1">Средства используются для оплаты подписок и услуг.</p>
+                <div class="bg-slate-900 rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-10 shadow-lg relative overflow-hidden">
+                    <div class="absolute right-0 top-0 opacity-10 pointer-events-none transform translate-x-1/4 -translate-y-1/4">
+                        <i class="fa-solid fa-wallet text-9xl"></i>
                     </div>
-                    <button class="w-full sm:w-auto bg-brand-600 hover:bg-brand-500 px-6 py-3 rounded-xl text-xs font-bold transition shadow-md">Пополнить баланс</button>
+                    <div class="relative z-10">
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Ваш текущий баланс</p>
+                        <div class="text-4xl font-black mb-2">5 000 ₸</div>
+                        <p class="text-xs text-slate-400 max-w-sm">Средства используются для оплаты продвижения и профессиональных подписок платформы.</p>
+                    </div>
+                    <button class="relative z-10 w-full sm:w-auto bg-brand-600 hover:bg-brand-500 px-8 py-4 rounded-xl text-sm font-bold transition shadow-md whitespace-nowrap">Пополнить баланс</button>
                 </div>
 
-                <h3 class="text-xl font-black text-slate-800 mb-4">Пакеты услуг (Подписки)</h3>
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-2">Пакеты услуг блогера</h2>
+                    <p class="text-sm text-slate-500 font-medium">Больше возможностей для развития профиля и регулярных заказов</p>
+                </div>
                 
-                <div class="flex flex-col gap-4 mb-10">
-                    <div class="bg-white border-2 border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 opacity-75">
-                        <div>
-                            <h4 class="text-lg font-bold text-slate-800">Базовый</h4>
-                            <p class="text-xs font-medium text-slate-500 mt-1">Стандартный доступ к платформе. Базовые функции биржи.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 items-stretch">
+                    
+                    <!-- Пакет 1: БАЗОВЫЙ -->
+                    <div class="bg-white border border-slate-200 rounded-3xl p-6 lg:p-8 flex flex-col hover:shadow-xl transition-all">
+                        <div class="text-center mb-6 border-b border-slate-100 pb-6">
+                            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-[10px] font-bold uppercase tracking-widest rounded-full mb-4">Free</span>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2">Базовый</h4>
+                            <div class="text-4xl font-black text-slate-900 mb-2">0 ₸</div>
+                            <p class="text-xs font-medium text-slate-500">Стандартный доступ для старта</p>
                         </div>
-                        <div class="shrink-0 flex items-center justify-end">
-                            <span class="bg-slate-100 text-slate-500 px-4 py-2 rounded-xl text-xs font-bold border border-slate-200">Уже активен</span>
-                        </div>
+                        <ul class="flex-1 space-y-0 text-sm text-slate-700 font-medium">
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-regular fa-handshake w-5 text-slate-400 text-center"></i> Отклики на бартер</span>
+                                <span class="font-bold text-slate-900">до 5 / мес</span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-envelope-open-text w-5 text-slate-400 text-center"></i> Прямые заявки</span>
+                                <span class="text-emerald-500"><i class="fa-solid fa-check"></i></span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-regular fa-comments w-5 text-slate-400 text-center"></i> Чат с брендами</span>
+                                <span class="text-emerald-500"><i class="fa-solid fa-check"></i></span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100 opacity-50">
+                                <span class="flex items-center gap-2"><i class="fa-regular fa-bell w-5 text-slate-400 text-center"></i> Email-уведомления</span>
+                                <span class="text-slate-300"><i class="fa-solid fa-minus"></i></span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100 opacity-50">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-check-circle w-5 text-slate-400 text-center"></i> Галочка PRO</span>
+                                <span class="text-slate-300"><i class="fa-solid fa-minus"></i></span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 opacity-50">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-arrow-up-right-dots w-5 text-slate-400 text-center"></i> Вывод в ТОП каталога</span>
+                                <span class="text-slate-300"><i class="fa-solid fa-minus"></i></span>
+                            </li>
+                        </ul>
+                        <button class="w-full mt-6 py-4 rounded-xl font-bold text-sm bg-slate-100 text-slate-500 cursor-not-allowed border border-slate-200">Текущий тариф</button>
                     </div>
-                    <div class="bg-gradient-to-r from-brand-50 to-white border-2 border-brand-500 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative overflow-hidden shadow-md">
-                        <div class="absolute -right-6 -top-6 bg-brand-500 text-white text-[10px] font-bold px-8 py-2 transform rotate-45 flex items-end justify-center h-12 w-24">ХИТ</div>
-                        <div class="pr-8">
-                            <div class="flex gap-2 items-center mb-1">
-                                <h4 class="text-lg font-black text-slate-900">Пакет PRO</h4>
-                                <span class="bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded font-black tracking-wide">-70%</span>
-                            </div>
-                            <p class="text-xs font-medium text-slate-600 max-w-lg">Увеличено количество откликов с биржи. Разблокированы Email-уведомления о заказах. Галочка PRO в каталоге.</p>
-                            <div class="flex items-end gap-2 mt-3">
-                                <span class="text-xl font-black text-brand-700">2 990 ₸</span>
-                                <span class="text-xs font-medium text-slate-400 line-through pb-1">9 990 ₸</span>
-                            </div>
+
+                    <!-- Пакет 2: PRO (ПОПУЛЯРНЫЙ) -->
+                    <div class="bg-white border-2 border-brand-500 rounded-3xl p-6 lg:p-8 flex flex-col shadow-xl relative lg:-translate-y-3 z-10 transition-all">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-600 to-brand-500 text-white px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 shadow-md">
+                            <i class="fa-solid fa-star text-brand-200"></i> Популярный
                         </div>
-                        <button class="w-full sm:w-auto shrink-0 bg-brand-700 hover:bg-brand-800 text-white px-6 py-3 rounded-xl text-xs font-bold shadow-md transition">Подключить</button>
+                        <div class="text-center mb-6 border-b border-slate-100 pb-6 mt-2">
+                            <span class="inline-block px-3 py-1 bg-brand-50 text-brand-700 text-[10px] font-bold uppercase tracking-widest rounded-full mb-4">Start</span>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2">Пакет PRO</h4>
+                            <div class="text-4xl font-black text-brand-700 mb-1">2 990 ₸ <span class="text-sm text-slate-400 font-semibold line-through ml-1">9 990 ₸</span></div>
+                            <p class="text-xs font-medium text-slate-500 mt-2">Оптимален для активной работы</p>
+                        </div>
+                        <ul class="flex-1 space-y-0 text-sm text-slate-800 font-medium">
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-regular fa-handshake w-5 text-brand-500 text-center"></i> Отклики на бартер</span>
+                                <span class="font-bold text-slate-900 bg-brand-50 text-brand-700 px-2 py-0.5 rounded">Безлимит</span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-envelope-open-text w-5 text-brand-500 text-center"></i> Прямые заявки</span>
+                                <span class="text-emerald-500"><i class="fa-solid fa-check"></i></span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-chart-line w-5 text-brand-500 text-center"></i> Расширенная стата</span>
+                                <span class="text-emerald-500"><i class="fa-solid fa-check"></i></span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-regular fa-bell w-5 text-brand-500 text-center"></i> Email-уведомления</span>
+                                <span class="text-emerald-500"><i class="fa-solid fa-check"></i></span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-check-circle w-5 text-brand-500 text-center"></i> Галочка PRO</span>
+                                <span class="text-emerald-500"><i class="fa-solid fa-check"></i></span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-arrow-up-right-dots w-5 text-brand-500 text-center"></i> Вывод в ТОП</span>
+                                <span class="font-bold text-slate-900">1 раз / нед.</span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 opacity-50">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-headset w-5 text-slate-400 text-center"></i> Персональный менеджер</span>
+                                <span class="text-slate-300"><i class="fa-solid fa-minus"></i></span>
+                            </li>
+                        </ul>
+                        <button @click="openPaymentModal('pro', 'Пакет PRO', '2 990')" class="w-full mt-6 py-4 rounded-xl font-bold text-sm bg-brand-600 hover:bg-brand-700 text-white shadow-[0_8px_20px_-6px_rgba(156,28,79,0.5)] hover:-translate-y-0.5 transition-all">Выбрать пакет</button>
                     </div>
-                    <!-- Пакет 3: Premium -->
-                    <div class="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-slate-300 transition shadow-sm">
-                        <div>
-                            <h4 class="text-lg font-bold text-slate-800">Пакет PREMIUM</h4>
-                            <p class="text-xs font-medium text-slate-500 mt-1">Все фишки PRO. Безлимитные отклики на бартер. Персональный менеджер и автоматическое поднятие профиля 1 раз в день.</p>
-                            <div class="flex items-end gap-2 mt-3">
-                                <span class="text-xl font-black text-slate-800">14 990 ₸</span>
-                                <span class="text-xs font-bold text-slate-500 pb-1">/ месяц</span>
-                            </div>
+
+                    <!-- Пакет 3: PREMIUM -->
+                    <div class="bg-white border border-slate-200 rounded-3xl p-6 lg:p-8 flex flex-col hover:shadow-xl transition-all">
+                        <div class="text-center mb-6 border-b border-slate-100 pb-6">
+                            <span class="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase tracking-widest rounded-full mb-4">Managed</span>
+                            <h4 class="text-xl font-bold text-slate-900 mb-2">Пакет PREMIUM</h4>
+                            <div class="text-4xl font-black text-slate-900 mb-2">14 990 ₸</div>
+                            <p class="text-xs font-medium text-slate-500">Максимум охвата и приоритет</p>
                         </div>
-                        <button class="w-full sm:w-auto shrink-0 bg-slate-100 hover:bg-slate-200 text-slate-700 px-6 py-3 rounded-xl text-xs font-bold transition">
-                            Подключить
-                        </button>
+                        <ul class="flex-1 space-y-0 text-sm text-slate-800 font-medium">
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-regular fa-handshake w-5 text-blue-500 text-center"></i> Отклики на бартер</span>
+                                <span class="font-bold text-slate-900 bg-blue-50 text-blue-700 px-2 py-0.5 rounded">Безлимит</span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-envelope-open-text w-5 text-blue-500 text-center"></i> Прямые заявки</span>
+                                <span class="font-bold text-slate-900">Топ выдачи</span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-regular fa-bell w-5 text-blue-500 text-center"></i> Уведомления SMS/Email</span>
+                                <span class="text-emerald-500"><i class="fa-solid fa-check"></i></span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-check-circle w-5 text-blue-500 text-center"></i> Галочка PREMIUM</span>
+                                <span class="text-emerald-500"><i class="fa-solid fa-check"></i></span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-arrow-up-right-dots w-5 text-blue-500 text-center"></i> Вывод в ТОП</span>
+                                <span class="font-bold text-slate-900">1 раз / день</span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5 border-b border-slate-100">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-headset w-5 text-blue-500 text-center"></i> Персональный менеджер</span>
+                                <span class="text-emerald-500"><i class="fa-solid fa-check"></i></span>
+                            </li>
+                            <li class="flex justify-between items-center py-3.5">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-scale-balanced w-5 text-blue-500 text-center"></i> Юр. сопровождение</span>
+                                <span class="text-emerald-500"><i class="fa-solid fa-check"></i></span>
+                            </li>
+                        </ul>
+                        <button @click="openPaymentModal('premium', 'Пакет PREMIUM', '14 990')" class="w-full mt-6 py-4 rounded-xl font-bold text-sm bg-slate-900 hover:bg-slate-800 text-white shadow-md hover:-translate-y-0.5 transition-all">Выбрать пакет</button>
                     </div>
                 </div>
 
-                <h3 class="text-xl font-black text-slate-800 mb-4">Дополнительные услуги</h3>
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 flex flex-wrap lg:flex-nowrap justify-between gap-6 sm:gap-8 items-center mt-10">
+                    <div class="flex items-center gap-4 w-full sm:w-[calc(50%-1rem)] lg:w-auto">
+                        <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-rocket"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Быстрый старт</h4>
+                            <p class="text-[11px] text-slate-500 mt-0.5">Получайте первые заказы за 5 минут</p>
+                        </div>
+                    </div>
+                    <div class="hidden lg:block w-px h-10 bg-slate-100"></div>
+                    <div class="flex items-center gap-4 w-full sm:w-[calc(50%-1rem)] lg:w-auto">
+                        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-users"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Лучшие бренды</h4>
+                            <p class="text-[11px] text-slate-500 mt-0.5">Доступ к базе проверенных заказчиков</p>
+                        </div>
+                    </div>
+                    <div class="hidden lg:block w-px h-10 bg-slate-100"></div>
+                    <div class="flex items-center gap-4 w-full sm:w-[calc(50%-1rem)] lg:w-auto">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Безопасные сделки</h4>
+                            <p class="text-[11px] text-slate-500 mt-0.5">Гарантированная оплата и ЭАВР</p>
+                        </div>
+                    </div>
+                    <div class="hidden lg:block w-px h-10 bg-slate-100"></div>
+                    <div class="flex items-center gap-4 w-full sm:w-[calc(50%-1rem)] lg:w-auto">
+                        <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-chart-line"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Реальный заработок</h4>
+                            <p class="text-[11px] text-slate-500 mt-0.5">Контент, приносящий вам доход</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-black text-slate-800 mb-4 mt-12">Дополнительные услуги</h3>
                 
-                <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 hover:border-amber-300 transition-colors">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-thumbtack"></i></div>
                         <div>
@@ -440,32 +561,30 @@
                     </div>
                     <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto shrink-0">
                         <div class="text-lg font-black text-slate-800">7 500 ₸</div>
-                        <button class="w-full sm:w-auto bg-slate-900 text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition">Купить</button>
+                        <button class="w-full sm:w-auto bg-slate-900 text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition">Купить</button>
                     </div>
                 </div>
 
-                <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
+                <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10 hover:border-blue-300 transition-colors">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-bullhorn"></i></div>
                         <div>
                             <h4 class="font-bold text-slate-900">Промо в соцсетях Creators.kz</h4>
-                            <p class="text-xs font-medium text-slate-500 mt-1">Опубликуем рекламный пост о вас в нашем официальном Instagram и Telegram-канале с прямой отметкой вашего профиля.</p>
+                            <p class="text-xs font-medium text-slate-500 mt-1">Опубликуем рекламный пост о вас в нашем официальном Instagram и Telegram-канале с прямой отметкой.</p>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto shrink-0">
                         <div class="text-lg font-black text-slate-800">15 000 ₸</div>
-                        <button class="w-full sm:w-auto bg-slate-900 text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition">Купить</button>
+                        <button class="w-full sm:w-auto bg-slate-900 text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition">Купить</button>
                     </div>
                 </div>
             </div>
 
-            <!-- ВКЛАДКА 3: Заявки и отклики (С фильтрами и полным списком) -->
+            <!-- ВКЛАДКА 3: Заявки и отклики -->
             <div x-show="activeTab === 'requests'" x-cloak x-transition.opacity.duration.300ms>
                 
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-                    <p class="text-sm font-medium text-slate-500">Предложения от рекламодателей и статусы ваших откликов с бартерной биржи.</p>
-                    
-                    <!-- Фильтры -->
+                    <p class="text-sm font-medium text-slate-500">Предложения от рекламодателей и статусы ваших откликов.</p>
                     <div class="flex bg-slate-100 p-1 rounded-xl border border-slate-200/60 w-full sm:w-auto shrink-0">
                         <button @click="requestFilter = 'all'" :class="requestFilter === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex-1 sm:flex-none">Все</button>
                         <button @click="requestFilter = 'active'" :class="requestFilter === 'active' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex-1 sm:flex-none">Активные</button>
@@ -473,12 +592,10 @@
                     </div>
                 </div>
 
-                <!-- Список заявок -->
                 <div class="space-y-4">
                     <template x-for="req in filteredRequests()" :key="req.id">
                         <div class="bg-white rounded-2xl shadow-card border border-slate-200 p-5 flex flex-col md:flex-row gap-4 md:items-center transition-all hover:border-brand-300">
                             
-                            <!-- Тег типа заявки -->
                             <div class="md:w-32 shrink-0">
                                 <span class="text-[10px] font-bold px-2.5 py-1 rounded-md block text-center"
                                       :class="req.tagType === 'direct' ? 'bg-brand-50 text-brand-700 border border-brand-100' : 'bg-emerald-50 text-emerald-700 border border-emerald-100'"
@@ -501,7 +618,6 @@
                                     <p class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Бюджет / Условия</p>
                                     <p class="text-sm font-black text-slate-800" :class="req.status === 'archive' ? 'text-slate-400' : ''" x-text="req.price"></p>
                                 </div>
-                                <!-- Кнопка открывает чат -->
                                 <button @click="activeTab = 'chat'" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-sm" :class="req.status === 'archive' ? 'opacity-50' : ''">
                                     Открыть чат
                                 </button>
@@ -511,7 +627,7 @@
                 </div>
             </div>
 
-            <!-- ВКЛАДКА 4: Чат с брендами -->
+             <!-- ВКЛАДКА 4: Чат с брендами -->
             <div x-show="activeTab === 'chat'" x-cloak x-transition.opacity.duration.300ms class="h-[650px] flex gap-4">
                 
                 <!-- Список диалогов (Слева) -->
@@ -667,7 +783,84 @@
         </main>
     </div>
 
-    <!-- РАСШИРЕННОЕ Модальное окно: Подписание договора -->
+    <!-- МОДАЛЬНОЕ ОКНО: ОПЛАТА ПОДПИСКИ -->
+    <div x-show="modals.payment" x-cloak class="relative z-[110]">
+        <div x-show="modals.payment" x-transition.opacity class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4">
+                <div x-show="modals.payment" x-transition.scale.95 class="relative bg-white rounded-3xl shadow-modal w-full max-w-lg p-6 sm:p-8" @click.away="modals.payment = false">
+                    
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-black text-slate-900">Оплата подписки</h3>
+                        <button @click="modals.payment = false" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200 transition"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 flex justify-between items-center mb-6">
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Выбранный тариф</p>
+                            <h4 class="text-base font-bold text-slate-900" x-text="paymentData.name"></h4>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">К оплате</p>
+                            <h4 class="text-xl font-black text-brand-700" x-text="paymentData.price + ' ₸'"></h4>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm font-bold text-slate-800 mb-3">Укажите ваш статус для оплаты</p>
+                    
+                    <div class="flex bg-slate-100 p-1 rounded-xl border border-slate-200/60 mb-6">
+                        <button @click="paymentData.type = 'individual'" :class="paymentData.type === 'individual' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'" class="px-4 py-2.5 rounded-lg text-sm font-bold transition-all flex-1">Физическое лицо</button>
+                        <button @click="paymentData.type = 'entity'" :class="paymentData.type === 'entity' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'" class="px-4 py-2.5 rounded-lg text-sm font-bold transition-all flex-1">Юр. лицо / ИП</button>
+                    </div>
+
+                    <!-- Оплата ФИЗ. ЛИЦО -->
+                    <div x-show="paymentData.type === 'individual'" x-transition.opacity>
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 mb-6 text-center">
+                            <div class="flex justify-center gap-3 mb-4 text-3xl text-slate-400">
+                                <i class="fa-brands fa-cc-visa hover:text-blue-600 transition cursor-pointer"></i>
+                                <i class="fa-brands fa-cc-mastercard hover:text-red-500 transition cursor-pointer"></i>
+                                <i class="fa-brands fa-cc-apple-pay hover:text-slate-900 transition cursor-pointer"></i>
+                            </div>
+                            <p class="text-xs text-slate-500 font-medium">Безопасная оплата картой любого банка РК без комиссии.</p>
+                        </div>
+                        <button @click="payByCard()" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-4 rounded-xl font-bold transition shadow-md flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-credit-card"></i> Перейти к оплате онлайн
+                        </button>
+                    </div>
+
+                    <!-- Оплата ЮР. ЛИЦО -->
+                    <div x-show="paymentData.type === 'entity'" x-cloak x-transition.opacity>
+                        <div class="space-y-4 mb-6">
+                            <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-100 flex gap-3 items-start">
+                                <i class="fa-solid fa-circle-info text-blue-500 mt-0.5"></i>
+                                <p class="text-xs text-slate-600 font-medium leading-relaxed">Введите реквизиты вашей компании, чтобы система автоматически сгенерировала счет на оплату в формате PDF.</p>
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 block">БИН / ИИН <span class="text-brand-500">*</span></label>
+                                <input type="text" x-model="paymentData.entity.bin" placeholder="Например: 123456789012" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold transition-colors">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 block">Название компании <span class="text-brand-500">*</span></label>
+                                <input type="text" x-model="paymentData.entity.name" placeholder="Например: ТОО Ромашка" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold transition-colors">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 block">Юридический адрес</label>
+                                <input type="text" x-model="paymentData.entity.address" placeholder="Город, улица, дом" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold transition-colors">
+                            </div>
+                        </div>
+
+                        <button @click="generateInvoice()" class="w-full bg-slate-900 hover:bg-slate-800 text-white py-4 rounded-xl font-bold transition shadow-md flex items-center justify-center gap-2" :class="{'opacity-70 cursor-not-allowed': paymentData.isGenerating}" :disabled="paymentData.isGenerating">
+                            <span x-show="!paymentData.isGenerating"><i class="fa-solid fa-file-invoice text-brand-300"></i> Сформировать счет</span>
+                            <span x-show="paymentData.isGenerating" x-cloak><i class="fa-solid fa-circle-notch fa-spin text-brand-300"></i> Формируем...</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ДОГОВОРА -->
     <div x-show="modals.contract" x-cloak class="relative z-[110]">
         <div x-show="modals.contract" x-transition.opacity class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -675,21 +868,19 @@
                 <div x-show="modals.contract" x-transition.scale.95 class="relative bg-white rounded-3xl shadow-modal w-full max-w-lg p-6" @click.away="modals.contract = false">
                     
                     <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-black text-slate-900">Подписание договора (ЭАВР)</h3>
+                        <h3 class="text-lg font-black text-slate-900">Подписание ЭАВР</h3>
                         <button @click="modals.contract = false" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200 transition"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     
-                    <p class="text-xs text-slate-500 font-medium mb-6 leading-relaxed">Внесите корректные юридические данные согласно законодательству РК. Они будут использованы для автоматической генерации договора и закрывающих документов.</p>
+                    <p class="text-xs text-slate-500 font-medium mb-6 leading-relaxed">Внесите корректные юридические данные согласно законодательству РК.</p>
                     
                     <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
-                        
-                        <!-- Блок 1: Личные данные -->
                         <div class="bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
                             <h4 class="text-[10px] font-black text-brand-700 uppercase tracking-widest mb-3 flex items-center gap-2"><i class="fa-solid fa-user-shield"></i> 1. Юридическое лицо / ИП</h4>
                             <div class="space-y-4">
                                 <div>
                                     <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">ФИО / Наименование ИП (ТОО) <span class="text-brand-500">*</span></label>
-                                    <input type="text" placeholder="Индивидуальный предприниматель Иванов И. И." class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
+                                    <input type="text" placeholder="Иванов И. И." class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
@@ -697,18 +888,17 @@
                                         <input type="text" placeholder="000000000000" class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
                                     </div>
                                     <div>
-                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">№ Удостоверения (для физ. лиц)</label>
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">№ Удостоверения</label>
                                         <input type="text" placeholder="Опционально" class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">Юридический адрес / Адрес регистрации <span class="text-brand-500">*</span></label>
+                                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">Юридический адрес <span class="text-brand-500">*</span></label>
                                     <input type="text" placeholder="г. Астана, ул. Примерная, д. 1" class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Блок 2: Реквизиты -->
                         <div class="bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
                             <h4 class="text-[10px] font-black text-brand-700 uppercase tracking-widest mb-3 flex items-center gap-2"><i class="fa-solid fa-building-columns"></i> 2. Банковские реквизиты</h4>
                             <div class="space-y-4">
@@ -719,7 +909,7 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
                                         <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">Наименование банка <span class="text-brand-500">*</span></label>
-                                        <input type="text" placeholder="Например: АО Kaspi Bank" class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
+                                        <input type="text" placeholder="АО Kaspi Bank" class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
                                     </div>
                                     <div>
                                         <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">БИК банка <span class="text-brand-500">*</span></label>
@@ -728,22 +918,9 @@
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
 
                     <div class="mt-6 pt-4 border-t border-slate-100">
-                        <label class="flex items-start gap-3 cursor-pointer group mb-4">
-                            <div class="relative flex items-center justify-center mt-0.5">
-                                <input type="checkbox" required class="peer sr-only">
-                                <div class="w-5 h-5 rounded bg-white border-2 border-slate-300 peer-checked:bg-brand-600 peer-checked:border-brand-600 transition-all flex items-center justify-center shadow-sm">
-                                    <i class="fa-solid fa-check text-white text-[10px] opacity-0 peer-checked:opacity-100"></i>
-                                </div>
-                            </div>
-                            <span class="text-[11px] font-medium text-slate-600 leading-relaxed">
-                                Подтверждаю правильность введенных данных и согласен с <a href="#" class="text-brand-600 font-bold hover:underline">правилами проведения безопасной сделки</a>.
-                            </span>
-                        </label>
-                        
                         <div class="flex flex-col sm:flex-row gap-3">
                             <button @click="modals.contract = false" class="flex-1 px-4 py-3 sm:py-3 rounded-xl font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 text-xs transition">Отменить</button>
                             <button @click="acceptContract()" class="flex-1 px-4 py-3 sm:py-3 rounded-xl font-bold bg-brand-700 hover:bg-brand-800 text-white text-xs shadow-md transition flex items-center justify-center gap-2">
@@ -761,44 +938,12 @@
         <div x-show="mobileMenuOpen" x-transition.opacity class="fixed inset-0 bg-slate-900/60 backdrop-blur-md"></div>
         <div class="fixed inset-y-0 right-0 z-10 w-full max-w-sm overflow-y-auto bg-white px-6 py-6 sm:max-w-sm flex flex-col justify-between" x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
             <div>
-                <div class="flex items-center justify-between pb-6 border-b border-slate-100">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full border-2 border-brand-500 overflow-hidden">
-                            <img src="https://ui-avatars.com/api/?name=Daniil+B&background=9C1C4F&color=fff" class="w-full h-full object-cover">
-                        </div>
-                        <div>
-                            <h2 class="text-sm font-bold text-slate-900">daniikk_b</h2>
-                        </div>
-                    </div>
-                    <button @click="mobileMenuOpen = false" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-200 text-slate-600 hover:bg-slate-300">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-
-                <div class="py-4 border-b border-slate-100">
-                    <div class="bg-slate-100 rounded-xl p-1 flex">
-                        <button @click="role='blogger'" class="flex-1 py-2 rounded-lg text-xs font-semibold transition-all" :class="role==='blogger' ? 'bg-[#9C1C4F] text-white shadow-md' : 'text-slate-600'">Блогер</button>
-                        <button @click="role='advertiser'" class="flex-1 py-2 rounded-lg text-xs font-semibold transition-all" :class="role==='advertiser' ? 'bg-[#9C1C4F] text-white shadow-md' : 'text-slate-600'">Заказчик</button>
-                    </div>
-                </div>
-
-                <nav class="py-4 space-y-1" x-show="role === 'blogger'">
+                <div class="flex justify-end pb-6"><button @click="mobileMenuOpen = false" class="w-8 h-8 rounded-full bg-slate-200"><i class="fa-solid fa-xmark"></i></button></div>
+                <nav class="space-y-1">
                     <template x-for="item in navItems" :key="item.id">
-                        <button @click="activeTab = item.id; mobileMenuOpen = false" class="w-full flex items-center justify-between px-4 py-3.5 rounded-xl transition-all duration-200 text-left" :class="activeTab === item.id ? 'bg-brand-50 text-brand-700 font-bold' : 'text-slate-600 hover:bg-slate-50 font-semibold'">
-                            <div class="flex items-center gap-3">
-                                <i :class="item.icon + (activeTab === item.id ? ' text-brand-600' : ' text-slate-400')"></i>
-                                <span x-text="item.name" class="text-sm"></span>
-                            </div>
-                            <span x-show="item.badge" class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full" x-text="item.badge"></span>
-                        </button>
+                        <button @click="activeTab = item.id; mobileMenuOpen = false" class="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl" :class="activeTab === item.id ? 'bg-brand-50 text-brand-700 font-bold' : 'text-slate-600 font-semibold'"><i :class="item.icon"></i><span x-text="item.name"></span></button>
                     </template>
                 </nav>
-            </div>
-            
-            <div class="border-t border-slate-100 pt-4">
-                <button class="w-full flex items-center justify-center gap-2 text-xs font-bold text-slate-500 hover:text-red-500 transition-colors bg-slate-50 border border-slate-200 py-3 rounded-xl">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Выйти из аккаунта
-                </button>
             </div>
         </div>
     </div>
@@ -807,21 +952,32 @@
         function dashboardData() {
             return {
                 role: 'blogger',
-                activeTab: 'profile', // Стартовая вкладка
+                activeTab: 'profile', // Оставляем профиль как стартовую вкладку
                 mobileMenuOpen: false,
                 
                 showNotifMenu: false,
                 showProfileMenu: false,
                 userCity: 'Астана', 
-                
                 showPassword: false,
                 isPro: false,
                 emailNotif: false,
 
-                contractStatus: 'pending', // 'pending', 'awaiting_payment', 'paid'
-                modals: { contract: false },
+                contractStatus: 'pending',
+                modals: { 
+                    contract: false,
+                    payment: false // Добавлено управление модалкой оплаты
+                },
                 
-                requestFilter: 'all', // Фильтр заявок: all, active, archive
+                paymentData: {
+                    id: '',
+                    name: '',
+                    price: '',
+                    type: 'individual',
+                    isGenerating: false,
+                    entity: { bin: '', name: '', address: '' }
+                },
+                
+                requestFilter: 'all',
                 
                 navItems: [
                     { id: 'profile', name: 'Настройки профиля', icon: 'fa-solid fa-user-gear' },
@@ -830,7 +986,6 @@
                     { id: 'chat', name: 'Чат с брендами', icon: 'fa-regular fa-comments', badge: '1' }
                 ],
                 
-                // Расширенный список заявок
                 requests: [
                     { 
                         id: 1, 
@@ -874,18 +1029,46 @@
                     return this.requests.filter(req => req.status === this.requestFilter);
                 },
 
-                // Имитация подписания договора и смены статуса
+                // ФУНКЦИЯ ДЛЯ ОТКРЫТИЯ ОКНА ОПЛАТЫ
+                openPaymentModal(id, name, price) {
+                    this.paymentData.id = id;
+                    this.paymentData.name = name;
+                    this.paymentData.price = price;
+                    this.paymentData.entity.bin = '';
+                    this.paymentData.entity.name = '';
+                    this.paymentData.entity.address = '';
+                    this.modals.payment = true;
+                },
+
+                // ОПЛАТА ДЛЯ ФИЗЛИЦ
+                payByCard() {
+                    alert('Имитация перенаправления на платежный шлюз (Kaspi / CloudPayments) для оплаты ' + this.paymentData.price + ' ₸');
+                    this.modals.payment = false;
+                },
+
+                // ГЕНЕРАЦИЯ СЧЕТА ДЛЯ ЮРЛИЦ
+                generateInvoice() {
+                    if(!this.paymentData.entity.bin || !this.paymentData.entity.name) {
+                        alert('Пожалуйста, заполните БИН/ИИН и Название компании');
+                        return;
+                    }
+
+                    this.paymentData.isGenerating = true;
+                    
+                    setTimeout(() => {
+                        this.paymentData.isGenerating = false;
+                        this.modals.payment = false;
+                        alert('Счет на оплату для ' + this.paymentData.entity.name + ' успешно сформирован и началась загрузка PDF-файла (Имитация).');
+                    }, 1800);
+                },
+
                 acceptContract() {
                     this.modals.contract = false;
                     this.contractStatus = 'awaiting_payment';
-                    
-                    // Скроллим чат вниз
                     setTimeout(() => {
                         const chat = document.getElementById('chatHistory');
                         if(chat) chat.scrollTop = chat.scrollHeight;
                     }, 50);
-
-                    // Имитация поступления оплаты
                     setTimeout(() => { this.contractStatus = 'paid'; }, 3000);
                 }
             }

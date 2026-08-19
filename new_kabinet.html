@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет | Creators.kz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            50: '#fdf2f6',
+                            100: '#fbe5ed',
+                            500: '#d5306d',
+                            600: '#b82057',
+                            700: '#9C1C4F',
+                            800: '#831a45',
+                            900: '#70193d',
+                        }
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(156, 28, 79, 0.05)',
+                        'card': '0 4px 20px 0 rgba(0, 0, 0, 0.04)',
+                        'modal': '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col" x-data="dashboardData()" :class="{'overflow-hidden': mobileMenuOpen || modals.contract}">
+
+    <!-- Шапка сайта -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-4">
+
+            <div class="flex items-center gap-8">
+                <a href="index.html" class="text-xl sm:text-2xl font-black tracking-[-2px] uppercase">
+                    CREATORS<span class="text-[#9C1C4F]">.</span>KZ
+                </a>
+
+                <!-- Переключатель ролей -->
+                <div class="hidden lg:flex">
+                    <div class="bg-[#F1F1F1] rounded-full p-1 flex shadow-inner">
+                        <button
+                            @click="role='blogger'"
+                            class="px-5 py-2 rounded-full text-[13px] font-semibold transition-all"
+                            :class="role==='blogger' ? 'bg-[#9C1C4F] text-white shadow-md' : 'text-gray-600'">
+                            Блогер
+                        </button>
+                        <button
+                            @click="role='advertiser'"
+                            class="px-5 py-2 rounded-full text-[13px] font-semibold transition-all"
+                            :class="role==='advertiser' ? 'bg-[#9C1C4F] text-white shadow-md' : 'text-gray-600'">
+                            Заказчик
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide text-gray-800">
+                <a href="work.html" class="hover:text-[#9C1C4F] transition">КАК РАБОТАЕТ</a>
+                <a href="catalog.html" class="hover:text-[#9C1C4F] transition">КАТАЛОГ</a>
+                <a href="barter.html" class="hover:text-[#9C1C4F] transition">БАРТЕР</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                
+          
+
+                <!-- Уведомления (Dropdown) -->
+                <div class="relative">
+                    <button @click="showNotifMenu = !showNotifMenu; showProfileMenu = false" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center relative hover:text-[#9C1C4F] transition">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+                    </button>
+                    
+                    <div x-show="showNotifMenu" @click.away="showNotifMenu = false" x-transition.opacity x-cloak class="absolute right-0 mt-3 w-72 sm:w-80 bg-white rounded-2xl shadow-modal border border-slate-100 z-50 overflow-hidden">
+                        <div class="px-4 py-3 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
+                            <h4 class="font-bold text-sm text-slate-800">Уведомления</h4>
+                            <button class="text-[10px] font-bold text-brand-600 hover:underline">Прочитать все</button>
+                        </div>
+                        <div class="max-h-80 overflow-y-auto">
+                            <!-- Новое сообщение -->
+                            <div class="p-4 border-b border-slate-50 hover:bg-slate-50 transition cursor-pointer flex gap-3 opacity-100">
+                                <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center shrink-0"><i class="fa-solid fa-comment-dots text-xs"></i></div>
+                                <div>
+                                    <p class="text-xs text-slate-800 font-semibold mb-0.5">Новое сообщение</p>
+                                    <p class="text-[11px] text-slate-500 leading-tight">TechStore.kz прислал вам сообщение в чат.</p>
+                                    <span class="text-[9px] font-bold text-slate-400 mt-1 block">5 мин назад</span>
+                                </div>
+                            </div>
+                            <!-- Системное уведомление -->
+                            <div class="p-4 border-b border-slate-50 hover:bg-slate-50 transition cursor-pointer flex gap-3 opacity-100">
+                                <div class="w-8 h-8 rounded-full bg-brand-50 text-brand-500 flex items-center justify-center shrink-0"><i class="fa-solid fa-file-signature text-xs"></i></div>
+                                <div>
+                                    <p class="text-xs text-slate-800 font-semibold mb-0.5">Новый договор</p>
+                                    <p class="text-[11px] text-slate-500 leading-tight">Бренд TechStore.kz инициировал безопасную сделку. Ожидается ваша подпись.</p>
+                                    <span class="text-[9px] font-bold text-slate-400 mt-1 block">15 мин назад</span>
+                                </div>
+                            </div>
+                            <!-- Прочитанное -->
+                            <div class="p-4 border-b border-slate-50 hover:bg-slate-50 transition cursor-pointer flex gap-3 opacity-60">
+                                <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center shrink-0"><i class="fa-solid fa-check text-xs"></i></div>
+                                <div>
+                                    <p class="text-xs text-slate-800 font-semibold mb-0.5">Отклик одобрен</p>
+                                    <p class="text-[11px] text-slate-500 leading-tight">BurgerHouse одобрил ваш бартерный отклик.</p>
+                                    <span class="text-[9px] font-bold text-slate-400 mt-1 block">Вчера</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Профиль (Dropdown) -->
+                <div class="relative hidden md:block">
+                    <div @click="showProfileMenu = !showProfileMenu; showNotifMenu = false" class="w-10 h-10 rounded-full border-2 border-[#9C1C4F] overflow-hidden cursor-pointer hover:scale-105 transition">
+                        <img src="https://ui-avatars.com/api/?name=Daniil+B&background=9C1C4F&color=fff" class="w-full h-full object-cover">
+                    </div>
+
+                    <div x-show="showProfileMenu" @click.away="showProfileMenu = false" x-transition.opacity x-cloak class="absolute right-0 mt-3 w-64 bg-white rounded-2xl shadow-modal border border-slate-100 z-50 overflow-hidden">
+                        <!-- Блок выбора города -->
+                        <div class="px-4 py-4 border-b border-slate-100 bg-slate-50/50">
+                            <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 block">Ваш город</label>
+                            <div class="relative">
+                                <select x-model="userCity" class="w-full pl-3 pr-8 py-2 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-xs font-semibold cursor-pointer appearance-none transition-colors">
+                                    <option value="Астана">Астана</option>
+                                    <option value="Алматы">Алматы</option>
+                                    <option value="Шымкент">Шымкент</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-slate-400 pointer-events-none"></i>
+                            </div>
+                        </div>
+
+                        <!-- Ссылки меню -->
+                        <div class="py-1">
+                            <button @click="activeTab = 'profile'; showProfileMenu = false" class="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-brand-600 transition flex items-center gap-2">
+                                <i class="fa-solid fa-user-gear w-4 text-center"></i> Настройки профиля
+                            </button>
+                            <button @click="activeTab = 'balance'; showProfileMenu = false" class="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-50 hover:text-brand-600 transition flex items-center gap-2">
+                                <i class="fa-solid fa-wallet w-4 text-center"></i> Мой кошелек
+                            </button>
+                            <div class="h-px bg-slate-100 my-1"></div>
+                            <button class="w-full text-left px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-red-50 hover:text-red-500 transition flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-right-from-bracket w-4 text-center"></i> Выйти из аккаунта
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <button @click="mobileMenuOpen = true" class="md:hidden w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-200 transition">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto w-full px-4 md:px-6 flex gap-6 pt-24 sm:pt-32 pb-6 flex-1 relative items-start z-10">
+        
+        <!-- Левое меню (Sidebar) -->
+        <aside class="w-72 bg-white border border-slate-200 rounded-3xl flex flex-col justify-between hidden md:flex shrink-0 sticky top-28 shadow-card max-h-[calc(100vh-9rem)] overflow-y-auto">
+            <div class="p-6 flex-1">
+                <div class="mb-6 text-center">
+                    <div class="w-20 h-20 rounded-full border-4 border-brand-50 mx-auto mb-3 overflow-hidden relative group cursor-pointer">
+                        <img src="https://ui-avatars.com/api/?name=Daniil+B&background=9C1C4F&color=fff" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa-solid fa-camera text-white"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold text-slate-900 mb-1">daniikk_b</h2>
+                    <div class="flex items-center justify-center gap-2 text-xs font-bold text-brand-700 bg-brand-50 w-max px-3 py-1 rounded-md mx-auto mb-4">
+                        Блогер
+                    </div>
+                </div>
+
+                <nav class="space-y-1" x-show="role === 'blogger'">
+                    <template x-for="item in navItems" :key="item.id">
+                        <button @click="activeTab = item.id"
+                                class="w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 text-left group"
+                                :class="activeTab === item.id ? 'bg-brand-50 text-brand-700 font-bold' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-semibold'">
+                            <div class="flex items-center gap-3">
+                                <i :class="item.icon + (activeTab === item.id ? ' text-brand-600' : ' text-slate-400 group-hover:text-brand-500 transition-colors')"></i>
+                                <span x-text="item.name" class="text-sm"></span>
+                            </div>
+                            <span x-show="item.badge" class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full" x-text="item.badge"></span>
+                        </button>
+                    </template>
+                </nav>
+
+                <div x-show="role === 'advertiser'" x-cloak class="text-center p-4">
+                    <p class="text-sm text-slate-500 font-medium">Интерфейс рекламодателя находится в разработке.</p>
+                </div>
+            </div>
+            
+            <div class="p-6 border-t border-slate-100 bg-slate-50/50 shrink-0 rounded-b-3xl">
+                <button class="w-full flex items-center justify-center gap-2 text-xs font-bold text-slate-500 hover:text-red-500 transition-colors bg-white border border-slate-200 py-2.5 rounded-xl hover:bg-red-50 hover:border-red-200">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Выйти из аккаунта
+                </button>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="flex-1 relative min-w-0 pb-24" x-show="role === 'blogger'">
+            
+            <div class="bg-white border border-slate-200 rounded-3xl px-6 py-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 shadow-card">
+                <h1 class="text-xl font-black text-slate-800 tracking-tight" x-text="getPageTitle()"></h1>
+            </div>
+
+            <!-- ВКЛАДКА 1: Настройки профиля -->
+            <div x-show="activeTab === 'profile'" x-transition.opacity.duration.300ms>
+                
+                <div class="bg-white rounded-3xl shadow-card border border-slate-200 p-6 mb-6">
+                    <h3 class="text-base font-bold text-slate-800 mb-5">Учетные данные</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="text-[10px] font-bold text-slate-500 mb-1 block uppercase tracking-wide">Ваш Email</label>
+                            <input type="email" value="daniil.b@example.com" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 focus:bg-white text-sm font-semibold transition-colors">
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 mb-1 block uppercase tracking-wide">Новый пароль</label>
+                                <div class="relative">
+                                    <input :type="showPassword ? 'text' : 'password'" placeholder="Введите новый пароль, если хотите изменить" class="w-full pl-3 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 focus:bg-white text-sm font-semibold transition-colors">
+                                    <button type="button" @click="showPassword = !showPassword" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-brand-600 transition-colors">
+                                        <i class="fa-regular" :class="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-card border border-slate-200 p-6 mb-6">
+                    <h3 class="text-base font-bold text-slate-800 mb-5">Основная информация профиля</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 mb-1 block uppercase tracking-wide">Отображаемое имя</label>
+                                <input type="text" value="Daniil B." class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 focus:bg-white text-sm font-semibold transition-colors">
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 mb-1 block uppercase tracking-wide">Никнейм в системе</label>
+                                <div class="flex relative">
+                                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-bold">@</span>
+                                    <input type="text" value="daniikk_b" class="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 focus:bg-white text-sm font-semibold transition-colors">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 mb-1 block uppercase tracking-wide">Язык ведения блога</label>
+                                <select class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold cursor-pointer">
+                                    <option>Русский / Казахский</option>
+                                    <option>Только Казахский</option>
+                                    <option>Только Русский</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4 flex flex-col">
+                            <div>
+                                <label class="text-[10px] font-bold text-slate-500 mb-1 block uppercase tracking-wide">Описание (Био)</label>
+                                <textarea rows="4" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 focus:bg-white text-sm font-medium transition-colors resize-none">Снимаю лайфстайл, обзоры заведений и немного юмора. Делаю нативную рекламу, которая залетает в реки.</textarea>
+                            </div>
+                            <div class="flex-1 flex flex-col justify-end">
+                                <label class="text-[10px] font-bold text-slate-500 mb-1 block uppercase tracking-wide">Тематика блога (до 3 тегов)</label>
+                                <div class="flex flex-wrap gap-2 p-2 bg-slate-50 border border-slate-200 rounded-xl min-h-[46px] items-center">
+                                    <span class="px-2.5 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700 flex items-center gap-1.5 shadow-sm">
+                                        Лайфстайл <i class="fa-solid fa-xmark text-slate-400 hover:text-red-500 cursor-pointer"></i>
+                                    </span>
+                                    <span class="px-2.5 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700 flex items-center gap-1.5 shadow-sm">
+                                        Юмор <i class="fa-solid fa-xmark text-slate-400 hover:text-red-500 cursor-pointer"></i>
+                                    </span>
+                                    <button class="px-2.5 py-1 border border-dashed border-slate-300 rounded-lg text-xs font-bold text-brand-600 hover:bg-brand-50 transition-colors">
+                                        + Добавить
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-card border border-slate-200 p-6 mb-6">
+                    <h3 class="text-base font-bold text-slate-800 mb-5">Ссылки на соцсети</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center text-lg shrink-0"><i class="fa-brands fa-instagram"></i></div>
+                            <input type="url" placeholder="https://instagram.com/username" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold">
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center text-lg shrink-0"><i class="fa-brands fa-tiktok"></i></div>
+                            <input type="url" placeholder="https://tiktok.com/@username" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold">
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-lg shrink-0"><i class="fa-brands fa-youtube"></i></div>
+                            <input type="url" placeholder="https://youtube.com/@username" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-card border border-slate-200 p-6 mb-6">
+                    <h3 class="text-base font-bold text-slate-800 mb-5">Уведомления</h3>
+                    <div class="space-y-6 max-w-xl">
+                        <!-- Уведомления на сайте -->
+                        <div class="flex items-center justify-between gap-4">
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800">Уведомления на сайте</h4>
+                                <p class="text-xs text-slate-500 mt-1">Оповещения о новых заявках и сообщениях внутри личного кабинета.</p>
+                            </div>
+                            <div class="relative">
+                                <input type="checkbox" checked disabled class="sr-only peer">
+                                <label class="flex items-center cursor-not-allowed">
+                                    <div class="w-10 h-5 bg-brand-600 rounded-full relative shadow-inner opacity-80">
+                                        <div class="absolute left-0.5 top-0.5 bg-white w-4 h-4 rounded-full transform translate-x-5 shadow-sm flex items-center justify-center"><i class="fa-solid fa-lock text-[8px] text-slate-300"></i></div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="h-px bg-slate-100"></div>
+                        <!-- Уведомления на почту -->
+                        <div class="flex items-center justify-between gap-4" :class="{ 'opacity-60': !isPro }">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <h4 class="text-sm font-bold text-slate-800">Уведомления на Email</h4>
+                                    <span x-show="!isPro" class="bg-amber-100 text-amber-700 text-[9px] px-1.5 py-0.5 rounded font-black border border-amber-200">PRO</span>
+                                </div>
+                                <p class="text-xs text-slate-500">Моментальные письма о новых предложениях.</p>
+                            </div>
+                            <div class="relative" @click="if(!isPro) alert('Для включения email-уведомлений необходима подписка PRO')">
+                                <input type="checkbox" :disabled="!isPro" x-model="emailNotif" class="sr-only peer" id="notif_email">
+                                <label for="notif_email" class="flex items-center cursor-pointer">
+                                    <div class="w-10 h-5 rounded-full relative shadow-inner transition-colors" :class="emailNotif && isPro ? 'bg-brand-600' : 'bg-slate-200'">
+                                        <div class="absolute left-0.5 top-0.5 bg-white w-4 h-4 rounded-full shadow-sm transition-transform" :class="emailNotif && isPro ? 'translate-x-5' : ''"></div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ <!-- Блок связи с менеджером -->
+                <div class="bg-brand-50 border border-brand-200 rounded-3xl p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-800">Метрики и статистика</h3>
+                        <p class="text-xs font-medium text-slate-600 mt-1 max-w-md">Вся детальная информация о ваших охватах и вовлеченности заполняется вручную. Свяжитесь с вашим личным менеджером, чтобы обновить статистику в профиле.</p>
+                    </div>
+                    <div class="flex gap-2 w-full sm:w-auto shrink-0">
+                        <a href="https://t.me/manager_creatorskz" target="_blank" class="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-[#0088cc] hover:bg-[#0077b5] text-white px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm">
+                            <i class="fa-brands fa-telegram text-base"></i> Telegram
+                        </a>
+                        <a href="https://wa.me/77000000000" target="_blank" class="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-2.5 rounded-xl text-xs font-bold transition shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-base"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+                 <div class="flex justify-end pt-6">
+                    <button class="w-full sm:w-auto bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-md text-xs uppercase tracking-wide">
+                        Сохранить настройки
+                    </button>
+                </div>
+            </div>
+
+            <!-- ВКЛАДКА 2: Баланс и подписки -->
+            <div x-show="activeTab === 'balance'" x-cloak x-transition.opacity.duration.300ms>
+                
+                <div class="bg-slate-900 rounded-3xl p-6 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 shadow-lg">
+                    <div>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Баланс кошелька</p>
+                        <div class="text-3xl font-black">5 000 ₸</div>
+                        <p class="text-xs text-slate-400 mt-1">Средства используются для оплаты подписок и услуг.</p>
+                    </div>
+                    <button class="w-full sm:w-auto bg-brand-600 hover:bg-brand-500 px-6 py-3 rounded-xl text-xs font-bold transition shadow-md">Пополнить баланс</button>
+                </div>
+
+                <h3 class="text-xl font-black text-slate-800 mb-4">Пакеты услуг (Подписки)</h3>
+                
+                <div class="flex flex-col gap-4 mb-10">
+                    <div class="bg-white border-2 border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 opacity-75">
+                        <div>
+                            <h4 class="text-lg font-bold text-slate-800">Базовый</h4>
+                            <p class="text-xs font-medium text-slate-500 mt-1">Стандартный доступ к платформе. Базовые функции биржи.</p>
+                        </div>
+                        <div class="shrink-0 flex items-center justify-end">
+                            <span class="bg-slate-100 text-slate-500 px-4 py-2 rounded-xl text-xs font-bold border border-slate-200">Уже активен</span>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-r from-brand-50 to-white border-2 border-brand-500 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative overflow-hidden shadow-md">
+                        <div class="absolute -right-6 -top-6 bg-brand-500 text-white text-[10px] font-bold px-8 py-2 transform rotate-45 flex items-end justify-center h-12 w-24">ХИТ</div>
+                        <div class="pr-8">
+                            <div class="flex gap-2 items-center mb-1">
+                                <h4 class="text-lg font-black text-slate-900">Пакет PRO</h4>
+                                <span class="bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded font-black tracking-wide">-70%</span>
+                            </div>
+                            <p class="text-xs font-medium text-slate-600 max-w-lg">Увеличено количество откликов с биржи. Разблокированы Email-уведомления о заказах. Галочка PRO в каталоге.</p>
+                            <div class="flex items-end gap-2 mt-3">
+                                <span class="text-xl font-black text-brand-700">2 990 ₸</span>
+                                <span class="text-xs font-medium text-slate-400 line-through pb-1">9 990 ₸</span>
+                            </div>
+                        </div>
+                        <button class="w-full sm:w-auto shrink-0 bg-brand-700 hover:bg-brand-800 text-white px-6 py-3 rounded-xl text-xs font-bold shadow-md transition">Подключить</button>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-black text-slate-800 mb-4">Дополнительные услуги</h3>
+                
+                <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-thumbtack"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Закрепить в ТОП-3 на главной странице</h4>
+                            <p class="text-xs font-medium text-slate-500 mt-1">Обеспечьте максимальную видимость. Ваша анкета будет принудительно отображаться на самом верху каталога в течение 7 дней.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto shrink-0">
+                        <div class="text-lg font-black text-slate-800">7 500 ₸</div>
+                        <button class="w-full sm:w-auto bg-slate-900 text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition">Купить</button>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-bullhorn"></i></div>
+                        <div>
+                            <h4 class="font-bold text-slate-900">Промо в соцсетях Creators.kz</h4>
+                            <p class="text-xs font-medium text-slate-500 mt-1">Опубликуем рекламный пост о вас в нашем официальном Instagram и Telegram-канале с прямой отметкой вашего профиля.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto shrink-0">
+                        <div class="text-lg font-black text-slate-800">15 000 ₸</div>
+                        <button class="w-full sm:w-auto bg-slate-900 text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-slate-800 transition">Купить</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ВКЛАДКА 3: Заявки и отклики (С фильтрами и полным списком) -->
+            <div x-show="activeTab === 'requests'" x-cloak x-transition.opacity.duration.300ms>
+                
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <p class="text-sm font-medium text-slate-500">Предложения от рекламодателей и статусы ваших откликов с бартерной биржи.</p>
+                    
+                    <!-- Фильтры -->
+                    <div class="flex bg-slate-100 p-1 rounded-xl border border-slate-200/60 w-full sm:w-auto shrink-0">
+                        <button @click="requestFilter = 'all'" :class="requestFilter === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex-1 sm:flex-none">Все</button>
+                        <button @click="requestFilter = 'active'" :class="requestFilter === 'active' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex-1 sm:flex-none">Активные</button>
+                        <button @click="requestFilter = 'archive'" :class="requestFilter === 'archive' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex-1 sm:flex-none">Архив</button>
+                    </div>
+                </div>
+
+                <!-- Список заявок -->
+                <div class="space-y-4">
+                    <template x-for="req in filteredRequests()" :key="req.id">
+                        <div class="bg-white rounded-2xl shadow-card border border-slate-200 p-5 flex flex-col md:flex-row gap-4 md:items-center transition-all hover:border-brand-300">
+                            
+                            <!-- Тег типа заявки -->
+                            <div class="md:w-32 shrink-0">
+                                <span class="text-[10px] font-bold px-2.5 py-1 rounded-md block text-center"
+                                      :class="req.tagType === 'direct' ? 'bg-brand-50 text-brand-700 border border-brand-100' : 'bg-emerald-50 text-emerald-700 border border-emerald-100'"
+                                      x-text="req.type"></span>
+                                <div class="text-center mt-2" x-show="req.status === 'archive'">
+                                    <span class="text-[9px] font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded uppercase">Завершено</span>
+                                </div>
+                            </div>
+
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start mb-1">
+                                    <h4 class="text-sm font-bold text-slate-900" x-text="req.brand"></h4>
+                                    <p class="text-[10px] text-slate-400 font-semibold" x-text="req.date"></p>
+                                </div>
+                                <p class="text-xs text-slate-600 font-medium line-clamp-2" x-text="req.desc"></p>
+                            </div>
+                            
+                            <div class="flex items-center justify-between md:justify-end gap-6 border-t md:border-t-0 pt-3 md:pt-0 border-slate-100 w-full md:w-auto shrink-0">
+                                <div class="text-right">
+                                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Бюджет / Условия</p>
+                                    <p class="text-sm font-black text-slate-800" :class="req.status === 'archive' ? 'text-slate-400' : ''" x-text="req.price"></p>
+                                </div>
+                                <!-- Кнопка открывает чат -->
+                                <button @click="activeTab = 'chat'" class="bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-sm" :class="req.status === 'archive' ? 'opacity-50' : ''">
+                                    Открыть чат
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- ВКЛАДКА 4: Чат с брендами -->
+            <div x-show="activeTab === 'chat'" x-cloak x-transition.opacity.duration.300ms class="h-[650px] flex gap-4">
+                
+                <!-- Список диалогов (Слева) -->
+                <div class="w-full md:w-1/3 bg-white border border-slate-200 rounded-3xl shadow-card flex flex-col overflow-hidden h-full">
+                    <div class="p-4 border-b border-slate-100 bg-slate-50/50">
+                        <div class="relative">
+                            <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                            <input type="text" placeholder="Поиск по диалогам..." class="w-full pl-9 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-xs font-semibold">
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-y-auto flex-1">
+                        <!-- Активный диалог 1 -->
+                        <div class="p-4 border-b border-slate-100 cursor-pointer bg-brand-50/50 hover:bg-brand-50 transition relative">
+                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-brand-600"></div>
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="text-sm font-bold text-slate-900 line-clamp-1">TechStore.kz</h4>
+                                <span class="text-[10px] text-brand-600 font-bold whitespace-nowrap ml-2">12:45</span>
+                            </div>
+                            <p class="text-xs text-brand-700 font-medium line-clamp-1">Ожидает подписания договора</p>
+                        </div>
+                        
+                        <!-- Прочитанный диалог 2 (Бартер) -->
+                        <div class="p-4 border-b border-slate-100 cursor-pointer hover:bg-slate-50 transition">
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="text-sm font-bold text-slate-800 line-clamp-1">BurgerHouse</h4>
+                                <span class="text-[10px] text-slate-400 font-semibold whitespace-nowrap ml-2">Вчера</span>
+                            </div>
+                            <p class="text-xs text-slate-500 font-medium line-clamp-1">Отлично, ждем вас в эту пятницу по адресу Левый берег, 10.</p>
+                        </div>
+
+                        <!-- Непрочитанный диалог 3 -->
+                        <div class="p-4 border-b border-slate-100 cursor-pointer hover:bg-slate-50 transition">
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="text-sm font-bold text-slate-900 line-clamp-1">Coffee Boom</h4>
+                                <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                            </div>
+                            <p class="text-xs text-slate-800 font-bold line-clamp-1">Здравствуйте, а какие у вас свободные даты на следующей неделе?</p>
+                        </div>
+
+                        <!-- Архивный диалог 4 -->
+                        <div class="p-4 border-b border-slate-100 cursor-pointer hover:bg-slate-50 transition opacity-60">
+                            <div class="flex justify-between items-start mb-1">
+                                <h4 class="text-sm font-bold text-slate-800 line-clamp-1">Yandex Go</h4>
+                                <span class="text-[10px] text-slate-400 font-semibold whitespace-nowrap ml-2">12 Авг</span>
+                            </div>
+                            <p class="text-xs text-slate-500 font-medium line-clamp-1">Акт выполненных работ подписан. Спасибо за сотрудничество!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Окно переписки (Справа) -->
+                <div class="hidden md:flex flex-1 bg-white border border-slate-200 rounded-3xl shadow-card flex-col overflow-hidden h-full relative">
+                    <!-- Шапка чата -->
+                    <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50 shrink-0">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold border border-slate-300">
+                                T
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-900">TechStore.kz</h4>
+                                <p class="text-[10px] text-slate-500 font-medium">Прямая заявка: Интеграция в Reels</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="w-8 h-8 rounded-full hover:bg-slate-200 flex items-center justify-center text-slate-500 transition"><i class="fa-solid fa-phone"></i></button>
+                            <button class="w-8 h-8 rounded-full hover:bg-slate-200 flex items-center justify-center text-slate-500 transition"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- История сообщений -->
+                    <div class="flex-1 overflow-y-auto p-6 bg-[#f8f9fa] space-y-4 relative" id="chatHistory">
+                        
+                        <!-- Старые сообщения (История) -->
+                        <div class="text-center my-4">
+                            <span class="text-[10px] font-bold text-slate-400 bg-slate-200/50 px-3 py-1 rounded-full uppercase tracking-wider">Сегодня</span>
+                        </div>
+
+                        <div class="flex items-end gap-2 max-w-[80%]">
+                            <div class="w-6 h-6 rounded-full bg-slate-200 shrink-0 mb-1"></div>
+                            <div class="bg-white border border-slate-200 p-3 rounded-2xl rounded-bl-none shadow-sm">
+                                <p class="text-xs font-medium text-slate-700 leading-relaxed">Здравствуйте! Мы ознакомились с вашим портфолио. Готовы ли вы взять наш заказ на интеграцию в Reels до конца месяца?</p>
+                                <span class="text-[9px] text-slate-400 block mt-1 text-right">10:30</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-end justify-end gap-2 max-w-[80%] ml-auto">
+                            <div class="bg-brand-600 text-white p-3 rounded-2xl rounded-br-none shadow-sm">
+                                <p class="text-xs font-medium leading-relaxed">Добрый день! Да, свободные даты еще есть. Скинул вам примерный сценарий в рамках вашего ТЗ.</p>
+                                <span class="text-[9px] text-brand-200 block mt-1 text-right">11:15</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-end gap-2 max-w-[80%]">
+                            <div class="w-6 h-6 rounded-full bg-slate-200 shrink-0 mb-1"></div>
+                            <div class="bg-white border border-slate-200 p-3 rounded-2xl rounded-bl-none shadow-sm">
+                                <p class="text-xs font-medium text-slate-700 leading-relaxed">Да, сценарий ролика нас полностью устраивает. Формируем договор на оплату.</p>
+                                <span class="text-[9px] text-slate-400 block mt-1 text-right">12:45</span>
+                            </div>
+                        </div>
+
+                        <!-- СИСТЕМНОЕ СООБЩЕНИЕ: АВТОМАТИЧЕСКИЙ ДОГОВОР -->
+                        <div class="mx-auto w-full max-w-sm bg-white border-2 border-brand-100 rounded-2xl p-5 my-6 shadow-sm text-center relative overflow-hidden">
+                            <div class="absolute top-0 left-0 right-0 h-1 bg-brand-500"></div>
+                            <div class="w-12 h-12 bg-brand-50 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fa-solid fa-file-signature text-xl"></i>
+                            </div>
+                            <h4 class="text-sm font-black text-slate-900 mb-1">Безопасная сделка</h4>
+                            <p class="text-[10px] text-slate-500 mb-4 leading-relaxed">Бренд <b>TechStore.kz</b> предложил заключить договор на выполнение рекламной интеграции. <br>Сумма сделки: <b class="text-brand-700 text-xs">350 000 ₸</b></p>
+
+                            <!-- Статус 1: Ожидает подписания блогером -->
+                            <div x-show="contractStatus === 'pending'" class="space-y-3">
+                                <div class="flex items-center gap-2 justify-center text-[11px] font-bold text-amber-600 bg-amber-50 py-2 px-3 rounded-xl border border-amber-100">
+                                    <i class="fa-solid fa-clock"></i> Ожидает вашего подписания
+                                </div>
+                                <button @click="modals.contract = true" class="w-full bg-brand-700 hover:bg-brand-800 text-white py-3 rounded-xl text-xs font-bold transition shadow-md">
+                                    Внести реквизиты и принять
+                                </button>
+                            </div>
+
+                            <!-- Статус 2: Подписан блогером, ждет оплаты от бренда -->
+                            <div x-show="contractStatus === 'awaiting_payment'" x-cloak class="space-y-3">
+                                <div class="flex items-center gap-2 justify-center text-[11px] font-bold text-blue-600 bg-blue-50 py-2.5 px-3 rounded-xl border border-blue-100">
+                                    <i class="fa-solid fa-spinner fa-spin text-sm"></i> Ожидаем оплату от заказчика
+                                </div>
+                                <p class="text-[9px] text-slate-400 font-medium leading-tight mt-2 px-2">Вы подписали договор. Заказчик должен внести средства на транзитный счет платформы. Не начинайте работу до смены статуса.</p>
+                            </div>
+
+                            <!-- Статус 3: Оплачено -->
+                            <div x-show="contractStatus === 'paid'" x-cloak class="space-y-3">
+                                <div class="flex items-center gap-2 justify-center text-[11px] font-bold text-emerald-600 bg-emerald-50 py-2.5 px-3 rounded-xl border border-emerald-100">
+                                    <i class="fa-solid fa-check-double text-sm"></i> Оплачено. Деньги заморожены
+                                </div>
+                                <p class="text-[9px] text-emerald-700 font-medium leading-tight mt-2 px-2">Средства безопасно удержаны платформой. Вы можете приступать к выполнению технического задания.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Инпут отправки -->
+                    <div class="p-4 border-t border-slate-100 bg-white shrink-0">
+                        <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 p-2 rounded-2xl focus-within:border-brand-300 focus-within:bg-white transition-colors">
+                            <button class="w-9 h-9 rounded-xl hover:bg-slate-200 flex items-center justify-center text-slate-400 transition shrink-0">
+                                <i class="fa-solid fa-paperclip"></i>
+                            </button>
+                            <input type="text" placeholder="Напишите сообщение..." class="flex-1 bg-transparent border-none outline-none text-sm px-2 font-medium text-slate-700">
+                            <button class="w-10 h-10 rounded-xl bg-brand-600 hover:bg-brand-700 text-white flex items-center justify-center transition shadow-sm shrink-0">
+                                <i class="fa-solid fa-paper-plane text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- РАСШИРЕННОЕ Модальное окно: Подписание договора -->
+    <div x-show="modals.contract" x-cloak class="relative z-[110]">
+        <div x-show="modals.contract" x-transition.opacity class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4">
+                <div x-show="modals.contract" x-transition.scale.95 class="relative bg-white rounded-3xl shadow-modal w-full max-w-lg p-6" @click.away="modals.contract = false">
+                    
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-black text-slate-900">Подписание договора (ЭАВР)</h3>
+                        <button @click="modals.contract = false" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200 transition"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    
+                    <p class="text-xs text-slate-500 font-medium mb-6 leading-relaxed">Внесите корректные юридические данные согласно законодательству РК. Они будут использованы для автоматической генерации договора и закрывающих документов.</p>
+                    
+                    <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                        
+                        <!-- Блок 1: Личные данные -->
+                        <div class="bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
+                            <h4 class="text-[10px] font-black text-brand-700 uppercase tracking-widest mb-3 flex items-center gap-2"><i class="fa-solid fa-user-shield"></i> 1. Юридическое лицо / ИП</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">ФИО / Наименование ИП (ТОО) <span class="text-brand-500">*</span></label>
+                                    <input type="text" placeholder="Индивидуальный предприниматель Иванов И. И." class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">ИИН / БИН <span class="text-brand-500">*</span></label>
+                                        <input type="text" placeholder="000000000000" class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
+                                    </div>
+                                    <div>
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">№ Удостоверения (для физ. лиц)</label>
+                                        <input type="text" placeholder="Опционально" class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">Юридический адрес / Адрес регистрации <span class="text-brand-500">*</span></label>
+                                    <input type="text" placeholder="г. Астана, ул. Примерная, д. 1" class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Блок 2: Реквизиты -->
+                        <div class="bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
+                            <h4 class="text-[10px] font-black text-brand-700 uppercase tracking-widest mb-3 flex items-center gap-2"><i class="fa-solid fa-building-columns"></i> 2. Банковские реквизиты</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">IBAN (Счет для выплаты) <span class="text-brand-500">*</span></label>
+                                    <input type="text" placeholder="KZ..." class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">Наименование банка <span class="text-brand-500">*</span></label>
+                                        <input type="text" placeholder="Например: АО Kaspi Bank" class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
+                                    </div>
+                                    <div>
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1 block">БИК банка <span class="text-brand-500">*</span></label>
+                                        <input type="text" placeholder="8 символов" class="w-full p-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-brand-500 text-sm font-semibold shadow-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <label class="flex items-start gap-3 cursor-pointer group mb-4">
+                            <div class="relative flex items-center justify-center mt-0.5">
+                                <input type="checkbox" required class="peer sr-only">
+                                <div class="w-5 h-5 rounded bg-white border-2 border-slate-300 peer-checked:bg-brand-600 peer-checked:border-brand-600 transition-all flex items-center justify-center shadow-sm">
+                                    <i class="fa-solid fa-check text-white text-[10px] opacity-0 peer-checked:opacity-100"></i>
+                                </div>
+                            </div>
+                            <span class="text-[11px] font-medium text-slate-600 leading-relaxed">
+                                Подтверждаю правильность введенных данных и согласен с <a href="#" class="text-brand-600 font-bold hover:underline">правилами проведения безопасной сделки</a>.
+                            </span>
+                        </label>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button @click="modals.contract = false" class="flex-1 px-4 py-3 sm:py-3 rounded-xl font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 text-xs transition">Отменить</button>
+                            <button @click="acceptContract()" class="flex-1 px-4 py-3 sm:py-3 rounded-xl font-bold bg-brand-700 hover:bg-brand-800 text-white text-xs shadow-md transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-signature"></i> Подписать (ЭЦП / SMS)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Мобильное меню -->
+    <div x-show="mobileMenuOpen" x-cloak class="relative z-[100] md:hidden">
+        <div x-show="mobileMenuOpen" x-transition.opacity class="fixed inset-0 bg-slate-900/60 backdrop-blur-md"></div>
+        <div class="fixed inset-y-0 right-0 z-10 w-full max-w-sm overflow-y-auto bg-white px-6 py-6 sm:max-w-sm flex flex-col justify-between" x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
+            <div>
+                <div class="flex items-center justify-between pb-6 border-b border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full border-2 border-brand-500 overflow-hidden">
+                            <img src="https://ui-avatars.com/api/?name=Daniil+B&background=9C1C4F&color=fff" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h2 class="text-sm font-bold text-slate-900">daniikk_b</h2>
+                        </div>
+                    </div>
+                    <button @click="mobileMenuOpen = false" class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-200 text-slate-600 hover:bg-slate-300">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <div class="py-4 border-b border-slate-100">
+                    <div class="bg-slate-100 rounded-xl p-1 flex">
+                        <button @click="role='blogger'" class="flex-1 py-2 rounded-lg text-xs font-semibold transition-all" :class="role==='blogger' ? 'bg-[#9C1C4F] text-white shadow-md' : 'text-slate-600'">Блогер</button>
+                        <button @click="role='advertiser'" class="flex-1 py-2 rounded-lg text-xs font-semibold transition-all" :class="role==='advertiser' ? 'bg-[#9C1C4F] text-white shadow-md' : 'text-slate-600'">Заказчик</button>
+                    </div>
+                </div>
+
+                <nav class="py-4 space-y-1" x-show="role === 'blogger'">
+                    <template x-for="item in navItems" :key="item.id">
+                        <button @click="activeTab = item.id; mobileMenuOpen = false" class="w-full flex items-center justify-between px-4 py-3.5 rounded-xl transition-all duration-200 text-left" :class="activeTab === item.id ? 'bg-brand-50 text-brand-700 font-bold' : 'text-slate-600 hover:bg-slate-50 font-semibold'">
+                            <div class="flex items-center gap-3">
+                                <i :class="item.icon + (activeTab === item.id ? ' text-brand-600' : ' text-slate-400')"></i>
+                                <span x-text="item.name" class="text-sm"></span>
+                            </div>
+                            <span x-show="item.badge" class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full" x-text="item.badge"></span>
+                        </button>
+                    </template>
+                </nav>
+            </div>
+            
+            <div class="border-t border-slate-100 pt-4">
+                <button class="w-full flex items-center justify-center gap-2 text-xs font-bold text-slate-500 hover:text-red-500 transition-colors bg-slate-50 border border-slate-200 py-3 rounded-xl">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Выйти из аккаунта
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function dashboardData() {
+            return {
+                role: 'blogger',
+                activeTab: 'profile', // Стартовая вкладка
+                mobileMenuOpen: false,
+                
+                showNotifMenu: false,
+                showProfileMenu: false,
+                userCity: 'Астана', 
+                
+                showPassword: false,
+                isPro: false,
+                emailNotif: false,
+
+                contractStatus: 'pending', // 'pending', 'awaiting_payment', 'paid'
+                modals: { contract: false },
+                
+                requestFilter: 'all', // Фильтр заявок: all, active, archive
+                
+                navItems: [
+                    { id: 'profile', name: 'Настройки профиля', icon: 'fa-solid fa-user-gear' },
+                    { id: 'balance', name: 'Баланс и подписки', icon: 'fa-solid fa-wallet' },
+                    { id: 'requests', name: 'Заявки и отклики', icon: 'fa-solid fa-envelope-open-text', badge: '2' },
+                    { id: 'chat', name: 'Чат с брендами', icon: 'fa-regular fa-comments', badge: '1' }
+                ],
+                
+                // Расширенный список заявок
+                requests: [
+                    { 
+                        id: 1, 
+                        status: 'active',
+                        tagType: 'direct', 
+                        type: 'Прямая заявка', 
+                        brand: 'TechStore.kz', 
+                        date: '19.08.2026', 
+                        price: '350 000 ₸', 
+                        desc: 'Рекламодатель заинтересовался вашим профилем! Требуется снять обзор нового флагманского смартфона.' 
+                    },
+                    { 
+                        id: 2, 
+                        status: 'active',
+                        tagType: 'barter', 
+                        type: 'Отклик с биржи', 
+                        brand: 'BurgerHouse', 
+                        date: '17.08.2026', 
+                        price: 'Сет роллов на 15 000 ₸', 
+                        desc: 'Ваш отклик на бартерную рекламу был выбран брендом. Свяжитесь для обсуждения деталей и получения депозита.' 
+                    },
+                    { 
+                        id: 3, 
+                        status: 'archive',
+                        tagType: 'direct', 
+                        type: 'Прямая заявка', 
+                        brand: 'Yandex Go', 
+                        date: '02.08.2026', 
+                        price: '500 000 ₸', 
+                        desc: 'Упоминание сервиса такси в вашем лайфстайл влоге на YouTube. Интеграция 30-45 секунд.' 
+                    }
+                ],
+                
+                getPageTitle() {
+                    const tab = this.navItems.find(t => t.id === this.activeTab);
+                    return tab ? tab.name : 'Кабинет';
+                },
+
+                filteredRequests() {
+                    if (this.requestFilter === 'all') return this.requests;
+                    return this.requests.filter(req => req.status === this.requestFilter);
+                },
+
+                // Имитация подписания договора и смены статуса
+                acceptContract() {
+                    this.modals.contract = false;
+                    this.contractStatus = 'awaiting_payment';
+                    
+                    // Скроллим чат вниз
+                    setTimeout(() => {
+                        const chat = document.getElementById('chatHistory');
+                        if(chat) chat.scrollTop = chat.scrollHeight;
+                    }, 50);
+
+                    // Имитация поступления оплаты
+                    setTimeout(() => { this.contractStatus = 'paid'; }, 3000);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

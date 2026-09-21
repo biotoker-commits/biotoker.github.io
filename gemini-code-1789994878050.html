@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Каталог блогеров | Creators.kz</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        base: '#F8F7F5',
+                        text: '#1A1A1A',
+                        accent: '#9C1C4F',
+                        'blogger-red': '#EF233C',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --accent: #9C1C4F;
+            --accent-rgb: 156, 28, 79;
+        }
+
+        html, body {
+            background-color: #F8F7F5;
+            color: #1A1A1A;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        [hidden] { display: none !important; }
+
+        nav {
+            background: rgba(248, 247, 245, 0.96) !important;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 4px 20px -4px rgba(var(--accent-rgb), 0.15);
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.08);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 14px -4px var(--accent);
+        }
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -6px var(--accent);
+        }
+
+        .card-panel {
+            background: #FFFFFF;
+            border: 1px solid rgba(var(--accent-rgb), 0.08);
+            border-radius: 20px;
+            box-shadow: 0 8px 24px -8px rgba(var(--accent-rgb), 0.12);
+            transition: all 0.3s ease;
+        }
+        .card-panel:hover:not(.no-lift) {
+            box-shadow: 0 16px 32px -12px rgba(var(--accent-rgb), 0.22);
+            transform: translateY(-4px);
+        }
+
+        .role-toggle {
+            background: #F1F1F1;
+            border-radius: 9999px;
+            padding: 4px;
+            display: flex;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+        }
+        .role-toggle button {
+            flex: 1;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .role-toggle button.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 12px -4px var(--accent);
+        }
+
+        select, input { transition: all 0.2s ease; }
+        :where(button, a, select, input):focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+        /* ───────── ЗНАЧКИ СОЦСЕТЕЙ (КАРТОЧКИ) ───────── */
+        .soc {
+            width: 28px; height: 28px;
+            border-radius: 8px;
+            display: inline-grid; place-items: center;
+            color: #fff; font-size: 14px; line-height: 1;
+            box-shadow: 0 0 0 2px #fff, 0 4px 10px -2px rgba(0,0,0,.35);
+        }
+        .soc-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .soc-tt { background: #000; }
+        .soc-tt i { text-shadow: 1px 1px 0 #FE2C55, -1px -1px 0 #25F4EE; }
+        .soc-yt { background: #FF0000; }
+        .soc-tg { background: #27A7E7; }
+
+        /* ───────── ФИЛЬТРЫ КОМПАКТНЫЕ ───────── */
+        .f-label { display: block; font-size: 11px; font-weight: 600; color: #6b7280; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .f-select, .f-range {
+            width: 100%;
+            background: #fff;
+            border: 1px solid #E8E4E1;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #1A1A1A;
+            height: 42px;
+        }
+        .f-select { padding: 0 12px; cursor: pointer; }
+        .f-range { display: flex; align-items: center; padding: 0 12px; gap: 6px; }
+        .f-range:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1); }
+        .f-range input { width: 100%; min-width: 0; background: transparent; border: 0; outline: none; font-size: 13px; text-align: center; }
+        .f-range span { color: #9ca3af; font-size: 12px; }
+
+        .chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 8px 14px;
+            border-radius: 9999px;
+            border: 1px solid #E8E4E1;
+            background: #fff;
+            font-size: 12px; font-weight: 600; color: #374151;
+            transition: all .2s ease;
+        }
+        .chip:hover { border-color: rgba(var(--accent-rgb), .5); }
+        .chip[aria-pressed="true"] {
+            background: rgba(var(--accent-rgb), .08);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .filter-tag {
+            background: rgba(var(--accent-rgb), .08);
+            color: var(--accent);
+            font-weight: 600;
+            border: 0;
+            transition: background .2s ease;
+        }
+        .filter-tag:hover { background: rgba(var(--accent-rgb), .16); }
+
+        .adv-toggle i.chev { transition: transform .25s ease; }
+        .adv-toggle[aria-expanded="true"] i.chev { transform: rotate(180deg); }
+
+        @keyframes aiFlash {
+            0%   { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), .55); }
+            100% { box-shadow: 0 0 0 10px rgba(var(--accent-rgb), 0); }
+        }
+        .ai-flash { animation: aiFlash 1.4s ease-out 1; }
+
+        /* ───────── ИИ-ПОИСК ───────── */
+        .ai-panel {
+            border-radius: 20px;
+            color: #fff;
+            background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 45%, #14040c) 100%);
+            box-shadow: 0 12px 30px -12px rgba(var(--accent-rgb), .55);
+        }
+        .ai-icon {
+            width: 32px; height: 32px; flex: none;
+            display: inline-grid; place-items: center;
+            border-radius: 10px;
+            background: rgba(255,255,255,.18);
+            font-size: 14px;
+        }
+        .ai-input-wrap {
+            display: flex; gap: 8px; align-items: stretch;
+            background: transparent;
+        }
+        .ai-input {
+            flex: 1;
+            height: 48px;
+            padding: 0 20px;
+            border-radius: 9999px;
+            background: #fff; color: #1A1A1A;
+            font-size: 14px; font-weight: 500;
+            border: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .ai-input:focus { outline: none; box-shadow: 0 0 0 4px rgba(255,255,255,.3); }
+        .ai-submit {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            height: 48px; padding: 0 24px;
+            border-radius: 9999px;
+            background: #fff; color: var(--accent);
+            font-weight: 800; font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .ai-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+        .ai-submit:disabled { opacity: .75; cursor: progress; }
+        
+        .ai-example {
+            padding: 4px 12px;
+            border-radius: 9999px;
+            background: rgba(255,255,255,.14);
+            border: 1px solid rgba(255,255,255,.2);
+            font-size: 11px; font-weight: 600; color: rgba(255,255,255,.9);
+            transition: background .2s ease;
+            white-space: nowrap;
+        }
+        .ai-example:hover { background: rgba(255,255,255,.26); color: #fff; }
+
+        .ai-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            background: rgba(255,255,255,.16);
+            font-size: 11px; font-weight: 600;
+        }
+        .ai-link { text-decoration: underline; text-underline-offset: 3px; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .ai-input-wrap { flex-direction: column; }
+            .ai-submit { width: 100%; }
+        }
+
+        /* ───────── ОКНО ПОДПИСКИ ───────── */
+        dialog.paywall {
+            margin: auto; padding: 0; border: 0;
+            width: calc(100% - 32px); max-width: 440px;
+            border-radius: 28px; overflow: hidden;
+            background: #fff; color: #1A1A1A;
+            box-shadow: 0 40px 80px -20px rgba(0,0,0,.5);
+        }
+        dialog.paywall::backdrop { background: rgba(26,26,26,.55); backdrop-filter: blur(4px); }
+        .pw-head {
+            position: relative; padding: 28px 28px 0;
+            background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 45%, #14040c));
+            height: 96px; color: #fff;
+        }
+        .pw-close {
+            position: absolute; top: 16px; right: 16px;
+            width: 36px; height: 36px; border-radius: 12px;
+            background: rgba(255,255,255,.18); color: #fff;
+            display: grid; place-items: center;
+        }
+        .pw-body { margin-top: -28px; position: relative; }
+
+        .toast {
+            position: fixed; left: 50%; bottom: 24px; z-index: 80;
+            transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+            max-width: calc(100% - 32px);
+            padding: 14px 22px; border-radius: 9999px;
+            background: #1A1A1A; color: #fff; font-size: 14px; font-weight: 600;
+            transition: all .3s ease;
+        }
+        .toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+        .cover-fallback {
+            height: 12rem; align-items: center; justify-content: center;
+            font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--accent), #3b0a1f);
+        }
+    </style>
+</head>
+<body class="antialiased">
+<div class="relative w-full overflow-hidden">
+    <!-- NAV -->
+    <nav class="fixed w-full z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 px-4 md:px-6 py-4 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="text-2xl font-black tracking-[-2px]">
+                    CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                </div>
+            </div>
+            <div class="hidden lg:flex items-center ml-8">
+                <div id="role-toggle" class="role-toggle">
+                    <button onclick="switchRole('blogger')" id="btn-blogger" class="">Блогер</button>
+                    <button onclick="switchRole('customer')" id="btn-customer" class="active">Заказчик</button>
+                </div>
+            </div>
+            <div class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide text-gray-800">
+                <a href="work.html" class="hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
+                <a href="catalog.html" class="text-[var(--accent)] border-b-2 border-[var(--accent)] pb-1" aria-current="page">КАТАЛОГ</a>
+                <a href="barter.html" class="hover:text-[var(--accent)] transition">БАРТЕР <span class="bg-[var(--accent)] text-white text-[10px] px-2 py-0.5 rounded-full ml-1 animate-pulse">NEW</span></a>
+                <a href="onas.html" class="hover:text-[var(--accent)] transition">О НАС</a>
+                <a href="contacs.html" class="hover:text-[var(--accent)] transition">КОНТАКТЫ</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="#register" class="hidden md:flex text-sm font-semibold px-5 py-2.5 rounded-3xl border border-[#9C1C4F]/20 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">Вход / Регистрация</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- КАТАЛОГ БЛОГЕРОВ -->
+    <section class="pt-24 pb-12 min-h-screen" id="catalog">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+
+            <div class="flex items-center gap-4 mb-4">
+                <h1 class="text-3xl font-black tracking-[-1px]">Каталог блогеров</h1>
+                <div class="text-sm text-gray-500 font-medium" aria-live="polite">Найдено <span id="results-count" class="font-bold text-[var(--accent)]">10</span> <span id="results-word">аккаунтов</span></div>
+            </div>
+
+            <!-- ═════════ ИИ-ПОИСК ═════════ -->
+            <section id="ai-search" class="ai-panel p-4 md:p-6 mb-4">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4">
+                    <div class="flex items-center gap-3">
+                        <span class="ai-icon" aria-hidden="true"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                        <div>
+                            <h2 class="text-lg md:text-xl font-bold tracking-tight flex items-center gap-3">
+                                Опишите, кто вам нужен
+                                <div id="ai-pill" class="ai-pill hidden sm:inline-flex"></div>
+                            </h2>
+                            <p class="text-xs md:text-sm text-white/80 mt-0.5">Напишите своими словами — ИИ сам подберёт подходящих блогеров.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2" id="ai-examples"></div>
+                </div>
+
+                <div class="ai-input-wrap">
+                    <label for="ai-input" class="sr-only">Опишите нужного блогера</label>
+                    <input type="text" id="ai-input" class="ai-input" maxlength="250" placeholder="Например: девушка-блогер из Алматы, тема — красота, 100–300 тыс. подписчиков">
+                    <button id="ai-submit" type="button" class="ai-submit">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Подобрать с ИИ
+                    </button>
+                </div>
+                
+                <p id="ai-note" class="mt-3 text-xs" style="color:rgba(255,255,255,.92)"></p>
+                <div id="ai-result" role="status" class="mt-3 text-sm font-medium" hidden></div>
+            </section>
+
+            <!-- ═════════ ФИЛЬТРЫ КОМПАКТНЫЕ ═════════ -->
+            <div class="card-panel no-lift p-4 md:p-5 mb-6" id="filters">
+                <!-- Верхняя панель фильтра -->
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="font-bold text-black text-base flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-[var(--accent)]"></i>
+                        Фильтры
+                    </h2>
+                    <button type="button" id="btn-toggle-filters" class="text-xs font-semibold text-gray-500 hover:text-[var(--accent)] transition-colors">
+                        Скрыть фильтры
+                    </button>
+                </div>
+
+                <div id="filter-body" class="space-y-4">
+                    <!-- Основной ряд (6 колонок) -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 items-end">
+                        <div>
+                            <label class="f-label" for="f-platform">Соцсеть</label>
+                            <select id="f-platform" data-f="platform" class="f-select">
+                                <option value="">Любая</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="tiktok">TikTok</option>
+                                <option value="youtube">YouTube</option>
+                                <option value="telegram">Telegram</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="f-label" for="f-cat">Категория</label>
+                            <select id="f-cat" data-f="cat" class="f-select"></select>
+                        </div>
+                        <div>
+                            <label class="f-label" for="f-loc">Локация</label>
+                            <select id="f-loc" data-f="loc" class="f-select">
+                                <option value="">Любая</option>
+                                <optgroup label="Казахстан">
+                                    <option value="kz">Весь Казахстан</option>
+                                    <option value="astana">Астана</option>
+                                    <option value="almaty">Алматы</option>
+                                    <option value="atyrau">Атырау</option>
+                                </optgroup>
+                                <optgroup label="Россия">
+                                    <option value="ru">Вся Россия</option>
+                                    <option value="moscow">Москва</option>
+                                    <option value="spb">Санкт-Петербург</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="f-label" id="lbl-fol">Количество подписчиков</label>
+                            <div class="f-range" role="group" aria-labelledby="lbl-fol">
+                                <input data-f="folMin" inputmode="numeric" placeholder="от 10 000" aria-label="Подписчиков от">
+                                <span aria-hidden="true">—</span>
+                                <input data-f="folMax" inputmode="numeric" placeholder="до 500 000" aria-label="Подписчиков до">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="f-label" id="lbl-price">Цена за публикацию, ₸</label>
+                            <div class="f-range" role="group" aria-labelledby="lbl-price">
+                                <input data-f="priceMin" inputmode="numeric" placeholder="от" aria-label="Цена от">
+                                <span aria-hidden="true">—</span>
+                                <input data-f="priceMax" inputmode="numeric" placeholder="до 300 000" aria-label="Цена до">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="f-label" for="f-er">Вовлечённость (ER)</label>
+                            <select id="f-er" data-f="er" class="f-select">
+                                <option value="">Любая</option>
+                                <option value="2">от 2%</option>
+                                <option value="3">от 3%</option>
+                                <option value="4">от 4%</option>
+                                <option value="5">от 5%</option>
+                                <option value="6">от 6%</option>
+                                <option value="8">от 8%</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Расширенные параметры (скрыты по умолчанию) -->
+                    <div id="advanced" hidden class="pt-4 border-t border-gray-100">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Блогер и формат -->
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="f-label" for="f-gender">Пол блогера</label>
+                                    <select id="f-gender" data-f="gender" class="f-select">
+                                        <option value="">Любой</option>
+                                        <option value="female">Женский</option>
+                                        <option value="male">Мужской</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="f-label" for="f-lang">Язык ведения</label>
+                                    <select id="f-lang" data-f="lang" class="f-select">
+                                        <option value="">Любой</option>
+                                        <option value="ru">Русский</option>
+                                        <option value="kz">Казахский</option>
+                                        <option value="en">Английский</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="f-label" for="f-format">Формат размещения</label>
+                                    <select id="f-format" data-f="format" class="f-select"></select>
+                                </div>
+                            </div>
+                            <!-- Аудитория и охваты -->
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="f-label" for="f-views">Средние просмотры</label>
+                                    <select id="f-views" data-f="views" class="f-select">
+                                        <option value="">Любые</option>
+                                        <option value="5000">от 5 000</option>
+                                        <option value="10000">от 10 000</option>
+                                        <option value="25000">от 25 000</option>
+                                        <option value="50000">от 50 000</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="f-label" for="f-audgeo">География аудитории</label>
+                                    <select id="f-audgeo" data-f="audGeo" class="f-select">
+                                        <option value="">Любая</option>
+                                        <option value="kz">Казахстан</option>
+                                        <option value="ru">Россия</option>
+                                    </select>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label class="f-label" for="f-audgender">Пол аудитории</label>
+                                        <select id="f-audgender" data-f="audGender" class="f-select">
+                                            <option value="">Любой</option>
+                                            <option value="f">Женская (60%+)</option>
+                                            <option value="m">Мужская (60%+)</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="f-label" for="f-audage">Возраст аудитории</label>
+                                        <select id="f-audage" data-f="audAge" class="f-select">
+                                            <option value="">Любой</option>
+                                            <option value="13-17">13–17</option>
+                                            <option value="18-24">18–24</option>
+                                            <option value="25-34">25–34</option>
+                                            <option value="35-44">35–44</option>
+                                            <option value="45+">45+</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Условия -->
+                            <div class="space-y-4">
+                                <label class="f-label">Требования к аккаунту</label>
+                                <div class="flex flex-col gap-2">
+                                    <button type="button" class="chip justify-start w-fit" data-bool="verified" aria-pressed="false">
+                                        <i class="fa-solid fa-circle-check text-sky-500"></i> Проверенный аккаунт
+                                    </button>
+                                    <button type="button" class="chip justify-start w-fit" data-bool="barter" aria-pressed="false">
+                                        <i class="fa-solid fa-handshake text-emerald-600"></i> Готов к бартеру
+                                    </button>
+                                    <button type="button" class="chip justify-start w-fit" data-bool="contract" aria-pressed="false">
+                                        <i class="fa-solid fa-file-signature text-amber-600"></i> Работает по договору
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Нижний ряд кнопок управления фильтрами -->
+                    <div class="flex flex-col sm:flex-row justify-between items-center mt-2 pt-4 border-t border-gray-50">
+                        <button type="button" id="adv-toggle" class="text-sm font-semibold text-[var(--accent)] flex items-center gap-1" aria-expanded="false" aria-controls="advanced">
+                            Все фильтры <i class="fa-solid fa-chevron-down chev text-xs transition-transform"></i>
+                        </button>
+                        
+                        <div class="flex items-center gap-4 mt-4 sm:mt-0 w-full sm:w-auto">
+                            <button type="button" id="btn-clear" class="text-sm font-semibold text-[var(--accent)] hover:text-rose-600 flex items-center gap-1 transition-colors">
+                                <i class="fa-solid fa-rotate-right"></i> Сбросить
+                            </button>
+                            <button type="button" id="btn-show" class="btn-accent px-8 py-3 rounded-xl font-bold text-sm w-full sm:w-auto">
+                                Показать <span id="btn-show-count">10</span> блогеров
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Сортировка и активные теги -->
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+                <div id="active-tags" class="flex flex-wrap items-center gap-2" hidden></div>
+                <div class="flex items-center gap-2 ml-auto">
+                    <label for="sort" class="text-xs text-gray-500 font-semibold">Сортировка:</label>
+                    <select id="sort" class="bg-white border border-[#E8E4E1] rounded-xl px-3 py-1.5 text-xs font-bold text-gray-800 focus:border-[var(--accent)]">
+                        <option value="">По умолчанию</option>
+                        <option value="subs">Подписчикам ↓</option>
+                        <option value="er">Вовлеченности ↓</option>
+                        <option value="priceAsc">Цене ↑</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- РЕЗУЛЬТАТЫ -->
+            <div id="results" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+
+            <div id="empty" class="card-panel no-lift p-10 text-center" hidden>
+                <div class="text-4xl text-[var(--accent)] mb-4"><i class="fa-solid fa-user-slash"></i></div>
+                <h3 class="font-black text-xl">Никого не нашли</h3>
+                <p class="text-sm text-gray-500 mt-2 max-w-md mx-auto">По этим условиям блогеров нет. Уберите часть фильтров — например, бюджет или число подписчиков.</p>
+                <button type="button" id="btn-empty-reset" class="btn-accent mt-6 px-8 py-3 rounded-2xl font-bold text-sm">Сбросить фильтры</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-[#9C1C4F]/10 pt-16 pb-8" id="contacts">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="text-3xl font-black tracking-[-2px] mb-6">
+                        CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                    </div>
+                    <p class="text-[#666] text-sm max-w-sm leading-relaxed">
+                        Группа компаний AYACOM. ТОО «KAF». <br/> БИН: 221240005124. <br/> Официальная платформа для инфлюенс-маркетинга в Казахстане и России.
+                    </p>
+                    <div class="flex space-x-4 mt-8">
+                        <a href="#" aria-label="Telegram" class="w-12 h-12 rounded-3xl bg-white shadow flex items-center justify-center text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-2xl transition"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#" aria-label="WhatsApp" class="w-12 h-12 rounded-3xl bg-white shadow flex items-center justify-center text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-2xl transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Навигация</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="index.html" class="hover:text-[var(--accent)]">Главная</a></li>
+                        <li><a href="/catalog" class="text-[var(--accent)]">Каталог блогеров</a></li>
+                        <li><a href="#how-it-works" class="hover:text-[var(--accent)]">Как это работает</a></li>
+                        <li><a href="#register" class="hover:text-[var(--accent)]">Регистрация</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Контакты</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="#" class="hover:text-[var(--accent)]">+7 (717) 555-12-34</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)]">info@creators.kz</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)]">Астана, ул. Мангилик Ел, 22</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-xs text-[#999] border-t border-[#9C1C4F]/10 pt-8">
+                © 2026 Creators.kz — Все права защищены
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- ═════════ ОКНО ПОДПИСКИ ═════════ -->
+<dialog id="paywall" class="paywall" aria-labelledby="pw-title">
+    <div class="pw-head">
+        <span class="ai-icon" aria-hidden="true"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+        <button type="button" class="pw-close" data-close aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="pw-body bg-white rounded-t-[28px] p-7">
+        <h3 id="pw-title" class="text-2xl font-black tracking-[-1px]">ИИ-подбор без ограничений</h3>
+        <p id="pw-lead" class="mt-2 text-sm text-gray-600 leading-relaxed"></p>
+        <div class="mt-5 flex items-baseline gap-2">
+            <span id="pw-price" class="text-4xl font-black tracking-[-1px]"></span>
+            <span class="text-sm text-gray-500">в месяц</span>
+        </div>
+        <ul class="mt-5 space-y-3 text-sm">
+            <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>Безлимитные запросы к ИИ-поиску</li>
+            <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>Уточняйте запрос сколько нужно — фильтры подстроятся заново</li>
+            <li class="flex gap-3"><i class="fa-solid fa-check text-emerald-600 mt-0.5"></i>Отмена в любой момент</li>
+        </ul>
+        <p class="mt-5 text-xs text-gray-500">Обычные фильтры каталога остаются бесплатными.</p>
+        <div class="mt-6 flex flex-col gap-2">
+            <button type="button" id="pw-buy" class="btn-accent px-8 py-4 rounded-3xl font-bold text-base">Оформить подписку</button>
+            <button type="button" data-close class="text-sm font-semibold text-gray-500 hover:text-[var(--accent)] py-2">Не сейчас</button>
+        </div>
+    </div>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+    'use strict';
+
+    /* ══════════════════════════════════════════════════════════
+       НАСТРОЙКИ ИИ И ПОДПИСКИ
+       ══════════════════════════════════════════════════════════ */
+    const CONFIG = {
+        FREE_PER_MONTH: 1,
+        PRICE_MONTH: 9900,
+        AI_ENDPOINT: '',
+        SUBSCRIBE_URL: ''
+    };
+
+    /* ══════════════════════════════════════════════════════════
+       СПРАВОЧНИКИ
+       ══════════════════════════════════════════════════════════ */
+    const PLATFORMS = {
+        instagram: { name: 'Instagram', icon: 'fa-instagram', soc: 'soc-ig' },
+        tiktok:    { name: 'TikTok',    icon: 'fa-tiktok',    soc: 'soc-tt' },
+        youtube:   { name: 'YouTube',   icon: 'fa-youtube',   soc: 'soc-yt' },
+        telegram:  { name: 'Telegram',  icon: 'fa-telegram',  soc: 'soc-tg' }
+    };
+
+    const CATS = [
+        ['business', 'Бизнес и финансы'], ['lifestyle', 'Образ жизни'], ['news', 'Новости и СМИ'],
+        ['it', 'IT и технологии'], ['travel', 'Путешествия'], ['fashion', 'Мода и стиль'],
+        ['beauty', 'Красота и здоровье'], ['fitness', 'Спорт и фитнес'], ['food', 'Еда и кулинария'],
+        ['auto', 'Авто'], ['motivation', 'Мотивация'], ['education', 'Образование'],
+        ['entertainment', 'Юмор и развлечения'], ['gaming', 'Игры']
+    ];
+    const CAT_NAME = Object.fromEntries(CATS);
+    
+    const FORMATS = [['post', 'Пост'], ['stories', 'Stories'], ['reels', 'Reels / Shorts'], ['video', 'Видеоинтеграция']];
+    const FORMAT_NAME = Object.fromEntries(FORMATS);
+
+    const LOC_NAME = { kz: 'Весь Казахстан', astana: 'Астана', almaty: 'Алматы', atyrau: 'Атырау', ru: 'Вся Россия', moscow: 'Москва', spb: 'Санкт-Петербург' };
+    const LANG_NAME = { ru: 'Русский', kz: 'Казахский', en: 'Английский' };
+    const GEO_NAME = { kz: 'Казахстан', ru: 'Россия' };
+
+    // Заполнение выпадающих списков
+    const catSelect = document.getElementById('f-cat');
+    catSelect.innerHTML = '<option value="">Любая</option>' + CATS.map(([val, label]) => `<option value="${val}">${label}</option>`).join('');
+    
+    const formatSelect = document.getElementById('f-format');
+    formatSelect.innerHTML = '<option value="">Любой</option>' + FORMATS.map(([val, label]) => `<option value="${val}">${label}</option>`).join('');
+
+    const EXAMPLES = [
+        ['Красота, Алматы, Reels', 'Девушка-блогер из Алматы, тема — красота, 100–300 тыс. подписчиков, Reels'],
+        ['IT-блогер на бартер', 'IT-блогер на YouTube или TikTok с ER от 5%, готовый к бартеру'],
+        ['Путешествия, Россия', 'Мужчина блогер из России, путешествия, работает по договору']
+    ];
+    document.getElementById('ai-examples').innerHTML = EXAMPLES.map(([label, full], i) =>
+        `<button type="button" class="ai-example" data-example="${i}">${label}</button>`).join('');
+
+    /* ══════════════════════════════════════════════════════════
+       ДАННЫЕ БЛОГЕРОВ
+       ══════════════════════════════════════════════════════════ */
+    const BLOGGERS = [
+        { name: 'Абай Амиров', handle: '@abayamirov', gender: 'male', place: 'Казахстан, Атырау', country: 'kz', city: 'atyrau',
+          cats: ['business', 'lifestyle'], tags: ['#Бизнес', '#Образ_жизни'], platforms: ['instagram', 'youtube'],
+          followers: 38900, posts: 1000, er: 4.8, price: 90000, views: 21000, audGeo: 'kz', audF: 38, audAge: '25-34',
+          langs: ['ru', 'kz'], formats: ['post', 'stories', 'video'], barter: false, contract: true, verified: true,
+          img: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=1000&auto=format&fit=crop' },
+        { name: 'ASTANA PLUS', handle: '@astanapluskz', gender: 'male', place: 'Казахстан, Астана', country: 'kz', city: 'astana',
+          cats: ['news'], tags: ['#Новости', '#СМИ'], platforms: ['instagram'],
+          followers: 35800, posts: 330, er: 2.1, price: 60000, views: 12000, audGeo: 'kz', audF: 55, audAge: '25-34',
+          langs: ['ru'], formats: ['post', 'stories'], barter: false, contract: true, verified: true, cover: 'astana' },
+        { name: 'AYACOM', handle: '@AYACOM', gender: 'male', place: 'Казахстан', country: 'kz', city: null,
+          cats: ['it'], tags: ['#IT'], platforms: ['instagram', 'telegram'],
+          followers: 3400, posts: 352, er: 3.6, price: 25000, views: 1800, audGeo: 'kz', audF: 30, audAge: '25-34',
+          langs: ['ru'], formats: ['post', 'stories'], barter: true, contract: true, verified: true, cover: 'ayacom' },
+        { name: 'Диана Каримова', handle: '@diana.karim', gender: 'female', place: 'Казахстан, Алматы', country: 'kz', city: 'almaty',
+          cats: ['fashion', 'lifestyle'], tags: ['#Мода', '#Лайфстайл'], platforms: ['tiktok', 'instagram'],
+          followers: 142000, posts: 874, er: 6.2, price: 220000, views: 68000, audGeo: 'kz', audF: 78, audAge: '18-24',
+          langs: ['ru', 'kz'], formats: ['reels', 'stories', 'post'], barter: true, contract: false, verified: true,
+          img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop' },
+        { name: 'Артём Волков', handle: '@artem_travelkz', gender: 'male', place: 'Россия, Москва', country: 'ru', city: 'moscow',
+          cats: ['travel'], tags: ['#Путешествия'], platforms: ['youtube'],
+          followers: 87200, posts: 312, er: 5.1, price: 150000, views: 41000, audGeo: 'ru', audF: 45, audAge: '25-34',
+          langs: ['ru'], formats: ['video'], barter: false, contract: true, verified: true,
+          img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop' },
+        { name: 'Айгерим Султанова', handle: '@aigerim_sult', gender: 'female', place: 'Казахстан, Астана', country: 'kz', city: 'astana',
+          cats: ['beauty'], tags: ['#Красота', '#Здоровье'], platforms: ['instagram'],
+          followers: 214000, posts: 1200, er: 3.9, price: 300000, views: 85000, audGeo: 'kz', audF: 88, audAge: '25-34',
+          langs: ['ru', 'kz'], formats: ['post', 'stories', 'reels'], barter: false, contract: true, verified: true,
+          img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1000&auto=format&fit=crop' },
+        { name: 'Максим Ким', handle: '@maxkimtech', gender: 'male', place: 'Казахстан, Алматы', country: 'kz', city: 'almaty',
+          cats: ['it'], tags: ['#IT', '#Гаджеты'], platforms: ['tiktok', 'youtube'],
+          followers: 64500, posts: 289, er: 7.4, price: 110000, views: 47000, audGeo: 'kz', audF: 25, audAge: '18-24',
+          langs: ['ru', 'en'], formats: ['reels', 'video'], barter: true, contract: false, verified: false,
+          img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1000&auto=format&fit=crop' },
+        { name: 'Софья Морозова', handle: '@sofia_morozova', gender: 'female', place: 'Россия, Санкт-Петербург', country: 'ru', city: 'spb',
+          cats: ['food'], tags: ['#Кулинария'], platforms: ['instagram'],
+          followers: 98700, posts: 645, er: 4.4, price: 95000, views: 30000, audGeo: 'ru', audF: 82, audAge: '25-34',
+          langs: ['ru'], formats: ['post', 'stories', 'reels'], barter: true, contract: false, verified: true,
+          img: 'https://images.unsplash.com/photo-1534528741775-4c3c4c9c2f2f?q=80&w=1000&auto=format&fit=crop' },
+        { name: 'Руслан Беков', handle: '@ruslan_bek', gender: 'male', place: 'Казахстан, Астана', country: 'kz', city: 'astana',
+          cats: ['auto', 'motivation'], tags: ['#Авто', '#Мотивация'], platforms: ['youtube', 'tiktok'],
+          followers: 51300, posts: 418, er: 5.6, price: 70000, views: 26000, audGeo: 'kz', audF: 20, audAge: '25-34',
+          langs: ['ru', 'kz'], formats: ['video', 'reels'], barter: true, contract: false, verified: false,
+          img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000&auto=format&fit=crop' },
+        { name: 'Алина Токаева', handle: '@alina_tokaeva', gender: 'female', place: 'Казахстан, Алматы', country: 'kz', city: 'almaty',
+          cats: ['fitness', 'motivation'], tags: ['#Фитнес', '#Мотивация'], platforms: ['instagram', 'tiktok'],
+          followers: 178000, posts: 921, er: 6.8, price: 260000, views: 92000, audGeo: 'kz', audF: 85, audAge: '18-24',
+          langs: ['ru', 'kz'], formats: ['reels', 'stories', 'post'], barter: false, contract: true, verified: true,
+          img: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8c5d?q=80&w=1000&auto=format&fit=crop' }
+    ];
+
+    /* ══════════════════════════════════════════════════════════
+       СОСТОЯНИЕ ФИЛЬТРОВ И ЛОГИКА
+       ══════════════════════════════════════════════════════════ */
+    const DEFAULTS = () => ({
+        platform: '', cat: '', loc: '', lang: '', gender: '',
+        folMin: null, folMax: null, priceMin: null, priceMax: null, er: '',
+        views: '', format: '', audGeo: '', audGender: '', audAge: '',
+        verified: false, barter: false, contract: false
+    });
+    const NUMKEYS = new Set(['folMin', 'folMax', 'priceMin', 'priceMax']);
+    
+    const $ = s => document.querySelector(s);
+    const $$ = s => [...document.querySelectorAll(s)];
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    const fmt = n => Number(n).toLocaleString('ru-RU').replace(/[\u00a0\u202f]/g, ' ');
+    const short = n => {
+        if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+        if (n >= 1000) return (n / 1000).toFixed(n >= 100000 ? 0 : 1).replace(/\.0$/, '') + 'k';
+        return String(n);
+    };
+    function parseNum(s) {
+        if (!s) return null;
+        const m = String(s).toLowerCase().replace(/[\s\u00a0\u202f]/g, '').replace(',', '.').match(/^(\d+(?:\.\d+)?)(k|к|тыс|m|м|млн)?/);
+        if (!m) return null;
+        let n = parseFloat(m[1]);
+        if (m[2]) n *= /^(m|м|млн)$/.test(m[2]) ? 1e6 : 1e3;
+        return Math.round(n);
+    }
+    const store = {
+        get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+        set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    };
+    function toast(msg) {
+        const t = $('#toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        clearTimeout(toast._t);
+        toast._t = setTimeout(() => t.classList.remove('show'), 3200);
+    }
+
+    function readState() {
+        const f = DEFAULTS();
+        $$('[data-f]').forEach(el => {
+            const k = el.dataset.f, v = el.value.trim();
+            f[k] = NUMKEYS.has(k) ? parseNum(v) : v;
+        });
+        $$('.chip[data-bool]').forEach(c => { f[c.dataset.bool] = c.getAttribute('aria-pressed') === 'true'; });
+        return f;
+    }
+
+    function writeState(f) {
+        $$('[data-f]').forEach(el => {
+            const k = el.dataset.f, v = f[k];
+            el.value = NUMKEYS.has(k) ? (v == null ? '' : fmt(v)) : (v == null ? '' : v);
+        });
+        $$('.chip[data-bool]').forEach(c => c.setAttribute('aria-pressed', !!f[c.dataset.bool]));
+    }
+
+    function matches(b, f) {
+        if (f.platform && !b.platforms.includes(f.platform)) return false;
+        if (f.cat && !b.cats.includes(f.cat)) return false;
+        if (f.loc) {
+            if (f.loc === 'kz' || f.loc === 'ru') { if (b.country !== f.loc) return false; }
+            else if (b.city !== f.loc) return false;
+        }
+        if (f.lang && !b.langs.includes(f.lang)) return false;
+        if (f.gender && b.gender !== f.gender) return false;
+        if (f.folMin != null && b.followers < f.folMin) return false;
+        if (f.folMax != null && b.followers > f.folMax) return false;
+        if (f.priceMin != null && b.price < f.priceMin) return false;
+        if (f.priceMax != null && b.price > f.priceMax) return false;
+        if (f.er && b.er < Number(f.er)) return false;
+        if (f.views && b.views < Number(f.views)) return false;
+        if (f.audGeo && b.audGeo !== f.audGeo) return false;
+        if (f.audGender === 'f' && b.audF < 60) return false;
+        if (f.audGender === 'm' && b.audF > 40) return false;
+        if (f.audAge && b.audAge !== f.audAge) return false;
+        if (f.format && !b.formats.includes(f.format)) return false;
+        if (f.verified && !b.verified) return false;
+        if (f.barter && !b.barter) return false;
+        if (f.contract && !b.contract) return false;
+        return true;
+    }
+
+    const SORTERS = {
+        subs: (a, b) => b.followers - a.followers,
+        er: (a, b) => b.er - a.er,
+        priceAsc: (a, b) => a.price - b.price
+    };
+
+    function card(b) {
+        // --- ЕСЛИ ЭТО РЕКЛАМНАЯ КАРТОЧКА ---
+        if (b.isAd) {
+            return `
+            <!-- РЕКЛАМНЫЙ БЛОК (Native Ad) -->
+            <div class="card-panel overflow-hidden group flex flex-col relative bg-white">
+                <!-- Контейнер для скрипта Яндекс.Директ или Google (сюда будет встраиваться RTB-блок) -->
+                <div id="yandex_rtb_placeholder" class="hidden"></div>
+                
+                <!-- Визуальная заглушка, чтобы смотрелось как карточка блогера -->
+                <span class="absolute top-3 left-3 bg-white/90 backdrop-blur text-[10px] uppercase font-bold tracking-wider px-2 py-1 rounded text-gray-400 z-10 shadow-sm border border-gray-100/50">Реклама</span>
+                
+                <div class="h-48 overflow-hidden relative">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-0"></div>
+                    <img src="https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=500&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Ad">
+                    <div class="absolute bottom-3 left-4 text-white z-10 font-bold tracking-wide">Яндекс Директ</div>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <h4 class="font-black text-lg text-gray-900 leading-tight">Привлекайте больше клиентов</h4>
+                    <p class="text-xs text-gray-500 mt-2 font-medium leading-relaxed">Умные алгоритмы сами найдут тех, кому нужен ваш продукт или услуга. Настройте показы за 5 минут.</p>
+                    
+                    <div class="mt-auto pt-5">
+                        <button class="w-full bg-[#fce000] hover:bg-[#f0d500] text-black font-bold text-sm py-2.5 rounded-xl transition-colors shadow-sm">
+                            Запустить рекламу
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+        }
+        // -----------------------------------
+
+        const soc = b.platforms.map(p => {
+            const P = PLATFORMS[p];
+            return `<span class="soc ${P.soc}" title="${P.name}"><i class="fa-brands ${P.icon}" aria-hidden="true"></i></span>`;
+        }).join('');
+
+        let cover;
+        if (b.cover === 'astana') {
+            cover = `<div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="text-2xl font-black">ASTANA</div>
+                            <div class="text-xl font-light">PLUS</div>
+                        </div></div>`;
+        } else if (b.cover === 'ayacom') {
+            cover = `<div class="h-48 bg-white border flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="inline-block bg-red-600 text-white text-xs font-bold px-3 py-1 rounded">AYACOM</div>
+                            <div class="text-xl font-black text-gray-900 mt-1 tracking-widest">IT SOLUTIONS</div>
+                        </div></div>`;
+        } else {
+            const ini = b.name.split(' ').map(w => w[0]).join('').slice(0, 2);
+            cover = `<img src="${b.img}" alt="${esc(b.name)}" loading="lazy" class="w-full h-48 object-cover transition duration-700 group-hover:scale-105"
+                          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                     <div class="cover-fallback" style="display:none" aria-hidden="true">${esc(ini)}</div>`;
+        }
+
+        const female = b.gender === 'female';
+        const genderBadge = `<span title="${female ? 'Женщина' : 'Мужчина'}" class="inline-flex items-center justify-center w-6 h-6 ${female ? 'bg-pink-100 text-pink-600' : 'bg-sky-100 text-sky-600'} rounded-xl text-sm shrink-0">${female ? '♀' : '♂'}</span>`;
+
+        return `
+            <div class="card-panel overflow-hidden group flex flex-col bg-white">
+                <div class="relative overflow-hidden">
+                    ${cover}
+                    <div class="absolute top-3 right-3 flex gap-1.5">${soc}</div>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <div class="flex justify-between items-start gap-3">
+                        <div class="min-w-0">
+                            <h4 class="font-black text-lg text-gray-900 flex items-center gap-1.5">
+                                <span class="truncate">${esc(b.name)}</span>
+                                ${b.verified ? '<i class="fa-solid fa-circle-check text-sky-500 text-sm" title="Проверенный аккаунт"></i>' : ''}
+                            </h4>
+                            <p class="text-[var(--accent)] text-sm font-semibold truncate">${esc(b.handle)}</p>
+                            <p class="text-xs text-gray-500 mt-1 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> ${esc(b.place)}</p>
+                        </div>
+                        ${genderBadge}
+                    </div>
+                    <p class="text-[10px] mt-3 flex flex-wrap gap-1.5">${b.tags.map(t => `<span class="bg-gray-100 px-2 py-1 rounded text-gray-600 font-medium">${esc(t)}</span>`).join('')}</p>
+                    
+                    <div class="mt-auto">
+                        <div class="grid grid-cols-3 text-center border-t border-b py-3 text-sm mt-4">
+                            <div><div class="font-black text-lg text-gray-900">${short(b.followers)}</div><div class="text-[10px] text-gray-500 uppercase">Подписчики</div></div>
+                            <div><div class="font-black text-lg text-gray-900">${b.er.toFixed(1)}%</div><div class="text-[10px] text-gray-500 uppercase">ER</div></div>
+                            <div><div class="font-black text-lg text-gray-900">${short(b.posts)}</div><div class="text-[10px] text-gray-500 uppercase">Посты</div></div>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between text-xs font-semibold">
+                            <span class="text-gray-500">Реклама от <b class="text-gray-900 text-sm">${fmt(b.price)} ₸</b></span>
+                            ${b.barter ? '<span class="text-[10px] text-emerald-600 bg-emerald-50 px-2 py-1 rounded-md"><i class="fa-solid fa-handshake mr-1"></i>Бартер</span>' : ''}
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    function render() {
+        const f = readState();
+        
+        // 1. Фильтруем и сортируем настоящих блогеров
+        let list = BLOGGERS.filter(b => matches(b, f));
+        const s = $('#sort').value;
+        if (SORTERS[s]) list = list.slice().sort(SORTERS[s]);
+
+        // Сохраняем реальное количество найденных блогеров (без учета рекламы)
+        const realCount = list.length;
+
+        // 2. Внедряем рекламную карточку в массив
+        if (realCount > 0) {
+            // Ставим рекламу 4-й карточкой, либо в самый конец, если блогеров меньше 3-х
+            const adIndex = Math.min(3, realCount);
+            list.splice(adIndex, 0, { isAd: true });
+        }
+
+        // 3. Отрисовываем
+        $('#results').innerHTML = list.map(card).join('');
+        
+        // Показываем/скрываем элементы на основе реального количества
+        $('#results').hidden = !realCount;
+        $('#empty').hidden = !!realCount;
+        
+        // Во всех счетчиках выводим только количество настоящих блогеров
+        $('#results-count').textContent = realCount;
+        $('#btn-show-count').textContent = realCount;
+
+        // Генерация плашек активных фильтров
+        const tags = [];
+        if (f.platform) tags.push({ k: 'platform', l: PLATFORMS[f.platform].name });
+        if (f.cat) tags.push({ k: 'cat', l: CAT_NAME[f.cat] });
+        if (f.loc) tags.push({ k: 'loc', l: LOC_NAME[f.loc] });
+        if (f.folMin || f.folMax) tags.push({ k: 'fol', l: `Подписчики: ${f.folMin?'от '+short(f.folMin):''} ${f.folMax?'до '+short(f.folMax):''}`.trim() });
+        if (f.priceMin || f.priceMax) tags.push({ k: 'price', l: `Бюджет: ${f.priceMin?'от '+fmt(f.priceMin):''} ${f.priceMax?'до '+fmt(f.priceMax):''} ₸`.trim() });
+        if (f.er) tags.push({ k: 'er', l: `ER от ${f.er}%` });
+        if (f.views) tags.push({ k: 'views', l: `Просмотры от ${short(f.views)}` });
+        if (f.gender) tags.push({ k: 'gender', l: f.gender === 'female' ? 'Женщины' : 'Мужчины' });
+        if (f.lang) tags.push({ k: 'lang', l: LANG_NAME[f.lang] });
+        if (f.format) tags.push({ k: 'format', l: FORMAT_NAME[f.format] });
+        if (f.audGeo) tags.push({ k: 'audGeo', l: 'Ауд: ' + GEO_NAME[f.audGeo] });
+        if (f.audGender) tags.push({ k: 'audGender', l: 'Ауд: ' + (f.audGender==='f'?'Женская':'Мужская') });
+        if (f.audAge) tags.push({ k: 'audAge', l: 'Возраст ауд: ' + f.audAge });
+        if (f.verified) tags.push({ k: 'verified', l: 'Проверенный' });
+        if (f.barter) tags.push({ k: 'barter', l: 'Бартер' });
+        if (f.contract) tags.push({ k: 'contract', l: 'Договор' });
+        
+        const box = $('#active-tags');
+        box.hidden = !tags.length;
+        box.innerHTML = tags.map(t => `<button type="button" class="filter-tag text-[11px] px-3 py-1.5 rounded-full flex items-center gap-1.5" data-remove="${t.k}" title="Удалить">${esc(t.l)}<i class="fa-solid fa-xmark"></i></button>`).join('');
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       ИИ-ПОИСК: ПАРСЕР И ЛИМИТЫ
+       ══════════════════════════════════════════════════════════ */
+    const CAT_RX = {
+        beauty: 'красот|косметик|макияж|бьюти|beauty|skincare|парфюм|уход за|здоров',
+        fitness: 'фитнес|спорт|тренир|зож|похуд|йог',
+        food: 'кулинар|рецепт|готовк|фуд|food|ресторан|(?:^|[^а-я])еда(?![а-я])|(?:^|[^а-я])еды(?![а-я])',
+        auto: 'автомоб|(?:^|[^а-я])авто(?![а-я])|машин',
+        fashion: '(?:^|[^а-я])мода(?![а-я])|(?:^|[^а-я])моды(?![а-я])|модн|fashion|одежд|(?:^|[^а-я])стиль(?![а-я])|шопинг',
+        lifestyle: 'лайфстайл|лайфстил|образ жизни|lifestyle',
+        it: '(?:^|[^а-яa-z0-9])(?:it|ит|айти)(?![а-яa-z0-9])|технолог|гаджет|программ|смартфон',
+        travel: 'путешеств|туризм|тревел|travel|отдых|отел',
+        business: 'бизнес|финанс|инвест|предпринима|стартап|маркетинг',
+        news: 'новост|(?:^|[^а-я])сми(?![а-я])|медиа',
+        education: 'образовани|обучени|курс|репетитор|школ',
+        entertainment: 'юмор|развлеч|комеди|(?:^|[^а-я])шоу(?![а-я])|прикол',
+        gaming: 'игр(?:а|ы|о|ов)(?![а-я])|гейм|game|киберспорт|стример',
+        motivation: 'мотивац|саморазвит|коуч'
+    };
+    const CITY_RX = [
+        ['astana', 'астан|нур-султан|нурсултан', 'kz'], ['almaty', 'алмат|алма-ат', 'kz'], ['atyrau', 'атыра', 'kz'],
+        ['moscow', 'москв|москов', 'ru'], ['spb', 'петербург|питер|(?:^|[^а-я])спб(?![а-я])', 'ru']
+    ];
+    const has = (t, src) => new RegExp(src).test(t);
+    const snap = (v, opts) => { let r = opts[0]; for (const o of opts) if (o <= v) r = o; return String(r); };
+    const ageBucket = n => n < 18 ? '13-17' : n < 25 ? '18-24' : n < 35 ? '25-34' : n < 45 ? '35-44' : '45+';
+
+    function parseQuery(raw) {
+        let t = ' ' + String(raw).toLowerCase().replace(/ё/g, 'е').replace(/\s+/g, ' ') + ' ';
+        const f = {};
+        const cut = (re, fn) => { const m = t.match(re); if (m) { fn(m); t = t.replace(re, ' '); } };
+
+        // — аудитория
+        const AF = 'женск[а-я]*|женщин[а-я]*|девуш[а-я]*|девочк[а-я]*|мам[а-я]*';
+        const AM = 'мужск[а-я]*|мужчин[а-я]*|парн[а-я]*|парен[а-я]*';
+        cut(new RegExp(`(?:аудитори[а-я]*[^.,;\\d]{0,30}?|для\\s+)(?:${AF})|(?:${AF})\\s+аудитори[а-я]*`), () => { f.audGender = 'f'; });
+        cut(new RegExp(`(?:аудитори[а-я]*[^.,;\\d]{0,30}?|для\\s+)(?:${AM})|(?:${AM})\\s+аудитори[а-я]*`), () => { f.audGender = 'm'; });
+        cut(/аудитори[а-я]*[^.,;\d]{0,20}?(\d{2})\s*[-–—]\s*(\d{2})/, m => { f.audAge = ageBucket(+m[1]); });
+        cut(/(?:молодеж[а-я]*|зумер[а-я]*|студент[а-я]*)/, () => { f.audAge = f.audAge || '18-24'; });
+        cut(/аудитори[а-я]*[^.,;\d]{0,25}?(казахстан[а-я]*|росси[а-я]*|(?:^|[^а-я])рф(?![а-я]))|(казахстанск[а-я]*|российск[а-я]*)\s+аудитори[а-я]*/, m => {
+            const w = m[1] || m[2]; f.audGeo = /казах/.test(w) ? 'kz' : 'ru';
+        });
+
+        // — соцсети
+        const pl = [];
+        if (has(t, 'инст(?:аграм|а|у)|instagram|(?:^|[^а-яa-z0-9])ig(?![а-яa-z0-9])')) pl.push('instagram');
+        if (has(t, 'тик\\s?ток|tiktok|(?:^|[^а-яa-z0-9])(?:тт|tt)(?![а-яa-z0-9])')) pl.push('tiktok');
+        if (has(t, 'ютуб|ютьюб|youtube|(?:^|[^а-яa-z0-9])yt(?![а-яa-z0-9])')) pl.push('youtube');
+        if (has(t, 'телеграм|телега|telegram|(?:^|[^а-яa-z0-9])(?:тг|tg)(?![а-яa-z0-9])')) pl.push('telegram');
+        if (pl.length) f.platform = pl[0];
+
+        // — категории
+        const cats = Object.keys(CAT_RX).filter(k => has(t, CAT_RX[k]));
+        if (cats.length) f.cat = cats[0];
+
+        // — локация блогера
+        const cities = CITY_RX.filter(c => has(t, c[1]));
+        if (cities.length === 1) f.loc = cities[0][0];
+        else if (cities.length > 1) {
+            const cs = new Set(cities.map(c => c[2]));
+            if (cs.size === 1) f.loc = [...cs][0];
+        } else {
+            const kz = has(t, 'казахстан|(?:^|[^а-я])кз(?![а-я])'), ru = has(t, 'росси|(?:^|[^а-я])рф(?![а-я])');
+            if (kz && !ru) f.loc = 'kz'; else if (ru && !kz) f.loc = 'ru';
+        }
+
+        // — пол блогера
+        const fem = has(t, '(?:^|[^а-я])(?:девушк|женщин|блогерш|женск|девочк)'), mal = has(t, '(?:^|[^а-я])(?:парн|парен|мужчин|мужск)');
+        if (fem && !mal) f.gender = 'female'; else if (mal && !fem) f.gender = 'male';
+
+        // — язык
+        if (has(t, 'на казахск|казахскоязыч|казахск[а-я]* (?:язык|контент)')) f.lang = 'kz';
+        else if (has(t, 'на русск|русскоязыч|русск[а-я]* (?:язык|контент)')) f.lang = 'ru';
+        else if (has(t, 'на английск|англоязыч|английск[а-я]* (?:язык|контент)')) f.lang = 'en';
+
+        // — формат
+        if (has(t, 'reels|рилс|рилз|shorts|шортс|клип')) f.format = 'reels';
+        else if (has(t, 'stories|сторис|истори(?:и|я|ях|й)(?![а-я])')) f.format = 'stories';
+        else if (has(t, '(?:^|[^а-я])пост(?:ы|ов|а|е)?(?![а-я])|публикаци|карусел')) f.format = 'post';
+        else if (has(t, 'видеоинтеграц|интеграци|видео|ролик|распаковк')) f.format = 'video';
+
+        // — флаги
+        if (has(t, 'бартер') && !has(t, 'без бартер|не бартер')) f.barter = true;
+        if (has(t, '(?:^|[^а-я])(?:договор|официальн|эсф|документ)|(?:^|[^а-я])(?:ип|тоо)(?![а-я])')) f.contract = true;
+        if (has(t, 'проверенн|верифиц|подтвержденн|галочк')) f.verified = true;
+        if (has(t, 'высок[а-я]* вовлеченност')) f.er = '5';
+
+        // — числа
+        const NUM = '(\\d{1,3}(?:[ \\u00a0]\\d{3})+(?!\\d)|\\d+(?:[.,]\\d+)?)';
+        const UNIT = '(тысяч[а-я]*|тыс[а-я]*|млн[а-я]*|миллион[а-я]*|к(?![а-я])|k(?![a-z])|м(?![а-я]))';
+        const re = new RegExp(`(не менее|не более|минимум|максимум|свыше|больше|более|меньше|менее|дешевле|выше|ниже|около|от|до)?\\s*${NUM}\\s*${UNIT}?(?:\\s*(?:-|–|—|до)\\s*${NUM}\\s*${UNIT}?)?`, 'g');
+        const mult = u => !u ? 1 : /^(млн|миллион|м$)/.test(u) ? 1e6 : 1e3;
+        const MINW = /^(?:не менее|минимум|свыше|больше|более|выше|от)$/, MAXW = /^(?:не более\vert{}максимум\vert{}меньше\vert{}менее\vert{}дешевле\vert{}ниже\vert{}до)$/;
+        const toN = s => parseFloat(s.replace(/[ \u00a0]/g, '').replace(',', '.'));
+        let m;
+        while ((m = re.exec(t))) {
+            if (m[0].length === 0) { re.lastIndex++; continue; }
+            const [full, dir, a, u1, b, u2] = m;
+            const ua = u1 || u2, ub = u2 || u1;
+            const n1 = toN(a) * mult(ua), n2 = b ? toN(b) * mult(ub) : null;
+            const after = t.slice(m.index + full.length, m.index + full.length + 40);
+            const before = t.slice(Math.max(0, m.index - 30), m.index);
+            let kind = null;
+            if (/^[\s.]*(?:₸|тенге|тг|тнг|kzt|руб|₽|т(?![а-я]))/.test(after)) kind = 'price';
+            else if (/^[\s.]*(?:подписчик|подп|фолловер|follower|subs|аудитори)/.test(after)) kind = 'fol';
+            else if (/^\s*(?:%|процент)/.test(after)) kind = 'er';
+            else if (/^[\s.]*(?:просмотр|охват)/.test(after)) kind = 'views';
+            else if (/^[\s.]*(?:лет|года|год)(?![а-я])/.test(after)) kind = 'age';
+            else if (/(?:бюджет|стоимост[а-я]*|цен[а-я]*|оплат[а-я]*|гонорар[а-я]*|за (?:пост|рилс|reels|сторис|интеграци[а-я]*|ролик))\W*$/.test(before)) kind = 'price';
+            else if (/(?:подписчик[а-я]*|фолловер[а-я]*|followers?)\W*$/.test(before)) kind = 'fol';
+            else if (/(?:(?:^|[^а-яa-z])er|вовлеченност[а-я]*)\W*$/.test(before)) kind = 'er';
+            else if (/(?:просмотр[а-я]*|охват[а-я]*)\W*$/.test(before)) kind = 'views';
+            else if (ua) kind = /подписчик|фолловер/.test(t) ? 'fol' : /бюджет|тенге|₸/.test(t) ? 'price' : 'fol';
+            if (kind === 'age') {
+                if (n1 < 100 && (f.audGender || /аудитори/.test(t))) f.audAge = ageBucket(n2 != null ? Math.min(n1, n2) : n1);
+                continue;
+            }
+            if (!kind) continue;
+
+            let lo = null, hi = null;
+            if (n2 != null) { lo = Math.min(n1, n2); hi = Math.max(n1, n2); }
+            else if (dir && MAXW.test(dir)) hi = n1;
+            else if (dir && MINW.test(dir)) lo = n1;
+            else if (dir === 'около') { lo = Math.round(n1 * .75); hi = Math.round(n1 * 1.25); }
+            else if (kind === 'price') hi = n1; else lo = n1;
+
+            if (kind === 'fol') { if (lo != null) f.folMin = lo; if (hi != null) f.folMax = hi; }
+            else if (kind === 'price') { if (lo != null) f.priceMin = lo; if (hi != null) f.priceMax = hi; }
+            else if (kind === 'er' && lo != null) f.er = snap(lo, [2, 3, 4, 5, 6, 8]);
+            else if (kind === 'views' && lo != null) f.views = snap(lo, [5000, 10000, 25000, 50000]);
+        }
+        if (f.folMin == null && f.folMax == null) {
+            if (has(t, 'нано\\s*-?\\s*(?:блог|инфлю)')) f.folMax = 10000;
+            else if (has(t, 'микро\\s*-?\\s*(?:блог|инфлю)')) { f.folMin = 10000; f.folMax = 100000; }
+            else if (has(t, 'макро\\s*-?\\s*(?:блог|инфлю)')) { f.folMin = 100000; f.folMax = 1000000; }
+            else if (has(t, 'мега\\s*-?\\s*(?:блог|инфлю)')) f.folMin = 1000000;
+        }
+        return f;
+    }
+
+    function sanitize(obj) {
+        const d = DEFAULTS(), out = {};
+        for (const k of Object.keys(d)) {
+            if (!(k in obj)) continue;
+            const v = obj[k];
+            if (typeof d[k] === 'boolean') out[k] = !!v;
+            else if (NUMKEYS.has(k)) { const n = Number(v); if (isFinite(n)) out[k] = n; }
+            else if (typeof v === 'string' || typeof v === 'number') out[k] = String(v);
+        }
+        return out;
+    }
+
+    async function remoteParse(text) {
+        const r = await fetch(CONFIG.AI_ENDPOINT, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query: text })
+        });
+        if (r.status === 402) throw new Error('paywall');
+        if (!r.ok) throw new Error('http ' + r.status);
+        const j = await r.json();
+        return sanitize(j.filters || {});
+    }
+
+    const KEY_USED = 'creators_ai_used', KEY_PRO = 'creators_ai_pro';
+    const monthKey = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); };
+    const isPro = () => store.get(KEY_PRO) === '1';
+    function usedThisMonth() {
+        try { const u = JSON.parse(store.get(KEY_USED) || 'null'); return u && u.m === monthKey() ? u.n : 0; } catch (e) { return 0; }
+    }
+    const freeLeft = () => Math.max(0, CONFIG.FREE_PER_MONTH - usedThisMonth());
+    const canUseAI = () => isPro() || freeLeft() > 0;
+    function consumeFree() {
+        if (isPro()) return;
+        store.set(KEY_USED, JSON.stringify({ m: monthKey(), n: usedThisMonth() + 1 }));
+    }
+    function nextResetText() {
+        const d = new Date(); d.setMonth(d.getMonth() + 1, 1);
+        return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+    }
+
+    function updateQuotaUI() {
+        const pill = $('#ai-pill'), note = $('#ai-note'), btn = $('#ai-submit');
+        const pro = isPro(), left = freeLeft();
+        if (pro) {
+            pill.innerHTML = '<i class="fa-solid fa-infinity"></i> Безлимит';
+            note.innerHTML = '';
+        } else if (left > 0) {
+            pill.innerHTML = `<i class="fa-solid fa-gift"></i> Бесплатно: ${left} из ${CONFIG.FREE_PER_MONTH}`;
+            note.textContent = `${CONFIG.FREE_PER_MONTH} бесплатный запрос в месяц, далее по подписке.`;
+        } else {
+            pill.innerHTML = '<i class="fa-solid fa-lock"></i> Лимит исчерпан';
+            note.innerHTML = `Следующий запрос — ${nextResetText()}. Или <button type="button" class="ai-link" data-open-paywall>подключите безлимит</button>.`;
+        }
+        btn.innerHTML = canUseAI()
+            ? '<i class="fa-solid fa-wand-magic-sparkles"></i> Подобрать с ИИ'
+            : '<i class="fa-solid fa-lock"></i> Открыть ИИ-подбор';
+    }
+
+    function openPaywall() {
+        const d = $('#paywall');
+        $('#pw-price').textContent = fmt(CONFIG.PRICE_MONTH) + ' ₸';
+        $('#pw-lead').textContent = freeLeft() > 0
+            ? 'Без подписки доступен ' + CONFIG.FREE_PER_MONTH + ' ИИ-запрос в месяц.'
+            : `Бесплатный запрос в этом месяце уже использован. Следующий будет доступен ${nextResetText()}.`;
+        if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', '');
+    }
+
+    function subscribe() {
+        if (CONFIG.SUBSCRIBE_URL) { location.href = CONFIG.SUBSCRIBE_URL; return; }
+        store.set(KEY_PRO, '1');
+        $('#paywall').close();
+        updateQuotaUI();
+        toast('Подписка активирована — ИИ-подбор без лимитов');
+        if ($('#ai-input').value.trim()) runAI();
+    }
+
+    function flashChanged() {
+        const els = [ ...$$('[data-f]').filter(el => el.value), ...$$('.chip[aria-pressed="true"]') ];
+        els.forEach(el => {
+            const target = el.closest('.f-range') || el;
+            target.classList.remove('ai-flash'); void target.offsetWidth; target.classList.add('ai-flash');
+            setTimeout(() => target.classList.remove('ai-flash'), 1500);
+        });
+    }
+
+    let busy = false;
+    async function runAI() {
+        if (busy) return;
+        const input = $('#ai-input'), text = input.value.trim();
+        if (!text) {
+            $('#ai-result').hidden = false;
+            $('#ai-result').innerHTML = `<p class="flex gap-2"><i class="fa-solid fa-circle-exclamation mt-0.5"></i><span>Опишите, кого ищете. Например: «девушка из Алматы, красота, до 300 000 ₸».</span></p>`;
+            input.focus();
+            return;
+        }
+        if (!canUseAI()) { openPaywall(); return; }
+
+        busy = true;
+        const btn = $('#ai-submit');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Разбираю...';
+        $('#ai-result').hidden = true;
+
+        let parsed = null;
+        if (CONFIG.AI_ENDPOINT) {
+            try { parsed = await remoteParse(text); }
+            catch (e) { if (e.message === 'paywall') { busy = false; btn.disabled = false; updateQuotaUI(); openPaywall(); return; } }
+        }
+        if (!parsed) { await sleep(650); parsed = parseQuery(text); }
+
+        busy = false;
+        btn.disabled = false;
+
+        if (!Object.keys(parsed).length) {
+            updateQuotaUI();
+            $('#ai-result').hidden = false;
+            $('#ai-result').innerHTML = `<p class="flex gap-2"><i class="fa-solid fa-circle-exclamation mt-0.5"></i><span>Не удалось выделить условия. Этот запрос не списан с лимита.</span></p>`;
+            return;
+        }
+
+        consumeFree();
+        const f = Object.assign(DEFAULTS(), parsed);
+        writeState(f);
+        $('#sort').value = '';
+        
+        const advKeys = ['gender', 'lang', 'format', 'views', 'audGeo', 'audGender', 'audAge', 'verified', 'barter', 'contract'];
+        if (advKeys.some(k => f[k])) {
+            $('#advanced').hidden = false;
+            $('#adv-toggle').setAttribute('aria-expanded', 'true');
+        }
+
+        render();
+        flashChanged();
+        updateQuotaUI();
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       СОБЫТИЯ
+       ══════════════════════════════════════════════════════════ */
+    document.addEventListener('input', e => { if (e.target.matches('[data-f]')) render(); });
+    $('#sort').addEventListener('change', render);
+    
+    document.addEventListener('click', e => {
+        const c = e.target.closest('.chip');
+        if (c) { c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true'); render(); return; }
+        
+        if (e.target.closest('#btn-clear') || e.target.closest('#btn-empty-reset')) {
+            writeState(DEFAULTS()); render(); return;
+        }
+
+        const rm = e.target.closest('[data-remove]');
+        if (rm) {
+            const k = rm.dataset.remove;
+            const f = readState();
+            if (k === 'fol') { f.folMin = null; f.folMax = null; }
+            else if (k === 'price') { f.priceMin = null; f.priceMax = null; }
+            else if (k === 'barter') { f.barter = false; }
+            else if (k === 'contract') { f.contract = false; }
+            else if (k === 'verified') { f.verified = false; }
+            else { f[k] = ''; }
+            writeState(f); render(); return;
+        }
+
+        const ex = e.target.closest('[data-example]');
+        if (ex) {
+            $('#ai-input').value = EXAMPLES[ex.dataset.example][1];
+            $('#ai-input').focus();
+        }
+
+        if (e.target.closest('[data-open-paywall]')) { openPaywall(); return; }
+        if (e.target.closest('[data-close]')) { $('#paywall').close(); }
+    });
+
+    $('#adv-toggle').addEventListener('click', () => {
+        const adv = $('#advanced');
+        const isHidden = adv.hidden;
+        adv.hidden = !isHidden;
+        $('#adv-toggle').setAttribute('aria-expanded', !isHidden);
+    });
+
+    $('#btn-toggle-filters').addEventListener('click', function() {
+        const body = $('#filter-body');
+        const isHidden = body.hidden;
+        body.hidden = !isHidden;
+        this.textContent = isHidden ? 'Скрыть фильтры' : 'Показать фильтры';
+    });
+
+    $('#ai-submit').addEventListener('click', () => canUseAI() ? runAI() : openPaywall());
+    $('#ai-input').addEventListener('keydown', e => {         if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); $('#ai-submit').click(); }
+    });
+    $('#pw-buy').addEventListener('click', subscribe);
+    $('#paywall').addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.close(); });
+
+    updateQuotaUI();
+    render();
+})();
+</script>
+</body>
+</html>

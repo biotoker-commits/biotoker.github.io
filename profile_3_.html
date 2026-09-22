@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Абай Амиров | Creators.kz</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        base: '#F8F7F5',
+                        text: '#1A1A1A',
+                        accent: '#9C1C4F',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+      <style>
+        :root {
+            --accent: #9C1C4F;
+            --accent-rgb: 156, 28, 79;
+        }
+     
+        html, body {
+            background-color: #F8F7F5;
+            color: #1A1A1A;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+     
+        nav {
+            background: rgba(248, 247, 245, 0.96) !important;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 4px 20px -4px rgba(var(--accent-rgb), 0.15);
+            border-bottom: 1px solid rgba(var(--accent-rgb), 0.08);
+        }
+     
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px -6px var(--accent);
+        }
+        .btn-accent:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px -8px var(--accent);
+        }
+     
+        .card-panel {
+            background: #FFFFFF;
+            border: 1px solid rgba(var(--accent-rgb), 0.08);
+            border-radius: 24px;
+            box-shadow: 0 12px 30px -12px rgba(var(--accent-rgb), 0.12);
+            transition: all 0.3s ease;
+        }
+        .card-panel:hover {
+            box-shadow: 0 20px 40px -12px rgba(var(--accent-rgb), 0.22);
+            transform: translateY(-4px);
+        }
+     
+        .social-float {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 12px 28px -8px rgba(var(--accent-rgb), 0.3);
+        }
+     
+        #home {
+            background: radial-gradient(circle at 20% 30%, rgba(var(--accent-rgb), 0.12) 0%, transparent 50%);
+        }
+     
+        .role-toggle {
+            background: #F1F1F1;
+            border-radius: 9999px;
+            padding: 4px;
+            display: flex;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+        }
+        .role-toggle button {
+            flex: 1;
+            padding: 8px 20px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .role-toggle button.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 12px -4px var(--accent);
+        }
+     
+        select, input {
+            transition: all 0.3s ease;
+        }
+        select:focus, input:focus {
+            border-color: var(--accent);
+        }
+     
+        @media (max-width: 640px) {
+            .section-padding { padding-top: 2rem; padding-bottom: 2.5rem; }
+            h1 { font-size: 2.75rem; line-height: 1.05; }
+            h2 { font-size: 1.75rem; }
+            
+            .hero-visual {
+                max-width: 340px !important;
+                height: 340px !important;
+            }
+            .social-float {
+                width: 64px !important;
+                height: 64px !important;
+                font-size: 2rem !important;
+            }
+            
+            .card-panel {
+                padding: 1.25rem !important;
+            }
+            
+            .register-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+     
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+            transform: translateY(-100%);
+        }
+        #mobile-menu.active {
+            transform: translateY(0);
+        }
+        
+        .hero-visual {
+            animation: heroPulse 8s ease-in-out infinite;
+        }
+
+        /* Стили для блюра статистики */
+        .stat-blur-overlay {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        .stat-locked {
+            filter: blur(6px);
+            user-select: none;
+            pointer-events: none;
+            transition: filter 0.4s ease;
+        }
+
+        .hide-scrollbar {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen relative">
+
+    <div class="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-b from-[#9C1C4F]/25 to-[#F8F7F5] -z-10"></div>
+
+     <!-- NAV -->
+    <nav class="fixed w-full z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 px-4 py-4 shadow-sm">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div  href="/" class="text-2xl font-black tracking-[-2px]">
+                    CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                </div>
+            </div>
+            
+            <!-- Переключатель ролей (только десктоп) -->
+            <div class="hidden lg:flex items-center ml-8">
+                <div id="role-toggle" class="role-toggle">
+                    <button onclick="switchRole('blogger')" id="btn-blogger">Блогер</button>
+                    <button onclick="switchRole('customer')" id="btn-customer" class="active">Заказчик</button>
+                </div>
+            </div>
+            
+           <div class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide text-gray-800">
+    <a href="work.html" class="hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
+    <a href="catalog.html" class="hover:text-[var(--accent)] transition">КАТАЛОГ</a>
+               <a href="barter.html" class="text-[var(--accent)] border-b-2 border-[var(--accent)] pb-1">БАРТЕР <span class="bg-[var(--accent)] text-white text-[10px] px-2 py-0.5 rounded-full ml-1 animate-pulse">NEW</span></a>
+    <a href="onas.html" class="hover:text-[var(--accent)] transition">О НАС</a>
+    <a href="contacs.html" class="hover:text-[var(--accent)] transition">КОНТАКТЫ</a>
+</div>
+            
+            <div class="flex items-center gap-3">
+                <a href="#register" class="hidden md:flex text-sm font-semibold px-5 py-2.5 rounded-3xl border border-[#9C1C4F]/20 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">Вход / Регистрация</a>
+                <button class="lg:hidden text-gray-800" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="fixed inset-0 z-40 bg-[#F8F7F5] pt-20" id="mobile-menu">
+        <div class="p-6 space-y-4">
+            <div class="mb-6">
+                <div id="mobile-role-toggle" class="role-toggle mx-auto w-fit">
+                    <button onclick="switchRole('blogger')">Блогер</button>
+                    <button onclick="switchRole('customer')" class="active">Заказчик</button>
+                </div>
+            </div>
+                      <a href="index.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">ГЛАВНАЯ</a>
+            <a href="work.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КАК РАБОТАЕТ</a>
+            <a href="catalog.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">КАТАЛОГ</a>
+                        <a href="barter.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">БАРТЕР</a>
+
+            <a href="onas.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">О НАС</a>
+            <a href="contacs.html" class="block text-lg font-semibold text-[var(--accent)]">КОНТАКТЫ</a>
+            <hr class="border-gray-200">
+            <a href="#register" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition menu-link">Вход / Регистрация</a>
+        </div>
+    </div>
+
+    <main class="flex-grow pt-28 pb-12 px-4 max-w-5xl mx-auto w-full space-y-6">
+        
+        <div class="card-panel p-6 sm:p-8 flex flex-col md:flex-row gap-8 items-start">
+            <div class="w-32 h-32 md:w-44 md:h-44 shrink-0 rounded-[32px] overflow-hidden relative shadow-lg ring-4 ring-white">
+                <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=400&auto=format&fit=crop" alt="Абай Амиров" class="w-full h-full object-cover">
+            </div>
+            
+            <div class="flex-grow flex flex-col h-full w-full">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <h1 class="text-3xl font-black text-gray-900 tracking-tight">Абай Амиров</h1>
+                            <i class="fa-solid fa-circle-check text-blue-500 text-lg" title="Профиль верифицирован"></i>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2 max-w-lg leading-relaxed">Популярный блогер из Атырау, специализирующийся на темах бизнеса, lifestyle и локальных событиях.</p>
+                        
+                        <div class="flex items-center gap-4 mt-3 text-sm">
+                            <div class="flex items-center gap-1 text-orange-400 font-bold">
+                                <i class="fa-solid fa-star"></i> 4.9 <span class="text-gray-400 font-normal text-xs">(34 отзыва)</span>
+                            </div>
+                            <div class="text-gray-300">|</div>
+                            <div class="text-gray-500 text-xs flex items-center gap-1.5">
+                                <i class="fa-regular fa-clock"></i> Отвечает за ~2 часа
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-3 w-full sm:w-auto">
+                        <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9aYXBmRGluZ2JhdHMgL05hbWUgL0YzIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNSAwIG9iago8PAovQ29udGVudHMgOSAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCA4IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago2IDAgb2JqCjw8Ci9QYWdlTW9kZSAvVXNlTm9uZSAvUGFnZXMgOCAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjcgMCBvYmoKPDwKL0F1dGhvciAoXChhbm9ueW1vdXNcKSkgL0NyZWF0aW9uRGF0ZSAoRDoyMDI2MDkyMjEyMDc1MSswMCcwMCcpIC9DcmVhdG9yIChcKHVuc3BlY2lmaWVkXCkpIC9LZXl3b3JkcyAoKSAvTW9kRGF0ZSAoRDoyMDI2MDkyMjEyMDc1MSswMCcwMCcpIC9Qcm9kdWNlciAoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpIAogIC9TdWJqZWN0IChcKHVuc3BlY2lmaWVkXCkpIC9UaXRsZSAoXChhbm9ueW1vdXNcKSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNSAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjkgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMTQ0MQo+PgpzdHJlYW0KR2IhInM5bEpLUW49RXVBUVVpUT9RTXBnSCZJSGZPPmk+RjBqQGIiPSJlJkkrR1NNJERxXHFXakF0PTZiR087b1lDP3NeT2hPMHEqZm5LT0hMUiNWPW0vVUknbkdGIidgWl9xcS1BZEVCL1xLOkNoXFdCMmU9OjNtKjxXJkZAODhuWzZTUDJQNTZfQzlPdGQ+dC4/OD1jcExTbjxSMjwyIU5dV0tBSmE1VyxrQ2okYzMwQkZkNyolUDo8JkM4Syl1UTNscEBTSUIkRUU+K0pkPXNBJStcLW1CXGtndWcuW19eMWY8Nm83RlMlaDwmbChZaWwiMXRsLyJiQU1QXHJsYEdmKF1rYG9zbiNCbUtlNzstXyUlZDUqUVZgVFtDZ1QvTD41Q1skSVZSLEw5MmFXOCVrWkUwYUs9LD8yTyRAT3VgJl5OcFkuXlVRPiluKG07aSgpRnAjO2swWVFMakZaJiItZUNcVGoyU2RFYFcnZ1omaSZEZlVeUjRSYTRoWTRqMkZibjhdRktnUTFtJVw1KEpYb0g0LjFLISI8bSMvIj5ZLkcqa2xgZUdSS2swUThYLDlEPi5nVWFqbT9hKiojb3JDXDs6ZTdlT0d1bTJSMChMKmtMaHNTJGluWUZFXyE5XDpON1xJbiwyPi9vJXVYaitPNGhFamVmNmdwSFljT1E9QTVSSWBJWGRZSnM7aiY8bGdkS10lT1I8KjcyJnNuYjUnXV5iZictZlYoNDJqOConYUdEYUUhOmA5aF9wRko+PjVyIUZSYjtRPy85SD5AbV5XW1BeO0AlJ28vTCRDNWw9bmxkMG0tLSg3WTQwT3BZIyd1Y1VNbTRSWlxWYTJkdVBTPTJNPmYsO0M+V2tHdGBEYEhJaE0rQCU7NnF0Oz0tUzgpckZfcmxfJWkqPl1tT2guJGAuWmkzNFIsdV1dc3RKQjUrVFdZKWwkYm5NcE9qbl8jUiRea3JGYVMzVUlIYTInbUtqTEZYQVd1ZGwibSIxVTxkcG8kXDY8SVwqTDs9RzUzY3JKRjBBa3IqXzRJRXVKRCpgIWdKKDwvS3MxS2RxPS9PdGpfaEM0My8oWzhTMmM4WlRkTzcjPVxxYEZkNWMpYC1kJXVkVGp1U0BaJV5fXUVZVnR0LCslXSwpUihtTixDUiojUTJVUSgpLGpXTFYkJyNVQ0MpSmpZPGNlVCkpKl9oVGNTJjZYcyxFc1hmWlFKbUMySFU+RT5wRVo4OTpDPE9LXyVYXGszOTw6a09qL2kqNFVlTTg/NUlAWkZCTFU7VCxVMyNyOUFOYGcuZStBLyxAJ204VkEvNS9hPCErZ3IhV1w2cSErcikuSj41OFhARzw5NVpEQWcybjwsY19cRkdxOF8xKD1ZNj1OPFxOJTJZbTprQE5DOixGRVxrdGVcLEdJUEhCS15QLzpQalVHMSVwWSdsWWsrLWJiUFxISnJUa1k9Vk44NlY/N2dOKF9JVC5yMjY6JkNCbjMhY3A2TXU0KFE2QkZeOygyNnErTEhdbTM+NHRkQidjT1lxYV03YTJCIkNYZFxebS5RdFJbbFg0MTRsYmxuI2M1LSQtKVlOYVMsOydRdD8yc2o0PSVAbHE4Z1tJbm1ZSGxaQWE4YidAb2oxTHM0S0Q5RzU8TkNDcSJGXFQkI0xMTUdiLEBXPW5BZjQwTWw4SjpgQERQUU9yTVklL1RbYykzM1U6WkslViknVjQocjlbXjpNUUhiNUJtNWZhLDZEZzJmPz4tNmUrWmRuciY4XF4yYTYkWzA4YDVoKzNdUypoWlEqVkQuTG1FLClzO0I+I1JgazI6Yic6Kyddam9ecFxcPFQ1SmwhMl1qdW4yblNKTm1lNEVVWUtdYytqWDFAdE5vR19YYkU/b21QLixKV05MOTI3SUUtbUpNdU5oJ1dVaS5+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDEwCjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDA2MSAwMDAwMCBuIAowMDAwMDAwMTEyIDAwMDAwIG4gCjAwMDAwMDAyMTkgMDAwMDAgbiAKMDAwMDAwMDMzMSAwMDAwMCBuIAowMDAwMDAwNDE0IDAwMDAwIG4gCjAwMDAwMDA2MTcgMDAwMDAgbiAKMDAwMDAwMDY4NSAwMDAwMCBuIAowMDAwMDAwOTY1IDAwMDAwIG4gCjAwMDAwMDEwMjQgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8NmQ3YzU4ZWQzM2M4N2IzZDdjMGIwZGMyYjg2ZTIzZGY+PDZkN2M1OGVkMzNjODdiM2Q3YzBiMGRjMmI4NmUyM2RmPl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA3IDAgUgovUm9vdCA2IDAgUgovU2l6ZSAxMAo+PgpzdGFydHhyZWYKMjU1NgolJUVPRgo=" download="Абай_Амиров_медиакит.pdf" target="_blank" class="flex-1 sm:flex-initial bg-white border border-gray-200 shadow-sm px-5 py-3 rounded-2xl font-bold text-sm text-gray-900 whitespace-nowrap hover:bg-gray-50 transition inline-flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-file-pdf text-red-500"></i> Медиакит
+                        </a>
+                        <button class="btn-accent px-6 py-3 rounded-2xl font-bold text-sm whitespace-nowrap flex-1 sm:flex-initial shadow-md">
+                            <i class="fa-regular fa-paper-plane mr-2"></i> Связаться
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-auto flex flex-col sm:flex-row gap-4 sm:items-end justify-between border-t border-gray-100 pt-4">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-semibold"><i class="fa-solid fa-location-dot text-[var(--accent)] mr-1"></i> Казахстан, Атырау</span>
+                        <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-lg text-xs font-semibold">Бизнес</span>
+                        <span class="px-3 py-1 bg-green-50 text-green-600 rounded-lg text-xs font-semibold">Lifestyle</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wide">Работал с:</span>
+                        <div class="flex gap-1">
+                            <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-500" title="Kaspi">K</div>
+                            <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-500" title="Air Astana">A</div>
+                            <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-500">+5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-panel overflow-hidden transition-all duration-300 border-l-4 border-l-[var(--accent)]">
+            <button class="w-full p-5 sm:px-6 sm:py-5 text-left flex justify-between items-center focus:outline-none hover:bg-gray-50 transition-colors" onclick="openTermsModal()">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)]">
+                        <i class="fa-solid fa-handshake-angle text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-gray-900">Условия сотрудничества</h3>
+                        <p class="text-xs text-gray-500 mt-0.5">Правила работы, темы и медиакит блогера</p>
+                    </div>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 text-sm"></i>
+                </div>
+            </button>
+        </div>
+
+        <!-- Terms Modal -->
+        <div id="terms-modal" class="fixed inset-0 z-50 hidden">
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeTermsModal()"></div>
+            <div class="relative z-10 flex min-h-full items-center justify-center p-4">
+                <div class="bg-white rounded-3xl shadow-2xl w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden">
+                    <div class="flex items-center justify-between gap-4 p-5 sm:px-6 border-b border-gray-100 shrink-0">
+                        <div class="flex items-center gap-4 min-w-0">
+                            <div class="w-10 h-10 rounded-xl bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] shrink-0">
+                                <i class="fa-solid fa-handshake-angle text-lg"></i>
+                            </div>
+                            <div class="min-w-0">
+                                <h3 class="text-base font-bold text-gray-900">Условия сотрудничества</h3>
+                                <p class="text-xs text-gray-500 mt-0.5">Правила работы, темы и медиакит блогера</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button onclick="copyTermsLink(this)" class="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 transition-colors" title="Скопировать ссылку на этот блок">
+                                <i class="fa-solid fa-link text-sm"></i>
+                            </button>
+                            <button onclick="closeTermsModal()" class="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 transition-colors" title="Закрыть">
+                                <i class="fa-solid fa-xmark text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-4 overflow-y-auto">
+                        <p class="text-xs text-gray-500 mb-5">Здесь я указываю, с какими темами, проектами и форматами работаю, а от каких предпочитаю отказаться.</p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="rounded-2xl border border-green-100 bg-green-50/40 p-5">
+                                <div class="flex items-center gap-3 mb-1">
+                                    <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">
+                                        <i class="fa-solid fa-check text-sm"></i>
+                                    </div>
+                                    <h4 class="font-bold text-gray-900">Рассматриваю</h4>
+                                </div>
+                                <p class="text-xs text-gray-500 mb-3 ml-11">Темы, проекты и форматы, которые мне интересны.</p>
+                                <ul class="divide-y divide-green-100/70 text-sm text-gray-700">
+                                    <li class="py-2.5">Бренды и бизнес-проекты</li>
+                                    <li class="py-2.5">Услуги и локальные заведения Казахстана</li>
+                                    <li class="py-2.5">Мероприятия, форумы и открытия</li>
+                                    <li class="py-2.5">Недвижимость и авто (только проверенные компании)</li>
+                                    <li class="py-2.5">Образовательные проекты и курсы</li>
+                                    <li class="py-2.5">Одежда, гаджеты, товары для дома и образа жизни</li>
+                                    <li class="py-2.5">Онлайн-сервисы и приложения, работающие в Казахстане</li>
+                                </ul>
+                            </div>
+
+                            <div class="rounded-2xl border border-red-100 bg-red-50/40 p-5">
+                                <div class="flex items-center gap-3 mb-1">
+                                    <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-500 shrink-0">
+                                        <i class="fa-solid fa-xmark text-sm"></i>
+                                    </div>
+                                    <h4 class="font-bold text-gray-900">Не рассматриваю</h4>
+                                </div>
+                                <p class="text-xs text-gray-500 mb-3 ml-11">Темы и проекты, с которыми не сотрудничаю.</p>
+                                <ul class="divide-y divide-red-100/70 text-sm text-gray-700">
+                                    <li class="py-2.5">Рекламой, нарушающей законодательство Республики Казахстан</li>
+                                    <li class="py-2.5">Азартными играми, онлайн-казино и нелицензированными букмекерами</li>
+                                    <li class="py-2.5">Финансовыми пирамидами и сомнительными инвестициями</li>
+                                    <li class="py-2.5">Товарами и услугами, запрещёнными к рекламе</li>
+                                    <li class="py-2.5">Лекарствами и БАДами с обещаниями излечения</li>
+                                    <li class="py-2.5">Материалами, разжигающими межнациональную или религиозную рознь</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 rounded-2xl border border-blue-100 bg-blue-50/40 p-5 flex gap-3">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 shrink-0">
+                                <i class="fa-solid fa-circle-info text-sm"></i>
+                            </div>
+                            <div class="text-sm text-gray-700 space-y-2">
+                                <h4 class="font-bold text-gray-900">Формат сотрудничества</h4>
+                                <p>Работаю только с теми брендами, которые сам использую или готов рекомендовать. Для меня важны честные интеграции в формате личной истории, а не прямая реклама. Так аудитория доверяет больше.</p>
+                                <p>Открыт к долгосрочному сотрудничеству и нестандартным форматам: съёмки на мероприятиях, розыгрыши, совместные проекты. Перед стартом всегда изучаю бриф и отвечаю в течение дня.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 rounded-2xl border border-gray-200 bg-gray-50 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-red-500 shrink-0">
+                                    <i class="fa-regular fa-file-pdf text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-sm">Медиакит</h4>
+                                    <p class="text-xs text-gray-500 mt-0.5">Полная статистика, аудитория и условия — в PDF</p>
+                                </div>
+                            </div>
+                            <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9aYXBmRGluZ2JhdHMgL05hbWUgL0YzIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNSAwIG9iago8PAovQ29udGVudHMgOSAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCA4IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago2IDAgb2JqCjw8Ci9QYWdlTW9kZSAvVXNlTm9uZSAvUGFnZXMgOCAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjcgMCBvYmoKPDwKL0F1dGhvciAoXChhbm9ueW1vdXNcKSkgL0NyZWF0aW9uRGF0ZSAoRDoyMDI2MDkyMjEyMDc1MSswMCcwMCcpIC9DcmVhdG9yIChcKHVuc3BlY2lmaWVkXCkpIC9LZXl3b3JkcyAoKSAvTW9kRGF0ZSAoRDoyMDI2MDkyMjEyMDc1MSswMCcwMCcpIC9Qcm9kdWNlciAoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpIAogIC9TdWJqZWN0IChcKHVuc3BlY2lmaWVkXCkpIC9UaXRsZSAoXChhbm9ueW1vdXNcKSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago4IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNSAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjkgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggMTQ0MQo+PgpzdHJlYW0KR2IhInM5bEpLUW49RXVBUVVpUT9RTXBnSCZJSGZPPmk+RjBqQGIiPSJlJkkrR1NNJERxXHFXakF0PTZiR087b1lDP3NeT2hPMHEqZm5LT0hMUiNWPW0vVUknbkdGIidgWl9xcS1BZEVCL1xLOkNoXFdCMmU9OjNtKjxXJkZAODhuWzZTUDJQNTZfQzlPdGQ+dC4/OD1jcExTbjxSMjwyIU5dV0tBSmE1VyxrQ2okYzMwQkZkNyolUDo8JkM4Syl1UTNscEBTSUIkRUU+K0pkPXNBJStcLW1CXGtndWcuW19eMWY8Nm83RlMlaDwmbChZaWwiMXRsLyJiQU1QXHJsYEdmKF1rYG9zbiNCbUtlNzstXyUlZDUqUVZgVFtDZ1QvTD41Q1skSVZSLEw5MmFXOCVrWkUwYUs9LD8yTyRAT3VgJl5OcFkuXlVRPiluKG07aSgpRnAjO2swWVFMakZaJiItZUNcVGoyU2RFYFcnZ1omaSZEZlVeUjRSYTRoWTRqMkZibjhdRktnUTFtJVw1KEpYb0g0LjFLISI8bSMvIj5ZLkcqa2xgZUdSS2swUThYLDlEPi5nVWFqbT9hKiojb3JDXDs6ZTdlT0d1bTJSMChMKmtMaHNTJGluWUZFXyE5XDpON1xJbiwyPi9vJXVYaitPNGhFamVmNmdwSFljT1E9QTVSSWBJWGRZSnM7aiY8bGdkS10lT1I8KjcyJnNuYjUnXV5iZictZlYoNDJqOConYUdEYUUhOmA5aF9wRko+PjVyIUZSYjtRPy85SD5AbV5XW1BeO0AlJ28vTCRDNWw9bmxkMG0tLSg3WTQwT3BZIyd1Y1VNbTRSWlxWYTJkdVBTPTJNPmYsO0M+V2tHdGBEYEhJaE0rQCU7NnF0Oz0tUzgpckZfcmxfJWkqPl1tT2guJGAuWmkzNFIsdV1dc3RKQjUrVFdZKWwkYm5NcE9qbl8jUiRea3JGYVMzVUlIYTInbUtqTEZYQVd1ZGwibSIxVTxkcG8kXDY8SVwqTDs9RzUzY3JKRjBBa3IqXzRJRXVKRCpgIWdKKDwvS3MxS2RxPS9PdGpfaEM0My8oWzhTMmM4WlRkTzcjPVxxYEZkNWMpYC1kJXVkVGp1U0BaJV5fXUVZVnR0LCslXSwpUihtTixDUiojUTJVUSgpLGpXTFYkJyNVQ0MpSmpZPGNlVCkpKl9oVGNTJjZYcyxFc1hmWlFKbUMySFU+RT5wRVo4OTpDPE9LXyVYXGszOTw6a09qL2kqNFVlTTg/NUlAWkZCTFU7VCxVMyNyOUFOYGcuZStBLyxAJ204VkEvNS9hPCErZ3IhV1w2cSErcikuSj41OFhARzw5NVpEQWcybjwsY19cRkdxOF8xKD1ZNj1OPFxOJTJZbTprQE5DOixGRVxrdGVcLEdJUEhCS15QLzpQalVHMSVwWSdsWWsrLWJiUFxISnJUa1k9Vk44NlY/N2dOKF9JVC5yMjY6JkNCbjMhY3A2TXU0KFE2QkZeOygyNnErTEhdbTM+NHRkQidjT1lxYV03YTJCIkNYZFxebS5RdFJbbFg0MTRsYmxuI2M1LSQtKVlOYVMsOydRdD8yc2o0PSVAbHE4Z1tJbm1ZSGxaQWE4YidAb2oxTHM0S0Q5RzU8TkNDcSJGXFQkI0xMTUdiLEBXPW5BZjQwTWw4SjpgQERQUU9yTVklL1RbYykzM1U6WkslViknVjQocjlbXjpNUUhiNUJtNWZhLDZEZzJmPz4tNmUrWmRuciY4XF4yYTYkWzA4YDVoKzNdUypoWlEqVkQuTG1FLClzO0I+I1JgazI6Yic6Kyddam9ecFxcPFQ1SmwhMl1qdW4yblNKTm1lNEVVWUtdYytqWDFAdE5vR19YYkU/b21QLixKV05MOTI3SUUtbUpNdU5oJ1dVaS5+PmVuZHN0cmVhbQplbmRvYmoKeHJlZgowIDEwCjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDA2MSAwMDAwMCBuIAowMDAwMDAwMTEyIDAwMDAwIG4gCjAwMDAwMDAyMTkgMDAwMDAgbiAKMDAwMDAwMDMzMSAwMDAwMCBuIAowMDAwMDAwNDE0IDAwMDAwIG4gCjAwMDAwMDA2MTcgMDAwMDAgbiAKMDAwMDAwMDY4NSAwMDAwMCBuIAowMDAwMDAwOTY1IDAwMDAwIG4gCjAwMDAwMDEwMjQgMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8NmQ3YzU4ZWQzM2M4N2IzZDdjMGIwZGMyYjg2ZTIzZGY+PDZkN2M1OGVkMzNjODdiM2Q3YzBiMGRjMmI4NmUyM2RmPl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA3IDAgUgovUm9vdCA2IDAgUgovU2l6ZSAxMAo+PgpzdGFydHhyZWYKMjU1NgolJUVPRgo=" download="Абай_Амиров_медиакит.pdf" target="_blank" class="bg-white border border-gray-200 shadow-sm px-5 py-2.5 rounded-xl font-bold text-sm text-gray-900 whitespace-nowrap hover:bg-gray-100 transition inline-flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-download"></i> Скачать PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const TERMS_HASH = '#usloviya-sotrudnichestva';
+
+            function openTermsModal(updateHash = true) {
+                document.getElementById('terms-modal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                if (updateHash && location.hash !== TERMS_HASH) {
+                    history.pushState(null, '', TERMS_HASH);
+                }
+            }
+
+            function closeTermsModal(updateHash = true) {
+                document.getElementById('terms-modal').classList.add('hidden');
+                document.body.style.overflow = '';
+                if (updateHash && location.hash === TERMS_HASH) {
+                    history.pushState(null, '', location.pathname + location.search);
+                }
+            }
+
+            function copyTermsLink(btn) {
+                const url = location.origin + location.pathname + location.search + TERMS_HASH;
+                navigator.clipboard.writeText(url).then(() => {
+                    const icon = btn.querySelector('i');
+                    icon.classList.remove('fa-link');
+                    icon.classList.add('fa-check');
+                    setTimeout(() => {
+                        icon.classList.remove('fa-check');
+                        icon.classList.add('fa-link');
+                    }, 1500);
+                }).catch(() => {});
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeTermsModal();
+            });
+
+            window.addEventListener('popstate', () => {
+                if (location.hash === TERMS_HASH) {
+                    openTermsModal(false);
+                } else {
+                    closeTermsModal(false);
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                if (location.hash === TERMS_HASH) {
+                    openTermsModal(false);
+                }
+            });
+        </script>
+
+
+          <!-- Statistics Card with Blur -->
+        <div class="card-panel p-6">
+            <div class="flex gap-6 border-b border-gray-100 overflow-x-auto hide-scrollbar mb-6">
+                <button class="pb-3 text-sm font-bold text-gray-900 border-b-2 border-[var(--accent)] whitespace-nowrap">Instagram</button>
+                <button class="pb-3 text-sm font-semibold text-gray-400 hover:text-gray-600 whitespace-nowrap transition-colors">Youtube</button>
+                <button class="pb-3 text-sm font-semibold text-gray-400 hover:text-gray-600 whitespace-nowrap transition-colors">TikTok</button>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 items-center mb-8 bg-gray-50 p-2 rounded-2xl border border-gray-100">
+                <div class="relative w-full">
+                    <i class="fa-solid fa-link absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <input type="text" value="instagram.com/abayamiirov" readonly class="w-full pl-10 pr-4 py-2.5 bg-transparent text-gray-600 font-medium text-sm outline-none">
+                </div>
+                <button class="bg-white border border-gray-200 shadow-sm px-6 py-2.5 rounded-xl font-bold text-gray-900 text-sm w-full sm:w-auto whitespace-nowrap hover:bg-gray-50 transition">Открыть профиль</button>
+            </div>
+
+            <div>
+                <div class="flex justify-between items-end mb-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-900">Статистика</h2>
+                        <p class="text-xs text-gray-500 mt-1">Актуальные метрики аккаунта</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-0.5">Обновлено</div>
+                        <div class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-md">22.12.2025</div>
+                    </div>
+                </div>
+
+                <!-- Сетка статистики с ограничением -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 relative">
+                    
+                    <!-- Публичная метрика: Подписчики -->
+                    <div class="bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-2xl p-4 border border-gray-100 hover:border-gray-200 transition-colors">
+                        <div class="text-xs text-gray-500 mb-1">Подписчики</div>
+                        <div class="text-xl md:text-2xl font-black text-gray-900">38.9k</div>
+                        <div class="text-[10px] md:text-xs text-green-500 font-semibold mt-1 flex items-center gap-1"><i class="fa-solid fa-arrow-trend-up"></i> +0.6% за неделю</div>
+                    </div>
+
+                    <!-- Публичная метрика: Публикации -->
+                    <div class="bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-2xl p-4 border border-gray-100 hover:border-gray-200 transition-colors">
+                        <div class="text-xs text-gray-500 mb-1">Публикации</div>
+                        <div class="text-xl md:text-2xl font-black text-gray-900">1 063</div>
+                        <div class="text-[10px] md:text-xs text-gray-400 mt-1">общее число</div>
+                    </div>
+
+                    <!-- Закрытая метрика: Охват (мес.) -->
+                    <div class="bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-2xl p-4 border border-gray-100 relative overflow-hidden">
+                        <div class="stat-locked">
+                            <div class="text-xs text-gray-500 mb-1">Охват (мес.)</div>
+                            <div class="text-xl md:text-2xl font-black text-gray-900">320 000</div>
+                            <div class="text-[10px] md:text-xs text-green-500 font-semibold mt-1 flex items-center gap-1"><i class="fa-solid fa-arrow-trend-up"></i> +3.1%</div>
+                        </div>
+                        <div class="absolute inset-0 stat-blur-overlay flex items-center justify-center">
+                            <i class="fa-solid fa-lock text-[var(--accent)] text-xl opacity-70"></i>
+                        </div>
+                    </div>
+
+                    <!-- Закрытая метрика: Вовлечённость -->
+                    <div class="bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-2xl p-4 border border-gray-100 relative overflow-hidden">
+                        <div class="stat-locked">
+                            <div class="text-xs text-gray-500 mb-1">Вовлечённость</div>
+                            <div class="text-xl md:text-2xl font-black text-gray-900">3.2%</div>
+                            <div class="text-[10px] md:text-xs text-gray-400 mt-1">среднее 2.9%</div>
+                        </div>
+                        <div class="absolute inset-0 stat-blur-overlay flex items-center justify-center">
+                            <i class="fa-solid fa-lock text-[var(--accent)] text-xl opacity-70"></i>
+                        </div>
+                    </div>
+
+                    <!-- Закрытая метрика: CPM -->
+                    <div class="bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-2xl p-4 border border-gray-100 relative overflow-hidden">
+                        <div class="stat-locked">
+                            <div class="text-xs text-gray-500 mb-1">CPM</div>
+                            <div class="text-xl md:text-2xl font-black text-gray-900">2 100 ₸</div>
+                            <div class="text-[10px] md:text-xs text-gray-400 mt-1">среднее за период</div>
+                        </div>
+                        <div class="absolute inset-0 stat-blur-overlay flex items-center justify-center">
+                            <i class="fa-solid fa-lock text-[var(--accent)] text-xl opacity-70"></i>
+                        </div>
+                    </div>
+
+                    <!-- Закрытая метрика: CTR -->
+                    <div class="bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-2xl p-4 border border-gray-100 relative overflow-hidden">
+                        <div class="stat-locked">
+                            <div class="text-xs text-gray-500 mb-1">CTR</div>
+                            <div class="text-xl md:text-2xl font-black text-gray-900">1.5%</div>
+                            <div class="text-[10px] md:text-xs text-gray-400 mt-1">среднее за месяц</div>
+                        </div>
+                        <div class="absolute inset-0 stat-blur-overlay flex items-center justify-center">
+                            <i class="fa-solid fa-lock text-[var(--accent)] text-xl opacity-70"></i>
+                        </div>
+                    </div>
+
+                    <!-- Закрытая метрика: Пол аудитории -->
+                    <div class="bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-2xl p-4 border border-gray-100 relative overflow-hidden">
+                        <div class="stat-locked">
+                            <div class="text-xs text-gray-500 mb-1">Пол аудитории</div>
+                            <div class="text-xl md:text-2xl font-black text-gray-900">Мужской</div>
+                            <div class="text-[10px] md:text-xs text-gray-400 mt-1">≈60% мужчины</div>
+                        </div>
+                        <div class="absolute inset-0 stat-blur-overlay flex items-center justify-center">
+                            <i class="fa-solid fa-lock text-[var(--accent)] text-xl opacity-70"></i>
+                        </div>
+                    </div>
+
+                    <!-- Закрытая метрика: Возраст ЦА -->
+                    <div class="bg-white shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)] rounded-2xl p-4 border border-gray-100 relative overflow-hidden">
+                        <div class="stat-locked">
+                            <div class="text-xs text-gray-500 mb-1">Возраст ЦА</div>
+                            <div class="text-xl md:text-2xl font-black text-gray-900">18-34</div>
+                            <div class="text-[10px] md:text-xs text-gray-400 mt-1">основная аудитория</div>
+                        </div>
+                        <div class="absolute inset-0 stat-blur-overlay flex items-center justify-center">
+                            <i class="fa-solid fa-lock text-[var(--accent)] text-xl opacity-70"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Плашка с призывом к регистрации -->
+                <div class="mt-6 bg-gradient-to-r from-[#F8F7F5] to-white border border-[var(--accent)]/20 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] shrink-0">
+                            <i class="fa-solid fa-chart-line text-lg"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">Детальная статистика</p>
+                            <p class="text-xs text-gray-500">Зарегистрируйтесь, чтобы увидеть все метрики: охваты, CPM, CTR и демографию аудитории</p>
+                        </div>
+                    </div>
+                    <a href="#register" class="btn-accent px-6 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap inline-flex items-center gap-2 shadow-md w-full sm:w-auto justify-center">
+                        <i class="fa-solid fa-user-plus"></i> Зарегистрироваться
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-panel p-6 sm:p-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 border-b border-gray-100 pb-4">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                        <i class="fa-regular fa-calendar-check text-[var(--accent)]"></i> График размещений
+                    </h2>
+                    <p class="text-sm text-gray-500 mt-1">Проверьте доступные даты перед подачей заявки</p>
+                </div>
+                <div class="flex items-center gap-4 bg-gray-50 rounded-xl px-2 py-1 border border-gray-200">
+                    <button class="p-2 text-gray-400 hover:text-gray-900 transition-colors"><i class="fa-solid fa-chevron-left text-sm"></i></button>
+                    <span class="font-bold text-sm min-w-[100px] text-center">Апрель 2026</span>
+                    <button class="p-2 text-gray-400 hover:text-gray-900 transition-colors"><i class="fa-solid fa-chevron-right text-sm"></i></button>
+                </div>
+            </div>
+
+            <div class="mb-6 overflow-x-auto hide-scrollbar">
+                <div class="min-w-[600px]">
+                    <div class="grid grid-cols-7 gap-2 mb-2 text-center">
+                        <div class="text-xs uppercase tracking-wider font-bold text-gray-400 py-2">Пн</div>
+                        <div class="text-xs uppercase tracking-wider font-bold text-gray-400 py-2">Вт</div>
+                        <div class="text-xs uppercase tracking-wider font-bold text-gray-400 py-2">Ср</div>
+                        <div class="text-xs uppercase tracking-wider font-bold text-gray-400 py-2">Чт</div>
+                        <div class="text-xs uppercase tracking-wider font-bold text-gray-400 py-2">Пт</div>
+                        <div class="text-xs uppercase tracking-wider font-bold text-[var(--accent)] py-2">Сб</div>
+                        <div class="text-xs uppercase tracking-wider font-bold text-[var(--accent)] py-2">Вс</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-7 gap-2">
+                        <div></div>
+                        <div></div>
+                        <div class="border border-gray-200 rounded-xl h-12 flex items-center justify-center text-sm font-semibold hover:border-[var(--accent)] hover:bg-pink-50/30 cursor-pointer transition-all bg-white">1</div>
+                        <div class="border border-gray-200 rounded-xl h-12 flex items-center justify-center text-sm font-semibold hover:border-[var(--accent)] hover:bg-pink-50/30 cursor-pointer transition-all bg-white">2</div>
+                        <div class="border border-[var(--accent)] rounded-xl h-12 flex items-center justify-center text-sm font-bold bg-[var(--accent)] text-white shadow-md cursor-not-allowed relative overflow-hidden">
+                            3
+                            <div class="absolute bottom-1 w-1.5 h-1.5 bg-white rounded-full"></div>
+                        </div> 
+                        <div class="border border-gray-200 rounded-xl h-12 flex items-center justify-center text-sm font-semibold hover:border-[var(--accent)] hover:bg-pink-50/30 cursor-pointer transition-all bg-white text-[var(--accent)]">4</div>
+                        <div class="border border-gray-200 rounded-xl h-12 flex items-center justify-center text-sm font-semibold hover:border-[var(--accent)] hover:bg-pink-50/30 cursor-pointer transition-all bg-white text-[var(--accent)]">5</div>
+                        
+                        <div class="border border-gray-200 rounded-xl h-12 flex items-center justify-center text-sm font-semibold hover:border-[var(--accent)] hover:bg-pink-50/30 cursor-pointer transition-all bg-white">6</div>
+                        <div class="border border-gray-200 rounded-xl h-12 flex items-center justify-center text-sm font-semibold hover:border-[var(--accent)] hover:bg-pink-50/30 cursor-pointer transition-all bg-white">7</div>
+                        <div class="border-2 border-orange-300 rounded-xl h-12 flex items-center justify-center text-sm font-bold hover:bg-orange-50 cursor-pointer transition-all bg-white text-orange-600 shadow-sm relative">
+                            8
+                            <i class="fa-solid fa-star absolute top-1 right-1 text-[8px] text-orange-300"></i>
+                        </div> 
+                        <div class="border border-gray-200 rounded-xl h-12 flex items-center justify-center text-sm font-semibold hover:border-[var(--accent)] hover:bg-pink-50/30 cursor-pointer transition-all bg-white">9</div>
+                        <div class="border border-gray-200 rounded-xl h-12 flex items-center justify-center text-sm font-semibold hover:border-[var(--accent)] hover:bg-pink-50/30 cursor-pointer transition-all bg-white">10</div>
+                        <div class="border border-gray-200 rounded-xl h-12 flex items-center justify-center text-sm font-semibold hover:border-[var(--accent)] hover:bg-pink-50/30 cursor-pointer transition-all bg-white text-[var(--accent)]">11</div>
+                        
+                        <div class="relative overflow-hidden border border-gray-100 rounded-xl h-12 flex items-center justify-center text-sm font-medium cursor-not-allowed transition-all bg-gray-50 text-gray-300">
+                            <span class="z-10">12</span>
+                            <div class="absolute w-full h-[1px] bg-gray-200 rotate-45"></div>
+                        </div> 
+                        
+                        <script>
+                            for(let i=13; i<=30; i++) {
+                                let colorClass = (i%7===4 || i%7===5) ? "text-[var(--accent)]" : "text-gray-900";
+                                document.write(`<div class="border border-gray-200 rounded-xl h-12 flex items-center justify-center text-sm font-semibold hover:border-[var(--accent)] hover:bg-pink-50/30 cursor-pointer transition-all bg-white ${colorClass}">${i}</div>`);
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-xl">
+                <div class="flex flex-wrap items-center gap-5 text-sm mb-2 font-medium">
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 border border-gray-300 rounded-md bg-white"></div> Свободно</div>
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 rounded-md bg-[var(--accent)] shadow-sm"></div> Занято</div>
+                    <div class="flex items-center gap-2"><div class="w-4 h-4 border-2 border-orange-300 rounded-md bg-white"></div> Особый день</div>
+                    <div class="flex items-center gap-2 relative"><div class="w-4 h-4 border border-gray-200 rounded-md bg-gray-100 overflow-hidden"><div class="w-full h-[1px] bg-gray-300 rotate-45 absolute top-1/2 left-0"></div></div> Нет мест</div>
+                </div>
+                <p class="text-xs text-gray-500 ml-6"><i class="fa-solid fa-circle-info mr-1"></i> Тарифы в «особые дни» (праздники/события) могут отличаться. Уточняйте у менеджера.</p>
+            </div>
+        </div>
+
+<div class="card-panel p-6 sm:p-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 border-b border-gray-100 pb-4">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                        <i class="fa-solid fa-briefcase text-[var(--accent)]"></i> Успешные кейсы
+                    </h2>
+                    <p class="text-sm text-gray-500 mt-1">Реальные результаты рекламных интеграций — листайте, чтобы увидеть все</p>
+                </div>
+                <div class="hidden sm:flex items-center gap-2 shrink-0">
+                    <button id="cases-prev" class="w-9 h-9 rounded-full bg-gray-100 hover:bg-[var(--accent)] hover:text-white text-gray-500 flex items-center justify-center transition-colors" title="Предыдущий кейс">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                    </button>
+                    <button id="cases-next" class="w-9 h-9 rounded-full bg-gray-100 hover:bg-[var(--accent)] hover:text-white text-gray-500 flex items-center justify-center transition-colors" title="Следующий кейс">
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div id="cases-track" class="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar pb-2 -mx-1 px-1">
+
+                    <div class="case-card snap-start shrink-0 w-[86%] sm:w-[360px] border border-gray-100 rounded-2xl p-5 hover:border-[var(--accent)] hover:shadow-[0_8px_25px_-8px_rgba(156,28,79,0.2)] transition-all duration-300 bg-white group relative overflow-hidden flex flex-col h-full cursor-pointer" onclick="openCaseModal('kaspi')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openCaseModal('kaspi')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-[var(--accent)] opacity-[0.03] rounded-bl-full transition-transform duration-500 group-hover:scale-125"></div>
+
+                        <div class="flex justify-between items-start mb-4 relative z-10">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center font-black text-xl shadow-sm border border-red-100">K</div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900">Kaspi.kz</h3>
+                                    <div class="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-0.5">Финтех • Продвижение</div>
+                                </div>
+                            </div>
+                            <span class="bg-gray-100 text-gray-800 text-[10px] font-bold px-2.5 py-1 rounded-lg">Reels</span>
+                        </div>
+
+                        <div class="mb-6 relative z-10 flex-grow">
+                            <div class="text-xs font-semibold text-gray-400 mb-1.5">ЗАДАЧА:</div>
+                            <p class="text-sm text-gray-700 leading-relaxed">Осветить запуск нового сервиса в приложении, нативно показать процесс использования и стимулировать аудиторию к первому заказу.</p>
+                        </div>
+
+                        <div class="bg-gray-50/80 rounded-xl p-4 grid grid-cols-2 gap-3 relative z-10 border border-gray-100/80 mt-auto group-hover:bg-white transition-colors">
+                            <div>
+                                <div class="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-bold">Охват видео</div>
+                                <div class="text-xl font-black text-[var(--accent)]">450k+</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-bold">Переходы по ссылке</div>
+                                <div class="text-xl font-black text-[var(--accent)] flex items-center gap-1.5">
+                                    12 400 <i class="fa-solid fa-arrow-trend-up text-[10px] text-green-500 bg-green-100 p-1 rounded-full"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 mt-3 text-xs font-bold text-[var(--accent)] flex items-center gap-1.5 opacity-80 group-hover:opacity-100">
+                            Открыть кейс <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </div>
+                    </div>
+
+                    <div class="case-card snap-start shrink-0 w-[86%] sm:w-[360px] border border-gray-100 rounded-2xl p-5 hover:border-[var(--accent)] hover:shadow-[0_8px_25px_-8px_rgba(156,28,79,0.2)] transition-all duration-300 bg-white group relative overflow-hidden flex flex-col h-full cursor-pointer" onclick="openCaseModal('airastana')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openCaseModal('airastana')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-[var(--accent)] opacity-[0.03] rounded-bl-full transition-transform duration-500 group-hover:scale-125"></div>
+
+                        <div class="flex justify-between items-start mb-4 relative z-10">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-black text-xl shadow-sm border border-blue-100">A</div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900">Air Astana</h3>
+                                    <div class="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-0.5">Авиакомпания • Lifestyle</div>
+                                </div>
+                            </div>
+                            <span class="bg-gray-100 text-gray-800 text-[10px] font-bold px-2.5 py-1 rounded-lg">Пост + Stories</span>
+                        </div>
+
+                        <div class="mb-6 relative z-10 flex-grow">
+                            <div class="text-xs font-semibold text-gray-400 mb-1.5">ЗАДАЧА:</div>
+                            <p class="text-sm text-gray-700 leading-relaxed">Популяризация нового прямого рейса. Создание серии атмосферных сторис с обзором сервиса на борту и формата путешествия.</p>
+                        </div>
+
+                        <div class="bg-gray-50/80 rounded-xl p-4 grid grid-cols-2 gap-3 relative z-10 border border-gray-100/80 mt-auto group-hover:bg-white transition-colors">
+                            <div>
+                                <div class="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-bold">Охват публикации</div>
+                                <div class="text-xl font-black text-[var(--accent)]">210k+</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-bold">Вовлеченность</div>
+                                <div class="text-xl font-black text-[var(--accent)] flex items-center gap-1.5">
+                                    8.5% <i class="fa-solid fa-heart text-[10px] text-red-500 bg-red-100 p-1 rounded-full"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 mt-3 text-xs font-bold text-[var(--accent)] flex items-center gap-1.5 opacity-80 group-hover:opacity-100">
+                            Открыть кейс <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </div>
+                    </div>
+
+                    <div class="case-card snap-start shrink-0 w-[86%] sm:w-[360px] border border-gray-100 rounded-2xl p-5 hover:border-[var(--accent)] hover:shadow-[0_8px_25px_-8px_rgba(156,28,79,0.2)] transition-all duration-300 bg-white group relative overflow-hidden flex flex-col h-full cursor-pointer" onclick="openCaseModal('beeline')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openCaseModal('beeline')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-[var(--accent)] opacity-[0.03] rounded-bl-full transition-transform duration-500 group-hover:scale-125"></div>
+
+                        <div class="flex justify-between items-start mb-4 relative z-10">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-black text-xl shadow-sm border border-amber-100">B</div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900">Beeline</h3>
+                                    <div class="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-0.5">Телеком • Запуск тарифа</div>
+                                </div>
+                            </div>
+                            <span class="bg-gray-100 text-gray-800 text-[10px] font-bold px-2.5 py-1 rounded-lg">Reels + Stories</span>
+                        </div>
+
+                        <div class="mb-6 relative z-10 flex-grow">
+                            <div class="text-xs font-semibold text-gray-400 mb-1.5">ЗАДАЧА:</div>
+                            <p class="text-sm text-gray-700 leading-relaxed">Рассказать о новом безлимитном тарифе для молодежи в лёгком, юмористическом формате и подвести к переходу по промокоду.</p>
+                        </div>
+
+                        <div class="bg-gray-50/80 rounded-xl p-4 grid grid-cols-2 gap-3 relative z-10 border border-gray-100/80 mt-auto group-hover:bg-white transition-colors">
+                            <div>
+                                <div class="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-bold">Охват видео</div>
+                                <div class="text-xl font-black text-[var(--accent)]">180k+</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-bold">Активаций промокода</div>
+                                <div class="text-xl font-black text-[var(--accent)] flex items-center gap-1.5">
+                                    3 900 <i class="fa-solid fa-arrow-trend-up text-[10px] text-green-500 bg-green-100 p-1 rounded-full"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 mt-3 text-xs font-bold text-[var(--accent)] flex items-center gap-1.5 opacity-80 group-hover:opacity-100">
+                            Открыть кейс <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </div>
+                    </div>
+
+                    <div class="case-card snap-start shrink-0 w-[86%] sm:w-[360px] border border-gray-100 rounded-2xl p-5 hover:border-[var(--accent)] hover:shadow-[0_8px_25px_-8px_rgba(156,28,79,0.2)] transition-all duration-300 bg-white group relative overflow-hidden flex flex-col h-full cursor-pointer" onclick="openCaseModal('magnum')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openCaseModal('magnum')">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-[var(--accent)] opacity-[0.03] rounded-bl-full transition-transform duration-500 group-hover:scale-125"></div>
+
+                        <div class="flex justify-between items-start mb-4 relative z-10">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center font-black text-xl shadow-sm border border-green-100">M</div>
+                                <div>
+                                    <h3 class="font-bold text-gray-900">Magnum</h3>
+                                    <div class="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-0.5">Ритейл • Промо-акция</div>
+                                </div>
+                            </div>
+                            <span class="bg-gray-100 text-gray-800 text-[10px] font-bold px-2.5 py-1 rounded-lg">Пост + Reels</span>
+                        </div>
+
+                        <div class="mb-6 relative z-10 flex-grow">
+                            <div class="text-xs font-semibold text-gray-400 mb-1.5">ЗАДАЧА:</div>
+                            <p class="text-sm text-gray-700 leading-relaxed">Анонсировать сезонную акцию сети супермаркетов и стимулировать подписчиков посетить ближайший магазин за скидками.</p>
+                        </div>
+
+                        <div class="bg-gray-50/80 rounded-xl p-4 grid grid-cols-2 gap-3 relative z-10 border border-gray-100/80 mt-auto group-hover:bg-white transition-colors">
+                            <div>
+                                <div class="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-bold">Охват публикации</div>
+                                <div class="text-xl font-black text-[var(--accent)]">160k+</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-bold">Сохранения</div>
+                                <div class="text-xl font-black text-[var(--accent)] flex items-center gap-1.5">
+                                    2 250 <i class="fa-solid fa-bookmark text-[10px] text-blue-500 bg-blue-100 p-1 rounded-full"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 mt-3 text-xs font-bold text-[var(--accent)] flex items-center gap-1.5 opacity-80 group-hover:opacity-100">
+                            Открыть кейс <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="cases-dots" class="flex justify-center gap-2 mt-5"></div>
+        </div>
+
+        <!-- Case Modal -->
+        <div id="case-modal" class="fixed inset-0 z-50 hidden">
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeCaseModal()"></div>
+            <div class="relative z-10 flex min-h-full items-center justify-center p-4">
+                <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[88vh] flex flex-col overflow-hidden">
+                    <div class="flex items-center justify-between gap-4 p-5 sm:px-6 border-b border-gray-100 shrink-0">
+                        <div class="flex items-center gap-4 min-w-0">
+                            <div id="case-modal-logo" class="w-11 h-11 rounded-xl flex items-center justify-center font-black text-xl shadow-sm border shrink-0">K</div>
+                            <div class="min-w-0">
+                                <h3 id="case-modal-title" class="text-base font-bold text-gray-900 truncate">Кейс</h3>
+                                <p id="case-modal-subtitle" class="text-xs text-gray-500 mt-0.5 truncate">Категория</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 shrink-0">
+                            <button onclick="copyCaseLink(this)" class="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 transition-colors" title="Скопировать ссылку на этот кейс">
+                                <i class="fa-solid fa-link text-sm"></i>
+                            </button>
+                            <button onclick="closeCaseModal()" class="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 transition-colors" title="Закрыть">
+                                <i class="fa-solid fa-xmark text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-5 overflow-y-auto">
+                        <div id="case-modal-gallery" class="grid grid-cols-3 gap-2 mb-5"></div>
+
+                        <div class="flex items-center gap-2 mb-4">
+                            <span id="case-modal-format" class="bg-gray-100 text-gray-800 text-[10px] font-bold px-2.5 py-1 rounded-lg">Формат</span>
+                        </div>
+
+                        <div class="mb-5">
+                            <div class="text-xs font-semibold text-gray-400 mb-1.5">ЗАДАЧА:</div>
+                            <p id="case-modal-task" class="text-sm text-gray-700 leading-relaxed"></p>
+                        </div>
+
+                        <div id="case-modal-stats" class="bg-gray-50/80 rounded-xl p-4 grid grid-cols-2 gap-4 border border-gray-100/80 mb-5"></div>
+
+                        <div class="rounded-2xl border border-[var(--accent)]/15 bg-[var(--accent)]/5 p-5">
+                            <h4 class="font-bold text-gray-900 text-sm mb-2 flex items-center gap-2">
+                                <i class="fa-solid fa-handshake-angle text-[var(--accent)]"></i> О работе с брендом
+                            </h4>
+                            <p id="case-modal-brand" class="text-sm text-gray-700 leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const CASES = {
+                kaspi: {
+                    logoLetter: 'K', logoBg: 'bg-red-50', logoText: 'text-red-600', logoBorder: 'border-red-100',
+                    brand: 'Kaspi.kz', category: 'Финтех • Продвижение', format: 'Reels',
+                    task: 'Осветить запуск нового сервиса в приложении, нативно показать процесс использования и стимулировать аудиторию к первому заказу.',
+                    stats: [
+                        { label: 'Охват видео', value: '450k+' },
+                        { label: 'Переходы по ссылке', value: '12 400' },
+                        { label: 'Досмотры до конца', value: '68%' },
+                        { label: 'Новые подписки', value: '+1 120' }
+                    ],
+                    brandInfo: 'Сотрудничаем с Kaspi.kz на регулярной основе: команда бренда присылает подробный бриф, но оставляет свободу в сценарии и подаче, чтобы интеграция выглядела органично в ленте. По итогам запуска бренд отметил рост установок сервиса и продлил сотрудничество на следующий квартал.',
+                    images: [
+                        'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=400&auto=format&fit=crop',
+                        'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=400&auto=format&fit=crop',
+                        'https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=400&auto=format&fit=crop'
+                    ]
+                },
+                airastana: {
+                    logoLetter: 'A', logoBg: 'bg-blue-50', logoText: 'text-blue-600', logoBorder: 'border-blue-100',
+                    brand: 'Air Astana', category: 'Авиакомпания • Lifestyle', format: 'Пост + Stories',
+                    task: 'Популяризация нового прямого рейса. Создание серии атмосферных сторис с обзором сервиса на борту и формата путешествия.',
+                    stats: [
+                        { label: 'Охват публикации', value: '210k+' },
+                        { label: 'Вовлечённость', value: '8.5%' },
+                        { label: 'Переходы на сайт', value: '4 300' },
+                        { label: 'Комментарии', value: '860' }
+                    ],
+                    brandInfo: 'Air Astana предоставила билеты на новый рейс и бриф с ключевыми акцентами на комфорт и сервис. Контент снимался в реальном полёте, что усилило доверие аудитории. Бренд остался доволен тональностью подачи и отсутствием прямой рекламы.',
+                    images: [
+                        'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=400&auto=format&fit=crop',
+                        'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=400&auto=format&fit=crop',
+                        'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?q=80&w=400&auto=format&fit=crop'
+                    ]
+                },
+                beeline: {
+                    logoLetter: 'B', logoBg: 'bg-amber-50', logoText: 'text-amber-600', logoBorder: 'border-amber-100',
+                    brand: 'Beeline', category: 'Телеком • Запуск тарифа', format: 'Reels + Stories',
+                    task: 'Рассказать о новом безлимитном тарифе для молодежи в лёгком, юмористическом формате и подвести к переходу по промокоду.',
+                    stats: [
+                        { label: 'Охват видео', value: '180k+' },
+                        { label: 'Активации промокода', value: '3 900' },
+                        { label: 'Лайки', value: '15 200' },
+                        { label: 'Репосты в Stories', value: '540' }
+                    ],
+                    brandInfo: 'Beeline обратился с задачей охватить молодую аудиторию нестандартным форматом. Мы вместе с командой бренда придумали юмористический сценарий, который зашёл лучше, чем классическая реклама тарифа. Результатом стал один из лучших показателей конверсии по промокоду за квартал.',
+                    images: [
+                        'https://images.unsplash.com/photo-1512428813834-c702c7702b78?q=80&w=400&auto=format&fit=crop',
+                        'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=400&auto=format&fit=crop',
+                        'https://images.unsplash.com/photo-1520869309377-cba46b053ee9?q=80&w=400&auto=format&fit=crop'
+                    ]
+                },
+                magnum: {
+                    logoLetter: 'M', logoBg: 'bg-green-50', logoText: 'text-green-600', logoBorder: 'border-green-100',
+                    brand: 'Magnum', category: 'Ритейл • Промо-акция', format: 'Пост + Reels',
+                    task: 'Анонсировать сезонную акцию сети супермаркетов и стимулировать подписчиков посетить ближайший магазин за скидками.',
+                    stats: [
+                        { label: 'Охват публикации', value: '160k+' },
+                        { label: 'Сохранения', value: '2 250' },
+                        { label: 'Переходы в геолокацию', value: '1 480' },
+                        { label: 'Вовлечённость', value: '6.1%' }
+                    ],
+                    brandInfo: 'Magnum привлекает нас к сезонным акциям несколько раз в год. Формат — короткие живые ролики с обзором товаров по акции без излишнего пафоса. Бренд ценит, что аудитория воспринимает такие интеграции как рекомендацию, а не рекламу.',
+                    images: [
+                        'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400&auto=format&fit=crop',
+                        'https://images.unsplash.com/photo-1534723452862-4c874018d66d?q=80&w=400&auto=format&fit=crop',
+                        'https://images.unsplash.com/photo-1601599963565-b7f49deb63d5?q=80&w=400&auto=format&fit=crop'
+                    ]
+                }
+            };
+
+            const CASE_PREFIX = '#case-';
+
+            function renderCase(id) {
+                const c = CASES[id];
+                if (!c) return;
+
+                const logo = document.getElementById('case-modal-logo');
+                logo.textContent = c.logoLetter;
+                logo.className = `w-11 h-11 rounded-xl flex items-center justify-center font-black text-xl shadow-sm border shrink-0 ${c.logoBg} ${c.logoText} ${c.logoBorder}`;
+
+                document.getElementById('case-modal-title').textContent = c.brand;
+                document.getElementById('case-modal-subtitle').textContent = c.category;
+                document.getElementById('case-modal-format').textContent = c.format;
+                document.getElementById('case-modal-task').textContent = c.task;
+                document.getElementById('case-modal-brand').textContent = c.brandInfo;
+
+                const gallery = document.getElementById('case-modal-gallery');
+                gallery.innerHTML = c.images.map(src =>
+                    `<div class="rounded-xl overflow-hidden aspect-square bg-gray-100"><img src="${src}" alt="${c.brand}" class="w-full h-full object-cover"></div>`
+                ).join('');
+
+                const stats = document.getElementById('case-modal-stats');
+                stats.innerHTML = c.stats.map(s =>
+                    `<div><div class="text-[10px] text-gray-500 mb-1 uppercase tracking-wide font-bold">${s.label}</div><div class="text-xl font-black text-[var(--accent)]">${s.value}</div></div>`
+                ).join('');
+            }
+
+            function openCaseModal(id, updateHash = true) {
+                if (!CASES[id]) return;
+                renderCase(id);
+                document.getElementById('case-modal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                if (updateHash && location.hash !== CASE_PREFIX + id) {
+                    history.pushState(null, '', CASE_PREFIX + id);
+                }
+            }
+
+            function closeCaseModal(updateHash = true) {
+                document.getElementById('case-modal').classList.add('hidden');
+                document.body.style.overflow = '';
+                if (updateHash && location.hash.startsWith(CASE_PREFIX)) {
+                    history.pushState(null, '', location.pathname + location.search);
+                }
+            }
+
+            function copyCaseLink(btn) {
+                const url = location.origin + location.pathname + location.search + location.hash;
+                navigator.clipboard.writeText(url).then(() => {
+                    const icon = btn.querySelector('i');
+                    icon.classList.remove('fa-link');
+                    icon.classList.add('fa-check');
+                    setTimeout(() => {
+                        icon.classList.remove('fa-check');
+                        icon.classList.add('fa-link');
+                    }, 1500);
+                }).catch(() => {});
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeCaseModal();
+            });
+
+            window.addEventListener('popstate', () => {
+                if (location.hash.startsWith(CASE_PREFIX)) {
+                    const id = location.hash.slice(CASE_PREFIX.length);
+                    if (CASES[id]) openCaseModal(id, false);
+                } else {
+                    closeCaseModal(false);
+                }
+            });
+
+            // Carousel controls
+            (function initCasesCarousel() {
+                const track = document.getElementById('cases-track');
+                const dotsWrap = document.getElementById('cases-dots');
+                const prevBtn = document.getElementById('cases-prev');
+                const nextBtn = document.getElementById('cases-next');
+                const cards = Array.from(track.children);
+
+                cards.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'w-2 h-2 rounded-full bg-gray-300 transition-all duration-300';
+                    dot.setAttribute('aria-label', `Кейс ${i + 1}`);
+                    dot.addEventListener('click', () => {
+                        cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+                    });
+                    dotsWrap.appendChild(dot);
+                });
+                const dots = Array.from(dotsWrap.children);
+
+                function updateActive() {
+                    const trackRect = track.getBoundingClientRect();
+                    let closestIdx = 0;
+                    let closestDist = Infinity;
+                    cards.forEach((card, i) => {
+                        const dist = Math.abs(card.getBoundingClientRect().left - trackRect.left);
+                        if (dist < closestDist) { closestDist = dist; closestIdx = i; }
+                    });
+                    dots.forEach((d, i) => {
+                        if (i === closestIdx) {
+                            d.classList.add('bg-[var(--accent)]', 'w-6');
+                            d.classList.remove('bg-gray-300', 'w-2');
+                        } else {
+                            d.classList.remove('bg-[var(--accent)]', 'w-6');
+                            d.classList.add('bg-gray-300', 'w-2');
+                        }
+                    });
+                }
+
+                let scrollTimeout;
+                track.addEventListener('scroll', () => {
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(updateActive, 80);
+                });
+
+                if (prevBtn) prevBtn.addEventListener('click', () => {
+                    track.scrollBy({ left: -(cards[0].offsetWidth + 20), behavior: 'smooth' });
+                });
+                if (nextBtn) nextBtn.addEventListener('click', () => {
+                    track.scrollBy({ left: cards[0].offsetWidth + 20, behavior: 'smooth' });
+                });
+
+                updateActive();
+
+                if (location.hash.startsWith(CASE_PREFIX)) {
+                    const id = location.hash.slice(CASE_PREFIX.length);
+                    if (CASES[id]) openCaseModal(id, false);
+                }
+            })();
+        </script>
+		<div class="card-panel p-6 sm:p-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 border-b border-gray-100 pb-4">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                        <i class="fa-solid fa-star text-orange-400"></i> Отзывы заказчиков
+                    </h2>
+                    <p class="text-sm text-gray-500 mt-1">Что говорят бренды о сотрудничестве</p>
+                </div>
+                
+                <div class="flex items-center gap-3 bg-orange-50/50 px-4 py-2 rounded-xl border border-orange-100/50">
+                    <div class="text-2xl font-black text-gray-900">4.9</div>
+                    <div>
+                        <div class="flex text-orange-400 text-[10px] sm:text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <div class="text-[10px] text-gray-500 font-semibold mt-0.5">На основе 34 оценок</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="bg-gray-50/70 rounded-2xl p-6 border border-gray-100 hover:border-[var(--accent)] hover:shadow-md hover:bg-white transition-all duration-300 relative group flex flex-col h-full cursor-default">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-6 text-5xl text-gray-200/50 group-hover:text-[var(--accent)]/5 transition-colors duration-300"></i>
+                    
+                    <div class="flex items-center gap-3 mb-4 relative z-10">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center font-bold text-white shadow-sm ring-2 ring-white">М</div>
+                        <div>
+                            <div class="font-bold text-gray-900 text-sm">Марина К.</div>
+                            <div class="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-0.5">Маркетолог, Технодом</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-1 text-orange-400 text-[10px] mb-3">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    
+                    <p class="text-sm text-gray-700 leading-relaxed italic relative z-10 flex-grow">«Отличный опыт работы! Абай очень креативно подошел к ТЗ, сам предложил формат, который "зашел" аудитории лучше стандартного. Статистика превысила ожидаемые KPI на 20%. Точно будем сотрудничать еще.»</p>
+                    
+                    <div class="text-[10px] text-gray-400 mt-5 font-semibold flex items-center gap-1.5 relative z-10">
+                        <i class="fa-regular fa-calendar"></i> 12 апреля 2026
+                    </div>
+                </div>
+
+                <div class="bg-gray-50/70 rounded-2xl p-6 border border-gray-100 hover:border-[var(--accent)] hover:shadow-md hover:bg-white transition-all duration-300 relative group flex flex-col h-full cursor-default">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-6 text-5xl text-gray-200/50 group-hover:text-[var(--accent)]/5 transition-colors duration-300"></i>
+                    
+                    <div class="flex items-center gap-3 mb-4 relative z-10">
+                        <div class="w-10 h-10 rounded-full bg-[var(--accent)] flex items-center justify-center font-bold text-white shadow-sm ring-2 ring-white">Т</div>
+                        <div>
+                            <div class="font-bold text-gray-900 text-sm">Тимур Р.</div>
+                            <div class="text-[10px] text-gray-500 font-bold uppercase tracking-wider mt-0.5">Владелец ресторана</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-1 text-orange-400 text-[10px] mb-3">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    
+                    <p class="text-sm text-gray-700 leading-relaxed italic relative z-10 flex-grow">«Брали обзор на новое меню. Все сделано в срок, картинка сочная, текст не шаблонный. В первые выходные после выхода Reels была полная посадка, многие гости упоминали видео. Рекомендую!»</p>
+                    
+                    <div class="text-[10px] text-gray-400 mt-5 font-semibold flex items-center gap-1.5 relative z-10">
+                        <i class="fa-regular fa-calendar"></i> 28 марта 2026
+                    </div>
+                </div>
+            </div>
+            
+            <a href="otziv.html" class="block w-full">
+  <button class="w-full mt-6 py-3.5 border border-gray-200 rounded-xl text-sm font-bold text-gray-600 hover:text-[var(--accent)] hover:border-[var(--accent)]/30 hover:bg-[var(--accent)]/5 transition-all">
+    Смотреть все 34 отзыва
+  </button>
+</a>
+			
+			
+	
+			
+			
+			
+        </div>
+    </main>
+	
+
+  <!-- FOOTER -->
+    <footer class="border-t border-[#9C1C4F]/10 pt-16 pb-8" id="contacts">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="text-3xl font-black tracking-[-2px] mb-6">
+                        CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                    </div>
+                    <p class="text-[#666] text-sm max-w-sm leading-relaxed">
+                        Группа компаний AYACOM. ТОО «KAF». <br/> БИН: 221240005124. <br/> Официальная платформа для инфлюенс-маркетинга в Казахстане и России.
+                    </p>
+                    <div class="flex space-x-4 mt-8">
+                        <a href="#" class="w-12 h-12 rounded-3xl bg-white shadow flex items-center justify-center text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-2xl transition"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-3xl bg-white shadow flex items-center justify-center text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-2xl transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Навигация</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="#how-it-works" class="hover:text-[var(--accent)]">Как это работает</a></li>
+                       <li><a href="catalog.html" class="hover:text-[var(--accent)]">База блогеров</a></li>
+                        <li><a href="#register" class="hover:text-[var(--accent)]">Регистрация</a></li>
+                        <li><a href="#business" class="hover:text-[var(--accent)]">Для кого мы работаем</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Контакты</h4>
+                    <ul class="space-y-3 text-sm text-[#666]">
+                        <li><a href="#" class="hover:text-[var(--accent)]">+7 (717) 555-12-34</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)]">info@creators.kz</a></li>
+                        <li><a href="#" class="hover:text-[var(--accent)]">Астана, ул. Мангилик Ел, 22</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-xs text-[#999] border-t border-[#9C1C4F]/10 pt-8">
+                © 2026 Creators.kz — Все права защищены
+            </div>
+        </div>
+    </footer>
+	<!-- ЧАТ-ВИДЖЕТ -->
+    
+    <!-- Плавающая кнопка -->
+    <button id="chat-toggle-btn" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-14 h-14 bg-[var(--accent)] text-white rounded-full flex items-center justify-center shadow-[0_8px_25px_-6px_rgba(156,28,79,0.6)] hover:scale-110 transition-all duration-300 z-50">
+        <i id="chat-icon" class="fa-solid fa-comment-dots text-2xl transition-transform duration-300"></i>
+    </button>
+
+    <!-- Окно чата -->
+    <div id="chat-window" class="fixed bottom-24 right-6 sm:right-8 w-[calc(100vw-3rem)] sm:w-96 bg-white rounded-2xl shadow-[0_12px_40px_-12px_rgba(0,0,0,0.2)] border border-gray-100 flex flex-col z-50 overflow-hidden transition-all duration-300 origin-bottom-right scale-0 opacity-0 pointer-events-none" style="height: 500px; max-height: 75vh;">
+        
+        <!-- Шапка чата -->
+        <div class="bg-gradient-to-r from-[var(--accent)] to-[#b8215d] p-4 flex justify-between items-center shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop" alt="Менеджер" class="w-10 h-10 rounded-full object-cover border-2 border-white/20">
+                    <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-[var(--accent)] rounded-full"></div>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-sm">Данияр</h3>
+                    <p class="text-white/80 text-xs">Менеджер Абая • Онлайн</p>
+                </div>
+            </div>
+            <button id="chat-close-btn" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+
+        <!-- Тело чата -->
+        <div class="flex-grow p-4 bg-gray-50/50 overflow-y-auto flex flex-col gap-4 hide-scrollbar" id="chat-messages">
+            <!-- Сообщение от менеджера -->
+            <div class="flex gap-2 max-w-[85%]">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop" class="w-6 h-6 rounded-full shrink-0">
+                <div>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-sm border border-gray-100 text-sm text-gray-700 shadow-sm">
+                        Здравствуйте! 👋 Я менеджер Абая. Если у вас есть вопросы по статистике, свободным датам или вы хотите обсудить нестандартный формат — пишите, я на связи!
+                    </div>
+                    <div class="text-[10px] text-gray-400 mt-1 ml-1">12:40</div>
+                </div>
+            </div>
+            
+            <!-- Сообщение от пользователя (пример) -->
+            <div class="flex gap-2 max-w-[85%] ml-auto justify-end">
+                <div>
+                    <div class="bg-[var(--accent)]/10 p-3 rounded-2xl rounded-tr-sm text-sm text-gray-800">
+                        Добрый день! Подскажите, свободна ли дата 15 апреля для Reels?
+                    </div>
+                    <div class="text-[10px] text-gray-400 mt-1 mr-1 text-right">12:41 <i class="fa-solid fa-check-double text-[var(--accent)]/60 ml-0.5"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Поле ввода -->
+        <div class="p-3 border-t border-gray-100 bg-white shrink-0">
+            <form onsubmit="event.preventDefault();" class="flex items-end gap-2 relative">
+                <button type="button" class="p-2 text-gray-400 hover:text-[var(--accent)] transition-colors shrink-0">
+                    <i class="fa-solid fa-paperclip"></i>
+                </button>
+                <textarea rows="1" placeholder="Ваше сообщение..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)] transition-all resize-none overflow-hidden max-h-24 min-h-[42px]"></textarea>
+                <button type="submit" class="w-10 h-[42px] bg-[var(--accent)] text-white rounded-xl flex items-center justify-center hover:bg-[#b8215d] transition-colors shrink-0 shadow-sm">
+                    <i class="fa-solid fa-paper-plane text-sm"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Скрипт логики чата -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatToggleBtn = document.getElementById('chat-toggle-btn');
+            const chatCloseBtn = document.getElementById('chat-close-btn');
+            const chatWindow = document.getElementById('chat-window');
+            const chatIcon = document.getElementById('chat-icon');
+            
+            function toggleChat() {
+                const isOpen = !chatWindow.classList.contains('scale-0');
+                
+                if (isOpen) {
+                    // Закрываем чат
+                    chatWindow.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+                    chatWindow.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
+                    
+                    // Меняем иконку обратно на сообщение
+                    chatIcon.classList.remove('fa-xmark');
+                    chatIcon.classList.add('fa-comment-dots');
+                    chatIcon.style.transform = 'rotate(0deg)';
+                } else {
+                    // Открываем чат
+                    chatWindow.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+                    chatWindow.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
+                    
+                    // Меняем иконку на крестик
+                    chatIcon.classList.remove('fa-comment-dots');
+                    chatIcon.classList.add('fa-xmark');
+                    chatIcon.style.transform = 'rotate(90deg)';
+                }
+            }
+
+            chatToggleBtn.addEventListener('click', toggleChat);
+            chatCloseBtn.addEventListener('click', toggleChat);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Creator Hub | Creators.kz — Всё для контента</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        base: '#F8F7F5',
+                        text: '#1A1A1A',
+                        accent: '#9C1C4F',
+                        'accent-hover': '#7A1640',
+                        'accent-light': '#F3E4EA',
+                        'blogger-red': '#EF233C',
+                        surface: '#F8F7F5',
+                        border: '#EDE6E9',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --accent: #9C1C4F;
+            --accent-rgb: 156, 28, 79;
+        }
+        html, body {
+            background: #F8F7F5;
+            color: #1A1A1A;
+            overflow-x: hidden;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+        nav, header {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid rgba(156, 28, 79, 0.08);
+            border-radius: 16px;
+            transition: all 0.2s ease;
+        }
+        .card:hover {
+            box-shadow: 0 8px 24px -8px rgba(156, 28, 79, 0.16);
+            border-color: rgba(156, 28, 79, 0.25);
+        }
+        .tab-btn {
+            transition: all 0.2s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .tab-btn.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 12px -2px rgba(156, 28, 79, 0.4);
+        }
+        .filter-chip {
+            transition: all 0.15s ease;
+        }
+        .filter-chip.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        .role-toggle {
+            background: #F1F1F1;
+            border-radius: 9999px;
+            padding: 4px;
+            display: flex;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+        }
+        .role-toggle button {
+            flex: 1;
+            padding: 8px 20px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .role-toggle button.active {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 12px -4px var(--accent);
+        }
+        .btn-accent {
+            background: var(--accent);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px -6px var(--accent);
+        }
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px -8px var(--accent);
+        }
+        .sidebar-panel {
+            transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .sidebar-panel.closed {
+            transform: translateX(100%);
+        }
+        .bottom-bar {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .bottom-bar.hidden {
+            transform: translateY(120%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .calendar-day {
+            min-height: 72px;
+        }
+        .event-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        #hub-chevron.rotate-180 {
+            transform: rotate(180deg);
+        }
+        .checkbox-custom {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1.5px solid #D1D5DB;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+        .checkbox-custom:checked {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        .checkbox-custom:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 11px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 700;
+        }
+        .section-content { display: none; }
+        .section-content.active { display: block; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 99px; }
+        .heart-btn { transition: all 0.2s; }
+        .heart-btn.liked { color: var(--accent); }
+        .heart-btn.liked i { font-weight: 900; }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+<!-- ========== TOP NAV ========== -->
+<header class="sticky top-0 z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 shadow-sm">
+    <div class="max-w-[1440px] mx-auto px-4 lg:px-6 h-16 flex items-center justify-between">
+        <!-- Logo + Nav -->
+        <div class="flex items-center gap-8">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="text-2xl font-black tracking-[-2px] text-[#1A1A1A]">
+                    CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                </div>
+            </a>
+            <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold">
+                <a href="catalog.html" class="px-3 py-2 rounded-lg text-gray-700 hover:text-[var(--accent)] hover:bg-white transition">Каталог блогеров</a>
+                <a href="barter.html" class="px-3 py-2 rounded-lg text-gray-700 hover:text-[var(--accent)] hover:bg-white transition">Бартер</a>
+                
+                <!-- Mega menu: Creator Hub -->
+                <div class="relative nav-item" id="hub-nav-item">
+                    <button onclick="toggleHubMenu(event)" id="hub-trigger" class="px-3 py-2 rounded-lg text-[var(--accent)] font-bold flex items-center gap-1.5 hover:bg-white transition">
+                        Creator Hub
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200" id="hub-chevron"></i>
+                    </button>
+                    <div id="hub-menu" class="hidden absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[720px] max-w-[92vw] bg-white rounded-3xl shadow-2xl border border-[#9C1C4F]/10 p-6 z-50">
+                        <div class="flex items-start justify-between mb-5 gap-4">
+                            <div>
+                                <div class="text-xs font-bold text-[var(--accent)] uppercase tracking-widest">Creator Hub</div>
+                                <h3 class="text-lg font-black text-[#1A1A1A] mt-0.5">Всё для контента</h3>
+                            </div>
+                            <span class="text-xs text-gray-400 text-right max-w-[200px] leading-snug mt-1">События, места, техника и реквизит — всё для съёмки в одном разделе</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-1.5">
+                            <a href="#afisha" onclick="switchSection('afisha'); closeHubMenu()" class="flex gap-3 p-3 rounded-2xl hover:bg-accent-light/40 transition group">
+                                <div class="w-11 h-11 rounded-xl bg-accent-light text-[var(--accent)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--accent)] group-hover:text-white transition">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm text-[#1A1A1A] group-hover:text-[var(--accent)] transition">Афиша</div>
+                                    <div class="text-xs text-gray-500 mt-0.5 leading-snug">Концерты, фестивали, премьеры и инфоповоды для съёмок</div>
+                                </div>
+                            </a>
+                            <a href="#mesta" onclick="switchSection('mesta'); closeHubMenu()" class="flex gap-3 p-3 rounded-2xl hover:bg-accent-light/40 transition group">
+                                <div class="w-11 h-11 rounded-xl bg-accent-light text-[var(--accent)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--accent)] group-hover:text-white transition">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm text-[#1A1A1A] group-hover:text-[var(--accent)] transition">Места</div>
+                                    <div class="text-xs text-gray-500 mt-0.5 leading-snug">Кафе, студии, отели и другие локации для съёмок</div>
+                                </div>
+                            </a>
+                            <a href="#tehnika" onclick="switchSection('tehnika'); closeHubMenu()" class="flex gap-3 p-3 rounded-2xl hover:bg-accent-light/40 transition group">
+                                <div class="w-11 h-11 rounded-xl bg-accent-light text-[var(--accent)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--accent)] group-hover:text-white transition">
+                                    <i class="fa-solid fa-camera"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm text-[#1A1A1A] group-hover:text-[var(--accent)] transition">Техника</div>
+                                    <div class="text-xs text-gray-500 mt-0.5 leading-snug">Камеры, свет и звук в аренду для профессиональной съёмки</div>
+                                </div>
+                            </a>
+                            <a href="#rekvizit" onclick="switchSection('rekvizit'); closeHubMenu()" class="flex gap-3 p-3 rounded-2xl hover:bg-accent-light/40 transition group">
+                                <div class="w-11 h-11 rounded-xl bg-accent-light text-[var(--accent)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--accent)] group-hover:text-white transition">
+                                    <i class="fa-solid fa-cube"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm text-[#1A1A1A] group-hover:text-[var(--accent)] transition">Реквизит</div>
+                                    <div class="text-xs text-gray-500 mt-0.5 leading-snug">Декор и предметы, которые оживят кадр</div>
+                                </div>
+                            </a>
+                            <a href="#kalendar" onclick="switchSection('kalendar'); closeHubMenu()" class="flex gap-3 p-3 rounded-2xl hover:bg-accent-light/40 transition group col-span-2">
+                                <div class="w-11 h-11 rounded-xl bg-accent-light text-[var(--accent)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--accent)] group-hover:text-white transition">
+                                    <i class="fa-solid fa-calendar-check"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sm text-[#1A1A1A] group-hover:text-[var(--accent)] transition">Контент-календарь</div>
+                                    <div class="text-xs text-gray-500 mt-0.5 leading-snug">Главные даты и инфоповоды месяца — чтобы ничего не пропустить</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="mt-5 pt-5 border-t border-[#9C1C4F]/10 flex items-center justify-between gap-4">
+                            <p class="text-xs text-gray-500 leading-snug">Собирайте события, локации, технику и реквизит в единый контент-план и отправляйте заявки в один клик</p>
+                            <button onclick="openContentPlan(); closeHubMenu()" class="px-5 py-2.5 rounded-full bg-accent text-white text-sm font-semibold hover:bg-accent-hover transition whitespace-nowrap flex-shrink-0">
+                                Мой контент-план
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Right actions -->
+        <div class="flex items-center gap-3">
+            <div class="hidden lg:flex items-center">
+                <div class="role-toggle">
+                    <button onclick="switchRole('blogger')">Блогер</button>
+                    <button onclick="switchRole('customer')" class="active">Заказчик</button>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center bg-white border border-[#9C1C4F]/10 rounded-full px-3 py-1.5 w-52">
+                <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
+                <input type="text" placeholder="Поиск по Creators.kz" class="bg-transparent border-0 outline-none text-sm ml-2 w-full placeholder:text-gray-400">
+            </div>
+            <button class="w-9 h-9 rounded-full hover:bg-white flex items-center justify-center text-gray-600 hover:text-[var(--accent)] transition">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="kontakty.html" class="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-3xl border border-[#9C1C4F]/20 text-sm font-semibold hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
+                <i class="fa-regular fa-user"></i>
+                Войти
+            </a>
+            <button class="lg:hidden w-9 h-9 flex items-center justify-center text-gray-800" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 bg-[#F8F7F5] pt-20 px-4 hidden overflow-y-auto">
+    <div class="pb-10">
+        <div class="mb-6">
+            <div class="role-toggle mx-auto w-fit">
+                <button onclick="switchRole('blogger')">Блогер</button>
+                <button onclick="switchRole('customer')" class="active">Заказчик</button>
+            </div>
+        </div>
+        <div class="space-y-1">
+            <a href="catalog.html" class="block py-3 text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">Каталог блогеров</a>
+            <a href="barter.html" class="block py-3 text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">Бартер</a>
+            <a href="o-nas.html" class="block py-3 text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">О нас</a>
+            <a href="kontakty.html" class="block py-3 text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">Контакты</a>
+            <div class="pt-4 pb-1 text-xs font-bold text-gray-400 uppercase tracking-wider">Creator Hub · Всё для контента</div>
+            <a href="#" onclick="switchSection('afisha'); closeMobile()" class="block py-2.5 pl-3">
+                <div class="text-base font-semibold text-gray-800">Афиша</div>
+                <div class="text-xs text-gray-500">Концерты, фестивали и события для съёмок</div>
+            </a>
+            <a href="#" onclick="switchSection('mesta'); closeMobile()" class="block py-2.5 pl-3">
+                <div class="text-base font-semibold text-gray-800">Места</div>
+                <div class="text-xs text-gray-500">Кафе, студии и локации для контента</div>
+            </a>
+            <a href="#" onclick="switchSection('tehnika'); closeMobile()" class="block py-2.5 pl-3">
+                <div class="text-base font-semibold text-gray-800">Техника</div>
+                <div class="text-xs text-gray-500">Камеры, свет и звук в аренду</div>
+            </a>
+            <a href="#" onclick="switchSection('rekvizit'); closeMobile()" class="block py-2.5 pl-3">
+                <div class="text-base font-semibold text-gray-800">Реквизит</div>
+                <div class="text-xs text-gray-500">Декор и предметы для кадра</div>
+            </a>
+            <a href="#" onclick="switchSection('kalendar'); closeMobile()" class="block py-2.5 pl-3">
+                <div class="text-base font-semibold text-gray-800">Контент-календарь</div>
+                <div class="text-xs text-gray-500">Главные даты и инфоповоды месяца</div>
+            </a>
+            <hr class="border-gray-200 my-4">
+            <a href="kontakty.html" class="block text-lg font-semibold text-gray-800 hover:text-[var(--accent)] transition">Вход / Регистрация</a>
+        </div>
+    </div>
+</div>
+
+<!-- ========== MAIN ========== -->
+<main class="max-w-[1440px] mx-auto px-4 lg:px-6 py-6">
+    
+    <!-- Breadcrumbs -->
+    <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+        <a href="index.html" class="hover:text-accent">Главная</a>
+        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+        <span class="text-gray-800 font-medium">Creator Hub</span>
+        <i class="fa-solid fa-chevron-right text-[10px]" id="crumb-sep"></i>
+        <span id="crumb-section" class="text-accent font-medium">Контент-календарь</span>
+    </div>
+
+    <!-- Title -->
+    <div class="mb-6">
+        <h1 id="page-title" class="text-3xl md:text-4xl font-black tracking-tight text-gray-900">Контент-календарь</h1>
+        <p id="page-subtitle" class="text-gray-500 mt-1.5 text-base">Главные инфоповоды, события и даты для съёмок и публикаций</p>
+    </div>
+
+    <!-- Section tabs -->
+    <div class="flex flex-wrap gap-2 mb-6 overflow-x-auto pb-1">
+        <button onclick="switchSection('afisha')" data-section="afisha" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-border text-gray-700 hover:border-accent/40">
+            <i class="fa-solid fa-calendar-days"></i> Афиша
+        </button>
+        <button onclick="switchSection('mesta')" data-section="mesta" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-border text-gray-700 hover:border-accent/40">
+            <i class="fa-solid fa-location-dot"></i> Места
+        </button>
+        <button onclick="switchSection('tehnika')" data-section="tehnika" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-border text-gray-700 hover:border-accent/40">
+            <i class="fa-solid fa-camera"></i> Техника
+        </button>
+        <button onclick="switchSection('rekvizit')" data-section="rekvizit" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-border text-gray-700 hover:border-accent/40">
+            <i class="fa-solid fa-cube"></i> Реквизит
+        </button>
+        <button onclick="switchSection('kalendar')" data-section="kalendar" class="tab-btn active flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold">
+            <i class="fa-solid fa-calendar-check"></i> Контент-календарь
+        </button>
+    </div>
+
+    <!-- ========== SECTION: КАЛЕНДАРЬ ========== -->
+    <div id="section-kalendar" class="section-content active">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <!-- Left filters -->
+            <aside class="xl:col-span-3 space-y-5">
+                <div class="card p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-sm">Фильтры</h3>
+                        <button class="text-xs text-accent font-medium hover:underline">Сбросить всё</button>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Категории</div>
+                        <div class="space-y-2.5">
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Праздники и даты</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Концерты и музыка</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Выставки и искусство</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Бренд-ивенты</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Маркеты и ярмарки</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Кино и премьеры</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Бизнес и технологии</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Инфоповоды</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Спорт</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Другое</label>
+                        </div>
+                        <button class="text-xs text-accent mt-2 font-medium">Показать ещё ▾</button>
+                    </div>
+                    
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Тип контента</div>
+                        <div class="space-y-2.5">
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Фото</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Видео</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Reels / Short видео</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Статьи / посты</label>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-hover transition">
+                        Применить фильтры
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Calendar center -->
+            <div class="xl:col-span-6">
+                <!-- Scope filters -->
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <span class="text-sm text-gray-500 mr-1">Охват:</span>
+                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Мир</button>
+                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Казахстан</button>
+                    <button class="filter-chip active px-3 py-1.5 rounded-full text-xs font-medium border">Город</button>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
+                        <i class="fa-solid fa-location-dot text-accent"></i> Алматы
+                        <i class="fa-solid fa-chevron-down text-[9px] text-gray-400"></i>
+                    </div>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
+                        <i class="fa-regular fa-calendar"></i> Сентябрь 2025
+                    </div>
+                    <div class="flex gap-1 ml-auto">
+                        <button class="w-8 h-8 rounded-lg border border-border bg-white flex items-center justify-center hover:bg-gray-50"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                        <button class="w-8 h-8 rounded-lg border border-border bg-white flex items-center justify-center hover:bg-gray-50"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+                    </div>
+                </div>
+
+                <div class="card p-5">
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="text-xl font-bold">Сентябрь 2025</h2>
+                        <button class="text-xs font-semibold text-accent border border-accent/30 px-3 py-1.5 rounded-full hover:bg-accent-light">Сегодня</button>
+                    </div>
+                    
+                    <!-- Days header -->
+                    <div class="grid grid-cols-7 gap-1 mb-2">
+                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Пн</div>
+                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Вт</div>
+                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Ср</div>
+                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Чт</div>
+                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Пт</div>
+                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Сб</div>
+                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Вс</div>
+                    </div>
+                    
+                    <!-- Calendar grid -->
+                    <div class="grid grid-cols-7 gap-1">
+                        <!-- Week 1 -->
+                        <div class="calendar-day p-1.5 rounded-lg bg-gray-50/50 text-gray-300 text-sm">31</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">1</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">2</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
+                            3
+                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-pink-100 text-pink-700 font-medium truncate max-w-full">Fashion Week</span></div>
+                        </div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">4</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">5</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">7</div>
+                        
+                        <!-- Week 2 -->
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">8</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">9</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
+                            10
+                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-medium">Выставка</span></div>
+                        </div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">11</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">12</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
+                            13
+                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-purple-100 text-purple-700 font-medium">Концерт</span></div>
+                        </div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">14</div>
+                        
+                        <!-- Week 3 -->
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">15</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
+                            16
+                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-sky-100 text-sky-700 font-medium">Инфоповод</span></div>
+                        </div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">17</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">18</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">19</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
+                            20
+                            <div class="mt-1 space-y-0.5">
+                                <span class="block text-[10px] px-1.5 py-0.5 rounded-full bg-pink-100 text-pink-700 font-medium truncate">Almaty Coffee</span>
+                                <span class="block text-[10px] px-1.5 py-0.5 rounded-full bg-orange-100 text-orange-700 font-medium">Маркет</span>
+                            </div>
+                        </div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">21</div>
+                        
+                        <!-- Week 4 -->
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">22</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
+                            23
+                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-purple-100 text-purple-700 font-medium">Pop-up beauty</span></div>
+                        </div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
+                            24
+                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-sky-100 text-sky-700 font-medium">Вечерний концерт</span></div>
+                        </div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">25</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
+                            26
+                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-teal-100 text-teal-700 font-medium">Премьера</span></div>
+                        </div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">27</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">28</div>
+                        
+                        <!-- Week 5 -->
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">29</div>
+                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
+                            30
+                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-yellow-100 text-yellow-700 font-medium">День города</span></div>
+                        </div>
+                        <div class="calendar-day p-1.5 rounded-lg text-gray-300 text-sm">1</div>
+                        <div class="calendar-day p-1.5 rounded-lg text-gray-300 text-sm">2</div>
+                        <div class="calendar-day p-1.5 rounded-lg text-gray-300 text-sm">3</div>
+                        <div class="calendar-day p-1.5 rounded-lg text-gray-300 text-sm">4</div>
+                        <div class="calendar-day p-1.5 rounded-lg text-gray-300 text-sm">5</div>
+                    </div>
+                    
+                    <!-- Legend -->
+                    <div class="flex flex-wrap gap-3 mt-5 pt-4 border-t border-border text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><span class="event-dot bg-pink-400"></span> Событие</span>
+                        <span class="flex items-center gap-1.5"><span class="event-dot bg-yellow-400"></span> Праздник</span>
+                        <span class="flex items-center gap-1.5"><span class="event-dot bg-purple-400"></span> Концерт</span>
+                        <span class="flex items-center gap-1.5"><span class="event-dot bg-emerald-400"></span> Выставка</span>
+                        <span class="flex items-center gap-1.5"><span class="event-dot bg-orange-400"></span> Маркет</span>
+                        <span class="flex items-center gap-1.5"><span class="event-dot bg-teal-400"></span> Премьера</span>
+                        <span class="flex items-center gap-1.5"><span class="event-dot bg-sky-400"></span> Инфоповод</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Upcoming -->
+            <aside class="xl:col-span-3">
+                <div class="card p-5 sticky top-20">
+                    <h3 class="font-bold text-base mb-4">Ближайшие инфоповоды</h3>
+                    <div class="space-y-4">
+                        <!-- Event 1 -->
+                        <div class="flex gap-3 group cursor-pointer" onclick="addToPlan('Almaty Coffee Festival', 'event')">
+                            <div class="w-12 text-center flex-shrink-0">
+                                <div class="text-xl font-black text-accent leading-none">20</div>
+                                <div class="text-[10px] uppercase text-gray-400 font-semibold">сен</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex gap-2 mb-1.5">
+                                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=80&h=80&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="">
+                                    <div>
+                                        <div class="font-semibold text-sm leading-tight group-hover:text-accent transition">Almaty Coffee Festival</div>
+                                        <div class="text-xs text-gray-500 mt-0.5">10:00 – 20:00 · Almaty Arena</div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-1.5">
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Еда и напитки</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Бренд-ивент</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Event 2 -->
+                        <div class="flex gap-3 group cursor-pointer">
+                            <div class="w-12 text-center flex-shrink-0">
+                                <div class="text-xl font-black text-accent leading-none">21</div>
+                                <div class="text-[10px] uppercase text-gray-400 font-semibold">сен</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex gap-2 mb-1.5">
+                                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=80&h=80&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="">
+                                    <div>
+                                        <div class="font-semibold text-sm leading-tight group-hover:text-accent transition">Маркет локальных брендов</div>
+                                        <div class="text-xs text-gray-500 mt-0.5">12:00 – 20:00 · Дворец Спорта</div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-1.5">
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Мода и стиль</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Маркет</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Event 3 -->
+                        <div class="flex gap-3 group cursor-pointer">
+                            <div class="w-12 text-center flex-shrink-0">
+                                <div class="text-xl font-black text-accent leading-none">23</div>
+                                <div class="text-[10px] uppercase text-gray-400 font-semibold">сен</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex gap-2 mb-1.5">
+                                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=80&h=80&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="">
+                                    <div>
+                                        <div class="font-semibold text-sm leading-tight group-hover:text-accent transition">Pop-up beauty day</div>
+                                        <div class="text-xs text-gray-500 mt-0.5">11:00 – 19:00 · ТРЦ Esentai Mall</div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-1.5">
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Бьюти</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Мастер-классы</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Event 4 -->
+                        <div class="flex gap-3 group cursor-pointer">
+                            <div class="w-12 text-center flex-shrink-0">
+                                <div class="text-xl font-black text-accent leading-none">24</div>
+                                <div class="text-[10px] uppercase text-gray-400 font-semibold">сен</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex gap-2 mb-1.5">
+                                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=80&h=80&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="">
+                                    <div>
+                                        <div class="font-semibold text-sm leading-tight group-hover:text-accent transition">Вечерний концерт на Арбате</div>
+                                        <div class="text-xs text-gray-500 mt-0.5">19:00 – 22:00 · Арбат, Алматы</div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-1.5">
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Концерты</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Городская культура</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Event 5 -->
+                        <div class="flex gap-3 group cursor-pointer">
+                            <div class="w-12 text-center flex-shrink-0">
+                                <div class="text-xl font-black text-accent leading-none">26</div>
+                                <div class="text-[10px] uppercase text-gray-400 font-semibold">сен</div>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex gap-2 mb-1.5">
+                                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=80&h=80&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="">
+                                    <div>
+                                        <div class="font-semibold text-sm leading-tight group-hover:text-accent transition">Премьера фильма</div>
+                                        <div class="text-xs text-gray-500 mt-0.5">19:00 – 21:00 · Kinopark 11</div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-1.5">
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Кино и премьеры</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Инфоповод</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-5 text-sm font-semibold text-accent hover:underline text-right">Смотреть все →</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- ========== SECTION: АФИША ========== -->
+    <div id="section-afisha" class="section-content">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <aside class="xl:col-span-3">
+                <div class="card p-5 sticky top-20">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-sm">Фильтры</h3>
+                        <button class="text-xs text-accent font-medium">Сбросить всё</button>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Формат</div>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Офлайн</label>
+                        <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Онлайн</label>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Возраст</div>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> 0+</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> 6+</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> 12+</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> 16+</label>
+                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> 18+</label>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Условия съёмки</div>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Съёмка разрешена</label>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Требуется аккредитация</label>
+                        <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Разрешена проф. техника</label>
+                    </div>
+                    <button class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm">Применить фильтры</button>
+                </div>
+            </aside>
+            
+            <div class="xl:col-span-9">
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
+                        <i class="fa-solid fa-location-dot text-accent"></i> Алматы
+                    </div>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
+                        Все категории
+                    </div>
+                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Все даты</button>
+                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Сегодня</button>
+                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Завтра</button>
+                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Выходные</button>
+                    <button class="filter-chip active px-3 py-1.5 rounded-full text-xs font-medium border">Все</button>
+                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Бесплатно</button>
+                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Платно</button>
+                    <div class="ml-auto text-xs text-gray-500">Показано 6 из 124 событий</div>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Card 1 -->
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-44">
+                            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-sm font-black text-accent">20 сен</div>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')">
+                                <i class="fa-regular fa-heart text-sm"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base mb-1.5">Almaty Coffee Festival</h3>
+                            <div class="text-xs text-gray-500 space-y-0.5 mb-3">
+                                <div><i class="fa-regular fa-clock mr-1"></i> 10:00 – 20:00</div>
+                                <div><i class="fa-solid fa-location-dot mr-1"></i> Almaty Arena</div>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mb-3">
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Фестиваль</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Еда</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Лайфстайл</span>
+                            </div>
+                            <p class="text-xs text-gray-500 line-clamp-2 mb-3">Крупнейший кофейный фестиваль Казахстана. Дегустации, лекции, зоны для контента и многое другое.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-medium text-emerald-600"><i class="fa-solid fa-camera mr-1"></i> Съёмка разрешена</span>
+                                <span class="text-xs font-semibold text-gray-700">Бесплатно</span>
+                            </div>
+                            <button class="w-full mt-3 py-2.5 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Almaty Coffee Festival', 'event')">Подробнее</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-44">
+                            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-sm font-black text-accent">21 сен</div>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')">
+                                <i class="fa-regular fa-heart text-sm"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base mb-1.5">Kazakhstan Fashion Week</h3>
+                            <div class="text-xs text-gray-500 space-y-0.5 mb-3">
+                                <div><i class="fa-regular fa-clock mr-1"></i> 12:00 – 23:00</div>
+                                <div><i class="fa-solid fa-location-dot mr-1"></i> Дворец Спорта</div>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mb-3">
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Мода</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Выставка</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Алматы</span>
+                            </div>
+                            <p class="text-xs text-gray-500 line-clamp-2 mb-3">Главное модное событие сезона. Показы, дизайнеры, бэкстейдж и яркие инфлюенсеры.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-medium text-amber-600"><i class="fa-solid fa-id-card mr-1"></i> Нужна аккредитация</span>
+                                <span class="text-xs font-semibold text-gray-700">от 5 000 ₸</span>
+                            </div>
+                            <button class="w-full mt-3 py-2.5 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 3 -->
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-44">
+                            <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-sm font-black text-accent">23 сен</div>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')">
+                                <i class="fa-regular fa-heart text-sm"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base mb-1.5">Ninety One Live Show</h3>
+                            <div class="text-xs text-gray-500 space-y-0.5 mb-3">
+                                <div><i class="fa-regular fa-clock mr-1"></i> 19:00 – 22:00</div>
+                                <div><i class="fa-solid fa-location-dot mr-1"></i> Almaty Arena</div>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mb-3">
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Концерт</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Музыка</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Алматы</span>
+                            </div>
+                            <p class="text-xs text-gray-500 line-clamp-2 mb-3">Большой концерт Ninety One с новой программой. Яркое шоу, свет, звук и незабываемая атмосфера.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-medium text-emerald-600"><i class="fa-solid fa-camera mr-1"></i> Съёмка разрешена</span>
+                                <span class="text-xs font-semibold text-gray-700">от 8 000 ₸</span>
+                            </div>
+                            <button class="w-full mt-3 py-2.5 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 4 -->
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-44">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-sm font-black text-accent">24 сен</div>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')">
+                                <i class="fa-regular fa-heart text-sm"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base mb-1.5">Digital Horizons</h3>
+                            <div class="text-xs text-gray-500 space-y-0.5 mb-3">
+                                <div><i class="fa-regular fa-clock mr-1"></i> 11:00 – 19:00</div>
+                                <div><i class="fa-solid fa-location-dot mr-1"></i> ЦСИ Алматы</div>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mb-3">
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Выставка</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Искусство</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Технологии</span>
+                            </div>
+                            <p class="text-xs text-gray-500 line-clamp-2 mb-3">Интерактивная выставка современного медиаискусства о человеке и технологиях.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-medium text-emerald-600"><i class="fa-solid fa-camera mr-1"></i> Съёмка разрешена</span>
+                                <span class="text-xs font-semibold text-gray-700">от 2 500 ₸</span>
+                            </div>
+                            <button class="w-full mt-3 py-2.5 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 5 -->
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-44">
+                            <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-sm font-black text-accent">27 сен</div>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')">
+                                <i class="fa-regular fa-heart text-sm"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base mb-1.5">Almaty Film Nights</h3>
+                            <div class="text-xs text-gray-500 space-y-0.5 mb-3">
+                                <div><i class="fa-regular fa-clock mr-1"></i> 19:00 – 22:00</div>
+                                <div><i class="fa-solid fa-location-dot mr-1"></i> Парк Кок Тобе</div>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mb-3">
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Кино</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Открытый показ</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Алматы</span>
+                            </div>
+                            <p class="text-xs text-gray-500 line-clamp-2 mb-3">Показы культовых фильмов под открытым небом. Атмосфера, друзья и кино.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-medium text-emerald-600"><i class="fa-solid fa-camera mr-1"></i> Съёмка разрешена</span>
+                                <span class="text-xs font-semibold text-gray-700">Бесплатно</span>
+                            </div>
+                            <button class="w-full mt-3 py-2.5 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 6 -->
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-44">
+                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-sm font-black text-accent">29 сен</div>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')">
+                                <i class="fa-regular fa-heart text-sm"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base mb-1.5">Маркет локальных брендов</h3>
+                            <div class="text-xs text-gray-500 space-y-0.5 mb-3">
+                                <div><i class="fa-regular fa-clock mr-1"></i> 12:00 – 20:00</div>
+                                <div><i class="fa-solid fa-location-dot mr-1"></i> ТРЦ Dostyk Plaza</div>
+                            </div>
+                            <div class="flex flex-wrap gap-1.5 mb-3">
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Маркет</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Локальные бренды</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Алматы</span>
+                            </div>
+                            <p class="text-xs text-gray-500 line-clamp-2 mb-3">Одежда, аксессуары, декор и лайфстайл от казахстанских авторов. Идеальные места для съёмок.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-medium text-emerald-600"><i class="fa-solid fa-camera mr-1"></i> Съёмка разрешена</span>
+                                <span class="text-xs font-semibold text-gray-700">Бесплатно</span>
+                            </div>
+                            <button class="w-full mt-3 py-2.5 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="flex justify-center gap-1.5 mt-8">
+                    <button class="w-9 h-9 rounded-lg border border-border bg-white text-sm hover:bg-gray-50">&lt;</button>
+                    <button class="w-9 h-9 rounded-lg bg-accent text-white text-sm font-semibold">1</button>
+                    <button class="w-9 h-9 rounded-lg border border-border bg-white text-sm hover:bg-gray-50">2</button>
+                    <button class="w-9 h-9 rounded-lg border border-border bg-white text-sm hover:bg-gray-50">3</button>
+                    <button class="w-9 h-9 rounded-lg border border-border bg-white text-sm hover:bg-gray-50">4</button>
+                    <button class="w-9 h-9 rounded-lg border border-border bg-white text-sm hover:bg-gray-50">5</button>
+                    <button class="w-9 h-9 rounded-lg border border-border bg-white text-sm hover:bg-gray-50">&gt;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SECTION: МЕСТА ========== -->
+    <div id="section-mesta" class="section-content">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <aside class="xl:col-span-3">
+                <div class="card p-5 sticky top-20">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-sm">Фильтры</h3>
+                        <button class="text-xs text-accent font-medium">Сбросить всё</button>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Стиль</div>
+                        <div class="flex flex-wrap gap-1.5">
+                            <button class="filter-chip px-3 py-1 rounded-full text-xs border border-border bg-white">Минимализм</button>
+                            <button class="filter-chip px-3 py-1 rounded-full text-xs border border-border bg-white">Лофт</button>
+                            <button class="filter-chip active px-3 py-1 rounded-full text-xs border">Классика</button>
+                            <button class="filter-chip px-3 py-1 rounded-full text-xs border border-border bg-white">Современный</button>
+                            <button class="filter-chip px-3 py-1 rounded-full text-xs border border-border bg-white">Уютный</button>
+                            <button class="filter-chip px-3 py-1 rounded-full text-xs border border-border bg-white">Люкс</button>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Оборудование и возможности</div>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Естественный свет</label>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Студийный свет</label>
+                        <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Можно снимать видео</label>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Стоимость, ₸</div>
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="От" class="w-full p-2.5 border border-border rounded-lg text-sm outline-none focus:border-accent">
+                            <input type="text" placeholder="До" class="w-full p-2.5 border border-border rounded-lg text-sm outline-none focus:border-accent">
+                        </div>
+                    </div>
+                    <button class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm">Применить фильтры</button>
+                </div>
+            </aside>
+            
+            <div class="xl:col-span-9">
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
+                        <i class="fa-solid fa-location-dot text-accent"></i> Алматы
+                    </div>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">Все категории</div>
+                    <div class="flex-1 max-w-md">
+                        <div class="flex items-center bg-white border border-border rounded-full px-3 py-1.5">
+                            <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
+                            <input type="text" placeholder="Название, район или описание места" class="bg-transparent border-0 outline-none text-sm ml-2 w-full">
+                        </div>
+                    </div>
+                    <div class="text-xs text-gray-500 ml-auto">12 мест в Алматы</div>
+                </div>
+                
+                <div class="flex gap-2 mb-5 overflow-x-auto">
+                    <button class="filter-chip active px-4 py-1.5 rounded-full text-xs font-medium border">Все</button>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Бесплатно</button>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">За отметку</button>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">По бартеру</button>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Аренда</button>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Place 1 -->
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Бесплатно</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Кофейня «Тёплый свет»</h3>
+                            <div class="text-xs text-gray-500 mt-0.5">Кафе · Алматы</div>
+                            <div class="mt-3 font-semibold text-emerald-600 text-sm">Бесплатно</div>
+                            <div class="text-xs text-gray-500">1 Stories с отметкой</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Кофейня «Тёплый свет»', 'place')">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Place 2 -->
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Аренда</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Студия Luma</h3>
+                            <div class="text-xs text-gray-500 mt-0.5">Фотостудия · Алматы</div>
+                            <div class="mt-3 font-semibold text-accent text-sm">от 8 000 ₸ / час</div>
+                            <div class="text-xs text-gray-500">Свет включён</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Студия Luma', 'place')">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Place 3 -->
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-purple-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">По бартеру</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Отель Aspan</h3>
+                            <div class="text-xs text-gray-500 mt-0.5">Отель · Алматы</div>
+                            <div class="mt-3 font-semibold text-purple-600 text-sm">Проживание за контент</div>
+                            <div class="text-xs text-gray-500">1 Reels + 3 Stories</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Отель Aspan', 'place')">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Place 4 -->
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Аренда</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Лофт «Фактура»</h3>
+                            <div class="text-xs text-gray-500 mt-0.5">Лофт · Алматы</div>
+                            <div class="mt-3 font-semibold text-accent text-sm">от 6 000 ₸ / час</div>
+                            <div class="text-xs text-gray-500">Минимум 1 час</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Place 5 -->
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">За отметку</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Оранжерея Garden</h3>
+                            <div class="text-xs text-gray-500 mt-0.5">Оранжерея · Алматы</div>
+                            <div class="mt-3 font-semibold text-emerald-600 text-sm">Бесплатно</div>
+                            <div class="text-xs text-gray-500">2 Stories с отметкой</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Place 6 -->
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-purple-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">По бартеру</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Терраса Panorama</h3>
+                            <div class="text-xs text-gray-500 mt-0.5">Терраса · Алматы</div>
+                            <div class="mt-3 font-semibold text-purple-600 text-sm">Ужин за контент</div>
+                            <div class="text-xs text-gray-500">1 Reels с обзором</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SECTION: ТЕХНИКА ========== -->
+    <div id="section-tehnika" class="section-content">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <aside class="xl:col-span-3">
+                <div class="card p-5 sticky top-20">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-sm">Фильтры</h3>
+                        <button class="text-xs text-accent font-medium">Сбросить всё</button>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Условия</div>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="radio" name="cond" class="accent-accent" checked> Все</label>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="radio" name="cond" class="accent-accent"> Бесплатно</label>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="radio" name="cond" class="accent-accent"> За отметку</label>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="radio" name="cond" class="accent-accent"> По бартеру</label>
+                        <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="radio" name="cond" class="accent-accent"> Аренда</label>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Стоимость, ₸</div>
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="От" class="w-full p-2.5 border border-border rounded-lg text-sm outline-none focus:border-accent">
+                            <input type="text" placeholder="До" class="w-full p-2.5 border border-border rounded-lg text-sm outline-none focus:border-accent">
+                        </div>
+                    </div>
+                    <button class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm">Применить фильтры</button>
+                </div>
+            </aside>
+            
+            <div class="xl:col-span-9">
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
+                        <i class="fa-solid fa-location-dot text-accent"></i> Алматы
+                    </div>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">Все категории</div>
+                    <div class="flex-1 max-w-md">
+                        <div class="flex items-center bg-white border border-border rounded-full px-3 py-1.5">
+                            <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
+                            <input type="text" placeholder="Поиск по технике, бренду или описанию" class="bg-transparent border-0 outline-none text-sm ml-2 w-full">
+                        </div>
+                    </div>
+                    <button class="ml-auto px-4 py-2 rounded-full border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">
+                        + Добавить технику
+                    </button>
+                </div>
+                
+                <div class="flex gap-2 mb-5 overflow-x-auto">
+                    <span class="text-sm text-gray-500 self-center mr-1">24 позиции в Алматы</span>
+                    <button class="filter-chip active px-4 py-1.5 rounded-full text-xs font-medium border">Все</button>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Бесплатно</button>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">За отметку</button>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">По бартеру</button>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Аренда</button>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Аренда</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Sony A7 IV</h3>
+                            <div class="text-xs text-gray-500">Камера · Алматы</div>
+                            <div class="mt-2 font-semibold text-accent">от 15 000 ₸ / день</div>
+                            <div class="text-xs text-gray-500">Минимум 1 день</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Sony A7 IV', 'tech')">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1598300187884-8d545a9d0f5a?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-purple-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">По бартеру</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Aputure 300D II</h3>
+                            <div class="text-xs text-gray-500">Постоянный свет · Алматы</div>
+                            <div class="mt-2 font-semibold text-emerald-600">Бесплатно</div>
+                            <div class="text-xs text-gray-500">1 Stories с отметкой</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Aputure 300D II', 'tech')">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Аренда</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">DJI RS 3 Pro</h3>
+                            <div class="text-xs text-gray-500">Стабилизатор · Алматы</div>
+                            <div class="mt-2 font-semibold text-accent">от 10 000 ₸ / день</div>
+                            <div class="text-xs text-gray-500">Минимум 1 день</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Аренда</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">DJI Mavic 3</h3>
+                            <div class="text-xs text-gray-500">Дрон · Алматы</div>
+                            <div class="mt-2 font-semibold text-accent">от 20 000 ₸ / день</div>
+                            <div class="text-xs text-gray-500">Минимум 1 день</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1598653227534-8e4e4a2b5c5a?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">За отметку</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Rode Wireless GO II</h3>
+                            <div class="text-xs text-gray-500">Звук · Алматы</div>
+                            <div class="mt-2 font-semibold text-emerald-600">Бесплатно</div>
+                            <div class="text-xs text-gray-500">1 Reels + 3 Stories</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48 bg-gray-50">
+                            <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Аренда</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Фон и стойки (хромакей)</h3>
+                            <div class="text-xs text-gray-500">Фоны и декор · Алматы</div>
+                            <div class="mt-2 font-semibold text-accent">от 5 000 ₸ / день</div>
+                            <div class="text-xs text-gray-500">Минимум 1 день</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SECTION: РЕКВИЗИТ ========== -->
+    <div id="section-rekvizit" class="section-content">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <aside class="xl:col-span-3">
+                <div class="card p-5 sticky top-20">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-sm">Фильтры</h3>
+                        <button class="text-xs text-accent font-medium">Сбросить всё</button>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Стиль</div>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Минимализм</label>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Классика</label>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Винтаж</label>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Лофт</label>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Бохо</label>
+                        <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Другое</label>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Материал</div>
+                        <select class="w-full p-2.5 border border-border rounded-lg text-sm outline-none focus:border-accent">
+                            <option>Выберите материал</option>
+                            <option>Дерево</option>
+                            <option>Металл</option>
+                            <option>Ткань</option>
+                            <option>Пластик</option>
+                            <option>Стекло</option>
+                        </select>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Цена, ₸</div>
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="От" class="w-full p-2.5 border border-border rounded-lg text-sm">
+                            <input type="text" placeholder="До" class="w-full p-2.5 border border-border rounded-lg text-sm">
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Условия</div>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> В аренду</label>
+                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Бесплатно</label>
+                        <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> По бартеру</label>
+                    </div>
+                    <div class="mb-5">
+                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Цвет</div>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="w-6 h-6 rounded-full bg-white border-2 border-gray-300"></button>
+                            <button class="w-6 h-6 rounded-full bg-gray-400"></button>
+                            <button class="w-6 h-6 rounded-full bg-black"></button>
+                            <button class="w-6 h-6 rounded-full bg-pink-400"></button>
+                            <button class="w-6 h-6 rounded-full bg-red-500"></button>
+                            <button class="w-6 h-6 rounded-full bg-yellow-400"></button>
+                            <button class="w-6 h-6 rounded-full bg-green-500"></button>
+                            <button class="w-6 h-6 rounded-full bg-blue-500"></button>
+                            <button class="w-6 h-6 rounded-full bg-purple-500"></button>
+                            <button class="w-6 h-6 rounded-full bg-amber-700"></button>
+                        </div>
+                    </div>
+                    <button class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm">Применить фильтры</button>
+                </div>
+            </aside>
+            
+            <div class="xl:col-span-9">
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
+                        <i class="fa-solid fa-location-dot text-accent"></i> Алматы
+                    </div>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">Все категории</div>
+                    <div class="flex-1 max-w-md">
+                        <div class="flex items-center bg-white border border-border rounded-full px-3 py-1.5">
+                            <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
+                            <input type="text" placeholder="Поиск реквизита, стиля, бренда или описания" class="bg-transparent border-0 outline-none text-sm ml-2 w-full">
+                        </div>
+                    </div>
+                    <button class="ml-auto px-4 py-2 rounded-full border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">
+                        + Добавить реквизит
+                    </button>
+                </div>
+                
+                <div class="flex gap-2 mb-5 overflow-x-auto">
+                    <span class="text-sm text-gray-500 self-center mr-1">24 позиции в Алматы</span>
+                    <button class="filter-chip active px-4 py-1.5 rounded-full text-xs font-medium border">Все</button>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">В аренду</button>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Бесплатно</button>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">По бартеру</button>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">В аренду</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Стул Eames</h3>
+                            <div class="text-xs text-gray-500">Мебель · Алматы</div>
+                            <div class="mt-2 font-semibold text-accent">от 5 000 ₸ / день</div>
+                            <div class="text-xs text-gray-500">Минимум 1 день</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Стул Eames', 'prop')">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">В аренду</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Неоновая вывеска «Good Vibes»</h3>
+                            <div class="text-xs text-gray-500">Декор · Алматы</div>
+                            <div class="mt-2 font-semibold text-accent">от 7 000 ₸ / день</div>
+                            <div class="text-xs text-gray-500">Минимум 1 день</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-purple-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">По бартеру</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Зеркало в полный рост</h3>
+                            <div class="text-xs text-gray-500">Интерьерный реквизит · Алматы</div>
+                            <div class="mt-2 font-semibold text-purple-600">По бартеру</div>
+                            <div class="text-xs text-gray-500">Рассмотрю ваши предложения</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1485955900006-10f4d324a981?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Бесплатно</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Ваза с сухоцветами</h3>
+                            <div class="text-xs text-gray-500">Декор · Алматы</div>
+                            <div class="mt-2 font-semibold text-emerald-600">Бесплатно</div>
+                            <div class="text-xs text-gray-500">1 неделя с отметкой</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">В аренду</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Ретро телефон</h3>
+                            <div class="text-xs text-gray-500">Декор · Алматы</div>
+                            <div class="mt-2 font-semibold text-accent">от 3 000 ₸ / день</div>
+                            <div class="text-xs text-gray-500">Минимум 1 день</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
+                        </div>
+                    </div>
+                    
+                    <div class="card overflow-hidden group">
+                        <div class="relative h-48">
+                            <img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
+                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">В аренду</span>
+                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-base">Одежная стойка</h3>
+                            <div class="text-xs text-gray-500">Мебель · Алматы</div>
+                            <div class="mt-2 font-semibold text-accent">от 4 000 ₸ / день</div>
+                            <div class="text-xs text-gray-500">Минимум 1 день</div>
+                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-[#9C1C4F]/10 pt-16 pb-24 bg-[#F8F7F5]">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="text-3xl font-black tracking-[-2px] mb-6">
+                    CREATORS<span class="text-[var(--accent)]">.</span>KZ
+                </div>
+                <p class="text-[#666] text-sm max-w-sm leading-relaxed">
+                    Группа компаний AYACOM. ТОО «KAF». <br/> БИН: 221240005124. <br/> Официальная платформа для инфлюенс-маркетинга в Казахстане и России.
+                </p>
+                <div class="flex space-x-4 mt-8">
+                    <a href="#" class="w-12 h-12 rounded-3xl bg-white shadow flex items-center justify-center text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-2xl transition"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#" class="w-12 h-12 rounded-3xl bg-white shadow flex items-center justify-center text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-2xl transition"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Навигация</h4>
+                <ul class="space-y-3 text-sm text-[#666]">
+                    <li><a href="index.html" class="hover:text-[var(--accent)]">Главная</a></li>
+                    <li><a href="catalog.html" class="hover:text-[var(--accent)]">Каталог блогеров</a></li>
+                    <li><a href="barter.html" class="hover:text-[var(--accent)]">Бартерная биржа</a></li>
+                    <li><a href="#" class="text-[var(--accent)]">Creator Hub</a></li>
+                    <li><a href="o-nas.html" class="hover:text-[var(--accent)]">О нас</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-[#1A1A1A] uppercase text-sm">Контакты</h4>
+                <ul class="space-y-3 text-sm text-[#666]">
+                    <li><a href="tel:+77715551234" class="hover:text-[var(--accent)]">+7 (717) 555-12-34</a></li>
+                    <li><a href="mailto:info@creators.kz" class="hover:text-[var(--accent)]">info@creators.kz</a></li>
+                    <li><a href="kontakty.html" class="hover:text-[var(--accent)]">Астана, ул. Мангилик Ел, 22</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-xs text-[#999] border-t border-[#9C1C4F]/10 pt-8">
+            © 2026 Creators.kz — Все права защищены
+        </div>
+    </div>
+</footer>
+
+<!-- ========== BOTTOM FLOATING BAR ========== -->
+<div id="bottom-bar" class="bottom-bar fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#9C1C4F]/10 shadow-2xl">
+    <div class="max-w-[1440px] mx-auto px-4 py-3 flex items-center gap-4">
+        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200" onclick="toggleBottomBar()">
+            <i class="fa-solid fa-chevron-up text-xs"></i>
+        </button>
+        <div class="flex -space-x-2">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=40&h=40&fit=crop" class="w-9 h-9 rounded-full border-2 border-white object-cover" alt="">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=40&h=40&fit=crop" class="w-9 h-9 rounded-full border-2 border-white object-cover" alt="">
+            <div class="w-9 h-9 rounded-full border-2 border-white bg-gray-800 text-white text-xs font-bold flex items-center justify-center">+2</div>
+        </div>
+        <div class="flex-1 min-w-0">
+            <div class="font-semibold text-sm">Подборка · <span id="plan-count">4</span> позиции</div>
+            <div class="text-xs text-gray-500">События, места, техника и др.</div>
+        </div>
+        <button onclick="openContentPlan()" class="px-5 py-2.5 rounded-full bg-accent text-white text-sm font-semibold hover:bg-accent-hover transition flex items-center gap-2">
+            Открыть подборку →
+        </button>
+    </div>
+</div>
+
+<!-- ========== CONTENT PLAN SIDEBAR ========== -->
+<div id="content-plan" class="sidebar-panel closed fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 flex flex-col">
+    <div class="p-5 border-b border-border flex items-center justify-between">
+        <div>
+            <h2 class="font-bold text-lg">Мой контент-план <span class="text-accent" id="plan-count-side">4</span></h2>
+            <p class="text-xs text-gray-500 mt-0.5">Ваши выбранные события, локации, техника и реквизит для съёмок. Здесь можно отредактировать состав и отправить заявки.</p>
+        </div>
+        <button onclick="closeContentPlan()" class="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center">
+            <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+    </div>
+    
+    <div class="flex-1 overflow-y-auto p-5 space-y-3" id="plan-items">
+        <div class="flex gap-3 p-3 rounded-xl border border-border hover:border-accent/30 transition group">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=80&h=80&fit=crop" class="w-14 h-14 rounded-lg object-cover flex-shrink-0" alt="">
+            <div class="flex-1 min-w-0">
+                <div class="font-semibold text-sm">Almaty Coffee Festival</div>
+                <div class="flex gap-1.5 mt-1">
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-pink-100 text-pink-700">Событие</span>
+                </div>
+                <div class="text-xs text-gray-500 mt-1">20 сен, 10:00 – 20:00 · Almaty Arena</div>
+            </div>
+            <button class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition" onclick="this.closest('.flex').remove(); updatePlanCount()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        
+        <div class="flex gap-3 p-3 rounded-xl border border-border hover:border-accent/30 transition group">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=80&h=80&fit=crop" class="w-14 h-14 rounded-lg object-cover flex-shrink-0" alt="">
+            <div class="flex-1 min-w-0">
+                <div class="font-semibold text-sm">Дворец Спорта</div>
+                <div class="flex gap-1.5 mt-1">
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">Локация</span>
+                </div>
+                <div class="text-xs text-gray-500 mt-1">Алматы, пр. Абая 44 · Основная локация</div>
+            </div>
+            <button class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition" onclick="this.closest('.flex').remove(); updatePlanCount()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        
+        <div class="flex gap-3 p-3 rounded-xl border border-border hover:border-accent/30 transition group">
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=80&h=80&fit=crop" class="w-14 h-14 rounded-lg object-cover flex-shrink-0" alt="">
+            <div class="flex-1 min-w-0">
+                <div class="font-semibold text-sm">Sony A7 IV</div>
+                <div class="flex gap-1.5 mt-1">
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">Техника</span>
+                </div>
+                <div class="text-xs text-gray-500 mt-1">Камера · 1 день аренды</div>
+            </div>
+            <button class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition" onclick="this.closest('.flex').remove(); updatePlanCount()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        
+        <div class="flex gap-3 p-3 rounded-xl border border-border hover:border-accent/30 transition group">
+            <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=80&h=80&fit=crop" class="w-14 h-14 rounded-lg object-cover flex-shrink-0" alt="">
+            <div class="flex-1 min-w-0">
+                <div class="font-semibold text-sm">Кольцевая лампа</div>
+                <div class="flex gap-1.5 mt-1">
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">Реквизит</span>
+                </div>
+                <div class="text-xs text-gray-500 mt-1">LED, 18" · Для портретной съёмки</div>
+            </div>
+            <button class="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition" onclick="this.closest('.flex').remove(); updatePlanCount()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        
+        <button class="w-full py-3 rounded-xl border-2 border-dashed border-gray-200 text-sm text-gray-500 font-medium hover:border-accent hover:text-accent transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-plus"></i> Добавить ещё позиции
+        </button>
+    </div>
+    
+    <div class="p-5 border-t border-border space-y-3">
+        <div class="flex items-center gap-2 text-sm text-emerald-600 font-medium">
+            <i class="fa-solid fa-circle-check"></i>
+            <span id="plan-ready">4 позиции в подборке · Готовы отправить заявки поставщикам</span>
+        </div>
+        <button class="w-full py-3.5 rounded-xl bg-accent text-white font-bold text-sm hover:bg-accent-hover transition">
+            Отправить заявки →
+        </button>
+        <button class="w-full py-3 rounded-xl border border-border text-sm font-medium hover:bg-gray-50 transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-share-nodes"></i> Поделиться подборкой
+        </button>
+        <p class="text-center text-xs text-gray-400">
+            <i class="fa-regular fa-bookmark mr-1"></i> Сохранится в вашем профиле
+        </p>
+    </div>
+</div>
+
+<!-- Overlay for sidebar -->
+<div id="overlay" class="fixed inset-0 bg-black/30 z-40 hidden" onclick="closeContentPlan()"></div>
+
+<script>
+    const sections = {
+        afisha: {
+            title: 'Афиша',
+            subtitle: 'Концерты, фестивали, выставки и другие события для создания контента'
+        },
+        mesta: {
+            title: 'Места',
+            subtitle: 'Кафе, студии, отели и другие локации для создания контента'
+        },
+        tehnika: {
+            title: 'Техника',
+            subtitle: 'Камеры, свет, звук и другое оборудование для создания контента'
+        },
+        rekvizit: {
+            title: 'Реквизит',
+            subtitle: 'Предметы и декор для съёмок и контента'
+        },
+        kalendar: {
+            title: 'Контент-календарь',
+            subtitle: 'Главные инфоповоды, события и даты для съёмок и публикаций'
+        }
+    };
+
+    // Creator Hub mega-menu
+    function toggleHubMenu(e) {
+        if (e) e.stopPropagation();
+        document.getElementById('hub-menu').classList.toggle('hidden');
+        document.getElementById('hub-chevron').classList.toggle('rotate-180');
+    }
+    function closeHubMenu() {
+        document.getElementById('hub-menu').classList.add('hidden');
+        document.getElementById('hub-chevron').classList.remove('rotate-180');
+    }
+    document.addEventListener('click', function(e) {
+        const menu = document.getElementById('hub-menu');
+        const trigger = document.getElementById('hub-trigger');
+        if (menu && !menu.classList.contains('hidden') && !menu.contains(e.target) && !trigger.contains(e.target)) {
+            closeHubMenu();
+        }
+    });
+
+    // Role toggle (Блогер / Заказчик) — visual switch, consistent with rest of the site
+    function switchRole(role) {
+        document.querySelectorAll('.role-toggle button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.role-toggle button').forEach(btn => {
+            if (btn.getAttribute('onclick') === `switchRole('${role}')`) btn.classList.add('active');
+        });
+        if (role === 'blogger') {
+            window.location.href = 'catalog.html';
+        }
+    }
+
+    function switchSection(id) {
+        // Hide all
+        document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+            btn.classList.add('bg-white', 'border', 'border-border', 'text-gray-700');
+        });
+        
+        // Show selected
+        const section = document.getElementById('section-' + id);
+        if (section) section.classList.add('active');
+        
+        const btn = document.querySelector(`[data-section="${id}"]`);
+        if (btn) {
+            btn.classList.add('active');
+            btn.classList.remove('bg-white', 'border', 'border-border', 'text-gray-700');
+        }
+        
+        // Update title
+        if (sections[id]) {
+            document.getElementById('page-title').textContent = sections[id].title;
+            document.getElementById('page-subtitle').textContent = sections[id].subtitle;
+            document.getElementById('crumb-section').textContent = sections[id].title;
+        }
+        
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openContentPlan() {
+        document.getElementById('content-plan').classList.remove('closed');
+        document.getElementById('overlay').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeContentPlan() {
+        document.getElementById('content-plan').classList.add('closed');
+        document.getElementById('overlay').classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    function addToPlan(name, type) {
+        // Demo: just open the plan
+        openContentPlan();
+        // In real app would add item to list
+    }
+
+    function updatePlanCount() {
+        const count = document.querySelectorAll('#plan-items > .flex').length;
+        document.getElementById('plan-count').textContent = count;
+        document.getElementById('plan-count-side').textContent = count;
+        document.getElementById('plan-ready').textContent = count + ' позиции в подборке · Готовы отправить заявки поставщикам';
+    }
+
+    function toggleBottomBar() {
+        // Could collapse further if needed
+    }
+
+    function closeMobile() {
+        document.getElementById('mobile-menu').classList.add('hidden');
+    }
+
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Filter chips toggle
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+        chip.addEventListener('click', function() {
+            // For demo - toggle active on some groups
+            if (this.parentElement.classList.contains('flex') || this.parentElement.classList.contains('overflow-x-auto')) {
+                this.parentElement.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+            } else {
+                this.classList.toggle('active');
+            }
+        });
+    });
+
+    // Init with calendar
+    switchSection('kalendar');
+</script>
+</body>
+</html>

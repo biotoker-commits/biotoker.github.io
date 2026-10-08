@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Сервисы | Creators.kz</title>
+<meta name="description" content="Сервисы Creators.kz: рандомайзер, оценка аккаунта, проверка на ботов и ИИ-автопостинг новостей для бизнеса.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#9C1C4F;--accent-rgb:156,28,79;--neon:#FF2E93}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:150px}
+body{margin:0;background:#F8F7F5;color:#1A1A1A;font-family:'Montserrat',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}ul{margin:0;padding:0;list-style:none}button{font-family:inherit}
+.wrap{max-width:80rem;margin:0 auto;padding:0 1rem}
+/* NAV (как на сайте) */
+.top{position:fixed;top:0;left:0;right:0;z-index:50;padding:calc(1rem + env(safe-area-inset-top,0px)) 0 1rem;background:rgba(248,247,245,.96);backdrop-filter:blur(24px);box-shadow:0 4px 20px -4px rgba(var(--accent-rgb),.15);border-bottom:1px solid rgba(var(--accent-rgb),.08)}
+.bar{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.5rem;font-weight:900;letter-spacing:-2px;line-height:2rem}.logo span{color:var(--accent)}
+.links{display:none;gap:2rem;font-size:.875rem;font-weight:600;letter-spacing:.025em;color:#1f2937}
+.links a:hover,.links a.on{color:var(--accent)}.links a.on{font-weight:700}
+.role-toggle{display:none;margin-left:2rem;background:#F1F1F1;border-radius:9999px;padding:4px;box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
+.role-toggle button{flex:1;padding:8px 20px;border:0;background:none;border-radius:9999px;font:600 13px 'Montserrat',sans-serif;cursor:pointer;transition:all .3s}
+.role-toggle button.active{background:var(--accent);color:#fff;box-shadow:0 4px 12px -4px var(--accent)}
+.right{display:flex;align-items:center;gap:.75rem}
+.login{display:none;font-size:.875rem;font-weight:600;padding:.625rem 1.25rem;border-radius:1.5rem;border:1px solid rgba(var(--accent-rgb),.2);transition:all .3s}
+.login:hover{border-color:var(--accent);color:var(--accent)}
+.burger{background:none;border:0;color:#1f2937;cursor:pointer;padding:0}
+#mobile-menu{position:fixed;inset:0;z-index:40;background:#F8F7F5;padding:5rem 1.5rem 1.5rem;transform:translateY(-100%);transition:transform .4s cubic-bezier(.32,.72,0,1)}
+#mobile-menu.active{transform:none}
+#mobile-menu a{display:block;font-size:1.125rem;font-weight:600;color:#1f2937;padding:.5rem 0}#mobile-menu a.on{color:var(--accent)}
+#mobile-menu .role-toggle{display:flex;width:fit-content;margin:0 auto 1.5rem}
+#mobile-menu hr{border:0;border-top:1px solid #e5e7eb;margin:1rem 0}
+@media(min-width:768px){.login{display:flex}}
+@media(min-width:1024px){.links,.role-toggle{display:flex}.burger{display:none}}
+/* HERO */
+.hero{padding:7.5rem 0 1.5rem;text-align:center;background:linear-gradient(135deg,#F8F7F5,#fff,#F8F7F5)}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.8);padding:.5rem 1.5rem;border-radius:1.5rem;border:1px solid rgba(var(--accent-rgb),.1);margin-bottom:1.5rem;color:var(--accent);font-size:.875rem;font-weight:700;letter-spacing:.1em}
+h1{margin:0 0 1rem;font-size:clamp(2.5rem,7vw,4.5rem);font-weight:900;letter-spacing:-3px;line-height:1}h1 em{font-style:normal;color:var(--accent)}
+.hero p{max-width:38rem;margin:0 auto;color:#4b5563}
+.stats{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem}
+/* TABS */
+.tabs{position:sticky;top:calc(65px + env(safe-area-inset-top,0px));z-index:30;display:flex;gap:.5rem;overflow-x:auto;padding:.75rem 0;background:rgba(248,247,245,.92);backdrop-filter:blur(12px)}
+.tab{white-space:nowrap;padding:.65rem 1.25rem;border-radius:1.5rem;background:#fff;border:1px solid rgba(var(--accent-rgb),.2);font-size:.8125rem;font-weight:600;transition:all .3s;display:inline-flex;gap:.5rem;align-items:center;cursor:pointer}
+.tab:hover{border-color:var(--accent);color:var(--accent)}
+.tab.on{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 8px 25px -6px var(--accent)}
+.tab small{font-size:.625rem;font-weight:800;letter-spacing:.05em;padding:2px 8px;border-radius:99px;background:rgba(var(--accent-rgb),.1);color:var(--accent)}.tab.on small{background:rgba(255,255,255,.25);color:#fff}
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:2rem;padding:1.25rem 0 5rem}
+.card-panel{background:#fff;border:1px solid rgba(var(--accent-rgb),.08);border-radius:24px;box-shadow:0 12px 30px -12px rgba(var(--accent-rgb),.12)}
+.toc{display:none;position:sticky;top:150px;align-self:start;padding:1.5rem}
+.toc h4{margin:1.25rem 0 .5rem;font-size:.75rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}.toc h4:first-child{margin-top:0}
+.toc button{display:flex;justify-content:space-between;gap:.5rem;width:100%;text-align:left;border:0;background:none;padding:.45rem .6rem;border-radius:12px;font-size:.8125rem;font-weight:500;color:#666;cursor:pointer}
+.toc button:hover{color:var(--accent)}.toc button.on{background:rgba(var(--accent-rgb),.08);color:var(--accent);font-weight:700}
+.toc small{font-size:.625rem;font-weight:700;color:#999}
+@media(min-width:1024px){.layout{grid-template-columns:280px minmax(0,1fr);gap:2.5rem}.toc{display:block}}
+.doc{padding:1.75rem}@media(min-width:768px){.doc{padding:3rem}}
+.kicker{display:inline-flex;align-items:center;gap:.75rem;margin-bottom:1rem}.kicker i{display:block;height:2px;width:1.5rem;background:var(--accent)}
+.kicker b{font-size:.75rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.doc h2{margin:0 0 1.25rem;font-size:clamp(1.5rem,3.2vw,2.25rem);font-weight:900;letter-spacing:-.02em;line-height:1.15}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.chip{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .9rem;border-radius:999px;background:#F8F7F5;border:1px solid rgba(var(--accent-rgb),.08);font-size:.75rem;font-weight:600;color:#666}
+.chip b{color:#1A1A1A;font-weight:700}.chip.ok{background:rgba(var(--accent-rgb),.08);border-color:rgba(var(--accent-rgb),.2);color:var(--accent)}.chip.ok b{color:var(--accent)}
+.btn-accent,.btn-line{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:1.5rem;font:600 .875rem 'Montserrat',sans-serif;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.btn-accent{border:0;background:var(--accent);color:#fff;box-shadow:0 8px 25px -6px var(--accent)}.btn-accent:hover{transform:translateY(-2px)}.btn-accent:disabled{opacity:.7;transform:none}
+.btn-line{background:none;color:#1A1A1A;border:1px solid rgba(var(--accent-rgb),.2)}.btn-line:hover{border-color:var(--accent);color:var(--accent)}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:2rem}
+.split{display:grid;gap:2rem;align-items:start}@media(min-width:900px){.split{grid-template-columns:1fr 1fr}}
+.lead{color:#4b5563;margin:0 0 1.25rem}
+.feat li{position:relative;padding:.75rem 1rem .75rem 3rem;margin-bottom:.5rem;background:#F8F7F5;border-radius:16px;font-size:.875rem;font-weight:500}
+.feat li:before{content:"✓";position:absolute;left:.9rem;top:.7rem;width:1.5rem;height:1.5rem;border-radius:50%;background:rgba(var(--accent-rgb),.1);color:var(--accent);font-weight:900;font-size:.75rem;display:flex;align-items:center;justify-content:center}
+/* DARK PANELS (как на главной) */
+.dark{background:#15151C;border:1px solid rgba(255,255,255,.1);border-radius:2.5rem;padding:1.5rem;color:#fff;box-shadow:0 25px 50px -12px rgba(0,0,0,.35)}
+@media(min-width:768px){.dark{padding:2rem}}
+.dark .m{color:#9ca3af}.dark .n{color:var(--neon)}
+.inp{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:.75rem 1rem;color:#fff;font:500 .875rem 'Montserrat',sans-serif}.inp:focus{outline:0;border-color:var(--neon)}
+.bt-n{border:0;background:var(--accent);color:#fff;font:700 .875rem 'Montserrat',sans-serif;border-radius:1.5rem;padding:.8rem 1.5rem;cursor:pointer;width:100%;margin-top:1rem;box-shadow:0 8px 25px -6px var(--neon)}
+.bar2{height:10px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}.bar2 i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--neon))}
+.res{margin-top:1rem;border-radius:16px;background:rgba(255,255,255,.05);padding:1rem;text-align:center;font-size:.875rem;min-height:64px;display:flex;align-items:center;justify-content:center}
+.mini{background:rgba(255,255,255,.05);border-radius:16px;padding:1rem;margin-top:.75rem;font-size:.8125rem}
+/* PRICING */
+.sec-t{text-align:center;margin:3.5rem 0 1.5rem}.sec-t p{margin:0;font-size:.6875rem;letter-spacing:.25em;color:rgba(255,255,255,.5)}.sec-t h3{margin:.25rem 0 0;font-size:clamp(1.5rem,3.5vw,2.25rem);font-weight:900;color:#fff}
+.plans{display:grid;gap:1rem}@media(min-width:900px){.plans{grid-template-columns:repeat(3,1fr)}}
+.plan{display:flex;flex-direction:column;position:relative;border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:1.5rem;background:rgba(255,255,255,.04)}
+.plan.pop{background:#fff;color:#1A1A1A;border:2px solid var(--neon);box-shadow:0 0 40px rgba(255,46,147,.35)}.plan.pop .m{color:#6b7280}
+.plan h4{margin:0;font-size:1.25rem;font-weight:900}.plan .pr{font-size:1.875rem;font-weight:900;margin-top:1rem}.plan .pr small{font-size:.8rem;font-weight:500}
+.plan .vol{margin:1rem 0;padding:.7rem;border-radius:14px;background:rgba(255,255,255,.08);text-align:center;font-size:.875rem}.plan.pop .vol{background:rgba(var(--accent-rgb),.08)}
+.plan li{font-size:.8125rem;margin:.4rem 0;padding-left:1.4rem;position:relative}.plan li:before{content:"✓";position:absolute;left:0;color:var(--neon);font-weight:900}.plan.pop li:before{color:var(--accent)}
+.plan ul{flex:1}.plan .btn-line,.plan .btn-accent{justify-content:center;margin-top:1rem}.plan:not(.pop) .btn-line{color:#fff;border-color:rgba(255,255,255,.3)}
+.tag{position:absolute;top:-12px;right:1.25rem;background:var(--accent);color:#fff;font-size:.6875rem;font-weight:800;padding:.2rem .8rem;border-radius:99px}
+.note{text-align:center;font-size:.75rem;margin-top:1.25rem}
+.calc{display:grid;gap:2rem;padding:1.75rem;margin-top:1.5rem}@media(min-width:900px){.calc{grid-template-columns:1.5fr 1fr;padding:2.5rem}}
+.calc h3{margin:0;font-size:1.5rem;font-weight:900}.row{display:flex;justify-content:space-between;margin-top:1.5rem;font-weight:700}.row b:last-child{color:var(--accent)}
+input[type=range]{width:100%;accent-color:var(--accent);margin-top:.5rem}
+.seg{display:flex;gap:.5rem;margin-top:.75rem}.seg button{padding:.5rem 1rem;border-radius:99px;border:1px solid rgba(var(--accent-rgb),.2);background:#fff;font-size:.8rem;font-weight:600;cursor:pointer}.seg button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.sum{background:rgba(var(--accent-rgb),.06);border-radius:20px;padding:1.5rem;display:flex;flex-direction:column}
+.sum div.l{display:flex;justify-content:space-between;font-size:.875rem;margin-top:.5rem}.sum div.l span{color:#6b7280}
+.sum .big{font-size:2.25rem;font-weight:900;margin-top:1rem}
+/* FOOTER */
+footer{border-top:1px solid rgba(var(--accent-rgb),.1);padding:4rem 0 calc(2rem + env(safe-area-inset-bottom,0px))}
+.fgrid{display:grid;gap:2rem;margin-bottom:2rem;font-size:.875rem;color:#666}@media(min-width:768px){.fgrid{grid-template-columns:2fr 1fr 1fr}}
+.fgrid h4{margin:0 0 1rem;font-size:.875rem;text-transform:uppercase;color:#1A1A1A}.fgrid li{margin-bottom:.6rem}.fgrid a:hover{color:var(--accent)}.fgrid .logo{font-size:1.875rem;margin-bottom:1rem}
+.copy{border-top:1px solid rgba(var(--accent-rgb),.1);padding-top:1.5rem;font-size:.75rem;color:#999;text-align:center}
+.tool{display:grid;gap:1.5rem;margin-top:1rem}@media(min-width:900px){.tool{grid-template-columns:1fr 1fr}}
+.tin{background:#F8F7F5;border-radius:24px;padding:1.5rem;border:1px solid rgba(var(--accent-rgb),.08)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:0 .75rem}@media(max-width:520px){.g2{grid-template-columns:1fr}}
+.fl{display:block;margin-bottom:.75rem}.fl span{display:block;font-size:.75rem;font-weight:700;margin-bottom:.3rem}.fl small{display:block;font-size:.68rem;color:#888;margin-top:.2rem}
+.fl input,.fl textarea,.fl select{width:100%;background:#fff;border:1px solid rgba(var(--accent-rgb),.2);border-radius:14px;padding:.7rem .9rem;font:500 .875rem 'Montserrat',sans-serif;color:#1A1A1A}
+.fl input:focus,.fl textarea:focus,.fl select:focus{outline:0;border-color:var(--accent)}
+.ck{display:flex;gap:.5rem;align-items:center;font-size:.8rem;margin:.25rem 0}.ck input{accent-color:var(--accent)}
+.disc{font-size:.75rem;color:#888;margin:1rem 0 0}
+.feat.two{margin-top:1.5rem;display:grid;gap:.5rem}@media(min-width:768px){.feat.two{grid-template-columns:1fr 1fr}}.feat.two li{margin:0}
+.rk{font-size:.8125rem;margin-top:.5rem;color:#d1d5db}
+.win{display:flex;gap:.75rem;align-items:center;padding:.6rem .9rem;border-radius:14px;background:rgba(255,255,255,.06);margin-top:.5rem;font-weight:700}
+.pre{font:500 .7rem/1.5 monospace;background:rgba(255,255,255,.05);border-radius:12px;padding:.8rem;color:#9ca3af;white-space:pre-wrap;margin-top:1rem}
+.lead-f{padding:1.75rem;margin-top:1.5rem}@media(min-width:768px){.lead-f{padding:2.5rem}}.lead-f h3{margin:0 0 .5rem;font-size:1.5rem;font-weight:900}.lead-f form{max-width:40rem}
+.okmsg{text-align:center;padding:2rem 0}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}.fade{animation:up .35s ease}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap bar">
+<a href="/" class="logo">CREATORS<span>.</span>KZ</a>
+<div class="role-toggle"><button type="button" data-role="blogger" onclick="switchRole('blogger')">Блогер</button><button type="button" data-role="customer" onclick="switchRole('customer')" class="active">Заказчик</button></div>
+<div class="links"><a href="/">ГЛАВНАЯ</a><a href="/services" class="on">СЕРВИСЫ</a><a href="/work">КАК РАБОТАЕТ</a><a href="/bloggers">КАТАЛОГ</a><a href="/about">О НАС</a><a href="/contacts">КОНТАКТЫ</a></div>
+<div class="right"><a href="/#register" class="login">Вход / Регистрация</a>
+<button class="burger" id="burger" type="button" aria-label="Меню"><span id="i-open"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span id="i-close" hidden><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span></button></div>
+</div></nav>
+<div id="mobile-menu"><div class="role-toggle"><button type="button" data-role="blogger" onclick="switchRole('blogger')">Блогер</button><button type="button" data-role="customer" onclick="switchRole('customer')" class="active">Заказчик</button></div><a href="/">ГЛАВНАЯ</a><a href="/services" class="on">СЕРВИСЫ</a><a href="/work">КАК РАБОТАЕТ</a><a href="/bloggers">КАТАЛОГ</a><a href="/about">О НАС</a><a href="/contacts">КОНТАКТЫ</a><hr><a href="/#register">Вход / Регистрация</a></div>
+
+<header class="hero"><div class="wrap">
+<div class="badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg> ЭКОСИСТЕМА CREATORS.KZ</div>
+<h1>СЕРВИСЫ <em>ПЛАТФОРМЫ</em></h1>
+<p>Инструменты для блогеров и бизнеса в одном кабинете. Мы регулярно запускаем новые сервисы, и у каждого своя вкладка.</p>
+<div class="stats" id="stats"></div>
+</div></header>
+
+<main class="wrap">
+<nav class="tabs" id="tabs" aria-label="Сервисы"></nav>
+<div class="layout">
+<aside class="toc card-panel" id="toc"></aside>
+<div id="view"></div>
+</div>
+</main>
+
+<footer><div class="wrap">
+<div class="fgrid">
+<div><div class="logo">CREATORS<span>.</span>KZ</div><p>Группа компаний AYACOM. ТОО «KAF».<br>БИН: 221240005124.<br>Официальная платформа для инфлюенс-маркетинга в Казахстане и России.</p></div>
+<div><h4>Навигация</h4><ul><li><a href="/services">Сервисы</a></li><li><a href="/work">Как это работает</a></li><li><a href="/bloggers">Каталог креаторов</a></li><li><a href="/about">О нас</a></li></ul></div>
+<div><h4>Контакты</h4><ul><li><a href="tel:+77071771199">+7 707 177 11 99</a></li><li><a href="mailto:info@creators.kz">info@creators.kz</a></li><li>Атырау, ул. Академик Бинеш Жарбосынов, 5</li></ul></div>
+</div>
+<div class="copy">© 2026 Creators.kz — Все права защищены</div>
+</div></footer>
+
+<script>
+/* Адрес вашего обработчика заявок (POST, JSON). Пока пусто, заявка уходит письмом на info@creators.kz */
+var LEAD_URL='';
+/* Цены заданы в рублях (РУ-сайт). Для КЗ-сайта они умножаются на 6 и показываются в тенге.
+   SITE: 'kz' — тенге, 'ru' — рубли */
+var SITE='kz',K=SITE==='kz'?6:1,CUR=SITE==='kz'?'₸':'₽';
+function fm(x){return Math.round(x*K).toLocaleString('ru-RU')+' '+CUR}
+var PK=[['Старт',590],['Регулярный',2900],['Медиа',13500]];
+/* ===== РЕЕСТР СЕРВИСОВ =====
+   Новый сервис = один объект. aud: 'blogger' (tool: ключ из TOOLS, работает на сайте) | 'customer' (заявка и прайс)
+   status: 'live' | 'soon' */
+var S=[
+{id:'news',aud:'customer',name:'ИИ-автопостинг новостей',status:'live',chip:['Настройка','бесплатно'],
+ desc:'ИИ находит материалы по вашим темам, готовит новости и публикует их на сайт или в соцсеть по расписанию. Вы платите только за месячную подписку.',
+ feats:['Категории и источники под ваш бизнес','Публикация в выбранное время','Ссылки на источники и проверка дублей','Режим согласования перед публикацией']},
+{id:'match',aud:'customer',name:'ИИ-подбор блогеров',status:'soon',desc:'Опишите продукт и бюджет, а ИИ предложит подходящих креаторов с прогнозом охвата и стоимости.',feats:['Подбор по нише, гео и аудитории','Прогноз охвата и цены','Список для рекламы или бартера']},
+{id:'plan',aud:'customer',name:'ИИ-контент-план',status:'soon',desc:'Автоматический контент-план для бренда: темы, форматы и сроки публикаций.',feats:['План на неделю или месяц','Идеи под ваш стиль','Экспорт в календарь']},
+{id:'stat',aud:'customer',name:'Аналитика кампаний',status:'soon',desc:'Единый отчёт по рекламным интеграциям: охваты, переходы и стоимость результата.',feats:['Сводка по всем блогерам','Сравнение интеграций','Отчёт для руководства']},
+{id:'rand',aud:'blogger',name:'Рандомайзер',status:'live',tool:'rand',
+ desc:'Честный розыгрыш по комментариям с гибкими настройками. Работает прямо на этой странице, результат оформляется протоколом, который можно показать подписчикам.',
+ feats:['Вес участника: «@ник*3» даёт 3 шанса','Фильтр по слову или #хэштегу','Исключение организаторов и дублей','Запасные победители и протокол с номером']},
+{id:'score',aud:'blogger',name:'Оценка аккаунта',status:'live',tool:'score',
+ desc:'Введите средние показатели из статистики аккаунта и получите балл от 0 до 100, сравнение с нормой для вашего размера и советы по росту.',
+ feats:['Балл по пяти метрикам','Сравнение с нормой для вашего размера','Советы по слабым местам','Калькулятор рекламы по вашей ставке']},
+{id:'bots',aud:'blogger',name:'Процент ботов',status:'live',tool:'bots',
+ desc:'Оценка доли накрученных подписчиков по косвенным признакам: вовлечённости, охватам, скачкам роста и соотношению подписок.',
+ feats:['Оценка доли подозрительных подписчиков','Разбор найденных сигналов накрутки','Уровень риска: низкий, средний, высокий','Подсказки, что проверить дальше']}
+];
+var AUD={blogger:'Блогерам',customer:'Бизнесу'},role='customer',cur='news',tm;
+function $(q){return document.querySelector(q)}
+function esc(t){return String(t).replace(/[<>&"]/g,'')}
+function find(id){return S.filter(function(s){return s.id===id})[0]}
+function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
+function N(id){return parseFloat(String($('#'+id).value).replace(',','.'))||0}
+function go(id){var e=$('#'+id);if(e)e.scrollIntoView({behavior:'smooth'})}
+function theme(r){var s=document.documentElement.style;
+ s.setProperty('--accent',r==='blogger'?'#EF233C':'#9C1C4F');s.setProperty('--accent-rgb',r==='blogger'?'239,35,60':'156,28,79');s.setProperty('--neon',r==='blogger'?'#FF5A6E':'#FF2E93');
+ [].forEach.call(document.querySelectorAll('.role-toggle button'),function(b){b.classList.toggle('active',b.dataset.role===r)})}
+function switchRole(r){role=r;theme(r);if(find(cur).aud!==r)cur=S.filter(function(s){return s.aud===r})[0].id;history.replaceState(null,'','#'+cur);render()}
+function pick(id){var s=find(id);role=s.aud;cur=id;theme(role);history.replaceState(null,'','#'+id);render()}
+function ph(t){return '<div class="res m" style="min-height:260px">'+t+'</div>'}
+function fld(id,l,v,h){return '<label class="fl"><span>'+l+'</span><input id="'+id+'" type="number" min="0" step="any" value="'+v+'" inputmode="decimal">'+(h?'<small>'+h+'</small>':'')+'</label>'}
+var TIERS=[[1e4,'Нано',6],[5e4,'Микро',4],[1e5,'Средний',2.8],[5e5,'Крупный',1.9],[1e13,'Топ',1.3]];
+function tier(f){for(var i=0;i<TIERS.length;i++)if(f<TIERS[i][0])return TIERS[i]}
+function ring(v){return '<svg width="120" height="120" viewBox="0 0 130 130"><circle cx="65" cy="65" r="54" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="12"/><circle cx="65" cy="65" r="54" fill="none" stroke="var(--neon)" stroke-width="12" stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="'+(339.3*(1-v/100)).toFixed(1)+'" transform="rotate(-90 65 65)"/><text x="65" y="75" text-anchor="middle" fill="#fff" font-size="32" font-weight="900">'+Math.round(v)+'</text></svg>'}
+var COMMON=function(){return '<div class="g2">'+fld('f','Подписчики','25000')+fld('l','Лайков на пост (средн.)','900')+fld('c','Комментариев (средн.)','40')+fld('v','Просмотров Reels / сторис','8000')+'</div>'};
+
+/* ===== РАБОЧИЕ ИНСТРУМЕНТЫ БЛОГЕРОВ ===== */
+var TOOLS={
+rand:{note:'Выбор происходит в вашем браузере через криптографический генератор случайных чисел. Список участников никуда не отправляется.',
+ form:function(){return '<label class="fl"><span>Участники (по одному в строке)</span><textarea id="rl" rows="7" placeholder="@aigerim хочу! #розыгрыш&#10;@dana_k&#10;@marat.ok*3"></textarea><small>Вставьте комментарии целиком. Участником считается первое слово в строке.</small></label><div class="g2"><label class="fl"><span>Должно содержать</span><input id="rf" placeholder="#розыгрыш или слово"></label><label class="fl"><span>Исключить (через запятую)</span><input id="rx" placeholder="@creators.kz, @brand"></label><label class="fl"><span>Победителей</span><input id="rn" type="number" min="1" value="1"></label><label class="fl"><span>Запасных</span><input id="rr" type="number" min="0" value="1"></label></div><label class="ck"><input id="rd" type="checkbox" checked> Один участник — один шанс (убрать дубли)</label><div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem"><button class="btn-accent" id="rb" onclick="runRand()">Провести розыгрыш</button><button class="btn-line" onclick="demo()">Пример списка</button></div>'},
+ init:function(){$('#out').innerHTML=ph('Вставьте участников и нажмите «Провести розыгрыш»')}},
+score:{note:'Показатели вводятся вручную из статистики аккаунта (средние за последние 12–30 публикаций). Нормы вовлечённости усреднённые ориентиры, а не гарантия. Расчёт идёт в браузере.',
+ form:function(){return COMMON()+'<div class="g2">'+fld('p','Публикаций в месяц','12')+fld('g','Рост за месяц, %','2.5')+'</div>'+fld('cpm','Ваша ставка за 1000 просмотров, ₸','1500','Для оценки стоимости интеграции')},
+ init:function(){runScore()}},
+bots:{note:'Это оценка по косвенным признакам, а не проверка списка подписчиков: она показывает, насколько метрики похожи на накрученный аккаунт.',
+ form:function(){return COMMON()+'<div class="g2">'+fld('fg','Ваши подписки','400')+fld('s','Макс. прирост за 1 день, чел.','150','Самый резкий скачок за 30 дней')+'</div>'},
+ init:function(){runBots()}}};
+
+function runScore(){
+ var f=N('f'),l=N('l'),c=N('c'),v=N('v'),p=N('p'),g=N('g'),cpm=N('cpm'),o=$('#out');
+ if(f<=0){o.innerHTML=ph('Укажите число подписчиков');return}
+ var t=tier(f),er=(l+c)/f*100,rr=v/f*100,cr=l?c/l*100:0;
+ var m=[['Вовлечённость',clamp(er/t[2]*70,0,100),35,'ER '+er.toFixed(2)+'% (норма ≈ '+t[2]+'% для уровня «'+t[1]+'»)','Повышайте вовлечённость: вопросы в подписях, опросы и сторис с реакцией.'],
+  ['Охват',clamp(rr/30*100,0,100),25,'Просмотры: '+rr.toFixed(0)+'% от подписчиков','Делайте больше Reels и коротких видео: они расширяют охват за пределы подписчиков.'],
+  ['Активность',clamp(p/12*100,0,100),15,p+' публикаций в месяц','Публикуйтесь регулярнее, 3–4 раза в неделю.'],
+  ['Рост',clamp(50+g*17,0,100),15,'Прирост '+g+'% в месяц','Рост слабый: пробуйте коллаборации и новые форматы.'],
+  ['Комментарии',cr<.3?20:cr>12?55:clamp(cr/2*100,35,100),10,'Комментарии: '+cr.toFixed(1)+'% от лайков','Задавайте вопросы в постах, чтобы вызывать живые комментарии.']];
+ var tot=m.reduce(function(s,x){return s+x[1]*x[2]/100},0),gr=tot>=80?'Отлично':tot>=60?'Хорошо':tot>=40?'Средне':'Слабо';
+ var low=m.slice().sort(function(a,b){return a[1]-b[1]}).slice(0,2).filter(function(x){return x[1]<75});
+ var price=Math.round(v/1000*cpm/100)*100;
+ o.innerHTML='<div style="display:flex;gap:1.25rem;align-items:center">'+ring(tot)+'<div><div class="m" style="font-size:.7rem">УРОВЕНЬ «'+t[1].toUpperCase()+'»</div><b style="font-size:1.5rem">'+gr+'</b></div></div><div style="margin-top:1.25rem;font-size:.75rem">'+m.map(function(x){return '<div style="margin-bottom:.7rem"><div style="display:flex;justify-content:space-between;margin-bottom:.2rem"><span>'+x[0]+'</span><b>'+Math.round(x[1])+'</b></div><div class="bar2"><i style="width:'+x[1]+'%"></i></div><div class="m" style="font-size:.68rem;margin-top:.15rem">'+x[3]+'</div></div>'}).join('')+'</div>'+
+ (low.length?'<div class="mini"><b>Что улучшить</b>'+low.map(function(x){return '<div class="rk">→ '+x[4]+'</div>'}).join('')+'</div>':'<div class="mini">Сильных провалов не видно. Держите темп.</div>')+
+ (price>0?'<div class="mini"><span class="m">Ориентир за интеграцию по вашей ставке</span><div class="n" style="font-size:1.5rem;font-weight:900">≈ '+price.toLocaleString('ru-RU')+' ₸</div></div>':'')}
+
+function runBots(){
+ var f=N('f'),fg=N('fg'),l=N('l'),c=N('c'),v=N('v'),s=N('s'),o=$('#out');
+ if(f<=0){o.innerHTML=ph('Укажите число подписчиков');return}
+ var t=tier(f),er=(l+c)/f*100,rr=v/f*100,cr=l?c/l*100:0,sp=s/f*100,pts=0,sg=[];
+ function add(p,x){pts+=p;sg.push(x)}
+ if(er<t[2]*.35)add(30,'Вовлечённость '+er.toFixed(2)+'% сильно ниже нормы (≈ '+t[2]+'%)');else if(er<t[2]*.6)add(15,'Вовлечённость '+er.toFixed(2)+'% ниже нормы (≈ '+t[2]+'%)');
+ if(v>0&&rr<4)add(20,'Просмотры только '+rr.toFixed(1)+'% от подписчиков');
+ if(l>0&&cr<.3)add(15,'Почти нет комментариев при заметных лайках');else if(cr>12)add(8,'Слишком много комментариев относительно лайков: возможны «комментарные чаты»');
+ if(f>1000&&fg>f*1.2)add(10,'Подписок больше, чем подписчиков: признак массфолловинга');
+ if(sp>5)add(25,'За день пришло '+sp.toFixed(1)+'% аудитории: резкий скачок');else if(sp>2)add(12,'Заметный скачок за день: '+sp.toFixed(1)+'% аудитории');
+ pts=clamp(pts,0,100);var sh=Math.round(clamp(4+pts*.5,4,60)),lv=sh<15?['Низкий','#34D399']:sh<30?['Средний','#FBBF24']:['Высокий','var(--neon)'];
+ o.innerHTML='<div class="m" style="font-size:.7rem">ОЦЕНКА ДОЛИ БОТОВ</div><div class="n" style="font-size:3.5rem;font-weight:900;line-height:1">≈ '+sh+'%</div><div class="m" style="font-size:.75rem">диапазон '+Math.max(0,sh-5)+'–'+(sh+5)+'% подозрительных подписчиков</div>'+
+ '<div style="display:flex;height:14px;border-radius:99px;overflow:hidden;margin:1.25rem 0 .5rem"><i style="width:'+(100-sh)+'%;background:#34D399"></i><i style="width:'+sh+'%;background:var(--neon)"></i></div><div class="m" style="display:flex;justify-content:space-between;font-size:.7rem"><span>Живые ≈ '+(100-sh)+'%</span><span>Подозрительные ≈ '+sh+'%</span></div>'+
+ '<div class="mini"><b>Риск накрутки: <span style="color:'+lv[1]+'">'+lv[0]+'</span></b>'+(sg.length?sg.map(function(x){return '<div class="rk">⚠ '+x+'</div>'}).join(''):'<div class="rk">✓ Явных признаков накрутки в этих метриках нет</div>')+'</div>'+
+ (sh>=15?'<div class="mini m">Проверьте в статистике соцсети географию и возраст подписчиков: резкий перекос подтверждает подозрения.</div>':'')}
+
+function demo(){$('#rl').value='@aigerim хочу участвовать! #розыгрыш\n@dana_k #розыгрыш\n@marat.ok*3 #розыгрыш\n@sveta_a #розыгрыш\n@dana_k ещё раз #розыгрыш\n@creators.kz\n@nurlan_b без хэштега\n@aliya.m #розыгрыш'}
+function rnd(){var a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]/4294967296}
+function runRand(){
+ var raw=$('#rl').value.split('\n').map(function(x){return x.trim()}).filter(Boolean),flt=$('#rf').value.trim().toLowerCase(),
+  ex=$('#rx').value.split(/[,\n]/).map(function(x){return x.trim().toLowerCase().replace(/^@/,'')}).filter(Boolean),dd=$('#rd').checked,seen={},P=[],o=$('#out');
+ raw.forEach(function(line){var m=line.match(/^(.*?)\s*[*×]\s*(\d{1,3})$/),w=m?+m[2]:1,txt=m?m[1]:line,u=txt.split(/\s+/)[0],k=u.toLowerCase().replace(/^@/,'');
+  if(flt&&line.toLowerCase().indexOf(flt)<0)return;if(ex.indexOf(k)>=0)return;if(dd){if(seen[k])return;seen[k]=1}P.push({n:u,w:Math.max(1,w)})});
+ if(!P.length){o.innerHTML=ph('Нет подходящих участников. Проверьте список и фильтры.');return}
+ var n=Math.max(1,parseInt($('#rn').value)||1),rs=Math.max(0,parseInt($('#rr').value)||0),pool=P.slice(),W=[],R=[];
+ while(pool.length&&W.length+R.length<n+rs){var tot=pool.reduce(function(s,x){return s+x.w},0),r=rnd()*tot,i=0;for(;i<pool.length-1;i++){r-=pool[i].w;if(r<0)break}(W.length<n?W:R).push(pool.splice(i,1)[0])}
+ var b=$('#rb'),t0=Date.now();b.disabled=true;clearInterval(tm);
+ tm=setInterval(function(){
+  if(Date.now()-t0<1200){o.innerHTML='<div class="res" style="min-height:260px;font-size:1.5rem;font-weight:900">'+esc(P[Math.floor(Math.random()*P.length)].n)+'</div>';return}
+  clearInterval(tm);b.disabled=false;
+  var id=Math.random().toString(16).slice(2,8).toUpperCase(),nm=function(a){return a.map(function(x){return esc(x.n)}).join(', ')},
+   txt='Протокол розыгрыша №'+id+'\nДата: '+new Date().toLocaleString('ru-RU')+'\nСтрок в списке: '+raw.length+', участников после фильтров: '+P.length+'\nПобедители: '+nm(W)+'\nЗапасные: '+(R.length?nm(R):'—')+'\nМетод: crypto.getRandomValues (браузер)\nCreators.kz';
+  window._pt=txt;
+  o.innerHTML='<div style="text-align:center;font-size:2rem">🏆</div><b style="display:block;text-align:center;margin-bottom:.5rem">Победител'+(W.length>1?'и':'ь')+'</b>'+W.map(function(x,i){return '<div class="win"><span class="n">'+(i+1)+'</span>'+esc(x.n)+'</div>'}).join('')+
+   (R.length?'<div class="m" style="font-size:.75rem;margin-top:1rem">Запасные</div>'+R.map(function(x,i){return '<div class="win" style="font-weight:500"><span class="m">'+(i+1)+'</span>'+esc(x.n)+'</div>'}).join(''):'')+
+   '<div class="pre">'+txt+'</div><button class="bt-n" onclick="try{navigator.clipboard.writeText(window._pt);this.textContent=\'✓ Скопировано\'}catch(e){}">Скопировать протокол</button>'},70)}
+
+/* ===== БИЗНЕС: витрина, тарифы, заявка ===== */
+var VIS={
+news:function(){return '<div style="display:flex;justify-content:space-between;align-items:center"><b>Ваш новостной раздел</b><span style="font-size:.65rem;font-weight:800;color:#34D399">● АВТОПУБЛИКАЦИЯ</span></div><div class="mini"><span class="n" style="font-size:.7rem;font-weight:700">Технологии</span><div style="font-weight:700;margin-top:.2rem">Как ИИ меняет работу компаний</div><div class="m" style="font-size:.7rem">Источник ↗ · Опубликовано</div></div><div class="mini"><span class="m" style="font-size:.7rem">Следующая публикация</span><div style="font-weight:700;margin-top:.2rem">Новые инструменты ИИ для анализа данных</div><div class="m" style="font-size:.7rem">Завтра, 09:00</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem"><div class="mini">✅ Темы выбраны</div><div class="mini">✅ Расписание готово</div></div>'},
+soon:function(){return '<div style="text-align:center;padding:2rem 0"><div style="font-size:3rem">🚀</div><b style="display:block;margin-top:.75rem;font-size:1.125rem">Запуск скоро</b><p class="m" style="font-size:.8125rem;margin:.5rem 0 0">Оставьте предзапись, и мы сообщим об открытии.</p></div>'}};
+function plan(i,sub,v,f,pop){var n=PK[i][0],p=PK[i][1],pt=fm(p);return '<div class="plan'+(pop?' pop':'')+'">'+(pop?'<span class="tag">ПОПУЛЯРНЫЙ</span>':'')+'<h4>'+n+'</h4><div class="m" style="font-size:.75rem">'+sub+'</div><div class="pr">'+pt+' <small class="m">/ месяц</small></div><div class="vol">'+v+'</div><ul>'+f.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><div class="m" style="font-size:.75rem;margin-top:.75rem">Подключение <b style="color:'+(pop?'var(--accent)':'var(--neon)')+'">бесплатно</b></div><button class="'+(pop?'btn-accent':'btn-line')+'" onclick="choose(\''+n+' — '+pt+'/мес\')">Выбрать '+n+'</button></div>'}
+function extra(s){if(s.id!=='news')return '';
+ return '<div class="dark" style="margin-top:1.5rem" id="plans"><div class="sec-t" style="margin-top:1rem"><p>ИИ-НОВОСТИ ДЛЯ ВАШЕГО САЙТА И СОЦСЕТЕЙ</p><h3>Выберите готовый пакет</h3></div><div class="plans">'+
+ plan(0,'Для редких публикаций','<b class="n">1</b> новость в неделю',['1 категория','Публикация по расписанию','Автопостинг на ваш сайт'])+
+ plan(1,'Для активного сайта','<b style="color:var(--accent)">1</b> новость в день',['До 3 категорий','Выбор времени публикации','Автопостинг на сайт и в соцсети'],1)+
+ plan(2,'Для новостных разделов','До <b class="n">5</b> новостей в день',['До 10 категорий','Несколько разделов сайта','Гибкое расписание публикаций'])+
+ '</div><p class="note m">🛡 Во всех тарифах: ссылки на источники · проверка дублей · режим согласования перед публикацией</p></div>'+
+ '<div class="card-panel calc"><div><div class="kicker"><i></i><b>Индивидуальная подписка</b></div><h3>Соберите свой пакет</h3><p class="lead" style="margin-top:.5rem">Только нужные темы и нужный объём, без переплаты.</p>'+
+ '<div class="row"><span>Категории</span><b id="cv">3</b></div><input id="cr" type="range" min="1" max="10" value="3">'+
+ '<div class="row"><span>Новостей</span><b id="nv">1</b></div><div class="seg" id="per"><button class="on" data-p="30">В день</button><button data-p="4.33">В неделю</button><button data-p="1">В месяц</button></div><input id="nr" type="range" min="1" max="10" value="1"></div>'+
+ '<div class="sum"><b>Ваш пакет</b><div class="l"><span>Категории</span><b id="s1">3</b></div><div class="l"><span>Публикации</span><b id="s2">1 в день</b></div><div class="l"><span>Объём</span><b id="s3">≈ 30 в месяц</b></div><div class="l"><span>Подключение</span><b style="color:var(--accent)">Бесплатно</b></div><div class="big" id="pr">'+fm(2900)+'</div><div style="font-size:.75rem;color:#6b7280">/ месяц</div><button class="btn-accent" style="justify-content:center;margin-top:1rem" onclick="choose(\'Индивидуальный (из конструктора)\',\'Конструктор: \'+$(\'#s1\').textContent+\' категорий, \'+$(\'#s2\').textContent+\', \'+$(\'#s3\').textContent+\', цена \'+$(\'#pr\').textContent)">Оставить заявку на этот пакет</button></div></div>'}
+function form(s){var news=s.id==='news',live=s.status==='live';
+ return '<div class="card-panel lead-f" id="lead"><div class="kicker"><i></i><b>'+(live?'Заявка':'Предзапись')+'</b></div><h3>'+(live?'Оставьте заявку на подключение':'Предзапись на сервис')+'</h3><p class="lead">'+(news?'Настроим бесплатно и проверим возможность интеграции до оплаты. Свяжемся в рабочее время.':'Сообщим о запуске и предложим условия раннего доступа.')+'</p>'+
+ '<form onsubmit="sendLead(event,\''+s.id+'\')"><div class="g2"><label class="fl"><span>Имя *</span><input name="nm" required></label><label class="fl"><span>Телефон / WhatsApp *</span><input name="ph" type="tel" required placeholder="+7"></label></div>'+
+ '<label class="fl"><span>Сайт или соцсеть</span><input name="lk" placeholder="https://"></label>'+
+ (news?'<div class="g2"><label class="fl"><span>Пакет</span><select name="pk" id="pk">'+PK.map(function(x,i){var t=x[0]+' — '+fm(x[1])+'/мес';return '<option'+(i===1?' selected':'')+'>'+t+'</option>'}).join('')+'<option>Индивидуальный (из конструктора)</option><option>Пока не знаю</option></select></label><label class="fl"><span>Куда публиковать</span><select name="pf"><option>Сайт (CMS / API)</option><option>Telegram</option><option>Instagram</option><option>Несколько каналов</option></select></label></div>':'')+
+ '<label class="fl"><span>Комментарий</span><textarea name="cm" id="cm" rows="3" placeholder="Темы, примеры сайтов, пожелания"></textarea></label>'+
+ '<button class="btn-accent" type="submit">'+(live?'Отправить заявку':'Записаться')+'</button><p class="disc">Нажимая кнопку, вы соглашаетесь с <a href="/legal#privacy-policy" style="text-decoration:underline">политикой конфиденциальности</a>.</p></form></div>'}
+function choose(pk,cm){var p=$('#pk');if(p&&pk)p.value=pk;if(cm)$('#cm').value=cm;go('lead')}
+function sendLead(e,sid){e.preventDefault();var f=e.target,g=function(n){return f.elements[n]?f.elements[n].value:''},
+ d={service:find(sid).name,name:g('nm'),phone:g('ph'),link:g('lk'),package:g('pk'),platform:g('pf'),comment:g('cm'),date:new Date().toISOString()},
+ ok=function(){f.innerHTML='<div class="okmsg"><div style="font-size:2.5rem">✅</div><b>Заявка отправлена</b><p class="lead">Мы свяжемся с вами в рабочее время.</p></div>'};
+ if(LEAD_URL){fetch(LEAD_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){if(!r.ok)throw 0;ok()}).catch(function(){alert('Не удалось отправить. Позвоните нам: +7 707 177 11 99')})}
+ else{location.href='mailto:info@creators.kz?subject='+encodeURIComponent('Заявка: '+d.service)+'&body='+encodeURIComponent(Object.keys(d).map(function(k){return k+': '+d[k]}).join('\n'));ok()}}
+function calc(){var per=30;
+ function u(){var c=+$('#cr').value,n=+$('#nr').value,m=Math.round(n*per),p=Math.max(590,Math.round((m<=30?m*290/3:2900+(m-30)*265/3)/10)*10);
+  $('#cv').textContent=c;$('#nv').textContent=n;$('#s1').textContent=c;
+  $('#s2').textContent=n+' '+(per===30?'в день':per===1?'в месяц':'в неделю');$('#s3').textContent='≈ '+m+' в месяц';
+  $('#pr').textContent=fm(p)}
+ $('#cr').oninput=$('#nr').oninput=u;
+ [].forEach.call(document.querySelectorAll('#per button'),function(b){b.onclick=function(){[].forEach.call(document.querySelectorAll('#per button'),function(x){x.classList.remove('on')});b.classList.add('on');per=+b.dataset.p;u()}});u()}
+
+function render(){
+ var s=find(cur),b=s.aud==='blogger',live=S.filter(function(x){return x.status==='live'}).length;
+ $('#stats').innerHTML='<span class="chip ok"><b>'+live+'</b> работают</span><span class="chip"><b>'+(S.length-live)+'</b> скоро</span><span class="chip">Новые сервисы — регулярно</span>';
+ $('#tabs').innerHTML=S.filter(function(x){return x.aud===role}).map(function(x){return '<a class="tab'+(x.id===cur?' on':'')+'" data-id="'+x.id+'" href="#'+x.id+'">'+x.name+(x.status==='soon'?' <small>СКОРО</small>':'')+'</a>'}).join('');
+ $('#toc').innerHTML=Object.keys(AUD).map(function(k){return '<h4>'+AUD[k]+'</h4>'+S.filter(function(x){return x.aud===k}).map(function(x){return '<button data-id="'+x.id+'" class="'+(x.id===cur?'on':'')+'">'+x.name+(x.status==='soon'?'<small>скоро</small>':'')+'</button>'}).join('')}).join('');
+ var ch='<span class="chip">Для: <b>'+AUD[s.aud]+'</b></span><span class="chip'+(s.status==='live'?' ok':'')+'">Статус: <b>'+(s.status==='live'?'работает':'скоро')+'</b></span><span class="chip">Формат: <b>'+(b?'работает на сайте':s.status==='live'?'заявка и тариф':'предзапись')+'</b></span>'+(s.chip?'<span class="chip ok">'+s.chip[0]+': <b>'+s.chip[1]+'</b></span>':''),
+  feats='<ul class="feat two">'+s.feats.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul>',
+  h='<div class="fade"><article class="doc card-panel"><div class="kicker"><i></i><b>'+AUD[s.aud]+'</b><i></i></div><h2>'+s.name+'</h2><div class="chips">'+ch+'</div>';
+ if(b){var T=TOOLS[s.tool];h+='<p class="lead">'+s.desc+'</p><div class="tool"><div class="tin">'+T.form()+'</div><div class="dark" id="out"></div></div>'+feats+'<p class="disc">'+T.note+'</p></article></div>'}
+ else{h+='<div class="actions"><button class="btn-accent" onclick="go(\'lead\')">'+(s.status==='live'?'Оставить заявку':'Предзапись')+'</button>'+(s.id==='news'?'<button class="btn-line" onclick="go(\'plans\')">Смотреть тарифы</button>':'')+'</div><div class="split"><div><p class="lead">'+s.desc+'</p><ul class="feat">'+s.feats.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul></div><div class="dark">'+(VIS[s.id]||VIS.soon)()+'</div></div></article>'+extra(s)+form(s)+'</div>'}
+ $('#view').innerHTML=h;
+ if(b){TOOLS[s.tool].init();if(s.tool!=='rand')[].forEach.call(document.querySelectorAll('.tin input'),function(i){i.oninput=s.tool==='score'?runScore:runBots})}
+ if(s.id==='news')calc();
+}
+document.addEventListener('click',function(e){var t=e.target.closest('[data-id]');if(t){e.preventDefault();pick(t.dataset.id)}});
+(function(){var m=$('#mobile-menu');function tg(){var on=m.classList.toggle('active');$('#i-open').hidden=on;$('#i-close').hidden=!on}
+ $('#burger').onclick=tg;[].forEach.call(m.querySelectorAll('a'),function(a){a.onclick=function(){if(m.classList.contains('active'))tg()}});
+ var h=location.hash.slice(1);if(find(h)){cur=h;role=find(h).aud}theme(role);render()})();
+</script>
+</body>
+</html>

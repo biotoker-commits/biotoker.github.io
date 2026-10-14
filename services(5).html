@@ -6,54 +6,26 @@
 <title>Сервисы | Creators.kz</title>
 <meta name="description" content="Сервисы Creators.kz: рандомайзер, оценка аккаунта, проверка на ботов и ИИ-автопостинг новостей для бизнеса.">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={corePlugins:{preflight:false},theme:{extend:{fontFamily:{sans:['Montserrat','sans-serif']},colors:{accent:'#9C1C4F','accent-hover':'#7A1640','accent-light':'#F3E4EA'}}}}</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root{--accent:#9C1C4F;--accent-rgb:156,28,79;--neon:#FF2E93}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:150px}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
 body{margin:0;background:#F8F7F5;color:#1A1A1A;font-family:'Montserrat',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
 a{color:inherit;text-decoration:none}ul{margin:0;padding:0;list-style:none}button{font-family:inherit}
 .wrap{max-width:80rem;margin:0 auto;padding:0 1rem}
-/* NAV (как на сайте) */
-.top{position:fixed;top:0;left:0;right:0;z-index:50;padding:calc(1rem + env(safe-area-inset-top,0px)) 0 1rem;background:rgba(248,247,245,.96);backdrop-filter:blur(24px);box-shadow:0 4px 20px -4px rgba(var(--accent-rgb),.15);border-bottom:1px solid rgba(var(--accent-rgb),.08)}
-.bar{display:flex;justify-content:space-between;align-items:center}
 .logo{font-size:1.5rem;font-weight:900;letter-spacing:-2px;line-height:2rem}.logo span{color:var(--accent)}
-.links{display:none;gap:2rem;font-size:.875rem;font-weight:600;letter-spacing:.025em;color:#1f2937}
-.links a:hover,.links a.on{color:var(--accent)}.links a.on{font-weight:700}
-.role-toggle{display:none;margin-left:2rem;background:#F1F1F1;border-radius:9999px;padding:4px;box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
-.role-toggle button{flex:1;padding:8px 20px;border:0;background:none;border-radius:9999px;font:600 13px 'Montserrat',sans-serif;cursor:pointer;transition:all .3s}
-.role-toggle button.active{background:var(--accent);color:#fff;box-shadow:0 4px 12px -4px var(--accent)}
-.right{display:flex;align-items:center;gap:.75rem}
-.login{display:none;font-size:.875rem;font-weight:600;padding:.625rem 1.25rem;border-radius:1.5rem;border:1px solid rgba(var(--accent-rgb),.2);transition:all .3s}
-.login:hover{border-color:var(--accent);color:var(--accent)}
-.burger{background:none;border:0;color:#1f2937;cursor:pointer;padding:0}
-#mobile-menu{position:fixed;inset:0;z-index:40;background:#F8F7F5;padding:5rem 1.5rem 1.5rem;transform:translateY(-100%);transition:transform .4s cubic-bezier(.32,.72,0,1)}
-#mobile-menu.active{transform:none}
-#mobile-menu a{display:block;font-size:1.125rem;font-weight:600;color:#1f2937;padding:.5rem 0}#mobile-menu a.on{color:var(--accent)}
-#mobile-menu .role-toggle{display:flex;width:fit-content;margin:0 auto 1.5rem}
-#mobile-menu hr{border:0;border-top:1px solid #e5e7eb;margin:1rem 0}
-@media(min-width:768px){.login{display:flex}}
-@media(min-width:1024px){.links,.role-toggle{display:flex}.burger{display:none}}
 /* HERO */
-.hero{padding:7.5rem 0 1.5rem;text-align:center;background:linear-gradient(135deg,#F8F7F5,#fff,#F8F7F5)}
+.hero{padding:2.5rem 0 .5rem;text-align:center;background:linear-gradient(135deg,#F8F7F5,#fff,#F8F7F5)}
 .badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.8);padding:.5rem 1.5rem;border-radius:1.5rem;border:1px solid rgba(var(--accent-rgb),.1);margin-bottom:1.5rem;color:var(--accent);font-size:.875rem;font-weight:700;letter-spacing:.1em}
 h1{margin:0 0 1rem;font-size:clamp(2.5rem,7vw,4.5rem);font-weight:900;letter-spacing:-3px;line-height:1}h1 em{font-style:normal;color:var(--accent)}
 .hero p{max-width:38rem;margin:0 auto;color:#4b5563}
 .stats{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem}
-/* TABS */
-.tabs{position:sticky;top:calc(65px + env(safe-area-inset-top,0px));z-index:30;display:flex;gap:.5rem;overflow-x:auto;padding:.75rem 0;background:rgba(248,247,245,.92);backdrop-filter:blur(12px)}
-.tab{white-space:nowrap;padding:.65rem 1.25rem;border-radius:1.5rem;background:#fff;border:1px solid rgba(var(--accent-rgb),.2);font-size:.8125rem;font-weight:600;transition:all .3s;display:inline-flex;gap:.5rem;align-items:center;cursor:pointer}
-.tab:hover{border-color:var(--accent);color:var(--accent)}
-.tab.on{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 8px 25px -6px var(--accent)}
-.tab small{font-size:.625rem;font-weight:800;letter-spacing:.05em;padding:2px 8px;border-radius:99px;background:rgba(var(--accent-rgb),.1);color:var(--accent)}.tab.on small{background:rgba(255,255,255,.25);color:#fff}
 /* LAYOUT */
-.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:2rem;padding:1.25rem 0 5rem}
+.layout{padding:1.25rem 0 5rem}
 .card-panel{background:#fff;border:1px solid rgba(var(--accent-rgb),.08);border-radius:24px;box-shadow:0 12px 30px -12px rgba(var(--accent-rgb),.12)}
-.toc{display:none;position:sticky;top:150px;align-self:start;padding:1.5rem}
-.toc h4{margin:1.25rem 0 .5rem;font-size:.75rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}.toc h4:first-child{margin-top:0}
-.toc button{display:flex;justify-content:space-between;gap:.5rem;width:100%;text-align:left;border:0;background:none;padding:.45rem .6rem;border-radius:12px;font-size:.8125rem;font-weight:500;color:#666;cursor:pointer}
-.toc button:hover{color:var(--accent)}.toc button.on{background:rgba(var(--accent-rgb),.08);color:var(--accent);font-weight:700}
-.toc small{font-size:.625rem;font-weight:700;color:#999}
-@media(min-width:1024px){.layout{grid-template-columns:280px minmax(0,1fr);gap:2.5rem}.toc{display:block}}
 .doc{padding:1.75rem}@media(min-width:768px){.doc{padding:3rem}}
 .kicker{display:inline-flex;align-items:center;gap:.75rem;margin-bottom:1rem}.kicker i{display:block;height:2px;width:1.5rem;background:var(--accent)}
 .kicker b{font-size:.75rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
@@ -116,30 +88,312 @@ footer{border-top:1px solid rgba(var(--accent-rgb),.1);padding:4rem 0 calc(2rem 
 .lead-f{padding:1.75rem;margin-top:1.5rem}@media(min-width:768px){.lead-f{padding:2.5rem}}.lead-f h3{margin:0 0 .5rem;font-size:1.5rem;font-weight:900}.lead-f form{max-width:40rem}
 .okmsg{text-align:center;padding:2rem 0}
 @keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}.fade{animation:up .35s ease}
+/* ===== HEADER: общие стили (копируются вместе с шапкой) ===== */
+.role-toggle{background:#F1F1F1;border-radius:9999px;padding:4px;display:flex;box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
+.role-toggle button{flex:1;padding:8px 20px;border-radius:9999px;font-size:13px;font-weight:600;transition:all .3s}
+.role-toggle button.active{background:var(--accent);color:#fff;box-shadow:0 4px 12px -4px var(--accent)}
+.nav-link{padding:.5rem .75rem;border-radius:.5rem;color:#1f2937;text-transform:uppercase;letter-spacing:.025em;display:flex;align-items:center;gap:.375rem;transition:all .2s;white-space:nowrap}
+.nav-link:hover,.nav-link.open{color:var(--accent);background:#fff}
+a.nav-link.is-active{color:var(--accent);font-weight:700}
+.nav-link .fa-chevron-down{font-size:10px;transition:transform .2s}
+.nav-link.open .fa-chevron-down{transform:rotate(180deg)}
+.dd{position:absolute;top:100%;margin-top:.75rem;background:#fff;border:1px solid rgba(var(--accent-rgb),.1);border-radius:1.5rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);z-index:60;
+  opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .18s,transform .18s,visibility .18s}
+.dd.open{opacity:1;visibility:visible;transform:none}
+.dd-link{display:flex;gap:.75rem;padding:.65rem .75rem;border-radius:1rem;transition:background .2s}
+.dd-link:hover{background:rgba(var(--accent-rgb),.07)}
+.dd-link .ico{width:2.5rem;height:2.5rem;border-radius:.75rem;background:#F3E4EA;color:var(--accent);display:flex;align-items:center;justify-content:center;flex:none;transition:all .2s}
+.dd-link:hover .ico{background:var(--accent);color:#fff}
+.dd-link .t{font-weight:700;font-size:.875rem;line-height:1.2}
+.dd-link:hover .t,.dd-link.is-active .t{color:var(--accent)}
+.dd-link .d{font-size:.75rem;color:#6b7280;margin-top:2px;line-height:1.35}
+.soon{font-size:9px;font-weight:800;letter-spacing:.06em;padding:2px 7px;border-radius:99px;background:rgba(var(--accent-rgb),.1);color:var(--accent)}
+.hub-logo{line-height:1}.hub-logo__big{font-size:3.5rem;font-weight:900;letter-spacing:-.04em;color:#1A1A1A;line-height:.95}
+.hub-logo__sub{margin-top:.35rem;font-size:.9rem;font-weight:600;letter-spacing:.01em;color:#9ca3af;white-space:nowrap}.hub-logo__sub{text-transform:none}
+.city-chip{padding:.4rem .8rem;border-radius:99px;border:1px solid rgba(var(--accent-rgb),.2);background:#fff;font-size:.75rem;font-weight:600;color:#374151;transition:all .2s}
+.city-chip:hover{border-color:var(--accent);color:var(--accent)}
+.city-chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#mobile-menu summary{list-style:none;cursor:pointer}
+#mobile-menu summary::-webkit-details-marker{display:none}
+#mobile-menu details[open] .fa-chevron-down{transform:rotate(180deg)}
+
+/* ===== Шапка: сброс стилей только внутри шапки (чтобы Tailwind не менял остальную страницу) ===== */
+:where(#site-header,#mobile-menu,#city-modal),:where(#site-header,#mobile-menu,#city-modal) *{border:0 solid #e5e7eb}
+:where(#site-header,#mobile-menu,#city-modal) :is(button,input){font:inherit;color:inherit;margin:0;padding:0;background:transparent;letter-spacing:inherit}
+:where(#site-header,#mobile-menu,#city-modal) button{cursor:pointer}
+:where(#site-header,#mobile-menu,#city-modal) :is(p,h1,h2,h3,h4){margin:0}
+/* ===== Выбор сервисов сверху ===== */
+.picker{position:relative;display:flex;gap:1.25rem;overflow-x:auto;padding:.75rem 1rem;margin-top:.75rem;scrollbar-width:none}
+.picker::-webkit-scrollbar{display:none}
+.pk-g{display:flex;align-items:center;gap:.5rem;flex:none}.pk-l{display:flex;gap:.5rem}
+.pk-t{font-size:.8125rem;font-weight:800;color:var(--accent)}
+.svc{white-space:nowrap;display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1rem;border-radius:1.5rem;background:#F8F7F5;border:1px solid rgba(var(--accent-rgb),.14);font-size:.8125rem;font-weight:600;transition:all .25s}
+.svc i{width:1rem;text-align:center;font-size:.8rem;color:var(--accent)}
+.svc:hover{background:#fff;border-color:var(--accent);color:var(--accent)}
+.svc.on{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 8px 20px -8px var(--accent)}.svc.on i{color:#fff}
+.svc small{font-size:.625rem;font-weight:800;padding:2px 8px;border-radius:99px;background:rgba(var(--accent-rgb),.1);color:var(--accent)}.svc.on small{background:rgba(255,255,255,.25);color:#fff}
+@media(min-width:900px){.picker{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0;padding:1.25rem 0;overflow:visible}
+ .pk-g{display:block;padding:0 1.5rem}.pk-g+.pk-g{border-left:1px solid rgba(var(--accent-rgb),.1)}.pk-t{display:block;margin-bottom:.6rem}.pk-l{flex-wrap:nowrap}}
+@media(min-width:900px) and (max-width:1099px){.pk-l{flex-wrap:wrap}}
+.how{margin-top:1.5rem;padding:1.75rem}@media(min-width:768px){.how{padding:2.5rem}}
+.how h3{margin:0 0 1.5rem;font-size:clamp(1.5rem,3.2vw,2.25rem);font-weight:900;letter-spacing:-.02em;line-height:1.15}
+.how-g{display:grid;gap:1rem}@media(min-width:640px){.how-g{grid-template-columns:repeat(2,1fr)}}@media(min-width:1000px){.how-g{grid-template-columns:repeat(4,1fr)}}
+.how-s{position:relative;padding:1.25rem;border-radius:1.25rem;background:#F8F7F5;border:1px solid rgba(var(--accent-rgb),.08)}
+.how-n{width:2.5rem;height:2.5rem;border-radius:50%;background:var(--accent);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px -8px var(--accent)}
+.how-s b{display:block;margin:.9rem 0 .35rem;font-size:1rem;line-height:1.25}.how-s p{margin:0;font-size:.8125rem;color:#6b7280;line-height:1.5}
+/* ===== ИИ-автопостинг: витрина ===== */
+.nh{overflow:hidden;border-radius:2rem;padding:1.5rem;background:radial-gradient(120% 90% at 100% 0,rgba(var(--accent-rgb),.12),transparent 60%),linear-gradient(135deg,#fff,#FDF2F6);border:1px solid rgba(var(--accent-rgb),.1);box-shadow:0 20px 50px -24px rgba(var(--accent-rgb),.35)}
+.nh-grid{display:grid;gap:2rem;align-items:center}
+@media(min-width:960px){.nh{padding:2.75rem}.nh-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}}
+.nh-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border-radius:99px;border:1.5px solid rgba(var(--accent-rgb),.5);background:#fff;color:var(--accent);font-size:.75rem;font-weight:800}
+.nh h2{margin:1rem 0 .75rem;font-size:clamp(2rem,4.6vw,3.4rem);font-weight:900;letter-spacing:-.035em;line-height:1.02}.nh h2 em{font-style:normal;color:var(--accent)}
+.nh-lead{max-width:30rem;margin:0 0 1.1rem;color:#4b5563}
+.nh-free{max-width:30rem;padding:.9rem 1.1rem;border-radius:1rem;background:rgba(var(--accent-rgb),.07);font-size:.9rem}.nh-free b{color:var(--accent)}
+.nh-act{display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem;margin-top:1.4rem}
+.nh-link{border:0;background:none;padding:0 0 1px;cursor:pointer;font:600 .875rem 'Montserrat',sans-serif;color:var(--accent);border-bottom:1.5px dotted rgba(var(--accent-rgb),.5)}
+.nh-perks{display:grid;gap:1rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(var(--accent-rgb),.1)}@media(min-width:720px){.nh-perks{grid-template-columns:repeat(3,1fr)}}
+.perk{display:flex;gap:.8rem;align-items:center}.perk>i{flex:none;width:2.75rem;height:2.75rem;border-radius:.9rem;background:rgba(var(--accent-rgb),.09);color:var(--accent);display:flex;align-items:center;justify-content:center}
+.perk b{display:block;font-size:.9rem;line-height:1.2}.perk span span{display:block;margin-top:2px;font-size:.75rem;line-height:1.35;color:#6b7280}
+.mk{display:grid;grid-template-columns:minmax(0,1fr);background:#fff;border:1px solid rgba(var(--accent-rgb),.1);border-radius:1.5rem;box-shadow:0 30px 60px -30px rgba(var(--accent-rgb),.5),0 0 0 8px rgba(var(--accent-rgb),.05);overflow:hidden;font-size:.75rem}
+@media(min-width:640px){.mk{grid-template-columns:132px minmax(0,1fr)}}
+.mk-side{display:none;padding:1rem .6rem;background:#FCF7F9;border-right:1px solid rgba(var(--accent-rgb),.08)}@media(min-width:640px){.mk-side{display:block}}
+.mk-logo{padding:0 .5rem 1rem;font-weight:900;font-size:.85rem;letter-spacing:-1px}.mk-logo span{color:var(--accent)}
+.mk-nav{display:flex;align-items:center;gap:.55rem;padding:.5rem .55rem;margin-bottom:.15rem;border-radius:.7rem;color:#6b7280;font-weight:600}.mk-nav i{width:1rem;text-align:center}.mk-nav.on{background:rgba(var(--accent-rgb),.1);color:var(--accent);font-weight:700}
+.mk-main{min-width:0;padding:1rem}
+.mk-top{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap;font-size:.95rem}
+.mk-live,.mk-ok{display:inline-flex;align-items:center;gap:.35rem;font-size:.65rem;font-weight:700;color:#059669}.mk-live{padding:.3rem .7rem;border-radius:99px;background:#D1FAE5}
+.mk-live i,.mk-ok i{width:.5rem;height:.5rem;border-radius:50%;background:#10B981}
+.mk-tabs{display:inline-flex;margin:.9rem 0;border:1px solid rgba(var(--accent-rgb),.12);border-radius:.7rem;overflow:hidden}
+.mk-tabs button{border:0;background:#fff;padding:.5rem .9rem;font:600 .7rem 'Montserrat',sans-serif;color:#6b7280;cursor:pointer}.mk-tabs button.on{background:var(--accent);color:#fff}
+.mk-art,.mk-next{display:grid;gap:.85rem;align-items:center;padding:.7rem;margin-bottom:.6rem;border:1px solid rgba(var(--accent-rgb),.1);border-radius:1rem;animation:up .3s ease}
+.mk-art{grid-template-columns:minmax(0,6.5rem) 1fr;align-items:start}.mk-next{grid-template-columns:minmax(0,4.5rem) 1fr}
+.mk-pic{border-radius:.7rem;overflow:hidden;aspect-ratio:1/1}.mk-pic svg{display:block;width:100%;height:100%}
+.mk-meta{display:flex;justify-content:space-between;align-items:center;gap:.5rem;margin-bottom:.35rem}
+.mk-tag{padding:.15rem .5rem;border-radius:.4rem;background:rgba(var(--accent-rgb),.1);color:var(--accent);font-size:.62rem;font-weight:800}
+.mk-art b,.mk-next b{display:block;font-size:.85rem;line-height:1.25}.mk-art p{margin:.3rem 0;color:#6b7280;line-height:1.45}.mk-src{color:var(--accent);font-weight:700}
+.mk-next small{display:block;margin:.1rem 0;font-size:.65rem;color:#9ca3af}
+.mk-stat{display:grid;gap:.5rem;padding:.7rem;border-radius:1rem;background:#FBF8F9}@media(min-width:520px){.mk-stat{grid-template-columns:1fr 1fr}}
+.mk-stat>div{display:flex;gap:.6rem;align-items:center}
+.mk-stat i{flex:none;width:1.6rem;height:1.6rem;border-radius:50%;border:1.5px solid #10B981;color:#10B981;display:flex;align-items:center;justify-content:center;font-size:.65rem}
+.mk-stat b{display:block}.mk-stat small{font-size:.65rem;color:#9ca3af}
+@media(prefers-reduced-motion:reduce){.fade,.mk-art,.mk-next{animation:none}}
 </style>
 </head>
-<body>
-<nav class="top"><div class="wrap bar">
-<a href="/" class="logo">CREATORS<span>.</span>KZ</a>
-<div class="role-toggle"><button type="button" data-role="blogger" onclick="switchRole('blogger')">Блогер</button><button type="button" data-role="customer" onclick="switchRole('customer')" class="active">Заказчик</button></div>
-<div class="links"><a href="/">ГЛАВНАЯ</a><a href="/services" class="on">СЕРВИСЫ</a><a href="/work">КАК РАБОТАЕТ</a><a href="/bloggers">КАТАЛОГ</a><a href="/about">О НАС</a><a href="/contacts">КОНТАКТЫ</a></div>
-<div class="right"><a href="/#register" class="login">Вход / Регистрация</a>
-<button class="burger" id="burger" type="button" aria-label="Меню"><span id="i-open"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span><span id="i-close" hidden><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span></button></div>
-</div></nav>
-<div id="mobile-menu"><div class="role-toggle"><button type="button" data-role="blogger" onclick="switchRole('blogger')">Блогер</button><button type="button" data-role="customer" onclick="switchRole('customer')" class="active">Заказчик</button></div><a href="/">ГЛАВНАЯ</a><a href="/services" class="on">СЕРВИСЫ</a><a href="/work">КАК РАБОТАЕТ</a><a href="/bloggers">КАТАЛОГ</a><a href="/about">О НАС</a><a href="/contacts">КОНТАКТЫ</a><hr><a href="/#register">Вход / Регистрация</a></div>
+<body class="antialiased">
+<!-- ================= HEADER ================= -->
+<header id="site-header" class="sticky top-0 z-50 bg-[#F8F7F5]/95 backdrop-blur-2xl border-b border-[#9C1C4F]/10 shadow-sm py-4">
+  <div class="max-w-7xl mx-auto px-4 xl:px-6 flex items-center justify-between gap-4">
+
+    <div class="flex items-center gap-6 min-w-0">
+      <a href="index.html" class="text-2xl font-black tracking-[-2px] text-[#1A1A1A] whitespace-nowrap">CREATORS<span class="text-[var(--accent)]">.</span>KZ</a>
+
+      <nav class="hidden xl:flex items-center gap-2 text-sm font-semibold">
+        <a href="catalog.html" class="nav-link">Каталог</a>
+        <a href="barter.html" class="nav-link">Бартер</a>
+        <!-- Выпадающее меню: Сервисы -->
+        <div class="relative" data-dd-wrap>
+          <button type="button" class="nav-link" data-dd="dd-services" aria-expanded="false">Сервисы <i class="fa-solid fa-chevron-down"></i></button>
+          <div id="dd-services" class="dd left-1/2 -ml-[340px] w-[680px] p-6">
+            <div class="grid grid-cols-2 gap-1.5">
+              <a href="services.html#news" class="dd-link"><div class="ico"><i class="fa-solid fa-newspaper"></i></div><div><div class="t">ИИ-автопостинг новостей</div><div class="d">Новости на сайт и в соцсети по расписанию</div></div></a>
+              <a href="services.html#rand" class="dd-link"><div class="ico"><i class="fa-solid fa-shuffle"></i></div><div><div class="t">Рандомайзер</div><div class="d">Честный розыгрыш по комментариям с протоколом</div></div></a>
+              <a href="services.html#score" class="dd-link"><div class="ico"><i class="fa-solid fa-star-half-stroke"></i></div><div><div class="t">Оценка аккаунта</div><div class="d">Балл от 0 до 100 и советы по росту</div></div></a>
+              <a href="services.html#bots" class="dd-link"><div class="ico"><i class="fa-solid fa-robot"></i></div><div><div class="t">Процент ботов</div><div class="d">Оценка доли накрученных подписчиков</div></div></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Выпадающее меню: Всё для контента -->
+        <div class="relative" data-dd-wrap>
+          <button type="button" class="nav-link" data-dd="dd-hub" aria-expanded="false">Всё для контента <i class="fa-solid fa-chevron-down"></i></button>
+          <div id="dd-hub" class="dd left-1/2 -ml-[340px] w-[680px] p-6">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div class="hub-logo"><div class="hub-logo__big">HUB</div><div class="hub-logo__sub">by CREATORS.KZ</div></div>
+              <span class="text-xs text-gray-400 text-right max-w-[200px] leading-snug">События, места, техника и реквизит для съёмок</span>
+            </div>
+            <div class="grid grid-cols-2 gap-1.5">
+              <a href="content_razdeli.html#afisha" class="dd-link"><div class="ico"><i class="fa-solid fa-calendar-days"></i></div><div><div class="t">Афиша</div><div class="d">Концерты, фестивали и инфоповоды для съёмок</div></div></a>
+              <a href="content_razdeli.html#mesta" class="dd-link"><div class="ico"><i class="fa-solid fa-location-dot"></i></div><div><div class="t">Места</div><div class="d">Кафе, студии, отели и другие локации</div></div></a>
+              <a href="content_razdeli.html#tehnika" class="dd-link"><div class="ico"><i class="fa-solid fa-camera"></i></div><div><div class="t">Техника</div><div class="d">Камеры, свет и звук в аренду</div></div></a>
+              <a href="content_razdeli.html#rekvizit" class="dd-link"><div class="ico"><i class="fa-solid fa-cube"></i></div><div><div class="t">Реквизит</div><div class="d">Декор и предметы, которые оживят кадр</div></div></a>
+              <a href="content_razdeli.html#kalendar" class="dd-link col-span-2"><div class="ico"><i class="fa-solid fa-calendar-check"></i></div><div><div class="t">Контент-календарь</div><div class="d">Главные даты и инфоповоды месяца</div></div></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Выпадающее меню: Компания (маленькое) -->
+        <div class="relative" data-dd-wrap>
+          <button type="button" class="nav-link" data-dd="dd-company" aria-expanded="false">Компания <i class="fa-solid fa-chevron-down"></i></button>
+          <div id="dd-company" class="dd left-1/2 -ml-36 w-72 p-3">
+            <a href="work.html" class="dd-link"><div class="ico"><i class="fa-solid fa-diagram-project"></i></div><div><div class="t">Как работает</div><div class="d">Шаги от заявки до публикации</div></div></a>
+            <a href="onas.html" class="dd-link"><div class="ico"><i class="fa-solid fa-users"></i></div><div><div class="t">О нас</div><div class="d">Команда и история платформы</div></div></a>
+            <a href="contacs.html" class="dd-link"><div class="ico"><i class="fa-solid fa-envelope"></i></div><div><div class="t">Контакты</div><div class="d">Свяжитесь с нами</div></div></a>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="flex items-center gap-3 ml-auto xl:ml-0">
+      <div class="hidden xl:flex role-toggle">
+        <button type="button" onclick="switchRole('blogger')">Блогер</button>
+        <button type="button" onclick="switchRole('customer')" class="active">Рекламодатель</button>
+      </div>
+
+      <!-- Кнопка профиля + выпадающее окно -->
+      <div class="relative" data-dd-wrap>
+        <button type="button" data-dd="dd-profile" aria-expanded="false" aria-label="Профиль"
+          class="nav-link !p-0 w-11 h-11 !justify-center !rounded-full border border-[#9C1C4F]/20 bg-white/60 hover:border-[var(--accent)]">
+          <i class="fa-regular fa-user text-base"></i>
+        </button>
+        <div id="dd-profile" class="dd right-0 w-[300px] max-w-[calc(100vw-2rem)] p-4">
+          <button type="button" data-open-city class="w-full flex items-center gap-3 p-3 rounded-2xl border border-[#9C1C4F]/15 hover:border-[var(--accent)] hover:bg-accent-light/40 transition text-left">
+            <div class="w-10 h-10 rounded-xl bg-accent-light text-[var(--accent)] flex items-center justify-center flex-none"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="flex-1 min-w-0">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-gray-400">Ваш город</div>
+              <div class="font-bold truncate" data-city-label>Алматы</div>
+            </div>
+            <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
+          </button>
+          <a href="faq.html" class="mt-1.5 flex items-center gap-3 px-3 py-2.5 rounded-2xl hover:bg-accent-light/50 transition text-sm font-semibold">
+            <i class="fa-regular fa-circle-question w-4 text-[var(--accent)]"></i>FAQ: частые вопросы
+          </a>
+          <div class="mt-3 rounded-2xl bg-accent-light/60 p-3 flex gap-3 items-start">
+            <i class="fa-solid fa-hourglass-half text-[var(--accent)] mt-0.5"></i>
+            <p class="text-xs text-gray-600 leading-snug"><b class="text-[#1A1A1A]">Скоро будет личный кабинет.</b> Мы уже над ним работаем.</p>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" id="mobile-menu-btn" class="xl:hidden w-9 h-9 flex items-center justify-center text-gray-800" aria-label="Меню"><i class="fa-solid fa-bars text-2xl"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= МОБИЛЬНОЕ МЕНЮ ================= -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-[#F8F7F5] pt-20 px-5 overflow-y-auto">
+  <div class="pb-10">
+    <div class="role-toggle w-fit mx-auto mb-5">
+      <button type="button" onclick="switchRole('blogger')">Блогер</button>
+      <button type="button" onclick="switchRole('customer')" class="active">Рекламодатель</button>
+    </div>
+    <a href="catalog.html" class="block py-3 text-lg font-semibold">Каталог</a>
+    <a href="barter.html" class="block py-3 text-lg font-semibold">Бартер</a>
+    <details class="border-t border-gray-200">
+      <summary class="flex items-center justify-between py-3 text-lg font-semibold">Сервисы <i class="fa-solid fa-chevron-down text-xs transition-transform"></i></summary>
+      <div class="pb-2 pl-3 space-y-1">
+        <a href="services.html#news" class="block py-2 font-semibold">ИИ-автопостинг новостей</a>
+        <a href="services.html#rand" class="block py-2 font-semibold">Рандомайзер</a>
+        <a href="services.html#score" class="block py-2 font-semibold">Оценка аккаунта</a>
+        <a href="services.html#bots" class="block py-2 font-semibold">Процент ботов</a>
+      </div>
+    </details>
+
+    <details class="border-t border-gray-200">
+      <summary class="flex items-center justify-between py-3 text-lg font-semibold">Всё для контента <i class="fa-solid fa-chevron-down text-xs transition-transform"></i></summary>
+      <div class="pb-2 pl-3 space-y-1">
+        <a href="content_razdeli.html#afisha" class="block py-2 font-semibold">Афиша</a>
+        <a href="content_razdeli.html#mesta" class="block py-2 font-semibold">Места</a>
+        <a href="content_razdeli.html#tehnika" class="block py-2 font-semibold">Техника</a>
+        <a href="content_razdeli.html#rekvizit" class="block py-2 font-semibold">Реквизит</a>
+        <a href="content_razdeli.html#kalendar" class="block py-2 font-semibold">Контент-календарь</a>
+      </div>
+    </details>
+    <details class="border-t border-gray-200">
+      <summary class="flex items-center justify-between py-3 text-lg font-semibold">Компания <i class="fa-solid fa-chevron-down text-xs transition-transform"></i></summary>
+      <div class="pb-2 pl-3 space-y-1">
+        <a href="work.html" class="block py-2 font-semibold">Как работает</a>
+        <a href="onas.html" class="block py-2 font-semibold">О нас</a>
+        <a href="contacs.html" class="block py-2 font-semibold">Контакты</a>
+      </div>
+    </details>
+
+    <div class="border-t border-gray-200 pt-4 space-y-2">
+      <button type="button" data-open-city class="w-full flex items-center gap-3 p-3 rounded-2xl border border-[#9C1C4F]/15 bg-white text-left">
+        <div class="w-10 h-10 rounded-xl bg-accent-light text-[var(--accent)] flex items-center justify-center flex-none"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="flex-1"><div class="text-[11px] font-bold uppercase tracking-wider text-gray-400">Ваш город</div><div class="font-bold" data-city-label>Алматы</div></div>
+        <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
+      </button>
+      <a href="faq.html" class="flex items-center gap-3 px-3 py-2.5 font-semibold"><i class="fa-regular fa-circle-question w-4 text-[var(--accent)]"></i>FAQ: частые вопросы</a>
+      <p class="text-xs text-gray-500 text-center pt-2">Скоро будет личный кабинет</p>
+    </div>
+  </div>
+</div>
+<!-- ================= /HEADER ================= -->
+
+<!-- ================= ОКНО ВЫБОРА ГОРОДА ================= -->
+<div id="city-modal" class="hidden fixed inset-0 z-[80] items-end sm:items-center justify-center sm:p-4" role="dialog" aria-modal="true" aria-label="Выбор города">
+  <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" data-close></div>
+  <div class="relative bg-white w-full sm:max-w-[560px] max-h-[85vh] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col">
+    <div class="p-5 pb-3 flex items-start justify-between gap-4">
+      <div><div class="text-lg font-black">Выберите город</div><div class="text-xs text-gray-500 mt-0.5">Покажем афишу, места и технику рядом с вами</div></div>
+      <button type="button" data-close class="w-9 h-9 flex-none rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="px-5">
+      <div class="flex items-center bg-[#F8F7F5] rounded-full px-4 py-2.5">
+        <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
+        <input id="city-search" type="text" placeholder="Найти город" autocomplete="off" class="bg-transparent border-0 outline-none text-sm ml-2 w-full placeholder:text-gray-400">
+      </div>
+    </div>
+    <div class="overflow-y-auto p-5 pt-4 space-y-5">
+      <div data-group>
+        <div class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Казахстан</div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Алматы">Алматы</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Астана">Астана</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Шымкент">Шымкент</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Караганда">Караганда</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Актобе">Актобе</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Тараз">Тараз</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Павлодар">Павлодар</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Усть-Каменогорск">Усть-Каменогорск</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Семей">Семей</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Атырау">Атырау</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Костанай">Костанай</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Кызылорда">Кызылорда</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Уральск">Уральск</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Петропавловск">Петропавловск</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Актау">Актау</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Темиртау">Темиртау</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Туркестан">Туркестан</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Кокшетау">Кокшетау</button>
+        </div>
+      </div>
+      <div data-group>
+        <div class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Россия</div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Москва">Москва</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Санкт-Петербург">Санкт-Петербург</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Новосибирск">Новосибирск</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Екатеринбург">Екатеринбург</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Казань">Казань</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Нижний Новгород">Нижний Новгород</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Челябинск">Челябинск</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Самара">Самара</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Омск">Омск</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Ростов-на-Дону">Ростов-на-Дону</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Уфа">Уфа</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Красноярск">Красноярск</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Воронеж">Воронеж</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Пермь">Пермь</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Волгоград">Волгоград</button>
+          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Краснодар">Краснодар</button>
+        </div>
+      </div>
+      <p id="city-empty" class="hidden text-sm text-gray-400 text-center py-6">Такого города пока нет</p>
+    </div>
+  </div>
+</div>
+
 
 <header class="hero"><div class="wrap">
 <div class="badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg> ЭКОСИСТЕМА CREATORS.KZ</div>
 <h1>СЕРВИСЫ <em>ПЛАТФОРМЫ</em></h1>
 <p>Инструменты для блогеров и бизнеса в одном кабинете. Мы регулярно запускаем новые сервисы, и у каждого своя вкладка.</p>
-<div class="stats" id="stats"></div>
 </div></header>
 
 <main class="wrap">
-<nav class="tabs" id="tabs" aria-label="Сервисы"></nav>
-<div class="layout">
-<aside class="toc card-panel" id="toc"></aside>
-<div id="view"></div>
+<nav class="picker card-panel" id="picker" aria-label="Сервисы"></nav>
+<div class="layout"><div id="view"></div>
 </div>
 </main>
 
@@ -152,6 +406,77 @@ footer{border-top:1px solid rgba(var(--accent-rgb),.1);padding:4rem 0 calc(2rem 
 <div class="copy">© 2026 Creators.kz — Все права защищены</div>
 </div></footer>
 
+<script>
+/* ===== HEADER: скрипт (копируется вместе с шапкой) ===== */
+(function(){
+  var ls={get:function(k){try{return localStorage.getItem(k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+  /* Выпадающие окна: открывается одно, закрытие по клику вне и по Esc */
+  var triggers=[].slice.call(document.querySelectorAll('[data-dd]'));
+  function closeAll(except){triggers.forEach(function(b){
+    if(b===except)return; b.classList.remove('open'); b.setAttribute('aria-expanded','false');
+    document.getElementById(b.dataset.dd).classList.remove('open');});}
+  triggers.forEach(function(b){b.addEventListener('click',function(e){
+    e.stopPropagation(); var m=document.getElementById(b.dataset.dd), will=!m.classList.contains('open');
+    closeAll(b); m.classList.toggle('open',will); b.classList.toggle('open',will); b.setAttribute('aria-expanded',will);});});
+  document.addEventListener('click',function(e){if(!e.target.closest('.dd'))closeAll();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll();});
+
+  /* Подсветка текущей страницы (по имени файла) */
+  var page=location.pathname.split('/').pop()||'index.html';
+  document.querySelectorAll('#site-header a[href]').forEach(function(a){
+    var h=a.getAttribute('href'); if(h.indexOf('#')>-1)return;
+    if(h===page){a.classList.add('is-active'); var w=a.closest('[data-dd-wrap]');
+      if(w)w.querySelector('[data-dd]').classList.add('is-active');}
+  });
+  document.querySelectorAll('[data-dd-wrap]').forEach(function(w){
+    if([].some.call(w.querySelectorAll('a[href]'),function(a){return a.getAttribute('href').split('#')[0]===page}))
+      w.querySelector('[data-dd]').classList.add('is-active');});
+
+  /* Выбор города: окно со списком, выбор запоминается; страницы могут слушать событие "citychange" */
+  var cm=document.getElementById('city-modal'), cs=document.getElementById('city-search');
+  var chips=[].slice.call(cm.querySelectorAll('[data-city]'));
+  function setCity(c,silent){
+    chips.forEach(function(b){b.classList.toggle('on',b.dataset.city===c)});
+    document.querySelectorAll('[data-city-label]').forEach(function(el){el.textContent=c});
+    ls.set('ck_city',c);
+    if(!silent)document.dispatchEvent(new CustomEvent('citychange',{detail:{city:c}}));
+  }
+  function filterCities(){
+    var q=cs.value.trim().toLowerCase(), any=false;
+    chips.forEach(function(b){var ok=b.dataset.city.toLowerCase().indexOf(q)>-1; b.style.display=ok?'':'none'; if(ok)any=true;});
+    cm.querySelectorAll('[data-group]').forEach(function(g){
+      g.style.display=[].some.call(g.querySelectorAll('[data-city]'),function(b){return b.style.display!=='none'})?'':'none';});
+    document.getElementById('city-empty').classList.toggle('hidden',any);
+  }
+  function openCity(){closeAll(); cm.classList.remove('hidden'); cm.classList.add('flex'); document.body.style.overflow='hidden'; cs.value=''; filterCities(); setTimeout(function(){cs.focus()},60);}
+  function closeCity(){cm.classList.add('hidden'); cm.classList.remove('flex');
+    var m=document.getElementById('mobile-menu'); document.body.style.overflow=(m&&!m.classList.contains('hidden'))?'hidden':'';}
+  document.querySelectorAll('[data-open-city]').forEach(function(b){b.addEventListener('click',openCity)});
+  cm.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',closeCity)});
+  chips.forEach(function(b){b.addEventListener('click',function(){setCity(b.dataset.city); closeCity();})});
+  cs.addEventListener('input',filterCities);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!cm.classList.contains('hidden'))closeCity();});
+  setCity(ls.get('ck_city')||'Алматы',true);
+
+  /* Роль Блогер / Рекламодатель: теперь запоминается между страницами */
+  window.switchRole=function(role){
+    document.documentElement.style.setProperty('--accent',role==='blogger'?'#EF233C':'#9C1C4F');
+    document.documentElement.style.setProperty('--accent-rgb',role==='blogger'?'239,35,60':'156,28,79');
+    document.querySelectorAll('.role-toggle button').forEach(function(b){
+      b.classList.toggle('active',(role==='blogger')===(b.textContent.trim()==='Блогер'));});
+    ls.set('ck_role',role);
+  };
+  switchRole(ls.get('ck_role')||'customer');
+
+  /* Мобильное меню */
+  var mb=document.getElementById('mobile-menu-btn'), mm=document.getElementById('mobile-menu');
+  mb.addEventListener('click',function(){
+    var open=mm.classList.toggle('hidden')===false; closeAll();
+    mb.querySelector('i').className=open?'fa-solid fa-xmark text-2xl':'fa-solid fa-bars text-2xl';
+    document.body.style.overflow=open?'hidden':'';});
+})();
+</script>
 <script>
 /* Адрес вашего обработчика заявок (POST, JSON). Пока пусто, заявка уходит письмом на info@creators.kz */
 var LEAD_URL='';
@@ -167,9 +492,6 @@ var S=[
 {id:'news',aud:'customer',name:'ИИ-автопостинг новостей',status:'live',chip:['Настройка','бесплатно'],
  desc:'ИИ находит материалы по вашим темам, готовит новости и публикует их на сайт или в соцсеть по расписанию. Вы платите только за месячную подписку.',
  feats:['Категории и источники под ваш бизнес','Публикация в выбранное время','Ссылки на источники и проверка дублей','Режим согласования перед публикацией']},
-{id:'match',aud:'customer',name:'ИИ-подбор блогеров',status:'soon',desc:'Опишите продукт и бюджет, а ИИ предложит подходящих креаторов с прогнозом охвата и стоимости.',feats:['Подбор по нише, гео и аудитории','Прогноз охвата и цены','Список для рекламы или бартера']},
-{id:'plan',aud:'customer',name:'ИИ-контент-план',status:'soon',desc:'Автоматический контент-план для бренда: темы, форматы и сроки публикаций.',feats:['План на неделю или месяц','Идеи под ваш стиль','Экспорт в календарь']},
-{id:'stat',aud:'customer',name:'Аналитика кампаний',status:'soon',desc:'Единый отчёт по рекламным интеграциям: охваты, переходы и стоимость результата.',feats:['Сводка по всем блогерам','Сравнение интеграций','Отчёт для руководства']},
 {id:'rand',aud:'blogger',name:'Рандомайзер',status:'live',tool:'rand',
  desc:'Честный розыгрыш по комментариям с гибкими настройками. Работает прямо на этой странице, результат оформляется протоколом, который можно показать подписчикам.',
  feats:['Вес участника: «@ник*3» даёт 3 шанса','Фильтр по слову или #хэштегу','Исключение организаторов и дублей','Запасные победители и протокол с номером']},
@@ -187,11 +509,11 @@ function find(id){return S.filter(function(s){return s.id===id})[0]}
 function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
 function N(id){return parseFloat(String($('#'+id).value).replace(',','.'))||0}
 function go(id){var e=$('#'+id);if(e)e.scrollIntoView({behavior:'smooth'})}
-function theme(r){var s=document.documentElement.style;
- s.setProperty('--accent',r==='blogger'?'#EF233C':'#9C1C4F');s.setProperty('--accent-rgb',r==='blogger'?'239,35,60':'156,28,79');s.setProperty('--neon',r==='blogger'?'#FF5A6E':'#FF2E93');
- [].forEach.call(document.querySelectorAll('.role-toggle button'),function(b){b.classList.toggle('active',b.dataset.role===r)})}
-function switchRole(r){role=r;theme(r);if(find(cur).aud!==r)cur=S.filter(function(s){return s.aud===r})[0].id;history.replaceState(null,'','#'+cur);render()}
-function pick(id){var s=find(id);role=s.aud;cur=id;theme(role);history.replaceState(null,'','#'+id);render()}
+var hdrRole=window.switchRole||function(){};
+function theme(r){document.documentElement.style.setProperty('--neon',r==='blogger'?'#FF5A6E':'#FF2E93')}
+function setRole(r){role=r;hdrRole(r);theme(r)}
+window.switchRole=function(r){setRole(r);if(find(cur).aud!==r)cur=S.filter(function(s){return s.aud===r})[0].id;history.replaceState(null,'','#'+cur);render()};
+function pick(id){setRole(find(id).aud);cur=id;history.replaceState(null,'','#'+id);render()}
 function ph(t){return '<div class="res m" style="min-height:260px">'+t+'</div>'}
 function fld(id,l,v,h){return '<label class="fl"><span>'+l+'</span><input id="'+id+'" type="number" min="0" step="any" value="'+v+'" inputmode="decimal">'+(h?'<small>'+h+'</small>':'')+'</label>'}
 var TIERS=[[1e4,'Нано',6],[5e4,'Микро',4],[1e5,'Средний',2.8],[5e5,'Крупный',1.9],[1e13,'Топ',1.3]];
@@ -270,14 +592,16 @@ news:function(){return '<div style="display:flex;justify-content:space-between;a
 soon:function(){return '<div style="text-align:center;padding:2rem 0"><div style="font-size:3rem">🚀</div><b style="display:block;margin-top:.75rem;font-size:1.125rem">Запуск скоро</b><p class="m" style="font-size:.8125rem;margin:.5rem 0 0">Оставьте предзапись, и мы сообщим об открытии.</p></div>'}};
 function plan(i,sub,v,f,pop){var n=PK[i][0],p=PK[i][1],pt=fm(p);return '<div class="plan'+(pop?' pop':'')+'">'+(pop?'<span class="tag">ПОПУЛЯРНЫЙ</span>':'')+'<h4>'+n+'</h4><div class="m" style="font-size:.75rem">'+sub+'</div><div class="pr">'+pt+' <small class="m">/ месяц</small></div><div class="vol">'+v+'</div><ul>'+f.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><div class="m" style="font-size:.75rem;margin-top:.75rem">Подключение <b style="color:'+(pop?'var(--accent)':'var(--neon)')+'">бесплатно</b></div><button class="'+(pop?'btn-accent':'btn-line')+'" onclick="choose(\''+n+' — '+pt+'/мес\')">Выбрать '+n+'</button></div>'}
 function extra(s){if(s.id!=='news')return '';
- return '<div class="dark" style="margin-top:1.5rem" id="plans"><div class="sec-t" style="margin-top:1rem"><p>ИИ-НОВОСТИ ДЛЯ ВАШЕГО САЙТА И СОЦСЕТЕЙ</p><h3>Выберите готовый пакет</h3></div><div class="plans">'+
+ var HW=[['Оставляете заявку','Мы свяжемся в рабочее время и проверим возможность интеграции до оплаты.'],['Выбираете темы','Категории и источники под ваш бизнес.'],['Настраиваем расписание','Время публикации и площадка: сайт, Telegram или Instagram.'],['ИИ публикует новости','Находит материалы, готовит тексты и выкладывает со ссылками на источники.']];
+ var hw='<section class="card-panel how" id="how"><div class="kicker"><i></i><b>Как это работает</b></div><h3>От заявки до первой новости</h3><div class="how-g">'+HW.map(function(x,i){return '<div class="how-s"><div class="how-n">'+(i+1)+'</div><b>'+x[0]+'</b><p>'+x[1]+'</p></div>'}).join('')+'</div></section>';
+ return hw+'<div class="dark" style="margin-top:1.5rem" id="plans"><div class="sec-t" style="margin-top:1rem"><p>ИИ-НОВОСТИ ДЛЯ ВАШЕГО САЙТА И СОЦСЕТЕЙ</p><h3>Выберите готовый пакет</h3></div><div class="plans">'+
  plan(0,'Для редких публикаций','<b class="n">1</b> новость в неделю',['1 категория','Публикация по расписанию','Автопостинг на ваш сайт'])+
  plan(1,'Для активного сайта','<b style="color:var(--accent)">1</b> новость в день',['До 3 категорий','Выбор времени публикации','Автопостинг на сайт и в соцсети'],1)+
  plan(2,'Для новостных разделов','До <b class="n">5</b> новостей в день',['До 10 категорий','Несколько разделов сайта','Гибкое расписание публикаций'])+
  '</div><p class="note m">🛡 Во всех тарифах: ссылки на источники · проверка дублей · режим согласования перед публикацией</p></div>'+
  '<div class="card-panel calc"><div><div class="kicker"><i></i><b>Индивидуальная подписка</b></div><h3>Соберите свой пакет</h3><p class="lead" style="margin-top:.5rem">Только нужные темы и нужный объём, без переплаты.</p>'+
- '<div class="row"><span>Категории</span><b id="cv">3</b></div><input id="cr" type="range" min="1" max="10" value="3">'+
- '<div class="row"><span>Новостей</span><b id="nv">1</b></div><div class="seg" id="per"><button class="on" data-p="30">В день</button><button data-p="4.33">В неделю</button><button data-p="1">В месяц</button></div><input id="nr" type="range" min="1" max="10" value="1"></div>'+
+ '<div class="row"><span>Категории</span><b id="cv">3</b></div><input id="cr" type="range" min="1" max="100" value="3">'+
+ '<div class="row"><span>Новостей</span><b id="nv">1</b></div><div class="seg" id="per"><button class="on" data-p="30">В день</button><button data-p="4.33">В неделю</button><button data-p="1">В месяц</button></div><input id="nr" type="range" min="1" max="100" value="1"></div>'+
  '<div class="sum"><b>Ваш пакет</b><div class="l"><span>Категории</span><b id="s1">3</b></div><div class="l"><span>Публикации</span><b id="s2">1 в день</b></div><div class="l"><span>Объём</span><b id="s3">≈ 30 в месяц</b></div><div class="l"><span>Подключение</span><b style="color:var(--accent)">Бесплатно</b></div><div class="big" id="pr">'+fm(2900)+'</div><div style="font-size:.75rem;color:#6b7280">/ месяц</div><button class="btn-accent" style="justify-content:center;margin-top:1rem" onclick="choose(\'Индивидуальный (из конструктора)\',\'Конструктор: \'+$(\'#s1\').textContent+\' категорий, \'+$(\'#s2\').textContent+\', \'+$(\'#s3\').textContent+\', цена \'+$(\'#pr\').textContent)">Оставить заявку на этот пакет</button></div></div>'}
 function form(s){var news=s.id==='news',live=s.status==='live';
  return '<div class="card-panel lead-f" id="lead"><div class="kicker"><i></i><b>'+(live?'Заявка':'Предзапись')+'</b></div><h3>'+(live?'Оставьте заявку на подключение':'Предзапись на сервис')+'</h3><p class="lead">'+(news?'Настроим бесплатно и проверим возможность интеграции до оплаты. Свяжемся в рабочее время.':'Сообщим о запуске и предложим условия раннего доступа.')+'</p>'+
@@ -301,23 +625,51 @@ function calc(){var per=30;
  [].forEach.call(document.querySelectorAll('#per button'),function(b){b.onclick=function(){[].forEach.call(document.querySelectorAll('#per button'),function(x){x.classList.remove('on')});b.classList.add('on');per=+b.dataset.p;u()}});u()}
 
 function render(){
- var s=find(cur),b=s.aud==='blogger',live=S.filter(function(x){return x.status==='live'}).length;
- $('#stats').innerHTML='<span class="chip ok"><b>'+live+'</b> работают</span><span class="chip"><b>'+(S.length-live)+'</b> скоро</span><span class="chip">Новые сервисы — регулярно</span>';
- $('#tabs').innerHTML=S.filter(function(x){return x.aud===role}).map(function(x){return '<a class="tab'+(x.id===cur?' on':'')+'" data-id="'+x.id+'" href="#'+x.id+'">'+x.name+(x.status==='soon'?' <small>СКОРО</small>':'')+'</a>'}).join('');
- $('#toc').innerHTML=Object.keys(AUD).map(function(k){return '<h4>'+AUD[k]+'</h4>'+S.filter(function(x){return x.aud===k}).map(function(x){return '<button data-id="'+x.id+'" class="'+(x.id===cur?'on':'')+'">'+x.name+(x.status==='soon'?'<small>скоро</small>':'')+'</button>'}).join('')}).join('');
+ var s=find(cur),b=s.aud==='blogger';
+ var IC={news:'newspaper',match:'wand-magic-sparkles',plan:'list-check',stat:'chart-line',rand:'shuffle',score:'star-half-stroke',bots:'robot'};
+ $('#picker').innerHTML=['customer','blogger'].map(function(k){return '<div class="pk-g"><span class="pk-t">'+AUD[k]+'</span><div class="pk-l">'+S.filter(function(x){return x.aud===k}).map(function(x){return '<a class="svc'+(x.id===cur?' on':'')+'" data-id="'+x.id+'" href="#'+x.id+'"><i class="fa-solid fa-'+IC[x.id]+'"></i>'+x.name+(x.status==='soon'?' <small>СКОРО</small>':'')+'</a>'}).join('')+'</div></div>'}).join('');
+ var pon=$('#picker .on');if(pon)$('#picker').scrollLeft=Math.max(0,pon.offsetLeft-16);
  var ch='<span class="chip">Для: <b>'+AUD[s.aud]+'</b></span><span class="chip'+(s.status==='live'?' ok':'')+'">Статус: <b>'+(s.status==='live'?'работает':'скоро')+'</b></span><span class="chip">Формат: <b>'+(b?'работает на сайте':s.status==='live'?'заявка и тариф':'предзапись')+'</b></span>'+(s.chip?'<span class="chip ok">'+s.chip[0]+': <b>'+s.chip[1]+'</b></span>':''),
   feats='<ul class="feat two">'+s.feats.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul>',
   h='<div class="fade"><article class="doc card-panel"><div class="kicker"><i></i><b>'+AUD[s.aud]+'</b><i></i></div><h2>'+s.name+'</h2><div class="chips">'+ch+'</div>';
  if(b){var T=TOOLS[s.tool];h+='<p class="lead">'+s.desc+'</p><div class="tool"><div class="tin">'+T.form()+'</div><div class="dark" id="out"></div></div>'+feats+'<p class="disc">'+T.note+'</p></article></div>'}
+ else if(s.id==='news'){h='<div class="fade">'+newsHero()+extra(s)+form(s)+'</div>'}
  else{h+='<div class="actions"><button class="btn-accent" onclick="go(\'lead\')">'+(s.status==='live'?'Оставить заявку':'Предзапись')+'</button>'+(s.id==='news'?'<button class="btn-line" onclick="go(\'plans\')">Смотреть тарифы</button>':'')+'</div><div class="split"><div><p class="lead">'+s.desc+'</p><ul class="feat">'+s.feats.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul></div><div class="dark">'+(VIS[s.id]||VIS.soon)()+'</div></div></article>'+extra(s)+form(s)+'</div>'}
  $('#view').innerHTML=h;
  if(b){TOOLS[s.tool].init();if(s.tool!=='rand')[].forEach.call(document.querySelectorAll('.tin input'),function(i){i.oninput=s.tool==='score'?runScore:runBots})}
  if(s.id==='news')calc();
 }
 document.addEventListener('click',function(e){var t=e.target.closest('[data-id]');if(t){e.preventDefault();pick(t.dataset.id)}});
-(function(){var m=$('#mobile-menu');function tg(){var on=m.classList.toggle('active');$('#i-open').hidden=on;$('#i-close').hidden=!on}
- $('#burger').onclick=tg;[].forEach.call(m.querySelectorAll('a'),function(a){a.onclick=function(){if(m.classList.contains('active'))tg()}});
- var h=location.hash.slice(1);if(find(h)){cur=h;role=find(h).aud}theme(role);render()})();
+/* ===== Витрина ИИ-автопостинга ===== */
+var MK=[
+{t:'Технологии',h:'Как ИИ меняет работу компаний',d:'Компании всё активнее используют искусственный интеллект для повышения эффективности и оптимизации процессов.',n:'Новые инструменты ИИ для анализа данных',w:'Завтра, 09:00',c:['#BFDBFE','#2563EB','#1E3A8A']},
+{t:'Бизнес',h:'Как малому бизнесу выйти на новые рынки',d:'Предприниматели всё чаще продают онлайн и автоматизируют рутину, чтобы расти без найма.',n:'Что учесть при запуске интернет-магазина',w:'Завтра, 12:00',c:['#BAE6FD','#0891B2','#134E4A']},
+{t:'Маркетинг',h:'Почему бренды переходят на короткие видео',d:'Reels и Shorts дают охваты там, где обычная реклама уже не окупается.',n:'Как выбрать блогера для интеграции',w:'Завтра, 15:00',c:['#FBCFE8','#DB2777','#6D28D9']}];
+function pic(c){return '<svg viewBox="0 0 120 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="120" height="120" fill="'+c[0]+'"/><polygon points="14,120 14,34 70,10 70,120" fill="'+c[1]+'"/><polygon points="70,120 70,10 112,28 112,120" fill="'+c[2]+'"/><path d="M14 52L70 28M14 70L70 46M14 88L70 64M14 106L70 82M70 40L112 56M70 62L112 78M70 84L112 100" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><circle cx="96" cy="16" r="9" fill="#fff" fill-opacity=".55"/></svg>'}
+function mkBody(i){var m=MK[i];return '<div class="mk-art"><div class="mk-pic">'+pic(m.c)+'</div><div><div class="mk-meta"><span class="mk-tag">'+m.t+'</span><span class="mk-ok"><i></i>Опубликовано</span></div><b>'+m.h+'</b><p>'+m.d+'</p><span class="mk-src">Источник ↗</span></div></div><div class="mk-next"><div class="mk-pic">'+pic(m.c)+'</div><div><small>Следующая публикация</small><b>'+m.n+'</b><small>'+m.w+'</small></div></div>'}
+function newsHero(){
+ var nav=[['house','Главная'],['newspaper','Новости',1],['flag','Темы'],['calendar','Расписание'],['database','Источники'],['gear','Настройки']],
+  perks=[['file-lines','По вашим темам','Категории и источники под ваш бизнес'],['calendar-days','По расписанию','Новости выходят в выбранное время'],['wand-magic-sparkles','Без ручной работы','От поиска материалов до публикации']];
+ return '<section class="nh"><div class="nh-grid"><div><span class="nh-pill"><i class="fa-solid fa-gear"></i>Бесплатная настройка</span>'+
+ '<h2>Новости на вашем сайте — <em>автоматически</em></h2><p class="nh-lead">ИИ находит материалы по вашим темам, готовит новости и публикует их по расписанию.</p>'+
+ '<div class="nh-free"><b>Настроим бесплатно.</b> Вы платите только за месячную подписку.</div>'+
+ '<div class="nh-act"><button class="btn-accent" onclick="go(\'lead\')">Подключить бесплатно →</button><button class="nh-link" onclick="go(\'how\')">Как это работает ↓</button></div></div>'+
+ '<div class="mk" aria-label="Пример новостного раздела"><aside class="mk-side"><div class="mk-logo">CREATORS<span>.</span>KZ</div>'+nav.map(function(n){return '<div class="mk-nav'+(n[2]?' on':'')+'"><i class="fa-solid fa-'+n[0]+'"></i>'+n[1]+'</div>'}).join('')+'</aside>'+
+ '<div class="mk-main"><div class="mk-top"><b>Ваш новостной раздел</b><span class="mk-live"><i></i>Автопубликация включена</span></div>'+
+ '<div class="mk-tabs">'+MK.map(function(m,i){return '<button type="button" class="'+(i?'':'on')+'" data-mk="'+i+'">'+m.t+'</button>'}).join('')+'</div><div id="mk-body">'+mkBody(0)+'</div>'+
+ '<div class="mk-stat"><div><i class="fa-solid fa-check"></i><span><b>Темы выбраны</b><small>3 категории, 12 источников</small></span></div><div><i class="fa-solid fa-check"></i><span><b>Расписание настроено</b><small>Публикация каждый день</small></span></div></div></div></div></div>'+
+ '<div class="nh-perks" id="nh-how">'+perks.map(function(p){return '<div class="perk"><i class="fa-solid fa-'+p[0]+'"></i><span><b>'+p[1]+'</b><span>'+p[2]+'</span></span></div>'}).join('')+'</div></section>'}
+document.addEventListener('click',function(e){var t=e.target.closest('[data-mk]');if(!t)return;
+ [].forEach.call(document.querySelectorAll('[data-mk]'),function(b){b.classList.toggle('on',b===t)});$('#mk-body').innerHTML=mkBody(+t.dataset.mk)});
+/* Переход по ссылкам из выпадающего меню шапки (#news, #rand …) без перезагрузки */
+window.addEventListener('hashchange',function(){var id=location.hash.slice(1);if(!find(id)||id===cur)return;
+ document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}));
+ if(!$('#mobile-menu').classList.contains('hidden'))$('#mobile-menu-btn').click();
+ setRole(find(id).aud);cur=id;render();$('#picker').scrollIntoView({behavior:'smooth'})});
+(function(){var h=location.hash.slice(1),r;try{r=localStorage.getItem('ck_role')}catch(e){}
+ role=find(h)?find(h).aud:(r==='blogger'?'blogger':'customer');
+ cur=find(h)?h:S.filter(function(x){return x.aud===role})[0].id;
+ setRole(role);render()})();
 </script>
 </body>
 </html>

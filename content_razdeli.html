@@ -120,8 +120,12 @@
             pointer-events: none;
         }
         .calendar-day {
-            min-height: 72px;
+            min-height: 84px;
         }
+        .calendar-day { padding: 6px; min-width: 0; overflow: hidden; }
+        .calendar-day > span:nth-child(2) > span { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
+        .calendar-day > span:nth-child(3) { white-space: nowrap; max-width: 100%; }
+        .hatch { background: repeating-linear-gradient(45deg,#f9c6d8,#f9c6d8 2px,#fff 2px,#fff 5px); border:1px solid #f3a9c4; }
         .event-dot {
             width: 8px;
             height: 8px;
@@ -334,7 +338,7 @@
     <!-- Title -->
     <div class="mb-6">
         <h1 id="page-title" class="text-3xl md:text-4xl font-black tracking-tight text-gray-900">Контент-календарь</h1>
-        <p id="page-subtitle" class="text-gray-500 mt-1.5 text-base">Главные инфоповоды, события и даты для съёмок и публикаций</p>
+        <p id="page-subtitle" class="text-gray-500 mt-1.5 text-base">Праздники, памятные даты и идеи для публикаций</p>
     </div>
 
     <!-- Section tabs -->
@@ -359,287 +363,61 @@
     <!-- ========== SECTION: КАЛЕНДАРЬ ========== -->
     <div id="section-kalendar" class="section-content active">
         <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
-            <!-- Left filters -->
-            <aside class="xl:col-span-3 space-y-5">
+            <aside class="xl:col-span-3">
                 <div class="card p-5">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="font-bold text-sm">Фильтры</h3>
                         <button class="text-xs text-accent font-medium hover:underline">Сбросить всё</button>
                     </div>
-                    
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Категории</div>
-                        <div class="space-y-2.5">
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Праздники и даты</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Концерты и музыка</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Выставки и искусство</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Бренд-ивенты</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Маркеты и ярмарки</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Кино и премьеры</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Бизнес и технологии</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Инфоповоды</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Спорт</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Другое</label>
-                        </div>
-                        <button class="text-xs text-accent mt-2 font-medium">Показать ещё ▾</button>
+                    <div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-3">Тематика инфоповодов</div>
+                    <div class="space-y-3 mb-5"><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom" checked> Все темы</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Государственные праздники</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Официальные выходные и переносы</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Праздники и традиции</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Международные и памятные даты</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Профессиональные праздники</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Общество и экология</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Бизнес и технологии</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Наука и образование</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Здоровье и спорт</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Еда и напитки</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Мода и красота</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Другое</label></div>
+                    <button class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-hover transition">Применить фильтры</button>
+                    <div class="mt-4 p-3 rounded-xl bg-pink-50 text-[11px] text-gray-500 leading-relaxed flex gap-2.5">
+                        <i class="fa-solid fa-circle-info text-accent mt-0.5"></i>
+                        <div><b class="text-accent block mb-0.5">В календаре указаны:</b>государственные праздники, официальные выходные и переносы, памятные даты и тематические инфоповоды для создания контента.</div>
                     </div>
-                    
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Тип контента</div>
-                        <div class="space-y-2.5">
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Фото</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Видео</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Reels / Short видео</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Статьи / посты</label>
-                        </div>
-                    </div>
-                    
-                    <button class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-hover transition">
-                        Применить фильтры
-                    </button>
                 </div>
             </aside>
 
-            <!-- Calendar center -->
             <div class="xl:col-span-6">
-                <!-- Scope filters -->
                 <div class="flex flex-wrap items-center gap-2 mb-4">
-                    <span class="text-sm text-gray-500 mr-1">Охват:</span>
-                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Мир</button>
-                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Казахстан</button>
-                    <button class="filter-chip active px-3 py-1.5 rounded-full text-xs font-medium border">Город</button>
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
-                        <i class="fa-solid fa-location-dot text-accent"></i> Алматы
-                        <i class="fa-solid fa-chevron-down text-[9px] text-gray-400"></i>
-                    </div>
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
-                        <i class="fa-regular fa-calendar"></i> Сентябрь 2025
-                    </div>
-                    <div class="flex gap-1 ml-auto">
-                        <button class="w-8 h-8 rounded-lg border border-border bg-white flex items-center justify-center hover:bg-gray-50"><i class="fa-solid fa-chevron-left text-xs"></i></button>
-                        <button class="w-8 h-8 rounded-lg border border-border bg-white flex items-center justify-center hover:bg-gray-50"><i class="fa-solid fa-chevron-right text-xs"></i></button>
+                    <span class="text-xs text-gray-500 mr-1">География:</span>
+                    <div class="relative" id="geo-wrap"><button id="geo-btn" onclick="toggleCountryMenu(event)" class="filter-chip active px-4 py-1.5 rounded-full text-xs font-semibold border flex items-center gap-1.5"><span id="geo-label">Мир</span><i class="fa-solid fa-chevron-down text-[9px]"></i></button>
+<div id="country-menu" class="hidden absolute left-0 top-full mt-2 w-64 bg-white rounded-2xl border border-border shadow-xl z-30 p-3">
+<div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2 px-1">Выберите страну</div>
+<div class="relative mb-2"><i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i><input id="country-search" oninput="filterCountries(this.value)" placeholder="Поиск страны" class="w-full pl-8 pr-3 py-2 rounded-xl border border-border text-xs outline-none focus:border-accent"></div>
+<div class="max-h-64 overflow-y-auto space-y-0.5" id="country-list"><button type="button" data-c="Весь мир" onclick="pickCountry('Весь мир')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🌍</span><span class="flex-1">Весь мир</span><i class="fa-solid fa-check text-accent text-xs "></i></button><button type="button" data-c="Казахстан" onclick="pickCountry('Казахстан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇿</span><span class="flex-1">Казахстан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Россия" onclick="pickCountry('Россия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇷🇺</span><span class="flex-1">Россия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Узбекистан" onclick="pickCountry('Узбекистан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇺🇿</span><span class="flex-1">Узбекистан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Кыргызстан" onclick="pickCountry('Кыргызстан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇬</span><span class="flex-1">Кыргызстан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Беларусь" onclick="pickCountry('Беларусь')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇧🇾</span><span class="flex-1">Беларусь</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Турция" onclick="pickCountry('Турция')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇹🇷</span><span class="flex-1">Турция</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="ОАЭ" onclick="pickCountry('ОАЭ')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇪</span><span class="flex-1">ОАЭ</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Грузия" onclick="pickCountry('Грузия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇬🇪</span><span class="flex-1">Грузия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Армения" onclick="pickCountry('Армения')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇲</span><span class="flex-1">Армения</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Азербайджан" onclick="pickCountry('Азербайджан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇿</span><span class="flex-1">Азербайджан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="США" onclick="pickCountry('США')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇺🇸</span><span class="flex-1">США</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Великобритания" onclick="pickCountry('Великобритания')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇬🇧</span><span class="flex-1">Великобритания</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Германия" onclick="pickCountry('Германия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇩🇪</span><span class="flex-1">Германия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Франция" onclick="pickCountry('Франция')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇫🇷</span><span class="flex-1">Франция</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Китай" onclick="pickCountry('Китай')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇨🇳</span><span class="flex-1">Китай</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Япония" onclick="pickCountry('Япония')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇯🇵</span><span class="flex-1">Япония</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Южная Корея" onclick="pickCountry('Южная Корея')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇷</span><span class="flex-1">Южная Корея</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button></div></div></div>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-semibold border border-border bg-white">Казахстан</button>
+                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-semibold border border-border bg-white">Город</button>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-semibold"><i class="fa-solid fa-location-dot text-accent"></i> Алматы <i class="fa-solid fa-chevron-down text-[9px] text-gray-400 ml-1"></i></div>
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-semibold"><i class="fa-regular fa-calendar"></i> Сентябрь 2025</div>
+                    <div class="flex gap-2 ml-auto">
+                        <button class="w-8 h-8 rounded-full border border-border bg-white flex items-center justify-center hover:bg-gray-50"><i class="fa-solid fa-chevron-left text-xs"></i></button>
+                        <button class="w-8 h-8 rounded-full border border-border bg-white flex items-center justify-center hover:bg-gray-50"><i class="fa-solid fa-chevron-right text-xs"></i></button>
                     </div>
                 </div>
-
                 <div class="card p-5">
                     <div class="flex items-center justify-between mb-5">
-                        <h2 class="text-xl font-bold">Сентябрь 2025</h2>
-                        <button class="text-xs font-semibold text-accent border border-accent/30 px-3 py-1.5 rounded-full hover:bg-accent-light">Сегодня</button>
+                        <h2 class="text-xl font-extrabold">Сентябрь 2025</h2>
+                        <button class="text-xs font-semibold text-accent border border-accent/40 px-4 py-1.5 rounded-full hover:bg-accent-light">Сегодня</button>
                     </div>
-                    
-                    <!-- Days header -->
-                    <div class="grid grid-cols-7 gap-1 mb-2">
-                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Пн</div>
-                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Вт</div>
-                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Ср</div>
-                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Чт</div>
-                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Пт</div>
-                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Сб</div>
-                        <div class="text-center text-xs font-semibold text-gray-400 py-1">Вс</div>
-                    </div>
-                    
-                    <!-- Calendar grid -->
-                    <div class="grid grid-cols-7 gap-1">
-                        <!-- Week 1 -->
-                        <div class="calendar-day p-1.5 rounded-lg bg-gray-50/50 text-gray-300 text-sm">31</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">1</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">2</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
-                            3
-                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-pink-100 text-pink-700 font-medium truncate max-w-full">Fashion Week</span></div>
-                        </div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">4</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">5</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">7</div>
-                        
-                        <!-- Week 2 -->
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">8</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">9</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
-                            10
-                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-medium">Выставка</span></div>
-                        </div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">11</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">12</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
-                            13
-                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-purple-100 text-purple-700 font-medium">Концерт</span></div>
-                        </div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">14</div>
-                        
-                        <!-- Week 3 -->
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">15</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
-                            16
-                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-sky-100 text-sky-700 font-medium">Инфоповод</span></div>
-                        </div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">17</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">18</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">19</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
-                            20
-                            <div class="mt-1 space-y-0.5">
-                                <span class="block text-[10px] px-1.5 py-0.5 rounded-full bg-pink-100 text-pink-700 font-medium truncate">Almaty Coffee</span>
-                                <span class="block text-[10px] px-1.5 py-0.5 rounded-full bg-orange-100 text-orange-700 font-medium">Маркет</span>
-                            </div>
-                        </div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">21</div>
-                        
-                        <!-- Week 4 -->
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">22</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
-                            23
-                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-purple-100 text-purple-700 font-medium">Pop-up beauty</span></div>
-                        </div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
-                            24
-                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-sky-100 text-sky-700 font-medium">Вечерний концерт</span></div>
-                        </div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">25</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
-                            26
-                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-teal-100 text-teal-700 font-medium">Премьера</span></div>
-                        </div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">27</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">28</div>
-                        
-                        <!-- Week 5 -->
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-gray-50 text-sm">29</div>
-                        <div class="calendar-day p-1.5 rounded-lg hover:bg-accent-light/50 text-sm cursor-pointer">
-                            30
-                            <div class="mt-1"><span class="inline-block text-[10px] px-1.5 py-0.5 rounded-full bg-yellow-100 text-yellow-700 font-medium">День города</span></div>
-                        </div>
-                        <div class="calendar-day p-1.5 rounded-lg text-gray-300 text-sm">1</div>
-                        <div class="calendar-day p-1.5 rounded-lg text-gray-300 text-sm">2</div>
-                        <div class="calendar-day p-1.5 rounded-lg text-gray-300 text-sm">3</div>
-                        <div class="calendar-day p-1.5 rounded-lg text-gray-300 text-sm">4</div>
-                        <div class="calendar-day p-1.5 rounded-lg text-gray-300 text-sm">5</div>
-                    </div>
-                    
-                    <!-- Legend -->
-                    <div class="flex flex-wrap gap-3 mt-5 pt-4 border-t border-border text-xs text-gray-500">
-                        <span class="flex items-center gap-1.5"><span class="event-dot bg-pink-400"></span> Событие</span>
-                        <span class="flex items-center gap-1.5"><span class="event-dot bg-yellow-400"></span> Праздник</span>
-                        <span class="flex items-center gap-1.5"><span class="event-dot bg-purple-400"></span> Концерт</span>
-                        <span class="flex items-center gap-1.5"><span class="event-dot bg-emerald-400"></span> Выставка</span>
-                        <span class="flex items-center gap-1.5"><span class="event-dot bg-orange-400"></span> Маркет</span>
-                        <span class="flex items-center gap-1.5"><span class="event-dot bg-teal-400"></span> Премьера</span>
-                        <span class="flex items-center gap-1.5"><span class="event-dot bg-sky-400"></span> Инфоповод</span>
+                    <div class="grid grid-cols-7 gap-1.5 mb-2"><div class="text-center text-xs font-semibold text-gray-400 py-1">Пн</div><div class="text-center text-xs font-semibold text-gray-400 py-1">Вт</div><div class="text-center text-xs font-semibold text-gray-400 py-1">Ср</div><div class="text-center text-xs font-semibold text-gray-400 py-1">Чт</div><div class="text-center text-xs font-semibold text-gray-400 py-1">Пт</div><div class="text-center text-xs font-semibold text-gray-400 py-1">Сб</div><div class="text-center text-xs font-semibold text-gray-400 py-1">Вс</div></div>
+                    <div class="grid grid-cols-7 gap-1.5"><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">1</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">2</span></div><div data-day="3" onclick="openDay(3)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">3</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-rose-100 text-rose-700"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-rose-500"></i><span>День знаний</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">2 события</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">4</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">5</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">6</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">7</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">8</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">9</span></div><div data-day="10" onclick="openDay(10)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">10</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-emerald-100 text-emerald-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-emerald-500"></i><span>День красоты</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">3 события</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">11</span></div><div data-day="12" onclick="openDay(12)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">12</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-violet-100 text-violet-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-violet-500"></i><span>День программиста</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">2 события</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">13</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">14</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">15</span></div><div data-day="16" onclick="openDay(16)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">16</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-sky-100 text-sky-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-sky-500"></i><span>День чистоты</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">2 события</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">17</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">18</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">19</span></div><div data-day="20" onclick="openDay(20)" class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 cursor-pointer hover:shadow-md transition"><span class="inline-flex w-6 h-6 rounded-full bg-accent text-white items-center justify-center text-[13px] font-bold">20</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-rose-100 text-rose-700"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-rose-500"></i><span>Международный день мира</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">5 событий</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">21</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">22</span></div><div data-day="23" onclick="openDay(23)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">23</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-violet-100 text-violet-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-violet-500"></i><span>День жестовых языков</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">3 события</span></div><div data-day="24" onclick="openDay(24)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">24</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-sky-100 text-sky-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-sky-500"></i><span>Всемирный день туризма</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">4 события</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">25</span></div><div data-day="26" onclick="openDay(26)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">26</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-emerald-100 text-emerald-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-emerald-500"></i><span>День моря</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">2 события</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">27</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">28</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">29</span></div><div data-day="30" onclick="openDay(30)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">30</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-yellow-100 text-yellow-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-yellow-500"></i><span>День кофе</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">3 события</span></div><div class="calendar-day rounded-xl border bg-white border-gray-100"><span class="text-[13px] text-gray-300">1</span></div><div class="calendar-day rounded-xl border bg-white border-gray-100"><span class="text-[13px] text-gray-300">2</span></div><div class="calendar-day rounded-xl border bg-white border-gray-100"><span class="text-[13px] text-gray-300">3</span></div><div class="calendar-day rounded-xl border bg-pink-50/60 border-pink-100"><span class="text-[13px] text-gray-300">4</span></div><div class="calendar-day rounded-xl border bg-pink-50/60 border-pink-100"><span class="text-[13px] text-gray-300">5</span></div></div>
+                    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-5 text-[11px] text-gray-500">
+                        <span class="flex items-center gap-1.5"><i class="w-3.5 h-3.5 rounded bg-pink-300"></i> Государственный праздник</span>
+                        <span class="flex items-center gap-1.5"><i class="w-3.5 h-3.5 rounded bg-pink-100"></i> Выходной день</span>
+                        <span class="flex items-center gap-1.5"><i class="w-3.5 h-3.5 rounded hatch"></i> Перенос выходного</span>
+                        <span class="flex items-center gap-1.5"><i class="w-3.5 h-3.5 rounded bg-violet-200"></i> Инфоповод</span>
+                        <button class="flex items-center gap-1.5 ml-auto hover:text-accent"><i class="fa-regular fa-circle-question"></i> Показать легенду</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Right: Upcoming -->
             <aside class="xl:col-span-3">
                 <div class="card p-5 sticky top-20">
-                    <h3 class="font-bold text-base mb-4">Ближайшие инфоповоды</h3>
-                    <div class="space-y-4">
-                        <!-- Event 1 -->
-                        <div class="flex gap-3 group cursor-pointer" onclick="addToPlan('Almaty Coffee Festival', 'event')">
-                            <div class="w-12 text-center flex-shrink-0">
-                                <div class="text-xl font-black text-accent leading-none">20</div>
-                                <div class="text-[10px] uppercase text-gray-400 font-semibold">сен</div>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex gap-2 mb-1.5">
-                                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=80&h=80&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="">
-                                    <div>
-                                        <div class="font-semibold text-sm leading-tight group-hover:text-accent transition">Almaty Coffee Festival</div>
-                                        <div class="text-xs text-gray-500 mt-0.5">10:00 – 20:00 · Almaty Arena</div>
-                                    </div>
-                                </div>
-                                <div class="flex gap-1.5">
-                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Еда и напитки</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Бренд-ивент</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Event 2 -->
-                        <div class="flex gap-3 group cursor-pointer">
-                            <div class="w-12 text-center flex-shrink-0">
-                                <div class="text-xl font-black text-accent leading-none">21</div>
-                                <div class="text-[10px] uppercase text-gray-400 font-semibold">сен</div>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex gap-2 mb-1.5">
-                                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=80&h=80&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="">
-                                    <div>
-                                        <div class="font-semibold text-sm leading-tight group-hover:text-accent transition">Маркет локальных брендов</div>
-                                        <div class="text-xs text-gray-500 mt-0.5">12:00 – 20:00 · Дворец Спорта</div>
-                                    </div>
-                                </div>
-                                <div class="flex gap-1.5">
-                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Мода и стиль</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Маркет</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Event 3 -->
-                        <div class="flex gap-3 group cursor-pointer">
-                            <div class="w-12 text-center flex-shrink-0">
-                                <div class="text-xl font-black text-accent leading-none">23</div>
-                                <div class="text-[10px] uppercase text-gray-400 font-semibold">сен</div>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex gap-2 mb-1.5">
-                                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=80&h=80&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="">
-                                    <div>
-                                        <div class="font-semibold text-sm leading-tight group-hover:text-accent transition">Pop-up beauty day</div>
-                                        <div class="text-xs text-gray-500 mt-0.5">11:00 – 19:00 · ТРЦ Esentai Mall</div>
-                                    </div>
-                                </div>
-                                <div class="flex gap-1.5">
-                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Бьюти</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Мастер-классы</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Event 4 -->
-                        <div class="flex gap-3 group cursor-pointer">
-                            <div class="w-12 text-center flex-shrink-0">
-                                <div class="text-xl font-black text-accent leading-none">24</div>
-                                <div class="text-[10px] uppercase text-gray-400 font-semibold">сен</div>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex gap-2 mb-1.5">
-                                    <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=80&h=80&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="">
-                                    <div>
-                                        <div class="font-semibold text-sm leading-tight group-hover:text-accent transition">Вечерний концерт на Арбате</div>
-                                        <div class="text-xs text-gray-500 mt-0.5">19:00 – 22:00 · Арбат, Алматы</div>
-                                    </div>
-                                </div>
-                                <div class="flex gap-1.5">
-                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Концерты</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Городская культура</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Event 5 -->
-                        <div class="flex gap-3 group cursor-pointer">
-                            <div class="w-12 text-center flex-shrink-0">
-                                <div class="text-xl font-black text-accent leading-none">26</div>
-                                <div class="text-[10px] uppercase text-gray-400 font-semibold">сен</div>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <div class="flex gap-2 mb-1.5">
-                                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=80&h=80&fit=crop" class="w-10 h-10 rounded-lg object-cover" alt="">
-                                    <div>
-                                        <div class="font-semibold text-sm leading-tight group-hover:text-accent transition">Премьера фильма</div>
-                                        <div class="text-xs text-gray-500 mt-0.5">19:00 – 21:00 · Kinopark 11</div>
-                                    </div>
-                                </div>
-                                <div class="flex gap-1.5">
-                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Кино и премьеры</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Инфоповод</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="w-full mt-5 text-sm font-semibold text-accent hover:underline text-right">Смотреть все →</button>
+                    <h3 class="font-extrabold text-base mb-5">Ближайшие инфоповоды</h3>
+                    <div class="space-y-5"><div class="flex gap-3 items-start group cursor-pointer" onclick="addToPlan('Международный день мира', 'event')"><div class="w-10 text-center flex-shrink-0 pt-1"><div class="text-xl font-black text-accent leading-none">20</div><div class="text-[10px] uppercase text-gray-400 font-semibold mt-1">сен</div></div><div class="w-[48px] h-[48px] rounded-xl bg-gradient-to-br from-sky-300 to-blue-500 flex items-center justify-center text-white text-lg flex-shrink-0"><i class="fa-solid fa-dove"></i></div><div class="flex-1 min-w-0"><div class="font-bold text-[13px] leading-tight group-hover:text-accent transition">Международный день мира</div><div class="text-xs text-gray-500 mt-0.5">Весь день · Мир</div><div class="flex flex-wrap gap-1.5 mt-2"><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Общество</span><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Мир</span></div></div></div><div class="flex gap-3 items-start group cursor-pointer" onclick="addToPlan('День благодарности', 'event')"><div class="w-10 text-center flex-shrink-0 pt-1"><div class="text-xl font-black text-accent leading-none">21</div><div class="text-[10px] uppercase text-gray-400 font-semibold mt-1">сен</div></div><div class="w-[48px] h-[48px] rounded-xl bg-gradient-to-br from-rose-300 to-orange-400 flex items-center justify-center text-white text-lg flex-shrink-0"><i class="fa-solid fa-heart"></i></div><div class="flex-1 min-w-0"><div class="font-bold text-[13px] leading-tight group-hover:text-accent transition">День благодарности</div><div class="text-xs text-gray-500 mt-0.5">Весь день · Мир</div><div class="flex flex-wrap gap-1.5 mt-2"><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Праздники</span><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Общество</span></div></div></div><div class="flex gap-3 items-start group cursor-pointer" onclick="addToPlan('День осеннего равноденствия', 'event')"><div class="w-10 text-center flex-shrink-0 pt-1"><div class="text-xl font-black text-accent leading-none">23</div><div class="text-[10px] uppercase text-gray-400 font-semibold mt-1">сен</div></div><div class="w-[48px] h-[48px] rounded-xl bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center text-white text-lg flex-shrink-0"><i class="fa-solid fa-leaf"></i></div><div class="flex-1 min-w-0"><div class="font-bold text-[13px] leading-tight group-hover:text-accent transition">День осеннего равноденствия</div><div class="text-xs text-gray-500 mt-0.5">Весь день · Мир</div><div class="flex flex-wrap gap-1.5 mt-2"><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Природа</span><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Наука</span></div></div></div><div class="flex gap-3 items-start group cursor-pointer" onclick="addToPlan('Всемирный день туризма', 'event')"><div class="w-10 text-center flex-shrink-0 pt-1"><div class="text-xl font-black text-accent leading-none">24</div><div class="text-[10px] uppercase text-gray-400 font-semibold mt-1">сен</div></div><div class="w-[48px] h-[48px] rounded-xl bg-gradient-to-br from-teal-400 to-sky-600 flex items-center justify-center text-white text-lg flex-shrink-0"><i class="fa-solid fa-plane"></i></div><div class="flex-1 min-w-0"><div class="font-bold text-[13px] leading-tight group-hover:text-accent transition">Всемирный день туризма</div><div class="text-xs text-gray-500 mt-0.5">Весь день · Мир</div><div class="flex flex-wrap gap-1.5 mt-2"><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Путешествия</span><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Образование</span></div></div></div><div class="flex gap-3 items-start group cursor-pointer" onclick="addToPlan('День рождения Google', 'event')"><div class="w-10 text-center flex-shrink-0 pt-1"><div class="text-xl font-black text-accent leading-none">26</div><div class="text-[10px] uppercase text-gray-400 font-semibold mt-1">сен</div></div><div class="w-[48px] h-[48px] rounded-xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center text-white text-lg flex-shrink-0"><i class="fa-brands fa-google"></i></div><div class="flex-1 min-w-0"><div class="font-bold text-[13px] leading-tight group-hover:text-accent transition">День рождения Google</div><div class="text-xs text-gray-500 mt-0.5">Весь день · Мир</div><div class="flex flex-wrap gap-1.5 mt-2"><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Технологии</span><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Бизнес</span></div></div></div></div>
+                    <button class="w-full mt-6 text-sm font-bold text-accent hover:underline text-right">Смотреть все →</button>
                 </div>
             </aside>
         </div>
@@ -1555,7 +1333,7 @@
         },
         kalendar: {
             title: 'Контент-календарь',
-            subtitle: 'Главные инфоповоды, события и даты для съёмок и публикаций'
+            subtitle: 'Праздники, памятные даты и идеи для публикаций'
         }
     };
 
@@ -1670,6 +1448,87 @@
 
     // Init with calendar
     switchSection('kalendar');
+</script>
+
+<script>
+function toggleCountryMenu(e){e.stopPropagation();document.getElementById('country-menu').classList.toggle('hidden');var i=document.getElementById('country-search');if(i){i.value='';filterCountries('');i.focus();}}
+function filterCountries(q){q=q.toLowerCase();document.querySelectorAll('.country-item').forEach(function(b){b.style.display=b.dataset.c.toLowerCase().indexOf(q)>-1?'':'none';});}
+function pickCountry(n){document.getElementById('geo-label').textContent=(n==='Весь мир')?'Мир':n;document.querySelectorAll('.country-item i').forEach(function(i){i.classList.add('invisible');});var b=document.querySelector('.country-item[data-c="'+n+'"] i');if(b)b.classList.remove('invisible');document.getElementById('country-menu').classList.add('hidden');}
+document.addEventListener('click',function(e){var w=document.getElementById('geo-wrap');if(w&&!w.contains(e.target))document.getElementById('country-menu').classList.add('hidden');});
+</script>
+
+<!-- DAY MODAL -->
+<div id="day-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-6 bg-black/50 backdrop-blur-sm" onclick="if(event.target===this)closeDay()">
+  <div class="bg-white rounded-3xl shadow-2xl w-full max-w-5xl max-h-[92vh] flex flex-col overflow-hidden">
+    <div class="px-6 md:px-8 pt-6 pb-4 flex items-start justify-between gap-4">
+      <div><h2 id="dm-title" class="text-2xl md:text-3xl font-black tracking-tight"></h2><p id="dm-sub" class="text-sm text-gray-500 mt-1"></p></div>
+      <button onclick="closeDay()" class="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-gray-50 flex-shrink-0"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div id="dm-tabs" class="px-6 md:px-8 pb-4 flex flex-wrap gap-2"></div>
+    <div class="flex-1 min-h-0 border-t border-border grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] overflow-y-auto md:overflow-hidden">
+      <div class="md:overflow-y-auto p-4 md:pl-8 md:pr-4 md:border-r border-border">
+        <div class="font-extrabold mb-3 px-2">События дня</div>
+        <div id="dm-list" class="space-y-1"></div>
+      </div>
+      <div id="dm-detail" class="md:overflow-y-auto p-5 md:p-6"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+var C={'Праздник':['bg-orange-100 text-orange-700','ПРАЗДНИК'],'Международная дата':['bg-pink-100 text-pink-700','МЕЖДУНАРОДНАЯ ДАТА'],'Событие':['bg-sky-100 text-sky-700','СОБЫТИЕ']};
+var G={dove:['from-sky-300 to-blue-500','fa-dove'],clean:['from-emerald-400 to-lime-600','fa-recycle'],beer:['from-amber-300 to-orange-500','fa-beer-mug-empty'],kids:['from-sky-300 to-yellow-400','fa-children'],race:['from-red-500 to-slate-700','fa-flag-checkered'],city:['from-sky-400 to-indigo-600','fa-city'],coffee:['from-amber-700 to-stone-800','fa-mug-hot'],heart:['from-rose-400 to-red-600','fa-heart'],book:['from-indigo-400 to-blue-600','fa-book-open'],beauty:['from-pink-300 to-fuchsia-500','fa-wand-magic-sparkles'],code:['from-violet-400 to-indigo-700','fa-code'],shop:['from-orange-300 to-pink-500','fa-bag-shopping'],leaf:['from-orange-400 to-red-600','fa-leaf'],hands:['from-violet-300 to-purple-600','fa-hands'],plane:['from-teal-400 to-sky-600','fa-plane'],music:['from-fuchsia-500 to-purple-800','fa-music'],cam:['from-slate-400 to-slate-700','fa-camera'],sea:['from-cyan-400 to-blue-700','fa-water'],film:['from-red-400 to-rose-800','fa-film'],ozone:['from-sky-300 to-teal-500','fa-earth-europe'],lang:['from-lime-400 to-emerald-600','fa-language'],deaf:['from-violet-300 to-purple-600','fa-ear-deaf'],star:['from-amber-300 to-yellow-500','fa-star']};
+var D={
+3:[['Праздник','День знаний','Казахстан','Начало нового учебного года','book','Первое сентября отмечают как начало учебного года: линейки, цветы и первые звонки. Традиционный повод для тёплых историй о школе, учителях и детях.',['Праздники','Школа']],
+   ['Международная дата','День солидарности в борьбе с терроризмом','Мир','Памятная дата, объединяющая страны','dove','Памятная дата в честь жертв терактов. Подходит для тематических постов с уважительным тоном и без сенсационности.',['Общество','Память']]],
+10:[['Международная дата','День красоты','Мир','Бьюти-инфоповод для блогеров','beauty','Неофициальный праздник заботы о себе: уходовые ритуалы, макияж и бьюти-тренды сезона.',['Бьюти','Reels']],
+    ['Событие','Pop-up beauty day','Алматы, Казахстан','ТРЦ Esentai Mall, 11:00 – 19:00','shop','Бьюти-поп-ап с мастер-классами и мини-форматами брендов. Хорошая локация для съёмки контента.',['Бьюти','Мастер-классы']],
+    ['Событие','Маркет локальных брендов','Алматы, Казахстан','Мода и стиль, местные дизайнеры','shop','Маркет локальных брендов одежды, аксессуаров и косметики. Можно снять обзор находок и интервью с основателями.',['Мода','Маркет']]],
+12:[['Праздник','День программиста','Мир','Профессиональный праздник IT-сферы','code','Отмечается в 256-й день года, потому что 256 — число значений в одном байте. Повод поздравить айтишников и рассказать о профессии.',['Технологии','Профессии']],
+    ['Событие','Технологический митап в Алматы','Алматы, Казахстан','Доклады и нетворкинг для IT-сообщества','star','Встреча разработчиков и стартаперов: доклады, демо проектов и знакомства. Подойдёт для репортажа.',['Бизнес','IT']]],
+16:[['Международная дата','День чистоты','Мир','Акции за чистые города и дворы','clean','Экологические акции и субботники проходят по всему миру. Повод показать, как поддерживать чистоту в городе и дома.',['Экология','Общество']],
+    ['Международная дата','Международный день охраны озонового слоя','Мир','Забота об атмосфере планеты','ozone','Дата напоминает о защите озонового слоя Земли и о договорённостях, которые помогли его сохранить.',['Наука','Экология']]],
+20:[['Международная дата','Всемирный день уборки','Мир','Глобальная акция за чистоту планеты','clean','Всемирный день уборки (World Cleanup Day) — глобальная инициатива, объединяющая миллионы людей более чем в 190 странах. В этот день проходят экологические акции, уборки в городах, парках и на природных территориях. Цель — сделать планету чище и привлечь внимание к проблеме загрязнения окружающей среды.',['Экология','Reels','Stories','Социальная инициатива'],['Снимите процесс уборки в своём городе — до/после.','Расскажите о простых привычках, которые помогают сохранять чистоту окружающей среды.','Сделайте интервью с волонтёрами или участниками акции.']],
+    ['Праздник','Октоберфест — начало','Мир','Старт крупнейшего пивного фестиваля','beer','Традиционный фестиваль в Мюнхене стартует в сентябре. Тема подходит для контента про еду, напитки и вечеринки в стиле Баварии.',['Еда и напитки','Фестиваль']],
+    ['Международная дата','Всемирный день детей','Мир','Права и благополучие детей','kids','День внимания к правам и благополучию детей. Повод для семейного контента и благотворительных историй.',['Семья','Общество']],
+    ['Событие','Гран-при Азербайджана Ф1','Баку, Азербайджан','Этап чемпионата Формулы-1','race','Городская трасса в Баку — один из самых зрелищных этапов сезона. Подойдёт для спортивных обзоров и реакций.',['Спорт','Ф1']],
+    ['Международная дата','Международный день мира','Мир','День укрепления идеалов мира','dove','День, посвящённый укреплению мира между народами. Белый голубь — его главный символ.',['Общество','Мир']],
+    ['Праздник','День города Алматы','Алматы, Казахстан','Праздничные мероприятия по всему городу','city','Городские гуляния, концерты и выставки. Отличный повод показать любимые места Алматы.',['Алматы','Город']],
+    ['Событие','Almaty Coffee Festival','Алматы, Казахстан','Фестиваль кофе, еды и культуры','coffee','Фестиваль с кофейными брендами, дегустациями и лекциями. 10:00 – 20:00, Almaty Arena.',['Еда и напитки','Бренд-ивент']],
+    ['Международная дата','Всемирный день донора костного мозга','Мир','Больше доноров — больше жизней','heart','День посвящён донорству костного мозга. Повод рассказать, как стать донором и спасти чью-то жизнь.',['Здоровье','Волонтёрство']]],
+23:[['Международная дата','День жестовых языков','Мир','Язык, который объединяет','hands','Международный день жестовых языков привлекает внимание к правам глухих людей. Можно сделать обучающий ролик с простыми жестами.',['Общество','Образование']],
+    ['Праздник','День осеннего равноденствия','Мир','День и ночь равны','leaf','Астрономическое начало осени. Эстетичный повод для осенних съёмок, рецептов и атмосферных подборок.',['Природа','Наука']],
+    ['Событие','Осенняя фотосессия: сезон открыт','Алматы, Казахстан','Лучшее время для съёмок на природе','cam','Золотой час и первые осенние краски. Хороший момент для съёмок в парках и на набережных города.',['Фото','Алматы']]],
+24:[['Международная дата','Всемирный день туризма','Мир','Путешествия и культурный обмен','plane','Отмечается ООН, чтобы подчеркнуть роль туризма. Подходит для подборок маршрутов и travel-историй.',['Путешествия','Образование']],
+    ['Событие','Вечерний концерт на Арбате','Арбат, Алматы','19:00 – 22:00, городская культура','music','Живая музыка на пешеходной улице. Хорошая локация для атмосферных сторис и видео.',['Концерты','Город']],
+    ['Событие','Фотопрогулка по Алматы','Алматы, Казахстан','Маршрут по фотогеничным местам','cam','Прогулка по самым красивым локациям города с советами по ракурсам и свету.',['Фото','Места']],
+    ['Международная дата','Международный день глухих','Мир','Поддержка и инклюзия','deaf','Дата привлекает внимание к инклюзии и правам людей с нарушениями слуха.',['Общество','Инклюзия']]],
+26:[['Международная дата','День моря','Мир','Всемирный морской день','sea','Дата посвящена безопасности на море и защите морской среды. Повод для travel-контента и экологических историй.',['Природа','Путешествия']],
+    ['Событие','Премьера фильма','Алматы, Казахстан','19:00 – 21:00, Kinopark 11','film','Кинопремьера и закрытые показы — повод для обзоров, реакций и репортажей с красной дорожки.',['Кино','Премьеры']]],
+30:[['Международная дата','День кофе','Мир','Международный день кофе','coffee','Праздник для всех любителей кофе: обзоры кофеен, рецепты, домашние методы заваривания.',['Еда и напитки','Reels']],
+    ['Международная дата','Международный день переводчика','Мир','Профессиональный праздник','lang','День переводчиков отмечают в день памяти святого Иеронима. Повод рассказать о профессии.',['Профессии','Образование']],
+    ['Международная дата','Всемирный день сердца','Мир','Забота о здоровье сердца','heart','Всемирная кампания о профилактике сердечно-сосудистых заболеваний. Подходит для контента о здоровье и спорте.',['Здоровье','Спорт']]]
+};
+var cur=null,flt='Все',sel=0;
+function pl(n){var m=n%10,h=n%100;return n+(h>10&&h<15?' событий':m==1?' событие':m>1&&m<5?' события':' событий');}
+function evs(d){return D[d].map(function(e){var x={cat:e[0],t:e[1],pl:e[2],sh:e[3],g:G[e[4]],d:e[5],tags:e[6]};x.ideas=e[7]||['Снимите Reels по теме «'+e[1]+'» — коротко и с цепляющим началом.','Расскажите историю или интересный факт о событии в Stories.','Сделайте подборку-пост и попросите подписчиков поделиться своим опытом.'];return x;});}
+document.querySelectorAll('.calendar-day[data-day]').forEach(function(c){var d=+c.dataset.day;if(!D[d])return;var s=c.children[2];if(s)s.textContent=pl(D[d].length);});
+function render(){var L=evs(cur),cats=['Все','Праздник','Международная дата','Событие'],names={'Все':'Все','Праздник':'Праздники','Международная дата':'Международные даты','Событие':'События'};
+ document.getElementById('dm-title').textContent=cur+' сентября 2025';
+ document.getElementById('dm-sub').textContent=pl(L.length)+' и инфоповодов по всему миру'.replace('событий и ','');
+ document.getElementById('dm-sub').textContent=L.length+' '+(L.length%10==1&&L.length%100!=11?'событие':(L.length%10>1&&L.length%10<5&&(L.length%100<10||L.length%100>14))?'события':'событий')+' и инфоповодов — Мир и Казахстан';
+ document.getElementById('dm-tabs').innerHTML=cats.map(function(c){var n=c=='Все'?L.length:L.filter(function(e){return e.cat==c;}).length;if(!n)return '';return '<button onclick="dayFilter(\''+c+'\')" class="px-4 py-1.5 rounded-full text-xs font-semibold border '+(flt==c?'bg-accent text-white border-accent':'bg-white border-border text-gray-700 hover:border-accent/40')+'">'+names[c]+' <span class="ml-1 px-1.5 rounded-full '+(flt==c?'bg-white/25':'bg-pink-50 text-accent')+'">'+n+'</span></button>';}).join('');
+ var V=L.filter(function(e){return flt=='Все'||e.cat==flt;});if(sel>=V.length)sel=0;
+ document.getElementById('dm-list').innerHTML=V.map(function(e,i){return '<button onclick="daySel('+i+')" class="w-full flex items-center gap-3 p-2.5 rounded-2xl text-left transition '+(i==sel?'bg-pink-50':'hover:bg-gray-50')+'"><div class="w-14 h-14 rounded-xl bg-gradient-to-br '+e.g[0]+' text-white flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid '+e.g[1]+'"></i></div><div class="flex-1 min-w-0"><span class="inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full '+C[e.cat][0]+'">'+e.cat+'</span><div class="font-bold text-sm leading-tight mt-1">'+e.t+'</div><div class="text-xs text-gray-500 mt-0.5"><i class="fa-solid fa-location-dot text-[10px] text-accent mr-1"></i>'+e.pl+'</div><div class="text-[11px] text-gray-400 mt-0.5 truncate">'+e.sh+'</div></div><i class="fa-solid fa-chevron-right text-xs text-gray-400"></i></button>';}).join('');
+ var e=V[sel];window._cur=e;
+ document.getElementById('dm-detail').innerHTML='<div class="h-44 md:h-52 rounded-2xl bg-gradient-to-br '+e.g[0]+' flex items-center justify-center text-white text-7xl"><i class="fa-solid '+e.g[1]+'"></i></div><span class="inline-block mt-4 text-[10px] font-bold px-2.5 py-1 rounded-md '+C[e.cat][0]+'">'+C[e.cat][1]+' · '+e.pl.split(',')[0].toUpperCase()+'</span><h3 class="text-2xl font-black mt-2 leading-tight">'+e.t+'</h3><div class="text-sm text-gray-500 mt-1.5"><i class="fa-regular fa-calendar mr-1.5"></i>'+cur+' сентября · ежегодно</div><h4 class="font-extrabold mt-5 mb-1.5">О событии</h4><p class="text-sm text-gray-600 leading-relaxed">'+e.d+'</p><h4 class="font-extrabold mt-5 mb-2">Идеи для контента</h4><div class="space-y-2.5">'+e.ideas.map(function(x,i){return '<div class="flex gap-3 items-start text-sm text-gray-600"><span class="w-6 h-6 rounded-full bg-pink-50 text-accent text-xs font-bold flex items-center justify-center flex-shrink-0">'+(i+1)+'</span><span>'+x+'</span></div>';}).join('')+'</div><h4 class="font-extrabold mt-5 mb-2 text-sm">Теги</h4><div class="flex flex-wrap gap-2">'+e.tags.map(function(t){return '<span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-600">'+t+'</span>';}).join('')+'</div><div class="flex flex-wrap items-center gap-3 mt-6 pt-4 border-t border-border"><span class="text-[11px] text-gray-400 flex-1 min-w-[140px]"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Источник: международный календарь дат</span><button onclick="addToPlan(window._cur.t,\'event\')" class="px-5 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accent-hover"><i class="fa-regular fa-calendar-plus mr-1.5"></i>В подборку</button><button onclick="copyEv(this)" class="px-4 py-2.5 rounded-xl border border-border text-sm font-semibold hover:bg-gray-50"><i class="fa-regular fa-copy mr-1.5"></i>Скопировать</button></div>';}
+window.openDay=function(d){if(!D[d])return;cur=d;flt='Все';sel=0;render();document.getElementById('day-modal').classList.remove('hidden');document.body.style.overflow='hidden';};
+window.closeDay=function(){document.getElementById('day-modal').classList.add('hidden');document.body.style.overflow='';};
+window.dayFilter=function(c){flt=c;sel=0;render();};
+window.daySel=function(i){sel=i;render();var l=document.getElementById('dm-detail');l.scrollTop=0;};
+window.copyEv=function(b){var e=window._cur,t=e.t+' — '+cur+' сентября\n'+e.d+'\nИдеи:\n'+e.ideas.map(function(x,i){return (i+1)+'. '+x;}).join('\n');try{navigator.clipboard.writeText(t);}catch(x){}b.innerHTML='<i class="fa-solid fa-check mr-1.5"></i>Скопировано';setTimeout(function(){b.innerHTML='<i class="fa-regular fa-copy mr-1.5"></i>Скопировать';},1500);};
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDay();});
+})();
 </script>
 </body>
 </html>

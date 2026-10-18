@@ -247,6 +247,23 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
 .rs-price{display:flex;justify-content:space-between;align-items:flex-end;gap:.5rem;margin:1rem 0;padding-top:1rem;border-top:1px solid rgba(var(--accent-rgb),.1)}.rs-price b{display:block;font-size:.9rem}.rs-price span{font-size:.7rem;color:#6b7280}.rs-price strong{font-size:1.75rem;font-weight:900;line-height:1;white-space:nowrap}
 .rs-err{margin:.6rem 0 0;font-size:.75rem;color:#991B1B;font-weight:600}.rs-err:empty{display:none}.rs-ok{text-align:center;padding:.75rem 0}.rs-ok p{font-size:.85rem;color:#6b7280}
 .rs-prog{display:none;height:6px;border-radius:99px;background:rgba(var(--accent-rgb),.12);overflow:hidden;margin-top:.7rem}.rs-prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+.rs-bld{position:absolute;inset:0;z-index:3;display:none;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;background:rgba(21,21,28,.72);color:#fff;font-size:.75rem;font-weight:700;text-align:center;padding:1rem;backdrop-filter:blur(3px)}.rs-bld i{font-size:1.4rem}
+.rs-pl{position:absolute;top:50%;left:50%;z-index:3;transform:translate(-50%,-50%);width:3.2rem;height:3.2rem;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:rgba(0,0,0,.5);color:#fff;display:none;align-items:center;justify-content:center;cursor:pointer}
+.rs-ed{display:none;margin-top:1rem;padding:.9rem;border-radius:1rem;background:#F8F7F5;border:1px solid rgba(var(--accent-rgb),.14)}
+.rs-edh{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;font-size:.85rem}.rs-edh span{font-size:.72rem;font-weight:700;color:var(--accent)}
+.rs-ed .fl{margin-bottom:.5rem}.rs-ed .btn-line{padding:.5rem .9rem;font-size:.75rem;flex:1;justify-content:center}.rs-ed .btn-line:disabled{opacity:.45}
+.rs-lnk{border:0;background:none;color:#6b7280;font:600 .72rem 'Montserrat',sans-serif;text-decoration:underline;cursor:pointer;margin-top:.5rem;padding:0}
+.rs-locked .rs-lk{opacity:.55;pointer-events:none}.rs-box .btn-accent:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
+.rc{margin-top:2rem;padding:1.75rem 0;overflow:hidden}.rc-h{padding:0 1.75rem}@media(min-width:768px){.rc-h{padding:0 2.5rem}}
+.rc-h h3{margin:0 0 1.5rem;font-size:clamp(1.5rem,3.2vw,2.25rem);font-weight:900;letter-spacing:-.02em;line-height:1.15}
+.rc-view{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.rc-track{display:flex;width:max-content;animation:rcm 50s linear infinite}.rc-view:hover .rc-track{animation-play-state:paused}
+.rc-card{position:relative;flex:none;width:9.5rem;margin-right:1rem;aspect-ratio:9/16;border-radius:1.2rem;overflow:hidden;color:#fff;box-shadow:0 18px 30px -20px rgba(0,0,0,.5)}@media(min-width:768px){.rc-card{width:11rem}}
+.rc-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.rc-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 35%,rgba(0,0,0,.6))}
+.rc-ic{position:absolute;top:36%;left:50%;transform:translateX(-50%);font-size:2.6rem;opacity:.35}
+.rc-tag,.rc-cap,.rc-meta{position:absolute;z-index:1;left:.75rem;right:.75rem}.rc-tag{top:.75rem;right:auto;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:99px;background:rgba(0,0,0,.45)}
+.rc-cap{bottom:2rem;font-size:.95rem;font-weight:900;line-height:1.2;text-transform:uppercase;text-shadow:0 2px 8px rgba(0,0,0,.5)}.rc-meta{bottom:.8rem;font-size:.62rem;font-weight:600;opacity:.85}
+@keyframes rcm{to{transform:translateX(-50%)}}@media(prefers-reduced-motion:reduce){.rc-track{animation:none}.rc-view{overflow-x:auto}}
 </style>
 </head>
 <body class="antialiased">
@@ -704,7 +721,7 @@ function render(){
   feats='<ul class="feat two">'+s.feats.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul>',
   h='<div class="fade"><article class="doc card-panel"><div class="kicker"><i></i><b>'+AUD[s.aud]+'</b><i></i></div><h2>'+s.name+'</h2><div class="chips">'+ch+'</div>';
  if(b){var T=TOOLS[s.tool];h+='<p class="lead">'+s.desc+'</p><div class="tool"><div class="tin">'+T.form()+'</div><div class="dark" id="out"></div></div>'+feats+'<p class="disc">'+T.note+'</p></article></div>'}
- else if(s.id==='reels'){h='<div class="fade">'+reelsHero()+reelsStudio()+reelsBen()+'</div>'}
+ else if(s.id==='reels'){h='<div class="fade">'+reelsHero()+reelsStudio()+reelsBen()+reelsCases()+'</div>'}
 else if(s.id==='news'){h='<div class="fade">'+newsHero()+newsBen()+extra(s)+form(s)+'</div>'}
  else{h+='<div class="actions"><button class="btn-accent" onclick="go(\'lead\')">'+(s.status==='live'?'Оставить заявку':'Предзапись')+'</button>'+(s.id==='news'?'<button class="btn-line" onclick="go(\'plans\')">Смотреть тарифы</button>':'')+'</div><div class="split"><div><p class="lead">'+s.desc+'</p><ul class="feat">'+s.feats.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul></div><div class="dark">'+(VIS[s.id]||VIS.soon)()+'</div></div></article>'+extra(s)+form(s)+'</div>'}
  $('#view').innerHTML=h;
@@ -817,7 +834,7 @@ function reelsBen(){
 var ORDER_URL='';
 var RS_PRICE={auto:{1:1990,5:8950,10:16900,15:23850},pro:{1:4990,5:22500,10:45000,15:60000}};
 var RS_ST=[['dyn','Динамичный','Быстрые склейки, крупные субтитры','bolt'],['min','Минимализм','Плавные переходы, чистые титры','leaf'],['exp','Экспертный','Говорящая голова, без пауз','microphone'],['pro','Промо','Продукт, цены, яркий призыв','tag']];
-var RS={files:[],mode:'auto',qty:1,style:'dyn',dur:30,lang:'Русский',sub:true,mus:true,task:'',hook:'',name:'',phone:'',msg:'',busy:false,done:null,uid:0,pv:null};
+var RS={files:[],mode:'auto',qty:1,style:'dyn',dur:30,lang:'Русский',sub:true,mus:true,task:'',hook:'',name:'',phone:'',msg:'',busy:false,done:null,uid:0,pv:null,ck:'',stage:0,built:0,rev:2,sec:0,play:0,cur:0,tm:0,bt:0};
 function rsT(s){var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
 function rsMB(b){return b>=1073741824?(b/1073741824).toFixed(1)+' ГБ':Math.max(1,Math.round(b/1048576))+' МБ'}
 function rsStats(){var sec=0,sz=0,err='';RS.files.forEach(function(f){sec+=f.dur;sz+=f.size});
@@ -826,40 +843,47 @@ function rsStats(){var sec=0,sz=0,err='';RS.files.forEach(function(f){sec+=f.dur
 function reelsStudio(){
  var sc=RL_SC.replace(/rl([AG])/g,'rs$1');
  return `<section class="card-panel rs" id="studio"><div class="kicker"><i></i><b>Заказ</b></div><h3>Соберите свой Reels</h3><div class="rs-grid"><div>
- <div class="rs-step"><div class="rs-t"><span>1</span><b>Видео и фото</b><small>MP4, MOV, JPG, PNG · до 10 файлов</small></div>
+ <div class="rs-step rs-lk"><div class="rs-t"><span>1</span><b>Видео и фото</b><small>MP4, MOV, JPG, PNG · до 10 файлов</small></div>
   <label class="rs-drop" id="rs-drop"><i class="fa-solid fa-cloud-arrow-up"></i><b>Перетащите файлы сюда</b><span>или <u>выберите на устройстве</u></span><input type="file" id="rs-file" multiple accept=".mp4,.mov,.jpg,.jpeg,.png,video/mp4,video/quicktime,image/jpeg,image/png"></label>
   <div class="rs-clips" id="rs-clips"></div><div class="rs-val" id="rs-val"></div></div>
- <div class="rs-step"><div class="rs-t"><span>2</span><b>Идея ролика</b><small>по желанию</small></div>
+ <div class="rs-step rs-lk"><div class="rs-t"><span>2</span><b>Идея ролика</b><small>по желанию</small></div>
   <label class="fl"><textarea id="rs-task" rows="2" maxlength="500" placeholder="Что должно получиться? Например: динамичный ролик про кофейню с акцией"></textarea></label>
   <label class="fl" style="margin:0"><span>Текст на экране</span><input id="rs-hook" maxlength="60" placeholder="Например: Утро начинается здесь"></label></div>
- <div class="rs-step"><div class="rs-t"><span>3</span><b>Стиль</b></div><div class="rs-styles">${RS_ST.map(function(s){return '<button type="button" class="rs-st" data-st="'+s[0]+'"><i class="fa-solid fa-'+s[3]+'"></i><b>'+s[1]+'</b><span>'+s[2]+'</span></button>'}).join('')}</div>
+ <div class="rs-step rs-lk"><div class="rs-t"><span>3</span><b>Стиль</b></div><div class="rs-styles">${RS_ST.map(function(s){return '<button type="button" class="rs-st" data-st="'+s[0]+'"><i class="fa-solid fa-'+s[3]+'"></i><b>'+s[1]+'</b><span>'+s[2]+'</span></button>'}).join('')}</div>
   <div class="rs-opts"><label class="rs-opt">Длительность <select id="rs-dur"><option value="15">15 сек</option><option value="30">30 сек</option><option value="45">45 сек</option><option value="60">60 сек</option></select></label>
   <label class="rs-opt">Язык <select id="rs-lang"><option>Русский</option><option>Казахский</option></select></label>
   <label class="rs-opt"><input type="checkbox" id="rs-sub">Субтитры</label><label class="rs-opt"><input type="checkbox" id="rs-mus">Музыка</label></div></div>
  <div class="rs-step"><div class="rs-t"><span>4</span><b>Как собрать</b></div><div class="rs-modes">
-  <button type="button" class="rs-mode" data-md="auto"><b>Автомонтаж</b><strong>1 990 ₸ <small>/ ролик</small></strong><span>ИИ собирает ролик по выбранному стилю. Включена 1 правка.</span></button>
+  <button type="button" class="rs-mode" data-md="auto"><b>Автомонтаж</b><strong>1 990 ₸ <small>/ ролик</small></strong><span>ИИ собирает ролик по выбранному стилю. 2 правки включены.</span></button>
   <button type="button" class="rs-mode" data-md="pro"><em>ПОПУЛЯРНЫЙ</em><b>С монтажёром</b><strong>4 990 ₸ <small>/ ролик</small></strong><span>ИИ собирает, специалист дорабатывает. Для рекламы и интервью.</span></button></div></div>
- </div><aside class="rs-side"><div class="rs-prev"><div class="rl-phone"><div id="rs-scr"></div><div class="rl-shade"></div><div class="rl-top"><span class="rl-rec"><i></i><span id="rs-pst"></span></span><span id="rs-pdur"></span></div><div id="rs-sub-t"></div><div class="rl-bar"><i></i></div></div><p>Так будут выглядеть кадр и субтитры. Сам монтаж начнётся после заказа.</p><span style="display:none">${sc.length}</span></div>
+ </div><aside class="rs-side"><div class="rs-prev"><div class="rl-phone"><div id="rs-scr"></div><div class="rl-shade"></div><div class="rs-bld" id="rs-bld"></div><button type="button" class="rs-pl" id="rs-pl" aria-label="Смотреть"><i class="fa-solid fa-play"></i></button><div class="rl-top"><span class="rl-rec"><i></i><span id="rs-pst"></span></span><span id="rs-pdur"></span></div><div id="rs-sub-t"></div><div class="rl-bar" id="rs-bar"><i></i></div></div><p id="rs-cap"></p></div>
  <div class="rs-box" id="rs-box"><div class="rs-qty"><span>Роликов</span><div>${[1,5,10,15].map(function(n){return '<button type="button" data-q="'+n+'">'+n+'</button>'}).join('')}</div></div>
   <div class="rs-price"><div><b id="rs-pm"></b><span id="rs-pn"></span></div><strong id="rs-pr"></strong></div>
-  <label class="fl"><span>Имя *</span><input id="rs-name" autocomplete="name"></label><label class="fl"><span>Телефон / WhatsApp *</span><input id="rs-phone" type="tel" placeholder="+7" autocomplete="tel"></label>
-  <button type="button" class="btn-accent" id="rs-go" style="width:100%;justify-content:center">Оформить заказ</button><div class="rs-prog" id="rs-prog"><i></i></div><p class="rs-err" id="rs-err"></p>
+  <button type="button" class="btn-accent" id="rs-mk" style="width:100%;justify-content:center"><i class="fa-solid fa-wand-magic-sparkles"></i>Создать Reels · бесплатно</button>
+  <div class="rs-ed" id="rs-ed"><div class="rs-edh"><b>Правки</b><span id="rs-rev"></span></div><label class="fl"><input id="rs-edt" maxlength="60" placeholder="Исправить текст на экране"></label><div style="display:flex;gap:.5rem;flex-wrap:wrap"><button type="button" class="btn-line" id="rs-e1">Применить текст</button><button type="button" class="btn-line" id="rs-e2">Заменить кадр</button></div><button type="button" class="rs-lnk" onclick="rsReset()">Начать заново</button></div>
+  <button type="button" class="btn-accent" id="rs-go" disabled style="width:100%;justify-content:center;margin-top:.75rem">Оплатить и скачать</button><div class="rs-prog" id="rs-prog"><i></i></div><p class="rs-err" id="rs-err"></p>
   <p class="disc">Нажимая кнопку, вы соглашаетесь с <a href="/legal#privacy-policy" style="text-decoration:underline">политикой конфиденциальности</a> и передачей материалов сервисам облачной видеообработки (хранение 30 дней).</p></div></aside></div></section>`}
 function rsPaint(){
- var st=rsStats(),v=$('#rs-val'),i;if(!v)return;
- $('#rs-clips').innerHTML=RS.files.map(function(f){return '<div class="rs-clip">'+(f.thumb?'<img src="'+f.thumb+'" alt="">':'<div class="ph"><i class="fa-solid fa-film"></i></div>')+'<em>'+(f.type==='video'?(f.dur?rsT(f.dur):'видео'):'фото')+'</em><button type="button" aria-label="Удалить '+esc(f.name)+'" onclick="rsDel('+f.id+')">×</button></div>'}).join('');
+ var st=rsStats(),v=$('#rs-val'),i;if(!v||RS.done)return;
+ var ch=RS.files.map(function(f){return '<div class="rs-clip">'+(f.thumb?'<img src="'+f.thumb+'" alt="">':'<div class="ph"><i class="fa-solid fa-film"></i></div>')+'<em>'+(f.type==='video'?(f.dur?rsT(f.dur):'видео'):'фото')+'</em><button type="button" aria-label="Удалить '+esc(f.name)+'" onclick="rsDel('+f.id+')">×</button></div>'}).join('');if(RS.ck!==ch){RS.ck=ch;$('#rs-clips').innerHTML=ch}
  var e=RS.msg||st.err;v.className='rs-val'+(e?' err':st.cnt?' ok':'');
  v.textContent=e?e:st.cnt?'✓ '+st.cnt+' из 10 файлов · '+rsT(st.sec)+' из 10:00 · '+rsMB(st.sz)+' из 1 ГБ':'Добавьте хотя бы один файл. Формат и объём проверяем сразу, до оплаты.';
  [].forEach.call(document.querySelectorAll('[data-st]'),function(b){b.classList.toggle('on',b.dataset.st===RS.style)});
  [].forEach.call(document.querySelectorAll('[data-md]'),function(b){b.classList.toggle('on',b.dataset.md===RS.mode)});
  [].forEach.call(document.querySelectorAll('[data-q]'),function(b){b.classList.toggle('on',+b.dataset.q===RS.qty)});
  var p=RS_PRICE[RS.mode][RS.qty];$('#rs-pm').textContent=(RS.mode==='auto'?'Автомонтаж':'С монтажёром')+' · '+RS.qty+' '+(RS.qty===1?'ролик':'роликов');
- $('#rs-pn').textContent=RS.qty>1?'≈ '+Math.round(p/RS.qty).toLocaleString('ru-RU')+' ₸ за ролик':'1 правка включена';$('#rs-pr').textContent=p.toLocaleString('ru-RU')+' ₸';
- var f=RS.files[0],key=f?f.id+(f.thumb?'t':'n'):'0';
+ $('#rs-pn').textContent=RS.qty>1?'≈ '+Math.round(p/RS.qty).toLocaleString('ru-RU')+' ₸ за ролик':'2 правки включены';$('#rs-pr').textContent=p.toLocaleString('ru-RU')+' ₸';
+ var f=RS.files[RS.cur]||RS.files[0],key=f?f.id+(f.thumb?'t':'n'):'0';
  if(RS.pv!==key){RS.pv=key;$('#rs-scr').innerHTML=f&&f.thumb?'<img src="'+f.thumb+'" alt="Первый кадр">':RL_SC.replace(/rl([AG])/g,'rs$1')}
  var s=RS_ST.filter(function(x){return x[0]===RS.style})[0],h=RS.hook.trim()||(RS.lang==='Казахский'?'Таң осы жерден басталады':'Утро начинается здесь'),w=h.split(' '),l=w.pop(),t=$('#rs-sub-t');
  t.className='rl-sub '+RS.style;t.style.display=RS.sub?'':'none';t.innerHTML=RS.style==='dyn'?(w.length?esc(w.join(' '))+' ':'')+'<em>'+esc(l)+'</em>':esc(h);
- $('#rs-pst').textContent=s[1];$('#rs-pdur').textContent=(RS.mus?'♪ ':'')+rsT(RS.dur)}
+ $('#rs-pst').textContent=s[1];$('#rs-pdur').textContent=(RS.mus?'♪ ':'')+rsT(RS.dur);
+ var rd=RS.stage===2,bi=$('#rs-bar i');$('#studio').classList.toggle('rs-locked',RS.stage>0);
+ $('#rs-bld').style.display=RS.stage===1?'flex':'none';$('#rs-pl').style.display=rd?'flex':'none';$('#rs-pl i').className='fa-solid fa-'+(RS.play?'pause':'play');
+ bi.style.animation=rd?'none':'';bi.style.transform=rd?'scaleX('+Math.max(.03,RS.sec/RS.dur)+')':'';
+ $('#rs-mk').style.display=RS.built?'none':'';$('#rs-mk').disabled=RS.stage===1;$('#rs-ed').style.display=RS.built?'block':'none';
+ $('#rs-rev').textContent='Осталось: '+RS.rev+' из 2';$('#rs-e1').disabled=$('#rs-e2').disabled=RS.rev<1||!rd;$('#rs-go').disabled=!rd||RS.busy;
+ $('#rs-cap').textContent=rd?'Черновик готов. Посмотрите, внесите правки и оплатите, чтобы скачать.':'Так будут выглядеть кадр и субтитры. Первая сборка бесплатно.'}
 function rsAdd(list){var bad=[],over=0,ok=/\.(mp4|mov|jpe?g|png)$/i;
  [].forEach.call(list,function(f){if(!ok.test(f.name)){bad.push(f.name);return}if(RS.files.length>=10){over++;return}
   var it={id:++RS.uid,file:f,name:f.name,size:f.size,type:/\.(mp4|mov)$/i.test(f.name)?'video':'image',dur:0,thumb:''};RS.files.push(it);rsMeta(it)});
@@ -873,26 +897,40 @@ function rsMeta(it){
  v.onseeked=function(){try{var k=240/Math.max(v.videoWidth,v.videoHeight,1),c=document.createElement('canvas');c.width=Math.round(v.videoWidth*k)||240;c.height=Math.round(v.videoHeight*k)||240;c.getContext('2d').drawImage(v,0,0,c.width,c.height);it.thumb=c.toDataURL('image/jpeg',.72)}catch(e){}end()};
  v.onerror=end;v.src=u}
 function rsDel(id){RS.files=RS.files.filter(function(f){if(f.id===id&&f.type==='image'&&f.thumb)URL.revokeObjectURL(f.thumb);return f.id!==id});RS.msg='';rsPaint()}
-function rsDone(id,up){RS.done=1;$('#rs-box').innerHTML='<div class="rs-ok"><div style="font-size:2.5rem">✅</div><b>Заказ №'+id+' оформлен</b><p>'+(up?'Файлы загружены ('+RS.files.length+'). Мы приступаем к работе и свяжемся с вами в рабочее время.':'Мы свяжемся с вами в WhatsApp, уточним детали и пришлём ссылку для загрузки файлов.')+'</p><button type="button" class="btn-line" onclick="rsReset()">Оформить ещё один</button></div>'}
-function rsReset(){RS.done=null;RS.files=[];RS.task=RS.hook=RS.msg='';RS.pv=null;render();go('studio')}
+var RS_BS=['Проверяем файлы…','Составляем план монтажа…','Вырезаем паузы…','Собираем ролик…'];
+function rsBuild(fast){
+ var st=rsStats(),i=0,b=$('#rs-bld');if(!st.cnt||st.err){$('#rs-err').textContent=st.err||'Сначала добавьте хотя бы один файл.';go('rs-drop');return}
+ $('#rs-err').textContent='';clearInterval(RS.tm);clearInterval(RS.bt);RS.stage=1;RS.play=0;rsPaint();
+ function say(){var e=$('#rs-bld');if(e)e.innerHTML='<i class="fa-solid fa-circle-notch fa-spin"></i><span>'+RS_BS[i]+'</span>'}say();
+ RS.bt=setInterval(function(){i++;if(i<RS_BS.length){say();return}clearInterval(RS.bt);RS.stage=2;RS.built=1;RS.sec=0;RS.cur=0;rsPaint()},fast?450:800)}
+function rsEdit(k){
+ if(RS.stage!==2||RS.rev<1)return;var er=$('#rs-err');
+ if(k==='txt'){var t=$('#rs-edt').value.trim();if(!t){er.textContent='Введите новый текст.';return}RS.hook=t;$('#rs-hook').value=t}
+ else if(RS.files.length>1)RS.files.push(RS.files.shift());else{er.textContent='Для замены кадра нужно минимум 2 файла.';return}
+ er.textContent='';RS.rev--;$('#rs-edt').value='';RS.pv=null;rsBuild(1)}
+function rsPlay(){if(RS.stage!==2)return;RS.play=RS.play?0:1;clearInterval(RS.tm);
+ if(RS.play)RS.tm=setInterval(function(){RS.sec=(RS.sec+1)%RS.dur;RS.cur=Math.floor(RS.sec/RS.dur*RS.files.length);rsPaint()},400);rsPaint()}
+function rsDone(id,r){clearInterval(RS.tm);RS.done=1;$('#rs-box').innerHTML='<div class="rs-ok"><div style="font-size:2.5rem">✅</div><b>Заказ №'+id+(r.url?': ролик готов':' принят')+'</b><p>'+(r.url?'Файл можно скачать по кнопке ниже.':'Мы пришлём ссылку на оплату и скачивание готового ролика.')+'</p>'+(r.url?'<a class="btn-accent" style="justify-content:center;margin-bottom:.6rem" href="'+esc(r.url)+'" download>Скачать MP4</a><br>':'')+'<button type="button" class="btn-line" onclick="rsReset()">Создать ещё один</button></div>'}
+function rsReset(){clearInterval(RS.tm);clearInterval(RS.bt);RS.done=null;RS.busy=false;RS.files=[];RS.task=RS.hook=RS.msg='';RS.stage=RS.built=RS.sec=RS.play=RS.cur=0;RS.rev=2;RS.pv=null;RS.ck='';render();go('studio')}
 function rsSubmit(){
- if(RS.busy)return;var st=rsStats(),er=$('#rs-err'),btn=$('#rs-go'),ph=RS.phone.replace(/\D/g,''),
- e=!st.cnt?'Добавьте хотя бы один файл.':st.err||(!RS.name.trim()?'Укажите имя.':ph.length<10?'Укажите телефон или WhatsApp.':'');
- if(e){er.textContent=e;if(!st.cnt||st.err)go('rs-drop');return}er.textContent='';
- var s=RS_ST.filter(function(x){return x[0]===RS.style})[0][1],id='R'+Date.now().toString(36).slice(-5).toUpperCase(),
- d={id:id,service:'ИИ-монтаж Reels',name:RS.name,phone:RS.phone,mode:RS.mode==='auto'?'Автомонтаж':'С монтажёром',qty:RS.qty,price:RS_PRICE[RS.mode][RS.qty]+' ₸',style:s,duration:RS.dur+' сек',lang:RS.lang,subtitles:RS.sub?'да':'нет',music:RS.mus?'да':'нет',task:RS.task,hook:RS.hook,
+ if(RS.busy||RS.stage!==2)return;var er=$('#rs-err'),btn=$('#rs-go'),s=RS_ST.filter(function(x){return x[0]===RS.style})[0][1],id='R'+Date.now().toString(36).slice(-5).toUpperCase(),
+ d={id:id,service:'ИИ-монтаж Reels',mode:RS.mode==='auto'?'Автомонтаж':'С монтажёром',qty:RS.qty,price:RS_PRICE[RS.mode][RS.qty]+' ₸',style:s,duration:RS.dur+' сек',lang:RS.lang,subtitles:RS.sub?'да':'нет',music:RS.mus?'да':'нет',task:RS.task,hook:RS.hook,edits_used:2-RS.rev,
   files:RS.files.map(function(f){return f.name+' ('+rsMB(f.size)+(f.dur?', '+rsT(f.dur):'')+')'}).join('; '),date:new Date().toISOString()};
- if(!ORDER_URL){location.href='mailto:info@creators.kz?subject='+encodeURIComponent('Заказ Reels '+id)+'&body='+encodeURIComponent(Object.keys(d).map(function(k){return k+': '+d[k]}).join('\n'));rsDone(id,false);return}
- var x=new XMLHttpRequest(),fd=new FormData(),pr=$('#rs-prog');RS.busy=true;btn.disabled=true;btn.textContent='Загружаем… 0%';pr.style.display='block';
+ if(!ORDER_URL){location.href='mailto:info@creators.kz?subject='+encodeURIComponent('Заказ Reels '+id)+'&body='+encodeURIComponent(Object.keys(d).map(function(k){return k+': '+d[k]}).join('\n'));rsDone(id,{});return}
+ var x=new XMLHttpRequest(),fd=new FormData(),pr=$('#rs-prog');RS.busy=true;btn.disabled=true;btn.textContent='Загружаем… 0%';pr.style.display='block';er.textContent='';
  fd.append('order',JSON.stringify(d));RS.files.forEach(function(f){fd.append('files',f.file,f.name)});
- function fail(){RS.busy=false;btn.disabled=false;btn.textContent='Оформить заказ';pr.style.display='none';er.textContent='Не удалось отправить. Попробуйте ещё раз или позвоните: +7 707 177 11 99'}
+ function fail(){RS.busy=false;btn.disabled=false;btn.textContent='Оплатить и скачать';pr.style.display='none';er.textContent='Не удалось отправить. Попробуйте ещё раз или позвоните: +7 707 177 11 99'}
  x.upload.onprogress=function(ev){if(ev.lengthComputable){var p=Math.round(ev.loaded/ev.total*100);$('#rs-prog i').style.width=p+'%';btn.textContent='Загружаем… '+p+'%'}};
- x.onload=function(){if(x.status<200||x.status>299)return fail();RS.busy=false;var r={};try{r=JSON.parse(x.responseText)}catch(z){}if(r.payUrl){location.href=r.payUrl;return}rsDone(r.id||id,true)};
+ x.onload=function(){if(x.status<200||x.status>299)return fail();RS.busy=false;var r={};try{r=JSON.parse(x.responseText)}catch(z){}if(r.payUrl){location.href=r.payUrl;return}if(r.downloadUrl)r.url=r.downloadUrl;rsDone(r.id||id,r)};
  x.onerror=fail;x.open('POST',ORDER_URL);x.send(fd)}
+var RC=[['Кофейня','Утро начинается здесь','Динамичный · 30 сек','#F7B28B,#C76B86','mug-hot'],['Барбершоп','Стиль без компромиссов','Промо · 15 сек','#6D5BD0,#2B2D6E','scissors'],['Фитнес-клуб','Первое занятие бесплатно','Динамичный · 30 сек','#34D399,#0F766E','dumbbell'],['Эксперт','3 ошибки при открытии ИП','Экспертный · 45 сек','#60A5FA,#1E3A8A','microphone'],['Салон красоты','Новый образ за час','Минимализм · 30 сек','#F9A8D4,#9D174D','spa'],['Магазин одежды','Скидки до −40%','Промо · 15 сек','#FBBF24,#B45309','shirt']];
+/* RC: вместо заглушек добавьте 6-м элементом ссылку на ваш MP4: ['Кофейня','Подпись','Стиль','#F7B28B,#C76B86','mug-hot','cases/cafe.mp4'] */
+function reelsCases(){var c=RC.concat(RC).map(function(x){return '<div class="rc-card" style="background:linear-gradient(160deg,'+x[3]+')">'+(x[5]?'<video src="'+esc(x[5])+'" autoplay muted loop playsinline preload="metadata"></video>':'<i class="fa-solid fa-'+x[4]+' rc-ic"></i>')+'<span class="rc-tag">'+x[0]+'</span><span class="rc-cap">'+x[1]+'</span><span class="rc-meta">'+x[2]+'</span></div>'}).join('');
+ return '<section class="card-panel rc"><div class="rc-h"><div class="kicker"><i></i><b>Кейсы</b></div><h3>Reels, которые собрали у нас</h3></div><div class="rc-view" aria-label="Примеры роликов"><div class="rc-track">'+c+'</div></div></section>'}
 function initStudio(){
  var f=$('#rs-file'),dz=$('#rs-drop');if(!f)return;
  function bind(id,k,ev,cb){var el=$(id);if(el.type==='checkbox')el.checked=RS[k];else el.value=RS[k];el.addEventListener(ev||'input',function(){RS[k]=el.type==='checkbox'?el.checked:(el.tagName==='SELECT'&&k==='dur'?+el.value:el.value);rsPaint()})}
- bind('#rs-task','task');bind('#rs-hook','hook');bind('#rs-dur','dur','change');bind('#rs-lang','lang','change');bind('#rs-sub','sub','change');bind('#rs-mus','mus','change');bind('#rs-name','name');bind('#rs-phone','phone');
+ bind('#rs-task','task');bind('#rs-hook','hook');bind('#rs-dur','dur','change');bind('#rs-lang','lang','change');bind('#rs-sub','sub','change');bind('#rs-mus','mus','change');
  f.addEventListener('change',function(){rsAdd(f.files);f.value=''});
  ['dragenter','dragover'].forEach(function(n){dz.addEventListener(n,function(e){e.preventDefault();dz.classList.add('over')})});
  ['dragleave','drop'].forEach(function(n){dz.addEventListener(n,function(e){e.preventDefault();dz.classList.remove('over')})});
@@ -900,7 +938,7 @@ function initStudio(){
  [].forEach.call(document.querySelectorAll('[data-st]'),function(b){b.onclick=function(){RS.style=b.dataset.st;rsPaint()}});
  [].forEach.call(document.querySelectorAll('[data-md]'),function(b){b.onclick=function(){RS.mode=b.dataset.md;rsPaint()}});
  [].forEach.call(document.querySelectorAll('[data-q]'),function(b){b.onclick=function(){RS.qty=+b.dataset.q;rsPaint()}});
- $('#rs-go').onclick=rsSubmit;RS.pv=null;rsPaint()}
+ $('#rs-go').onclick=rsSubmit;$('#rs-mk').onclick=function(){rsBuild()};$('#rs-pl').onclick=rsPlay;$('#rs-e1').onclick=function(){rsEdit('txt')};$('#rs-e2').onclick=function(){rsEdit('clip')};RS.pv=null;RS.ck='';rsPaint()}
 document.addEventListener('click',function(e){var t=e.target.closest('[data-mk]');if(!t)return;mkI=+t.dataset.mk;$('#bw-body').innerHTML=mkView()});
 /* Переход по ссылкам из выпадающего меню шапки (#news, #rand …) без перезагрузки */
 window.addEventListener('hashchange',function(){var id=location.hash.slice(1);if(!find(id)||id===cur)return;

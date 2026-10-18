@@ -102,8 +102,8 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
 .dd-link:hover .t,.dd-link.is-active .t{color:var(--accent)}
 .dd-link .d{font-size:.75rem;color:#6b7280;margin-top:2px;line-height:1.35}
 .soon{font-size:9px;font-weight:800;letter-spacing:.06em;padding:2px 7px;border-radius:99px;background:rgba(var(--accent-rgb),.1);color:var(--accent)}
-.hub-logo{line-height:1}.hub-logo__big{font-size:3.5rem;font-weight:900;letter-spacing:-.04em;color:#1A1A1A;line-height:.95}
-.hub-logo__sub{margin-top:.35rem;font-size:.9rem;font-weight:600;letter-spacing:.01em;color:#9ca3af;white-space:nowrap}.hub-logo__sub{text-transform:none}
+.hub-head__k{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);line-height:1.2}
+.hub-head__t{margin-top:.3rem;font-size:1.35rem;font-weight:800;letter-spacing:-.01em;color:#1A1A1A;line-height:1.15}
 .city-chip{padding:.4rem .8rem;border-radius:99px;border:1px solid rgba(var(--accent-rgb),.2);background:#fff;font-size:.75rem;font-weight:600;color:#374151;transition:all .2s}
 .city-chip:hover{border-color:var(--accent);color:var(--accent)}
 .city-chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -184,6 +184,14 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
 .st-n{flex:none;width:3rem;height:3rem;border-radius:50%;background:rgba(var(--accent-rgb),.09);color:var(--accent);font-weight:800;display:flex;align-items:center;justify-content:center}
 .st b{display:block;font-size:1rem;line-height:1.25}.st span span{display:block;margin-top:2px;font-size:.8125rem;line-height:1.4;color:#6b7280}
 .st-a{display:none;color:rgba(var(--accent-rgb),.4)}@container (min-width:700px){.st-a{display:block}}
+.nh-ben{margin-top:2rem;padding:1.75rem}@media(min-width:768px){.nh-ben{padding:2.5rem}}
+.nh-ben h3{margin:0 0 1.75rem;font-size:clamp(1.5rem,3.2vw,2.25rem);font-weight:900;letter-spacing:-.03em;line-height:1.1}
+.nh-ben h3 em{display:block;font-style:normal;color:var(--accent)}
+.ben-g{display:grid;gap:1.75rem 3rem}@media(min-width:700px){.ben-g{grid-template-columns:1fr 1fr}}
+.ben{display:flex;gap:1.25rem;align-items:flex-start}
+.ben-i{flex:none;width:2.75rem;height:2.75rem;color:var(--accent)}.ben-i svg{display:block;width:100%;height:100%}
+.ben b{display:block;font-size:1.125rem;font-weight:800;line-height:1.25}
+.ben p{margin:.35rem 0 0;font-size:.9375rem;line-height:1.5;color:#6b7280;max-width:26rem}
 @media(prefers-reduced-motion:reduce){.fade{animation:none}.bw-ok i{animation:none}}
 </style>
 </head>
@@ -216,7 +224,7 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
           <button type="button" class="nav-link" data-dd="dd-hub" aria-expanded="false">Всё для контента <i class="fa-solid fa-chevron-down"></i></button>
           <div id="dd-hub" class="dd left-1/2 -ml-[340px] w-[680px] p-6">
             <div class="flex items-start justify-between gap-4 mb-4">
-              <div class="hub-logo"><div class="hub-logo__big">HUB</div><div class="hub-logo__sub">by CREATORS.KZ</div></div>
+              <div class="hub-head"><div class="hub-head__k">Creator Hub</div><div class="hub-head__t">Всё для контента</div></div>
               <span class="text-xs text-gray-400 text-right max-w-[200px] leading-snug">События, места, техника и реквизит для съёмок</span>
             </div>
             <div class="grid grid-cols-2 gap-1.5">
@@ -244,7 +252,7 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
     <div class="flex items-center gap-3 ml-auto xl:ml-0">
       <div class="hidden xl:flex role-toggle">
         <button type="button" onclick="switchRole('blogger')">Блогер</button>
-        <button type="button" onclick="switchRole('customer')" class="active">Рекламодатель</button>
+        <button type="button" onclick="switchRole('customer')" class="active">Заказчик</button>
       </div>
 
       <!-- Кнопка профиля + выпадающее окно -->
@@ -282,7 +290,7 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
   <div class="pb-10">
     <div class="role-toggle w-fit mx-auto mb-5">
       <button type="button" onclick="switchRole('blogger')">Блогер</button>
-      <button type="button" onclick="switchRole('customer')" class="active">Рекламодатель</button>
+      <button type="button" onclick="switchRole('customer')" class="active">Заказчик</button>
     </div>
     <a href="catalog.html" class="block py-3 text-lg font-semibold">Каталог</a>
     <a href="barter.html" class="block py-3 text-lg font-semibold">Бартер</a>
@@ -462,7 +470,7 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!cm.classList.contains('hidden'))closeCity();});
   setCity(ls.get('ck_city')||'Алматы',true);
 
-  /* Роль Блогер / Рекламодатель: теперь запоминается между страницами */
+  /* Роль Блогер / Заказчик: теперь запоминается между страницами */
   window.switchRole=function(role){
     document.documentElement.style.setProperty('--accent',role==='blogger'?'#EF233C':'#9C1C4F');
     document.documentElement.style.setProperty('--accent-rgb',role==='blogger'?'239,35,60':'156,28,79');
@@ -597,7 +605,7 @@ function plan(i,sub,v,f,pop){var n=PK[i][0],p=PK[i][1],pt=fm(p);return '<div cla
 function extra(s){if(s.id!=='news')return '';
  var HW=[['Оставляете заявку','Мы свяжемся в рабочее время и проверим возможность интеграции до оплаты.'],['Выбираете темы','Категории и источники под ваш бизнес.'],['Настраиваем расписание','Время публикации и площадка: сайт, Telegram или Instagram.'],['ИИ публикует новости','Находит материалы, готовит тексты и выкладывает со ссылками на источники.']];
  var hw='<section class="card-panel how" id="how"><div class="kicker"><i></i><b>Как это работает</b></div><h3>От заявки до первой новости</h3><div class="how-g">'+HW.map(function(x,i){return '<div class="how-s"><div class="how-n">'+(i+1)+'</div><b>'+x[0]+'</b><p>'+x[1]+'</p></div>'}).join('')+'</div></section>';
- return hw+'<div class="dark" style="margin-top:1.5rem" id="plans"><div class="sec-t" style="margin-top:1rem"><p>ИИ-НОВОСТИ ДЛЯ ВАШЕГО САЙТА И СОЦСЕТЕЙ</p><h3>Выберите готовый пакет</h3></div><div class="plans">'+
+ return '<div class="dark" style="margin-top:1.5rem" id="plans"><div class="sec-t" style="margin-top:1rem"><p>ИИ-НОВОСТИ ДЛЯ ВАШЕГО САЙТА И СОЦСЕТЕЙ</p><h3>Выберите готовый пакет</h3></div><div class="plans">'+
  plan(0,'Для редких публикаций','<b class="n">1</b> новость в неделю',['1 категория','Публикация по расписанию','Автопостинг на ваш сайт'])+
  plan(1,'Для активного сайта','<b style="color:var(--accent)">1</b> новость в день',['До 3 категорий','Выбор времени публикации','Автопостинг на сайт и в соцсети'],1)+
  plan(2,'Для новостных разделов','До <b class="n">5</b> новостей в день',['До 10 категорий','Несколько разделов сайта','Гибкое расписание публикаций'])+
@@ -605,7 +613,7 @@ function extra(s){if(s.id!=='news')return '';
  '<div class="card-panel calc"><div><div class="kicker"><i></i><b>Индивидуальная подписка</b></div><h3>Соберите свой пакет</h3><p class="lead" style="margin-top:.5rem">Только нужные темы и нужный объём, без переплаты.</p>'+
  '<div class="row"><span>Категории</span><b id="cv">3</b></div><input id="cr" type="range" min="1" max="100" value="3">'+
  '<div class="row"><span>Новостей</span><b id="nv">1</b></div><div class="seg" id="per"><button class="on" data-p="30">В день</button><button data-p="4.33">В неделю</button><button data-p="1">В месяц</button></div><input id="nr" type="range" min="1" max="100" value="1"></div>'+
- '<div class="sum"><b>Ваш пакет</b><div class="l"><span>Категории</span><b id="s1">3</b></div><div class="l"><span>Публикации</span><b id="s2">1 в день</b></div><div class="l"><span>Объём</span><b id="s3">≈ 30 в месяц</b></div><div class="l"><span>Подключение</span><b style="color:var(--accent)">Бесплатно</b></div><div class="big" id="pr">'+fm(2900)+'</div><div style="font-size:.75rem;color:#6b7280">/ месяц</div><button class="btn-accent" style="justify-content:center;margin-top:1rem" onclick="choose(\'Индивидуальный (из конструктора)\',\'Конструктор: \'+$(\'#s1\').textContent+\' категорий, \'+$(\'#s2\').textContent+\', \'+$(\'#s3\').textContent+\', цена \'+$(\'#pr\').textContent)">Оставить заявку на этот пакет</button></div></div>'}
+ '<div class="sum"><b>Ваш пакет</b><div class="l"><span>Категории</span><b id="s1">3</b></div><div class="l"><span>Публикации</span><b id="s2">1 в день</b></div><div class="l"><span>Объём</span><b id="s3">≈ 30 в месяц</b></div><div class="l"><span>Подключение</span><b style="color:var(--accent)">Бесплатно</b></div><div class="big" id="pr">'+fm(2900)+'</div><div style="font-size:.75rem;color:#6b7280">/ месяц</div><button class="btn-accent" style="justify-content:center;margin-top:1rem" onclick="choose(\'Индивидуальный (из конструктора)\',\'Конструктор: \'+$(\'#s1\').textContent+\' категорий, \'+$(\'#s2\').textContent+\', \'+$(\'#s3\').textContent+\', цена \'+$(\'#pr\').textContent)">Оставить заявку на этот пакет</button></div></div>'+hw}
 function form(s){var news=s.id==='news',live=s.status==='live';
  return '<div class="card-panel lead-f" id="lead"><div class="kicker"><i></i><b>'+(live?'Заявка':'Предзапись')+'</b></div><h3>'+(live?'Оставьте заявку на подключение':'Предзапись на сервис')+'</h3><p class="lead">'+(news?'Настроим бесплатно и проверим возможность интеграции до оплаты. Свяжемся в рабочее время.':'Сообщим о запуске и предложим условия раннего доступа.')+'</p>'+
  '<form onsubmit="sendLead(event,\''+s.id+'\')"><div class="g2"><label class="fl"><span>Имя *</span><input name="nm" required></label><label class="fl"><span>Телефон / WhatsApp *</span><input name="ph" type="tel" required placeholder="+7"></label></div>'+
@@ -635,7 +643,7 @@ function render(){
   feats='<ul class="feat two">'+s.feats.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul>',
   h='<div class="fade"><article class="doc card-panel"><div class="kicker"><i></i><b>'+AUD[s.aud]+'</b><i></i></div><h2>'+s.name+'</h2><div class="chips">'+ch+'</div>';
  if(b){var T=TOOLS[s.tool];h+='<p class="lead">'+s.desc+'</p><div class="tool"><div class="tin">'+T.form()+'</div><div class="dark" id="out"></div></div>'+feats+'<p class="disc">'+T.note+'</p></article></div>'}
- else if(s.id==='news'){h='<div class="fade">'+newsHero()+extra(s)+form(s)+'</div>'}
+ else if(s.id==='news'){h='<div class="fade">'+newsHero()+newsBen()+extra(s)+form(s)+'</div>'}
  else{h+='<div class="actions"><button class="btn-accent" onclick="go(\'lead\')">'+(s.status==='live'?'Оставить заявку':'Предзапись')+'</button>'+(s.id==='news'?'<button class="btn-line" onclick="go(\'plans\')">Смотреть тарифы</button>':'')+'</div><div class="split"><div><p class="lead">'+s.desc+'</p><ul class="feat">'+s.feats.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul></div><div class="dark">'+(VIS[s.id]||VIS.soon)()+'</div></div></article>'+extra(s)+form(s)+'</div>'}
  $('#view').innerHTML=h;
  if(b){TOOLS[s.tool].init();if(s.tool!=='rand')[].forEach.call(document.querySelectorAll('.tin input'),function(i){i.oninput=s.tool==='score'?runScore:runBots})}
@@ -688,6 +696,13 @@ function mkView(){
  var m=MK[mkI],o=[0,1,2].filter(function(i){return i!==mkI});
  return '<div class="bw-feat fade"><div class="bw-img">'+scene(m.k)+'</div><div><span class="bw-tag">'+m.t+'</span><b class="bw-h">'+m.h+'</b><p class="bw-d">'+m.d+'</p><span class="bw-w">'+m.w+'</span></div></div>'+
  '<div class="bw-list">'+o.map(function(i){var x=MK[i];return '<button type="button" class="bw-row fade" data-mk="'+i+'"><span class="bw-th">'+scene(x.k)+'</span><span class="bw-rt"><span class="bw-tag">'+x.t+'</span><small>'+x.w+'</small><b>'+x.h+'</b></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>'}).join('')+'</div>'}
+function newsBen(){
+ var I='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">',
+ B=[[I+'<path d="M6 12h36M6 24h36M6 36h36"/><circle cx="30" cy="12" r="4" fill="#fff"/><circle cx="17" cy="24" r="4" fill="#fff"/><circle cx="26" cy="36" r="4" fill="#fff"/></svg>','Бесплатная настройка','Бесплатно настроим сервис на вашем сайте'],
+ [I+'<circle cx="24" cy="24" r="19"/><path d="M24 12v13l8 5"/></svg>','Публикации по расписанию','Автоматически публикуем статьи с изображениями в выбранные вами дни и время'],
+ [I+'<path d="M12 6h17l9 9v27H12z"/><path d="M29 6v9h9"/><path d="M18 28l5 5 9-10"/></svg>','Уникальный контент','Генерация уникальных статей — проверяем информацию и исключаем дублирование тем'],
+ [I+'<path d="M8 8h32a2 2 0 012 2v22a2 2 0 01-2 2H22l-9 8v-8H8a2 2 0 01-2-2V10a2 2 0 012-2z"/><path d="M17 21l5 5 9-9"/></svg>','Контроль публикаций','Возможность согласовать материалы перед публикацией']];
+ return '<section class="card-panel nh-ben"><h3>Сайт обновляется. <em>Вы занимаетесь бизнесом.</em></h3><div class="ben-g">'+B.map(function(x){return '<div class="ben"><span class="ben-i">'+x[0]+'</span><div><b>'+x[1]+'</b><p>'+x[2]+'</p></div></div>'}).join('')+'</div></section>'}
 function newsHero(){
  mkI=0;
  return '<section class="nh"><div class="nh-grid"><div>'+

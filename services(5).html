@@ -46,7 +46,7 @@ a{color:inherit;text-decoration:none}ul{margin:0;padding:0;list-style:none}butto
 .mini{background:rgba(255,255,255,.05);border-radius:16px;padding:1rem;margin-top:.75rem;font-size:.8125rem}
 /* PRICING */
 .sec-t{text-align:center;margin:3.5rem 0 1.5rem}.sec-t p{margin:0;font-size:.6875rem;letter-spacing:.25em;color:rgba(255,255,255,.5)}.sec-t h3{margin:.25rem 0 0;font-size:clamp(1.5rem,3.5vw,2.25rem);font-weight:900;color:#fff}
-.plans{display:grid;gap:1rem}@media(min-width:900px){.plans{grid-template-columns:repeat(3,1fr)}}
+.plans{display:grid;gap:1rem}@media(min-width:640px){.plans{grid-template-columns:repeat(2,1fr)}}@media(min-width:1100px){.plans{grid-template-columns:repeat(4,1fr)}}
 .plan{display:flex;flex-direction:column;position:relative;border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:1.5rem;background:rgba(255,255,255,.04)}
 .plan.pop{background:#fff;color:#1A1A1A;border:2px solid var(--neon);box-shadow:0 0 40px rgba(255,46,147,.35)}.plan.pop .m{color:#6b7280}
 .plan h4{margin:0;font-size:1.25rem;font-weight:900}.plan .pr{font-size:1.875rem;font-weight:900;margin-top:1rem}.plan .pr small{font-size:.8rem;font-weight:500}
@@ -494,7 +494,7 @@ var LEAD_URL='';
    SITE: 'kz' — тенге, 'ru' — рубли */
 var SITE='kz',K=SITE==='kz'?6:1,CUR=SITE==='kz'?'₸':'₽';
 function fm(x){return Math.round(x*K).toLocaleString('ru-RU')+' '+CUR}
-var PK=[['Старт',3000,30],['Регулярный',5500,60],['Медиа',7500,90]];
+var PK=[['Мини',1000,10],['Старт',3000,30],['Регулярный',5500,60],['Медиа',7500,90]];
 /* ===== РЕЕСТР СЕРВИСОВ =====
    Новый сервис = один объект (ic — иконка Font Awesome). aud: 'blogger' (tool: ключ из TOOLS, работает на сайте) | 'customer' (заявка и прайс)
    status: 'live' | 'soon' */
@@ -605,9 +605,10 @@ function extra(s){if(s.id!=='news')return '';
  var HW=[['Оставляете заявку','Мы свяжемся в рабочее время и проверим возможность интеграции до оплаты.'],['Выбираете темы','Категории и источники под ваш бизнес.'],['Настраиваем расписание','Время публикации и площадка: сайт, Telegram или Instagram.'],['ИИ публикует новости','Находит материалы, готовит тексты и выкладывает со ссылками на источники.']];
  var hw='<section class="card-panel how" id="how"><div class="kicker"><i></i><b>Как это работает</b></div><h3>От заявки до первой новости</h3><div class="how-g">'+HW.map(function(x,i){return '<div class="how-s"><div class="how-n">'+(i+1)+'</div><b>'+x[0]+'</b><p>'+x[1]+'</p></div>'}).join('')+'</div></section>';
  return '<div class="dark" style="margin-top:1.5rem" id="plans"><div class="sec-t" style="margin-top:1rem"><p>ИИ-НОВОСТИ ДЛЯ ВАШЕГО САЙТА И СОЦСЕТЕЙ</p><h3>Выберите готовый пакет</h3></div><div class="plans">'+
- plan(0,'Для небольшого сайта','<b class="n">30</b> статей в месяц · 1 в день',['1 категория','Публикация по расписанию','Автопостинг на ваш сайт'])+
- plan(1,'Для активного сайта','<b style="color:var(--accent)">60</b> статей в месяц · 2 в день',['До 3 категорий','Выбор времени публикации','Автопостинг на сайт и в соцсети'],1)+
- plan(2,'Для новостных разделов','<b class="n">90</b> статей в месяц · 3 в день',['До 10 категорий','Несколько разделов сайта','Гибкое расписание публикаций'])+
+ plan(0,'Для ИП и малого бизнеса','<b class="n">10</b> статей в месяц',['1 категория','Публикация по расписанию','Автопостинг на ваш сайт'])+
+ plan(1,'Для небольшого сайта','<b class="n">30</b> статей в месяц · 1 в день',['1 категория','Публикация по расписанию','Автопостинг на ваш сайт'])+
+ plan(2,'Для активного сайта','<b style="color:var(--accent)">60</b> статей в месяц · 2 в день',['До 3 категорий','Выбор времени публикации','Автопостинг на сайт и в соцсети'],1)+
+ plan(3,'Для новостных разделов','<b class="n">90</b> статей в месяц · 3 в день',['До 10 категорий','Несколько разделов сайта','Гибкое расписание публикаций'])+
  '</div><p class="note m">🛡 Во всех тарифах: ссылки на источники · проверка дублей · режим согласования перед публикацией</p></div>'+
  '<div class="card-panel calc"><div><div class="kicker"><i></i><b>Индивидуальная подписка</b></div><h3>Соберите свой пакет</h3><p class="lead" style="margin-top:.5rem">Только нужные темы и нужный объём, без переплаты.</p>'+
  '<div class="row"><span>Категории</span><b id="cv">3</b></div><input id="cr" type="range" min="1" max="100" value="3">'+

@@ -122,18 +122,17 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
 .pg h1{margin:0;font-size:clamp(2rem,4vw,2.75rem);font-weight:900;letter-spacing:-.04em;line-height:1.05}
 .pg-top p{margin:0;color:#6b7280;font-size:.9rem}
 /* ===== Выбор сервисов (карточка с пилюлями; при росте списка переносится на новые строки) ===== */
-.picker{position:relative;display:flex;gap:1.25rem;overflow-x:auto;padding:.75rem 1rem;margin-top:.9rem;scrollbar-width:none}
+.picker{position:relative;display:flex;align-items:center;gap:1.1rem;overflow-x:auto;padding:.55rem .55rem .55rem 1.4rem;margin-top:.8rem;scrollbar-width:none;border-radius:999px;box-shadow:0 4px 14px -8px rgba(var(--accent-rgb),.25)}
 .picker::-webkit-scrollbar{display:none}
-.pk-g{display:flex;align-items:center;gap:.5rem;flex:none}.pk-l{display:flex;gap:.5rem}
-.pk-t{font-size:.8125rem;font-weight:800;color:var(--accent)}
-.svc{white-space:nowrap;display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1rem;border-radius:1.5rem;background:#F8F7F5;border:1px solid rgba(var(--accent-rgb),.14);font-size:.8125rem;font-weight:600;transition:all .25s}
-.svc i{width:1rem;text-align:center;font-size:.8rem;color:var(--accent)}
+.pk-g{display:flex;align-items:center;gap:.7rem;flex:none}.pk-g+.pk-g{padding-left:1.1rem;border-left:1px solid rgba(var(--accent-rgb),.14)}
+.pk-l{display:flex;gap:.4rem}
+.pk-t{font-size:.75rem;font-weight:800;color:var(--accent)}
+.svc{white-space:nowrap;display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:1.5rem;background:#F8F7F5;border:1px solid rgba(var(--accent-rgb),.12);font-size:.8125rem;font-weight:600;transition:all .25s}
+.svc i{width:.9rem;text-align:center;font-size:.72rem;color:var(--accent)}
 .svc:hover{background:#fff;border-color:var(--accent);color:var(--accent)}
 .svc:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.svc.on{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 8px 20px -8px var(--accent)}.svc.on i{color:#fff}
-.svc small{font-size:.625rem;font-weight:800;padding:2px 8px;border-radius:99px;background:rgba(var(--accent-rgb),.1);color:var(--accent)}.svc.on small{background:rgba(255,255,255,.25);color:#fff}
-@media(min-width:900px){.picker{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0;padding:1.25rem 0;overflow:visible}
- .pk-g{display:block;max-width:36rem;padding:0 1.5rem}.pk-g+.pk-g{max-width:none;border-left:1px solid rgba(var(--accent-rgb),.1)}.pk-t{display:block;margin-bottom:.6rem}.pk-l{flex-wrap:wrap}}
+.svc.on{background:var(--accent);border-color:var(--accent);color:#fff}.svc.on i{color:#fff}
+.svc small{font-size:.58rem;font-weight:800;padding:1px 7px;border-radius:99px;background:rgba(var(--accent-rgb),.1);color:var(--accent)}.svc.on small{background:rgba(255,255,255,.25);color:#fff}
 .how{margin-top:1.5rem;padding:1.75rem}@media(min-width:768px){.how{padding:2.5rem}}
 .how h3{margin:0 0 1.5rem;font-size:clamp(1.5rem,3.2vw,2.25rem);font-weight:900;letter-spacing:-.02em;line-height:1.15}
 .how-g{display:grid;gap:1rem}@media(min-width:640px){.how-g{grid-template-columns:repeat(2,1fr)}}@media(min-width:1000px){.how-g{grid-template-columns:repeat(4,1fr)}}
@@ -495,7 +494,7 @@ var LEAD_URL='';
    SITE: 'kz' — тенге, 'ru' — рубли */
 var SITE='kz',K=SITE==='kz'?6:1,CUR=SITE==='kz'?'₸':'₽';
 function fm(x){return Math.round(x*K).toLocaleString('ru-RU')+' '+CUR}
-var PK=[['Старт',590],['Регулярный',2900],['Медиа',13500]];
+var PK=[['Старт',3000,30],['Регулярный',5500,60],['Медиа',7500,90]];
 /* ===== РЕЕСТР СЕРВИСОВ =====
    Новый сервис = один объект (ic — иконка Font Awesome). aud: 'blogger' (tool: ключ из TOOLS, работает на сайте) | 'customer' (заявка и прайс)
    status: 'live' | 'soon' */
@@ -601,19 +600,19 @@ function runRand(){
 var VIS={
 news:function(){return '<div style="display:flex;justify-content:space-between;align-items:center"><b>Ваш новостной раздел</b><span style="font-size:.65rem;font-weight:800;color:#34D399">● АВТОПУБЛИКАЦИЯ</span></div><div class="mini"><span class="n" style="font-size:.7rem;font-weight:700">Технологии</span><div style="font-weight:700;margin-top:.2rem">Как ИИ меняет работу компаний</div><div class="m" style="font-size:.7rem">Источник ↗ · Опубликовано</div></div><div class="mini"><span class="m" style="font-size:.7rem">Следующая публикация</span><div style="font-weight:700;margin-top:.2rem">Новые инструменты ИИ для анализа данных</div><div class="m" style="font-size:.7rem">Завтра, 09:00</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem"><div class="mini">✅ Темы выбраны</div><div class="mini">✅ Расписание готово</div></div>'},
 soon:function(){return '<div style="text-align:center;padding:2rem 0"><div style="font-size:3rem">🚀</div><b style="display:block;margin-top:.75rem;font-size:1.125rem">Запуск скоро</b><p class="m" style="font-size:.8125rem;margin:.5rem 0 0">Оставьте предзапись, и мы сообщим об открытии.</p></div>'}};
-function plan(i,sub,v,f,pop){var n=PK[i][0],p=PK[i][1],pt=fm(p);return '<div class="plan'+(pop?' pop':'')+'">'+(pop?'<span class="tag">ПОПУЛЯРНЫЙ</span>':'')+'<h4>'+n+'</h4><div class="m" style="font-size:.75rem">'+sub+'</div><div class="pr">'+pt+' <small class="m">/ месяц</small></div><div class="vol">'+v+'</div><ul>'+f.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><div class="m" style="font-size:.75rem;margin-top:.75rem">Подключение <b style="color:'+(pop?'var(--accent)':'var(--neon)')+'">бесплатно</b></div><button class="'+(pop?'btn-accent':'btn-line')+'" onclick="choose(\''+n+' — '+pt+'/мес\')">Выбрать '+n+'</button></div>'}
+function plan(i,sub,v,f,pop){var n=PK[i][0],p=PK[i][1],pt=fm(p);return '<div class="plan'+(pop?' pop':'')+'">'+(pop?'<span class="tag">ПОПУЛЯРНЫЙ</span>':'')+'<h4>'+n+'</h4><div class="m" style="font-size:.75rem">'+sub+'</div><div class="pr">'+pt+' <small class="m">/ месяц</small></div><div class="m" style="font-size:.75rem;margin-top:.15rem">≈ '+fm(p/PK[i][2])+' за статью</div><div class="vol">'+v+'</div><ul>'+f.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><div class="m" style="font-size:.75rem;margin-top:.75rem">Подключение <b style="color:'+(pop?'var(--accent)':'var(--neon)')+'">бесплатно</b></div><button class="'+(pop?'btn-accent':'btn-line')+'" onclick="choose(\''+n+' — '+pt+'/мес\')">Выбрать '+n+'</button></div>'}
 function extra(s){if(s.id!=='news')return '';
  var HW=[['Оставляете заявку','Мы свяжемся в рабочее время и проверим возможность интеграции до оплаты.'],['Выбираете темы','Категории и источники под ваш бизнес.'],['Настраиваем расписание','Время публикации и площадка: сайт, Telegram или Instagram.'],['ИИ публикует новости','Находит материалы, готовит тексты и выкладывает со ссылками на источники.']];
  var hw='<section class="card-panel how" id="how"><div class="kicker"><i></i><b>Как это работает</b></div><h3>От заявки до первой новости</h3><div class="how-g">'+HW.map(function(x,i){return '<div class="how-s"><div class="how-n">'+(i+1)+'</div><b>'+x[0]+'</b><p>'+x[1]+'</p></div>'}).join('')+'</div></section>';
  return '<div class="dark" style="margin-top:1.5rem" id="plans"><div class="sec-t" style="margin-top:1rem"><p>ИИ-НОВОСТИ ДЛЯ ВАШЕГО САЙТА И СОЦСЕТЕЙ</p><h3>Выберите готовый пакет</h3></div><div class="plans">'+
- plan(0,'Для редких публикаций','<b class="n">1</b> новость в неделю',['1 категория','Публикация по расписанию','Автопостинг на ваш сайт'])+
- plan(1,'Для активного сайта','<b style="color:var(--accent)">1</b> новость в день',['До 3 категорий','Выбор времени публикации','Автопостинг на сайт и в соцсети'],1)+
- plan(2,'Для новостных разделов','До <b class="n">5</b> новостей в день',['До 10 категорий','Несколько разделов сайта','Гибкое расписание публикаций'])+
+ plan(0,'Для небольшого сайта','<b class="n">30</b> статей в месяц · 1 в день',['1 категория','Публикация по расписанию','Автопостинг на ваш сайт'])+
+ plan(1,'Для активного сайта','<b style="color:var(--accent)">60</b> статей в месяц · 2 в день',['До 3 категорий','Выбор времени публикации','Автопостинг на сайт и в соцсети'],1)+
+ plan(2,'Для новостных разделов','<b class="n">90</b> статей в месяц · 3 в день',['До 10 категорий','Несколько разделов сайта','Гибкое расписание публикаций'])+
  '</div><p class="note m">🛡 Во всех тарифах: ссылки на источники · проверка дублей · режим согласования перед публикацией</p></div>'+
  '<div class="card-panel calc"><div><div class="kicker"><i></i><b>Индивидуальная подписка</b></div><h3>Соберите свой пакет</h3><p class="lead" style="margin-top:.5rem">Только нужные темы и нужный объём, без переплаты.</p>'+
  '<div class="row"><span>Категории</span><b id="cv">3</b></div><input id="cr" type="range" min="1" max="100" value="3">'+
  '<div class="row"><span>Новостей</span><b id="nv">1</b></div><div class="seg" id="per"><button class="on" data-p="30">В день</button><button data-p="4.33">В неделю</button><button data-p="1">В месяц</button></div><input id="nr" type="range" min="1" max="100" value="1"></div>'+
- '<div class="sum"><b>Ваш пакет</b><div class="l"><span>Категории</span><b id="s1">3</b></div><div class="l"><span>Публикации</span><b id="s2">1 в день</b></div><div class="l"><span>Объём</span><b id="s3">≈ 30 в месяц</b></div><div class="l"><span>Подключение</span><b style="color:var(--accent)">Бесплатно</b></div><div class="big" id="pr">'+fm(2900)+'</div><div style="font-size:.75rem;color:#6b7280">/ месяц</div><button class="btn-accent" style="justify-content:center;margin-top:1rem" onclick="choose(\'Индивидуальный (из конструктора)\',\'Конструктор: \'+$(\'#s1\').textContent+\' категорий, \'+$(\'#s2\').textContent+\', \'+$(\'#s3\').textContent+\', цена \'+$(\'#pr\').textContent)">Оставить заявку на этот пакет</button></div></div>'+hw}
+ '<div class="sum"><b>Ваш пакет</b><div class="l"><span>Категории</span><b id="s1">3</b></div><div class="l"><span>Публикации</span><b id="s2">1 в день</b></div><div class="l"><span>Объём</span><b id="s3">≈ 30 в месяц</b></div><div class="l"><span>За статью</span><b id="s4">≈ 600 ₸</b></div><div class="l"><span>Подключение</span><b style="color:var(--accent)">Бесплатно</b></div><div class="big" id="pr">'+fm(3000)+'</div><div style="font-size:.75rem;color:#6b7280">/ месяц</div><button class="btn-accent" style="justify-content:center;margin-top:1rem" onclick="choose(\'Индивидуальный (из конструктора)\',\'Конструктор: \'+$(\'#s1\').textContent+\' категорий, \'+$(\'#s2\').textContent+\', \'+$(\'#s3\').textContent+\', цена \'+$(\'#pr\').textContent)">Оставить заявку на этот пакет</button></div></div>'+hw}
 function form(s){var news=s.id==='news',live=s.status==='live';
  return '<div class="card-panel lead-f" id="lead"><div class="kicker"><i></i><b>'+(live?'Заявка':'Предзапись')+'</b></div><h3>'+(live?'Оставьте заявку на подключение':'Предзапись на сервис')+'</h3><p class="lead">'+(news?'Настроим бесплатно и проверим возможность интеграции до оплаты. Свяжемся в рабочее время.':'Сообщим о запуске и предложим условия раннего доступа.')+'</p>'+
  '<form onsubmit="sendLead(event,\''+s.id+'\')"><div class="g2"><label class="fl"><span>Имя *</span><input name="nm" required></label><label class="fl"><span>Телефон / WhatsApp *</span><input name="ph" type="tel" required placeholder="+7"></label></div>'+
@@ -628,10 +627,10 @@ function sendLead(e,sid){e.preventDefault();var f=e.target,g=function(n){return 
  if(LEAD_URL){fetch(LEAD_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){if(!r.ok)throw 0;ok()}).catch(function(){alert('Не удалось отправить. Позвоните нам: +7 707 177 11 99')})}
  else{location.href='mailto:info@creators.kz?subject='+encodeURIComponent('Заявка: '+d.service)+'&body='+encodeURIComponent(Object.keys(d).map(function(k){return k+': '+d[k]}).join('\n'));ok()}}
 function calc(){var per=30;
- function u(){var c=+$('#cr').value,n=+$('#nr').value,m=Math.round(n*per),p=Math.max(590,Math.round((m<=30?m*290/3:2900+(m-30)*265/3)/10)*10);
+ function u(){var c=+$('#cr').value,n=+$('#nr').value,m=Math.round(n*per),p=Math.max(590,Math.round(m*(m<=30?100:m>=90?250/3:100-(m-30)*5/18)/10)*10);
   $('#cv').textContent=c;$('#nv').textContent=n;$('#s1').textContent=c;
   $('#s2').textContent=n+' '+(per===30?'в день':per===1?'в месяц':'в неделю');$('#s3').textContent='≈ '+m+' в месяц';
-  $('#pr').textContent=fm(p)}
+  $('#pr').textContent=fm(p);$('#s4').textContent='≈ '+fm(p/m)}
  $('#cr').oninput=$('#nr').oninput=u;
  [].forEach.call(document.querySelectorAll('#per button'),function(b){b.onclick=function(){[].forEach.call(document.querySelectorAll('#per button'),function(x){x.classList.remove('on')});b.classList.add('on');per=+b.dataset.p;u()}});u()}
 

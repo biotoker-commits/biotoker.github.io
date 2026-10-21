@@ -18,7 +18,12 @@ a{color:inherit;text-decoration:none}ul{margin:0;padding:0;list-style:none}butto
 .wrap{max-width:80rem;margin:0 auto;padding:0 1rem}
 .logo{font-size:1.5rem;font-weight:900;letter-spacing:-2px;line-height:2rem}.logo span{color:var(--accent)}
 /* LAYOUT */
-.layout{padding:1.5rem 0 5rem}
+.pg{padding:1.5rem 0 0}
+.pg-top{display:flex;align-items:baseline;flex-wrap:wrap;gap:.15rem 1.25rem}
+.pg h1{margin:0;font-size:clamp(2rem,4vw,2.75rem);font-weight:900;letter-spacing:-.04em;line-height:1.05}
+.pg h1 span{color:var(--accent)}
+.pg-top p{margin:0;color:#6b7280;font-size:.9rem}
+.layout{padding:1.25rem 0 5rem}
 .card-panel{background:#fff;border:1px solid rgba(var(--accent-rgb),.08);border-radius:24px;box-shadow:0 12px 30px -12px rgba(var(--accent-rgb),.12)}
 .doc{padding:1.75rem}@media(min-width:768px){.doc{padding:3rem}}
 .kicker{display:inline-flex;align-items:center;gap:.75rem;margin-bottom:1rem}.kicker i{display:block;height:2px;width:1.5rem;background:var(--accent)}
@@ -117,22 +122,6 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
 :where(#site-header,#mobile-menu,#city-modal) button{cursor:pointer}
 :where(#site-header,#mobile-menu,#city-modal) :is(p,h1,h2,h3,h4){margin:0}
 /* ===== Шапка страницы ===== */
-.pg{padding:1.5rem 0 0}
-.pg-top{display:flex;align-items:baseline;flex-wrap:wrap;gap:.15rem 1.25rem}
-.pg h1{margin:0;font-size:clamp(2rem,4vw,2.75rem);font-weight:900;letter-spacing:-.04em;line-height:1.05}
-.pg-top p{margin:0;color:#6b7280;font-size:.9rem}
-/* ===== Выбор сервисов (карточка с пилюлями; при росте списка переносится на новые строки) ===== */
-.picker{position:relative;display:flex;align-items:center;gap:1.1rem;overflow-x:auto;padding:.55rem .55rem .55rem 1.4rem;margin-top:.8rem;scrollbar-width:none;border-radius:999px;box-shadow:0 4px 14px -8px rgba(var(--accent-rgb),.25)}
-.picker::-webkit-scrollbar{display:none}
-.pk-g{display:flex;align-items:center;gap:.7rem;flex:none}.pk-g+.pk-g{padding-left:1.1rem;border-left:1px solid rgba(var(--accent-rgb),.14)}
-.pk-l{display:flex;gap:.4rem}
-.pk-t{font-size:.75rem;font-weight:800;color:var(--accent)}
-.svc{white-space:nowrap;display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:1.5rem;background:#F8F7F5;border:1px solid rgba(var(--accent-rgb),.12);font-size:.8125rem;font-weight:600;transition:all .25s}
-.svc i{width:.9rem;text-align:center;font-size:.72rem;color:var(--accent)}
-.svc:hover{background:#fff;border-color:var(--accent);color:var(--accent)}
-.svc:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.svc.on{background:var(--accent);border-color:var(--accent);color:#fff}.svc.on i{color:#fff}
-.svc small{font-size:.58rem;font-weight:800;padding:1px 7px;border-radius:99px;background:rgba(var(--accent-rgb),.1);color:var(--accent)}.svc.on small{background:rgba(255,255,255,.25);color:#fff}
 .how{margin-top:1.5rem;padding:1.75rem}@media(min-width:768px){.how{padding:2.5rem}}
 .how h3{margin:0 0 1.5rem;font-size:clamp(1.5rem,3.2vw,2.25rem);font-weight:900;letter-spacing:-.02em;line-height:1.15}
 .how-g{display:grid;gap:1rem}@media(min-width:640px){.how-g{grid-template-columns:repeat(2,1fr)}}@media(min-width:1000px){.how-g{grid-template-columns:repeat(4,1fr)}}
@@ -264,6 +253,95 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
 .rc-tag,.rc-cap,.rc-meta{position:absolute;z-index:1;left:.75rem;right:.75rem}.rc-tag{top:.75rem;right:auto;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:99px;background:rgba(0,0,0,.45)}
 .rc-cap{bottom:2rem;font-size:.95rem;font-weight:900;line-height:1.2;text-transform:uppercase;text-shadow:0 2px 8px rgba(0,0,0,.5)}.rc-meta{bottom:.8rem;font-size:.62rem;font-weight:600;opacity:.85}
 @keyframes rcm{to{transform:translateX(-50%)}}@media(prefers-reduced-motion:reduce){.rc-track{animation:none}.rc-view{overflow-x:auto}}
+
+.pg{padding:2.75rem 0 0}.layout{padding:1.75rem 0 5rem}
+.min3{margin-top:.55rem;font-size:.72rem;opacity:.85}.min3 b{font-size:.85rem;margin-left:.25rem}
+.md{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:1rem}.md.open{display:flex}
+.md-bg{position:absolute;inset:0;background:rgba(26,26,26,.55);backdrop-filter:blur(4px)}
+.md-box{position:relative;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;background:#fff;border-radius:1.75rem;padding:1.75rem;box-shadow:0 30px 70px -20px rgba(0,0,0,.45);animation:up .25s ease}
+.md-x{position:absolute;top:.9rem;right:.9rem;width:2.2rem;height:2.2rem;border:0;border-radius:50%;background:#F8F7F5;font-size:1.3rem;line-height:1;cursor:pointer;color:#6b7280}
+.md-box .lead-f{box-shadow:none;border:0;margin:0;padding:0;background:none}
+#city-modal.lock button[data-close]{display:none}#city-modal.lock>div:first-child{background:rgba(26,26,26,.65)!important}
+.nc-g{display:grid;gap:1rem}@media(min-width:700px){.nc-g{grid-template-columns:repeat(2,1fr)}}@media(min-width:1000px){.nc-g{grid-template-columns:repeat(4,1fr)}}
+.nc{padding:1.25rem;border-radius:1.25rem;background:#F8F7F5;border:1px solid rgba(var(--accent-rgb),.08)}
+.nc i.ic{width:2.6rem;height:2.6rem;border-radius:.8rem;background:rgba(var(--accent-rgb),.1);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:.8rem}
+.nc small{font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}.nc b{display:block;margin:.2rem 0 .35rem;font-size:.95rem}.nc p{margin:0;font-size:.8rem;color:#6b7280}
+.nc .res{margin-top:.8rem;padding-top:.7rem;border-top:1px solid rgba(var(--accent-rgb),.1);font-size:.8rem;font-weight:800;color:var(--accent)}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.5rem;padding:1.25rem 1.5rem;border-radius:1.25rem;background:rgba(var(--accent-rgb),.06)}.cta-row b{font-size:1rem}.cta-row p{margin:.15rem 0 0;font-size:.8rem;color:#6b7280}
+.rs-dsc{display:flex;gap:.7rem;align-items:flex-start;margin-bottom:.8rem;padding:.8rem .9rem;border-radius:1rem;border:1.5px dashed rgba(var(--accent-rgb),.4);background:rgba(var(--accent-rgb),.05);font-size:.78rem;cursor:pointer;line-height:1.4}.rs-dsc input{accent-color:var(--accent);width:1.05rem;height:1.05rem;margin-top:.1rem;flex:none}.rs-dsc b{color:var(--accent)}
+.rs-old{display:block;text-align:right;font-size:.8rem;font-weight:600;color:#9ca3af;text-decoration:line-through}
+.rs-ed textarea{min-height:6.5rem;resize:vertical}.rs-tips{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.7rem}.rs-tips button{border:1px solid rgba(var(--accent-rgb),.2);background:#fff;border-radius:99px;padding:.3rem .65rem;font:600 .7rem 'Montserrat',sans-serif;cursor:pointer}.rs-tips button:hover{border-color:var(--accent);color:var(--accent)}
+.rsub{margin-top:1.5rem;padding:1.75rem}@media(min-width:768px){.rsub{padding:2.5rem}}.rsub h3{margin:0 0 .5rem;font-size:clamp(1.5rem,3.2vw,2.25rem);font-weight:900;letter-spacing:-.02em;line-height:1.15}
+.rsub-g{display:grid;gap:1rem;margin-top:1.5rem}@media(min-width:800px){.rsub-g{grid-template-columns:repeat(3,1fr)}}
+.rsub-c{padding:1.25rem;border-radius:1.25rem;background:#F8F7F5;border:1px solid rgba(var(--accent-rgb),.1)}.rsub-c.pop{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}.rsub-c h4{margin:0 0 .8rem;font-size:1.1rem;font-weight:900}
+.rsub-b{display:flex;width:100%;justify-content:space-between;align-items:center;gap:.5rem;margin-top:.5rem;padding:.7rem .9rem;border-radius:.9rem;border:1px solid rgba(var(--accent-rgb),.2);background:#fff;font:600 .78rem 'Montserrat',sans-serif;cursor:pointer;text-align:left}.rsub-b:hover{border-color:var(--accent)}.rsub-b strong{display:block;font-size:.95rem;color:var(--accent)}.rsub-b small{display:block;font-size:.65rem;color:#6b7280;font-weight:600}.rsub-b em{font-style:normal;font-size:.65rem;font-weight:800;color:var(--accent)}
+.rc2{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 1.75rem 1rem;scrollbar-width:thin}@media(min-width:768px){.rc2{padding:0 2.5rem 1rem}}
+.rc2>div{flex:none;width:11.5rem;scroll-snap-align:start}.rc2 .rc-card{width:100%;margin:0}.rc2 b{display:block;margin-top:.7rem;font-size:.85rem;color:var(--accent)}.rc2 p{margin:.2rem 0 0;font-size:.75rem;color:#6b7280}
+.rc .cta-row{margin:1rem 1.75rem 0}@media(min-width:768px){.rc .cta-row{margin:1rem 2.5rem 0}}
+.faq{margin-top:1.5rem;padding:1.75rem}@media(min-width:768px){.faq{padding:2.5rem}}.faq h3{margin:0 0 1rem;font-size:clamp(1.5rem,3.2vw,2.25rem);font-weight:900;letter-spacing:-.02em}
+.faq details{border-top:1px solid rgba(var(--accent-rgb),.1);padding:.9rem 0}.faq summary{cursor:pointer;font-weight:700;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;gap:1rem}.faq summary:after{content:"+";color:var(--accent);font-weight:900}.faq details[open] summary:after{content:"–"}.faq summary::-webkit-details-marker{display:none}.faq details p{margin:.6rem 0 0;font-size:.85rem;color:#6b7280}
+:root{--line:#E8E4E1;--muted:#8A8480;--base:#F8F7F5;--ink:#1A1A1A}
+/* ——— окно ——— */
+dialog.lm{border:0;padding:0;background:#fff;color:var(--ink);border-radius:24px;width:min(720px,calc(100vw - 32px));max-height:min(86dvh,720px);box-shadow:0 30px 80px -20px rgba(26,26,26,.45);overflow:hidden}
+dialog.lm[open]{display:flex;flex-direction:column;animation:m-in .22s cubic-bezier(.2,.8,.2,1)}
+dialog.lm::backdrop{background:rgba(26,26,26,.55);backdrop-filter:blur(4px)}
+@keyframes m-in{from{opacity:0;transform:translateY(12px) scale(.98)}}
+@keyframes m-up{from{opacity:0;transform:translateY(40px)}}
+.m-head{display:flex;align-items:center;justify-content:space-between;padding:24px 28px 8px}
+.m-title{margin:0;font-size:22px;font-weight:800;letter-spacing:-.01em}
+.m-x{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:.2s}
+.m-x:hover{color:var(--accent);border-color:rgba(var(--accent-rgb),.5)}
+.m-body{flex:1;overflow-y:auto;padding:12px 28px 20px}
+.m-foot{display:flex;align-items:center;gap:8px;padding:16px 28px;border-top:1px solid var(--line);background:#fff}
+.m-count{margin-right:auto;font-size:13px;font-weight:600;color:var(--muted)}
+.m-link{padding:10px 12px;border:0;border-radius:10px;background:none;font:600 13px Montserrat;color:var(--muted);cursor:pointer;transition:.2s}
+.m-link:hover{color:var(--accent);background:rgba(var(--accent-rgb),.06)}
+.m-btn{padding:13px 26px;border:0;border-radius:14px;background:var(--accent);color:#fff;font:700 14px Montserrat;cursor:pointer;box-shadow:0 4px 14px -4px var(--accent);transition:.25s}
+.m-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px -6px var(--accent)}
+
+/* ——— категории: чипы ——— */
+.m-chips{display:flex;flex-wrap:wrap;gap:10px}
+.m-chip{position:relative;cursor:pointer}
+.m-chip input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0}
+.m-chip span,.m-quick{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:#fff;font:600 14px Montserrat;color:var(--ink);transition:.2s}
+.m-chip:hover span,.m-quick:hover{border-color:rgba(var(--accent-rgb),.5)}
+.m-chip input:checked+span,.m-quick[aria-pressed=true]{background:rgba(var(--accent-rgb),.1);border-color:var(--accent);color:var(--accent)}
+.m-chip input:checked+span::before{content:"\f00c";font:900 11px "Font Awesome 6 Free"}
+.m-chip input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.m-quick{cursor:pointer}
+
+/* ——— локация ——— */
+.m-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:14px}
+.m-select{min-width:190px;padding:12px 40px 12px 16px;border:1px solid var(--line);border-radius:14px;appearance:none;font:600 14px Montserrat;color:var(--ink);cursor:pointer;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%238A8480' stroke-width='2'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 14px center}
+#dlg-loc .m-body{min-height:min(440px,55dvh)}
+.m-row{margin-bottom:18px}
+.m-sub{margin-bottom:10px;font-size:13px;font-weight:600;color:var(--muted)}
+.m-more{display:inline-flex;align-items:center;gap:8px;margin:18px 0 8px;padding:10px 4px;border:0;background:none;font:700 14px Montserrat;color:var(--accent);cursor:pointer}
+.m-more i{font-size:11px;transition:transform .2s}
+.m-more[aria-expanded=true] i{transform:rotate(180deg)}
+.m-more[hidden]{display:none}
+.m-search{position:relative;flex:1;min-width:200px}
+.m-search i{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--muted)}
+.m-search input{width:100%;padding:13px 16px 13px 42px;border:1px solid var(--line);border-radius:14px;background:var(--base);font:500 14px Montserrat;transition:.2s}
+.m-search input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px rgba(var(--accent-rgb),.1)}
+.m-cities{columns:3 180px;column-gap:24px}
+.m-grp{display:grid;grid-template-columns:34px 1fr;gap:0 8px;margin-bottom:18px;break-inside:avoid}
+.m-letter{padding-top:6px;font-size:26px;font-weight:800;line-height:1;color:rgba(var(--accent-rgb),.28)}
+.m-city{display:block;width:100%;padding:7px 10px;border:0;border-radius:10px;background:none;text-align:left;font:500 14px Montserrat;color:var(--ink);cursor:pointer;transition:.15s}
+.m-city:hover{background:rgba(var(--accent-rgb),.07)}
+.m-city[aria-pressed=true]{background:rgba(var(--accent-rgb),.12);color:var(--accent);font-weight:700}
+.m-empty{padding:40px 0;text-align:center;font-size:14px;color:var(--muted)}
+
+/* ——— телефон: окно выезжает снизу ——— */
+@media(max-width:640px){
+  dialog.lm{width:100%;max-width:100%;margin:auto 0 0;border-radius:24px 24px 0 0;max-height:90dvh}
+  dialog.lm[open]{animation:m-up .28s cubic-bezier(.2,.8,.2,1)}
+  .m-head,.m-body,.m-foot{padding-left:20px;padding-right:20px}
+  .m-cities{columns:2 140px}
+  .m-select{flex:1}
+}
+@media(prefers-reduced-motion:reduce){dialog.lm[open]{animation:none}.m-btn,.m-btn:hover{transition:none;transform:none}}
+dialog.lm.lock [data-close]{display:none}.m-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
 </style>
 </head>
 <body class="antialiased">
@@ -281,6 +359,7 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
         <div class="relative" data-dd-wrap>
           <button type="button" class="nav-link" data-dd="dd-services" aria-expanded="false">Сервисы <i class="fa-solid fa-chevron-down"></i></button>
           <div id="dd-services" class="dd left-1/2 -ml-[340px] w-[680px] p-6">
+            <div class="hub-head mb-4"><div class="hub-head__k">Creator Tools</div><div class="hub-head__t">ИИ-сервисы и инструменты</div></div>
             <div class="grid grid-cols-2 gap-1.5">
               <a href="services.html#reels" class="dd-link"><div class="ico"><i class="fa-solid fa-clapperboard"></i></div><div><div class="t">ИИ-монтаж Reels <span class="soon">NEW</span></div><div class="d">Готовый вертикальный ролик из ваших видео</div></div></a>
               <a href="services.html#news" class="dd-link"><div class="ico"><i class="fa-solid fa-newspaper"></i></div><div><div class="t">ИИ-автопостинг новостей</div><div class="d">Новости на сайт и в соцсети по расписанию</div></div></a>
@@ -297,7 +376,6 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
           <div id="dd-hub" class="dd left-1/2 -ml-[340px] w-[680px] p-6">
             <div class="flex items-start justify-between gap-4 mb-4">
               <div class="hub-head"><div class="hub-head__k">Creator Hub</div><div class="hub-head__t">Всё для контента</div></div>
-              <span class="text-xs text-gray-400 text-right max-w-[200px] leading-snug">События, места, техника и реквизит для съёмок</span>
             </div>
             <div class="grid grid-cols-2 gap-1.5">
               <a href="content_razdeli.html#afisha" class="dd-link"><div class="ico"><i class="fa-solid fa-calendar-days"></i></div><div><div class="t">Афиша</div><div class="d">Концерты, фестивали и инфоповоды для съёмок</div></div></a>
@@ -313,6 +391,7 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
         <div class="relative" data-dd-wrap>
           <button type="button" class="nav-link" data-dd="dd-company" aria-expanded="false">Компания <i class="fa-solid fa-chevron-down"></i></button>
           <div id="dd-company" class="dd left-1/2 -ml-36 w-72 p-3">
+            <div class="hub-head px-3 pt-2 pb-2"><div class="hub-head__k">Creators.kz</div><div class="hub-head__t">О компании</div></div>
             <a href="work.html" class="dd-link"><div class="ico"><i class="fa-solid fa-diagram-project"></i></div><div><div class="t">Как работает</div><div class="d">Шаги от заявки до публикации</div></div></a>
             <a href="onas.html" class="dd-link"><div class="ico"><i class="fa-solid fa-users"></i></div><div><div class="t">О нас</div><div class="d">Команда и история платформы</div></div></a>
             <a href="contacs.html" class="dd-link"><div class="ico"><i class="fa-solid fa-envelope"></i></div><div><div class="t">Контакты</div><div class="d">Свяжитесь с нами</div></div></a>
@@ -410,74 +489,34 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
 <!-- ================= /HEADER ================= -->
 
 <!-- ================= ОКНО ВЫБОРА ГОРОДА ================= -->
-<div id="city-modal" class="hidden fixed inset-0 z-[80] items-end sm:items-center justify-center sm:p-4" role="dialog" aria-modal="true" aria-label="Выбор города">
-  <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" data-close></div>
-  <div class="relative bg-white w-full sm:max-w-[560px] max-h-[85vh] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col">
-    <div class="p-5 pb-3 flex items-start justify-between gap-4">
-      <div><div class="text-lg font-black">Выберите город</div><div class="text-xs text-gray-500 mt-0.5">Покажем афишу, места и технику рядом с вами</div></div>
-      <button type="button" data-close class="w-9 h-9 flex-none rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-500" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="px-5">
-      <div class="flex items-center bg-[#F8F7F5] rounded-full px-4 py-2.5">
-        <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
-        <input id="city-search" type="text" placeholder="Найти город" autocomplete="off" class="bg-transparent border-0 outline-none text-sm ml-2 w-full placeholder:text-gray-400">
-      </div>
-    </div>
-    <div class="overflow-y-auto p-5 pt-4 space-y-5">
-      <div data-group>
-        <div class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Казахстан</div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Алматы">Алматы</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Астана">Астана</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Шымкент">Шымкент</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Караганда">Караганда</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Актобе">Актобе</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Тараз">Тараз</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Павлодар">Павлодар</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Усть-Каменогорск">Усть-Каменогорск</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Семей">Семей</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Атырау">Атырау</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Костанай">Костанай</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Кызылорда">Кызылорда</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Уральск">Уральск</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Петропавловск">Петропавловск</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Актау">Актау</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Темиртау">Темиртау</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Туркестан">Туркестан</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Кокшетау">Кокшетау</button>
-        </div>
-      </div>
-      <div data-group>
-        <div class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Россия</div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Москва">Москва</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Санкт-Петербург">Санкт-Петербург</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Новосибирск">Новосибирск</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Екатеринбург">Екатеринбург</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Казань">Казань</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Нижний Новгород">Нижний Новгород</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Челябинск">Челябинск</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Самара">Самара</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Омск">Омск</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Ростов-на-Дону">Ростов-на-Дону</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Уфа">Уфа</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Красноярск">Красноярск</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Воронеж">Воронеж</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Пермь">Пермь</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Волгоград">Волгоград</button>
-          <button type="button" class="city-chip !rounded-xl !text-left" data-city="Краснодар">Краснодар</button>
-        </div>
-      </div>
-      <p id="city-empty" class="hidden text-sm text-gray-400 text-center py-6">Такого города пока нет</p>
-    </div>
+<!-- ═══ Выбор локации ═══ -->
+<dialog id="dlg-loc" class="lm" aria-labelledby="loc-title">
+  <div class="m-head">
+    <h2 class="m-title" id="loc-title">Выбор локации</h2>
+    <button class="m-x" data-close aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
   </div>
-</div>
+  <div class="m-body">
+    <div class="m-row">
+      <select class="m-select" id="loc-country" aria-label="Страна"></select>
+      <div class="m-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="loc-q" type="search" placeholder="Начните вводить город" autocomplete="off">
+      </div>
+    </div>
+    <div id="loc-pop"></div>
+    <button type="button" class="m-more" id="loc-more"></button>
+    <div class="m-cities" id="loc-list"></div>
+  </div>
+  <div class="m-foot">
+    <span class="m-count" id="loc-count"></span>
+    <button class="m-link" id="loc-clear">Очистить</button>
+    <button class="m-btn" id="loc-apply">Применить</button>
+  </div>
+</dialog>
 
-
-<section class="pg"><div class="wrap"><div class="pg-top"><h1>Сервисы</h1><p>Инструменты для блогеров и бизнеса</p></div></div></section>
+<section class="pg"><div class="wrap"><div class="pg-top"><h1>Сервисы<span id="pg-name"></span></h1><p id="pg-sub"></p></div></div></section>
 
 <main class="wrap">
-<nav class="picker card-panel" id="picker" aria-label="Сервисы"></nav>
 <div class="layout"><div id="view"></div></div>
 </main>
 
@@ -517,36 +556,65 @@ a.nav-link.is-active{color:var(--accent);font-weight:700}
     if([].some.call(w.querySelectorAll('a[href]'),function(a){return a.getAttribute('href').split('#')[0]===page}))
       w.querySelector('[data-dd]').classList.add('is-active');});
 
-  /* Выбор города: окно со списком, выбор запоминается; страницы могут слушать событие "citychange" */
-  var cm=document.getElementById('city-modal'), cs=document.getElementById('city-search');
-  var chips=[].slice.call(cm.querySelectorAll('[data-city]'));
-  function setCity(c,silent){
-    chips.forEach(function(b){b.classList.toggle('on',b.dataset.city===c)});
-    document.querySelectorAll('[data-city-label]').forEach(function(el){el.textContent=c});
-    ls.set('ck_city',c);
-    if(!silent)document.dispatchEvent(new CustomEvent('citychange',{detail:{city:c}}));
+  /* Выбор города: окно «Выбор локации» (страна, поиск, популярные, список по буквам) */
+  const GEO = {
+    kz:{name:'Казахстан',
+      popular:['Алматы','Астана','Шымкент','Караганда','Актобе','Атырау','Павлодар','Костанай','Семей','Актау','Тараз','Уральск'],
+      cities:['Абай','Акколь','Аксай','Аксу','Актау','Актобе','Алатау','Алматы','Аральск','Аркалык','Арыс','Астана','Атбасар','Атырау','Байконур','Балхаш','Булаево','Державинск','Ерейментау','Есик','Есиль','Жанаозен','Жанатас','Жаркент','Жезказган','Житикара','Зайсан','Зыряновск','Казалинск','Кандыагаш','Караганда','Каражал','Каратау','Каркаралинск','Каскелен','Кентау','Кокшетау','Конаев','Костанай','Косшы','Кульсары','Курчатов','Кызылорда','Ленгер','Лисаковск','Макинск','Мамлютка','Павлодар','Петропавловск','Приозёрск','Риддер','Рудный','Сарань','Сарканд','Сарыагаш','Сатпаев','Семей','Степногорск','Тайынша','Талгар','Талдыкорган','Тараз','Текели','Темиртау','Туркестан','Уральск','Усть-Каменогорск','Ушарал','Уштобе','Форт-Шевченко','Хромтау','Шалкар','Шардара','Шахтинск','Шемонаиха','Шу','Шымкент','Щучинск','Экибастуз']},
+    ru:{name:'Россия',
+      popular:['Москва','Санкт-Петербург','Новосибирск','Екатеринбург','Казань','Краснодар'],
+      cities:['Волгоград','Воронеж','Екатеринбург','Казань','Краснодар','Красноярск','Москва','Нижний Новгород','Новосибирск','Омск','Пермь','Ростов-на-Дону','Самара','Санкт-Петербург','Уфа','Челябинск']}
+  };
+  var q=function(x){return document.querySelector(x)}, dl=q('#dlg-loc'), geo={country:'kz',city:''}, showAll=false, lock=false;
+  var CITY_ASK_EVERY_VISIT=true, savedCity=ls.get('ck_city'), savedCountry=ls.get('ck_country'), cityOk=false;
+  try{cityOk=sessionStorage.getItem('ck_city_ok')==='1'}catch(e){}
+  if(savedCity){geo.city=savedCity;geo.country=GEO[savedCountry]?savedCountry:(GEO.kz.cities.indexOf(savedCity)>-1?'kz':'ru')}
+  function labels(c){document.querySelectorAll('[data-city-label]').forEach(function(el){el.textContent=c||'Город'})}
+  labels(savedCity);
+  q('#loc-country').innerHTML=Object.keys(GEO).map(function(k){return '<option value="'+k+'">'+GEO[k].name+'</option>'}).join('');
+  function cityBtn(c,cls){return '<button type="button" class="'+cls+'" aria-pressed="'+(geo.city===c)+'" data-city="'+c+'">'+c+'</button>'}
+  function matches(){var t=q('#loc-q').value.trim().toLowerCase();return GEO[geo.country].cities.filter(function(c){return c.toLowerCase().indexOf(t)>-1})}
+  function renderLoc(){
+    var g=GEO[geo.country], searching=!!q('#loc-q').value.trim(), open=searching||showAll;
+    q('#loc-country').value=geo.country;
+    q('#loc-pop').innerHTML=searching?'':'<div class="m-sub">Популярные</div><div class="m-chips">'+g.popular.map(function(c){return cityBtn(c,'m-quick')}).join('')+'</div>';
+    var more=q('#loc-more');more.hidden=searching;more.setAttribute('aria-expanded',showAll);
+    more.innerHTML=(showAll?'Скрыть список':'Все города ('+g.cities.length+')')+' <i class="fa-solid fa-chevron-down"></i>';
+    var gr={};if(open)matches().forEach(function(c){(gr[c[0]]=gr[c[0]]||[]).push(c)});
+    q('#loc-list').innerHTML=!open?'':(Object.keys(gr).sort(function(a,b){return a.localeCompare(b,'ru')}).map(function(l){return '<div class="m-grp"><div class="m-letter">'+l+'</div><div>'+gr[l].map(function(c){return cityBtn(c,'m-city')}).join('')+'</div></div>'}).join('')||'<p class="m-empty">Такого города нет. Попробуйте другое название.</p>');
+    q('#loc-count').textContent=geo.city?g.name+', '+geo.city:g.name;
+    q('#loc-apply').disabled=!geo.city;
   }
-  function filterCities(){
-    var q=cs.value.trim().toLowerCase(), any=false;
-    chips.forEach(function(b){var ok=b.dataset.city.toLowerCase().indexOf(q)>-1; b.style.display=ok?'':'none'; if(ok)any=true;});
-    cm.querySelectorAll('[data-group]').forEach(function(g){
-      g.style.display=[].some.call(g.querySelectorAll('[data-city]'),function(b){return b.style.display!=='none'})?'':'none';});
-    document.getElementById('city-empty').classList.toggle('hidden',any);
+  dl.addEventListener('click',function(e){
+    var b=e.target.closest('[data-city]');
+    if(b){geo.city=geo.city===b.dataset.city?'':b.dataset.city;renderLoc();return}
+    if(!lock&&(e.target===dl||e.target.closest('[data-close]')))dl.close();
+  });
+  dl.addEventListener('cancel',function(e){if(lock)e.preventDefault()});
+  q('#loc-more').onclick=function(){showAll=!showAll;renderLoc()};
+  q('#loc-country').onchange=function(e){geo={country:e.target.value,city:''};showAll=false;q('#loc-q').value='';renderLoc()};
+  q('#loc-q').oninput=renderLoc;
+  q('#loc-q').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();var m=matches();if(m.length){geo.city=m[0];renderLoc()}}};
+  q('#loc-clear').onclick=function(){geo.city='';showAll=false;q('#loc-q').value='';renderLoc()};
+  q('#loc-apply').onclick=function(){
+    if(!geo.city)return;
+    lock=false;dl.classList.remove('lock');dl.close();
+    ls.set('ck_city',geo.city);ls.set('ck_country',geo.country);try{sessionStorage.setItem('ck_city_ok','1')}catch(e){}
+    labels(geo.city);document.dispatchEvent(new CustomEvent('citychange',{detail:{city:geo.city,country:geo.country}}));
+  };
+  function openCity(force){
+    closeAll();lock=(force===true);dl.classList.toggle('lock',lock);
+    q('#loc-title').textContent=lock?'Где вы находитесь?':'Выбор локации';
+    q('#loc-q').value='';showAll=false;renderLoc();if(!dl.open)dl.showModal();
   }
-  function openCity(){closeAll(); cm.classList.remove('hidden'); cm.classList.add('flex'); document.body.style.overflow='hidden'; cs.value=''; filterCities(); setTimeout(function(){cs.focus()},60);}
-  function closeCity(){cm.classList.add('hidden'); cm.classList.remove('flex');
-    var m=document.getElementById('mobile-menu'); document.body.style.overflow=(m&&!m.classList.contains('hidden'))?'hidden':'';}
-  document.querySelectorAll('[data-open-city]').forEach(function(b){b.addEventListener('click',openCity)});
-  cm.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',closeCity)});
-  chips.forEach(function(b){b.addEventListener('click',function(){setCity(b.dataset.city); closeCity();})});
-  cs.addEventListener('input',filterCities);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!cm.classList.contains('hidden'))closeCity();});
-  setCity(ls.get('ck_city')||'Алматы',true);
+  document.querySelectorAll('[data-open-city]').forEach(function(b){b.addEventListener('click',function(){openCity()})});
+  /* При открытии страницы просим выбрать город и не пускаем дальше, пока он не выбран.
+     CITY_ASK_EVERY_VISIT=true: спрашиваем при каждом новом заходе (удобно для макета); false: только если город ещё не сохранён */
+  renderLoc();
+  if(!savedCity||(CITY_ASK_EVERY_VISIT&&!cityOk))openCity(true);
 
   /* Роль Блогер / Заказчик: теперь запоминается между страницами */
   window.switchRole=function(role){
-    document.documentElement.style.setProperty('--accent',role==='blogger'?'#EF233C':'#9C1C4F');
-    document.documentElement.style.setProperty('--accent-rgb',role==='blogger'?'239,35,60':'156,28,79');
     document.querySelectorAll('.role-toggle button').forEach(function(b){
       b.classList.toggle('active',(role==='blogger')===(b.textContent.trim()==='Блогер'));});
     ls.set('ck_role',role);
@@ -597,10 +665,11 @@ function clamp(x,a,b){return Math.max(a,Math.min(b,x))}
 function N(id){return parseFloat(String($('#'+id).value).replace(',','.'))||0}
 function go(id){var e=$('#'+id);if(e)e.scrollIntoView({behavior:'smooth'})}
 var hdrRole=window.switchRole||function(){};
-function theme(r){document.documentElement.style.setProperty('--neon',r==='blogger'?'#FF5A6E':'#FF2E93')}
+function theme(r){}
 function setRole(r){role=r;hdrRole(r);theme(r)}
-window.switchRole=function(r){setRole(r);if(find(cur).aud!==r)cur=S.filter(function(s){return s.aud===r})[0].id;history.replaceState(null,'','#'+cur);render()};
-function pick(id){setRole(find(id).aud);cur=id;history.replaceState(null,'','#'+id);render()}
+window.switchRole=function(r){if(find(cur).aud===r)return;location.hash=S.filter(function(s){return s.aud===r})[0].id};
+function closeMenus(){[].forEach.call(document.querySelectorAll('#site-header .dd.open,#site-header [data-dd].open'),function(e){e.classList.remove('open');if(e.hasAttribute('aria-expanded'))e.setAttribute('aria-expanded','false')});var m=$('#mobile-menu');if(m&&!m.classList.contains('hidden'))$('#mobile-menu-btn').click()}
+function openSvc(id){if(!find(id))return;closeMenus();if(id!==cur){setRole(find(id).aud);cur=id;render()}window.scrollTo(0,0)}
 function ph(t){return '<div class="res m" style="min-height:260px">'+t+'</div>'}
 function fld(id,l,v,h){return '<label class="fl"><span>'+l+'</span><input id="'+id+'" type="number" min="0" step="any" value="'+v+'" inputmode="decimal">'+(h?'<small>'+h+'</small>':'')+'</label>'}
 var TIERS=[[1e4,'Нано',6],[5e4,'Микро',4],[1e5,'Средний',2.8],[5e5,'Крупный',1.9],[1e13,'Топ',1.3]];
@@ -677,58 +746,65 @@ function runRand(){
 var VIS={
 news:function(){return '<div style="display:flex;justify-content:space-between;align-items:center"><b>Ваш новостной раздел</b><span style="font-size:.65rem;font-weight:800;color:#34D399">● АВТОПУБЛИКАЦИЯ</span></div><div class="mini"><span class="n" style="font-size:.7rem;font-weight:700">Технологии</span><div style="font-weight:700;margin-top:.2rem">Как ИИ меняет работу компаний</div><div class="m" style="font-size:.7rem">Источник ↗ · Опубликовано</div></div><div class="mini"><span class="m" style="font-size:.7rem">Следующая публикация</span><div style="font-weight:700;margin-top:.2rem">Новые инструменты ИИ для анализа данных</div><div class="m" style="font-size:.7rem">Завтра, 09:00</div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem"><div class="mini">✅ Темы выбраны</div><div class="mini">✅ Расписание готово</div></div>'},
 soon:function(){return '<div style="text-align:center;padding:2rem 0"><div style="font-size:3rem">🚀</div><b style="display:block;margin-top:.75rem;font-size:1.125rem">Запуск скоро</b><p class="m" style="font-size:.8125rem;margin:.5rem 0 0">Оставьте предзапись, и мы сообщим об открытии.</p></div>'}};
-function plan(i,sub,v,f,pop){var n=PK[i][0],p=PK[i][1],pt=fm(p);return '<div class="plan'+(pop?' pop':'')+'">'+(pop?'<span class="tag">ПОПУЛЯРНЫЙ</span>':'')+'<h4>'+n+'</h4><div class="m" style="font-size:.75rem">'+sub+'</div><div class="pr">'+pt+' <small class="m">/ месяц</small></div><div class="m" style="font-size:.75rem;margin-top:.15rem">≈ '+fm(p/PK[i][2])+' за статью</div><div class="vol">'+v+'</div><ul>'+f.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><div class="m" style="font-size:.75rem;margin-top:.75rem">Подключение <b style="color:'+(pop?'var(--accent)':'var(--neon)')+'">бесплатно</b></div><button class="'+(pop?'btn-accent':'btn-line')+'" onclick="choose(\''+n+' — '+pt+'/мес\')">Выбрать '+n+'</button></div>'}
+function plan(i,sub,v,f,pop){var n=PK[i][0],p=PK[i][1],pt=fm(p);return '<div class="plan'+(pop?' pop':'')+'">'+(pop?'<span class="tag">ПОПУЛЯРНЫЙ</span>':'')+'<h4>'+n+'</h4><div class="m" style="font-size:.75rem">'+sub+'</div><div class="pr">'+pt+' <small class="m">/ месяц</small></div><div class="m" style="font-size:.75rem;margin-top:.15rem">≈ '+fm(p/PK[i][2])+' за статью</div><div class="min3">Минимум 3 месяца: <b>'+fm(p*3)+'</b></div><div class="vol">'+v+'</div><ul>'+f.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><div class="m" style="font-size:.75rem;margin-top:.75rem">Подключение <b style="color:'+(pop?'var(--accent)':'var(--neon)')+'">бесплатно</b></div><button class="'+(pop?'btn-accent':'btn-line')+'" onclick="choose(\''+n+' — '+pt+'/мес\')">Выбрать '+n+'</button></div>'}
 function extra(s){if(s.id!=='news')return '';
  var HW=[['Оставляете заявку','Мы свяжемся в рабочее время и проверим возможность интеграции до оплаты.'],['Выбираете темы','Категории и источники под ваш бизнес.'],['Настраиваем расписание','Время публикации и площадка: сайт, Telegram или Instagram.'],['ИИ публикует новости','Находит материалы, готовит тексты и выкладывает со ссылками на источники.']];
  var hw='<section class="card-panel how" id="how"><div class="kicker"><i></i><b>Как это работает</b></div><h3>От заявки до первой новости</h3><div class="how-g">'+HW.map(function(x,i){return '<div class="how-s"><div class="how-n">'+(i+1)+'</div><b>'+x[0]+'</b><p>'+x[1]+'</p></div>'}).join('')+'</div></section>';
  return '<div class="dark" style="margin-top:1.5rem" id="plans"><div class="sec-t" style="margin-top:1rem"><p>ИИ-НОВОСТИ ДЛЯ ВАШЕГО САЙТА И СОЦСЕТЕЙ</p><h3>Выберите готовый пакет</h3></div><div class="plans">'+
  plan(0,'Для ИП и малого бизнеса','<b class="n">10</b> статей в месяц',['1 категория','Публикация по расписанию','Автопостинг на ваш сайт'])+
- plan(1,'Для небольшого сайта','<b class="n">30</b> статей в месяц · 1 в день',['1 категория','Публикация по расписанию','Автопостинг на ваш сайт'])+
- plan(2,'Для активного сайта','<b style="color:var(--accent)">60</b> статей в месяц · 2 в день',['До 3 категорий','Выбор времени публикации','Автопостинг на сайт и в соцсети'],1)+
+ plan(1,'Для небольшого сайта','<b class="n">30</b> статей в месяц · 1 в день',['До 3 категорий','Публикация по расписанию','Автопостинг на ваш сайт'])+
+ plan(2,'Для активного сайта','<b style="color:var(--accent)">60</b> статей в месяц · 2 в день',['До 5 категорий','Выбор времени публикации','Автопостинг на сайт и в соцсети'],1)+
  plan(3,'Для новостных разделов','<b class="n">90</b> статей в месяц · 3 в день',['До 10 категорий','Несколько разделов сайта','Гибкое расписание публикаций'])+
- '</div><p class="note m">🛡 Во всех тарифах: ссылки на источники · проверка дублей · режим согласования перед публикацией</p></div>'+
+ '</div><p class="note m">⏱ Подписка от 3 месяцев: на подключение и настройку под ваш сайт уходит время, поэтому минимальный срок — 3 месяца.<br>🛡 Во всех тарифах: ссылки на источники · проверка дублей · режим согласования перед публикацией</p></div>'+
  '<div class="card-panel calc"><div><div class="kicker"><i></i><b>Индивидуальная подписка</b></div><h3>Соберите свой пакет</h3><p class="lead" style="margin-top:.5rem">Только нужные темы и нужный объём, без переплаты.</p>'+
- '<div class="row"><span>Категории</span><b id="cv">3</b></div><input id="cr" type="range" min="1" max="100" value="3">'+
+ '<div class="row"><span>Категории</span><b id="cv">3</b></div><input id="cr" type="range" min="1" max="100" value="3"><p class="m" style="font-size:.72rem;margin:.4rem 0 0">Первые 10 категорий входят в цену, каждая следующая — +'+fm(50/K)+' в месяц.</p>'+
  '<div class="row"><span>Новостей</span><b id="nv">1</b></div><div class="seg" id="per"><button class="on" data-p="30">В день</button><button data-p="4.33">В неделю</button><button data-p="1">В месяц</button></div><input id="nr" type="range" min="1" max="100" value="1"></div>'+
- '<div class="sum"><b>Ваш пакет</b><div class="l"><span>Категории</span><b id="s1">3</b></div><div class="l"><span>Публикации</span><b id="s2">1 в день</b></div><div class="l"><span>Объём</span><b id="s3">≈ 30 в месяц</b></div><div class="l"><span>За статью</span><b id="s4">≈ 600 ₸</b></div><div class="l"><span>Подключение</span><b style="color:var(--accent)">Бесплатно</b></div><div class="big" id="pr">'+fm(3000)+'</div><div style="font-size:.75rem;color:#6b7280">/ месяц</div><button class="btn-accent" style="justify-content:center;margin-top:1rem" onclick="choose(\'Индивидуальный (из конструктора)\',\'Конструктор: \'+$(\'#s1\').textContent+\' категорий, \'+$(\'#s2\').textContent+\', \'+$(\'#s3\').textContent+\', цена \'+$(\'#pr\').textContent)">Оставить заявку на этот пакет</button></div></div>'+hw}
+ '<div class="sum"><b>Ваш пакет</b><div class="l"><span>Категории</span><b id="s1">3</b></div><div class="l"><span>Публикации</span><b id="s2">1 в день</b></div><div class="l"><span>Объём</span><b id="s3">≈ 30 в месяц</b></div><div class="l"><span>За статью</span><b id="s4">≈ 600 ₸</b></div><div class="l"><span>Категории свыше 10</span><b id="s5">нет</b></div><div class="l"><span>Подключение</span><b style="color:var(--accent)">Бесплатно</b></div><div class="big" id="pr">'+fm(3000)+'</div><div style="font-size:.75rem;color:#6b7280">/ месяц</div><div class="min3" style="color:#6b7280">Минимальный срок 3 месяца: <b id="p3"></b></div><button class="btn-accent" style="justify-content:center;margin-top:1rem" onclick="choose(\'Индивидуальный (из конструктора)\',\'Конструктор: \'+$(\'#s1\').textContent+\' категорий, \'+$(\'#s2\').textContent+\', \'+$(\'#s3\').textContent+\', цена \'+$(\'#pr\').textContent)">Оставить заявку на этот пакет</button></div></div>'+hw}
 function form(s){var news=s.id==='news',reels=s.id==='reels',live=s.status==='live';
- return '<div class="card-panel lead-f" id="lead"><div class="kicker"><i></i><b>'+(reels?'Заказ':live?'Заявка':'Предзапись')+'</b></div><h3>'+(reels?'Закажите монтаж Reels':live?'Оставьте заявку на подключение':'Предзапись на сервис')+'</h3><p class="lead">'+(reels?'Проверим исходники до оплаты и свяжемся в рабочее время. До 10 файлов, до 10 минут и 1 ГБ на заказ.':news?'Настроим бесплатно и проверим возможность интеграции до оплаты. Свяжемся в рабочее время.':'Сообщим о запуске и предложим условия раннего доступа.')+'</p>'+
+ return '<div class="card-panel lead-f" id="lead"><div class="kicker"><i></i><b>'+(reels?'Подписка':live?'Заявка':'Предзапись')+'</b></div><h3>'+(reels?'Оформите подписку на Reels':live?'Оставьте заявку на подключение':'Предзапись на сервис')+'</h3><p class="lead">'+(reels?'Подберём пакет под ваш объём и свяжемся в рабочее время.':news?'Настроим бесплатно и проверим возможность интеграции до оплаты. Свяжемся в рабочее время.':'Сообщим о запуске и предложим условия раннего доступа.')+'</p>'+
  '<form onsubmit="sendLead(event,\''+s.id+'\')"><div class="g2"><label class="fl"><span>Имя *</span><input name="nm" required></label><label class="fl"><span>Телефон / WhatsApp *</span><input name="ph" type="tel" required placeholder="+7"></label></div>'+
- '<label class="fl"><span>'+(reels?'Ссылка на видео или папку с исходниками':'Сайт или соцсеть')+'</span><input name="lk" placeholder="https://"></label>'+
+ '<label class="fl"><span>'+'Сайт или соцсеть'+'</span><input name="lk" placeholder="https://"></label>'+
  (news?'<div class="g2"><label class="fl"><span>Пакет</span><select name="pk" id="pk">'+PK.map(function(x,i){var t=x[0]+' — '+fm(x[1])+'/мес';return '<option'+(i===1?' selected':'')+'>'+t+'</option>'}).join('')+'<option>Индивидуальный (из конструктора)</option><option>Пока не знаю</option></select></label><label class="fl"><span>Куда публиковать</span><select name="pf"><option>Сайт (CMS / API)</option><option>Telegram</option><option>Instagram</option><option>Несколько каналов</option></select></label></div>':'')+
-  (reels?'<label class="fl"><span>Тариф или пакет</span><select name="pk" id="pk">'+RL_PK.map(function(t,i){return '<option'+(i===0?' selected':'')+'>'+t+'</option>'}).join('')+'</select></label>':'')+
- '<label class="fl"><span>Комментарий</span><textarea name="cm" id="cm" rows="3" placeholder="'+(reels?'Какой ролик нужен, для чего и в каком стиле':'Темы, примеры сайтов, пожелания')+'"></textarea></label>'+
- '<button class="btn-accent" type="submit">'+(reels?'Оформить заказ':live?'Отправить заявку':'Записаться')+'</button><p class="disc">Нажимая кнопку, вы соглашаетесь с <a href="/legal#privacy-policy" style="text-decoration:underline">политикой конфиденциальности</a>'+(reels?' и передачей материалов сервисам облачной видеообработки (хранение 30 дней)':'')+'.</p></form></div>'}
-function choose(pk,cm){var p=$('#pk');if(p&&pk)p.value=pk;if(cm)$('#cm').value=cm;go('lead')}
+  (reels?'<label class="fl"><span>Тариф или пакет</span><select name="pk" id="pk">'+rlPk().map(function(t,i){return '<option'+(i===0?' selected':'')+'>'+t+'</option>'}).join('')+'<option>Пока не знаю</option>'+'</select></label>':'')+
+ '<label class="fl"><span>Комментарий</span><textarea name="cm" id="cm" rows="3" placeholder="'+(reels?'Сколько роликов в месяц нужно и о чём':'Темы, примеры сайтов, пожелания')+'"></textarea></label>'+
+ '<button class="btn-accent" type="submit">'+(reels?'Оформить подписку':live?'Отправить заявку':'Записаться')+'</button><p class="disc">Нажимая кнопку, вы соглашаетесь с <a href="/legal#privacy-policy" style="text-decoration:underline">политикой конфиденциальности</a>'+''+'.</p></form></div>'}
+function openModal(h){var m=$('#md');if(!m){m=document.createElement('div');m.id='md';m.className='md';m.innerHTML='<div class="md-bg" data-md-x></div><div class="md-box"><button type="button" class="md-x" data-md-x aria-label="Закрыть">×</button><div id="md-in"></div></div>';document.body.appendChild(m);m.addEventListener('click',function(e){if(e.target.closest('[data-md-x]'))closeModal()})}$('#md-in').innerHTML=h;m.classList.add('open');document.body.style.overflow='hidden'}
+function closeModal(){var m=$('#md');if(m)m.classList.remove('open');document.body.style.overflow=''}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
+function openLead(sid,pk,cm){openModal(form(find(sid||cur)));var p=$('#pk');if(p&&pk)p.value=pk;if(cm&&$('#cm'))$('#cm').value=cm}
+function choose(pk,cm){openLead(cur,pk,cm)}
+function openSuggest(){openModal('<div class="lead-f"><div class="kicker"><i></i><b>Кейсы</b></div><h3>Предложите своё видео</h3><p class="lead">Сделали Reels у нас или сами? Пришлите ссылку: лучшие ролики мы покажем в кейсах и укажем автора.</p><form onsubmit="sendLead(event,\'reels\')"><input type="hidden" name="pk" value="Предложение видео в кейсы"><div class="g2"><label class="fl"><span>Имя *</span><input name="nm" required></label><label class="fl"><span>Телефон / WhatsApp *</span><input name="ph" type="tel" required placeholder="+7"></label></div><label class="fl"><span>Ссылка на видео *</span><input name="lk" required placeholder="https://"></label><label class="fl"><span>Комментарий</span><textarea name="cm" rows="2" placeholder="Ниша, задача, результат"></textarea></label><label class="ck"><input type="checkbox" required>Подтверждаю, что у меня есть права на это видео</label><button class="btn-accent" type="submit" style="margin-top:.75rem">Отправить на рассмотрение</button></form></div>')}
 function sendLead(e,sid){e.preventDefault();var f=e.target,g=function(n){return f.elements[n]?f.elements[n].value:''},
  d={service:find(sid).name,name:g('nm'),phone:g('ph'),link:g('lk'),package:g('pk'),platform:g('pf'),comment:g('cm'),date:new Date().toISOString()},
  ok=function(){f.innerHTML='<div class="okmsg"><div style="font-size:2.5rem">✅</div><b>Заявка отправлена</b><p class="lead">Мы свяжемся с вами в рабочее время.</p></div>'};
  if(LEAD_URL){fetch(LEAD_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){if(!r.ok)throw 0;ok()}).catch(function(){alert('Не удалось отправить. Позвоните нам: +7 707 177 11 99')})}
  else{location.href='mailto:info@creators.kz?subject='+encodeURIComponent('Заявка: '+d.service)+'&body='+encodeURIComponent(Object.keys(d).map(function(k){return k+': '+d[k]}).join('\n'));ok()}}
 function calc(){var per=30;
- function u(){var c=+$('#cr').value,n=+$('#nr').value,m=Math.round(n*per),p=Math.max(590,Math.round(m*(m<=30?100:m>=90?250/3:100-(m-30)*5/18)/10)*10);
+ function u(){var c=+$('#cr').value,n=+$('#nr').value,m=Math.round(n*per),p=Math.max(590,Math.round(m*(m<=30?100:m>=90?250/3:100-(m-30)*5/18)/10)*10),ex=Math.max(0,c-10);p+=ex*50/K;
   $('#cv').textContent=c;$('#nv').textContent=n;$('#s1').textContent=c;
   $('#s2').textContent=n+' '+(per===30?'в день':per===1?'в месяц':'в неделю');$('#s3').textContent='≈ '+m+' в месяц';
-  $('#pr').textContent=fm(p);$('#s4').textContent='≈ '+fm(p/m)}
+  $('#pr').textContent=fm(p);$('#p3').textContent=fm(p*3);$('#s5').textContent=ex?'+'+fm(ex*50/K)+' ('+ex+' × '+fm(50/K)+')':'нет';$('#s4').textContent='≈ '+fm(p/m)}
  $('#cr').oninput=$('#nr').oninput=u;
  [].forEach.call(document.querySelectorAll('#per button'),function(b){b.onclick=function(){[].forEach.call(document.querySelectorAll('#per button'),function(x){x.classList.remove('on')});b.classList.add('on');per=+b.dataset.p;u()}});u()}
 
 function render(){
  var s=find(cur),b=s.aud==='blogger';
- $('#picker').innerHTML=['customer','blogger'].filter(function(k){return S.some(function(x){return x.aud===k})}).map(function(k){return '<div class="pk-g"><span class="pk-t">'+AUD[k]+'</span><div class="pk-l">'+S.filter(function(x){return x.aud===k}).map(function(x){return '<a class="svc'+(x.id===cur?' on':'')+'" data-id="'+x.id+'" href="#'+x.id+'"'+(x.id===cur?' aria-current="page"':'')+'><i class="fa-solid fa-'+(x.ic||'cube')+'"></i>'+x.name+(x.status==='soon'?' <small>СКОРО</small>':x.isNew?' <small>NEW</small>':'')+'</a>'}).join('')+'</div></div>'}).join('');
- var pon=$('#picker .on');if(pon)$('#picker').scrollLeft=Math.max(0,pon.offsetLeft-16);
+ $('#pg-name').textContent=' / '+s.name;
+ $('#pg-sub').textContent=b?'Инструмент для блогеров':'Сервис для бизнеса';
+ document.title=s.name+' — Сервисы — CREATORS.KZ';
+ [].forEach.call(document.querySelectorAll('#site-header .dd-link[href*="services.html#"],#mobile-menu a[href*="services.html#"]'),function(a){
+  var on=a.getAttribute('href').split('#')[1]===cur;a.classList.toggle('is-active',on);if(!a.classList.contains('dd-link'))a.style.color=on?'var(--accent)':''});
  var ch='<span class="chip">Для: <b>'+AUD[s.aud]+'</b></span><span class="chip'+(s.status==='live'?' ok':'')+'">Статус: <b>'+(s.status==='live'?'работает':'скоро')+'</b></span><span class="chip">Формат: <b>'+(b?'работает на сайте':s.status==='live'?'заявка и тариф':'предзапись')+'</b></span>'+(s.chip?'<span class="chip ok">'+s.chip[0]+': <b>'+s.chip[1]+'</b></span>':''),
   feats='<ul class="feat two">'+s.feats.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul>',
   h='<div class="fade"><article class="doc card-panel"><div class="kicker"><i></i><b>'+AUD[s.aud]+'</b><i></i></div><h2>'+s.name+'</h2><div class="chips">'+ch+'</div>';
  if(b){var T=TOOLS[s.tool];h+='<p class="lead">'+s.desc+'</p><div class="tool"><div class="tin">'+T.form()+'</div><div class="dark" id="out"></div></div>'+feats+'<p class="disc">'+T.note+'</p></article></div>'}
- else if(s.id==='reels'){h='<div class="fade">'+reelsHero()+reelsStudio()+reelsBen()+reelsCases()+'</div>'}
-else if(s.id==='news'){h='<div class="fade">'+newsHero()+newsBen()+extra(s)+form(s)+'</div>'}
- else{h+='<div class="actions"><button class="btn-accent" onclick="go(\'lead\')">'+(s.status==='live'?'Оставить заявку':'Предзапись')+'</button>'+(s.id==='news'?'<button class="btn-line" onclick="go(\'plans\')">Смотреть тарифы</button>':'')+'</div><div class="split"><div><p class="lead">'+s.desc+'</p><ul class="feat">'+s.feats.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul></div><div class="dark">'+(VIS[s.id]||VIS.soon)()+'</div></div></article>'+extra(s)+form(s)+'</div>'}
+ else if(s.id==='reels'){h='<div class="fade">'+reelsHero()+reelsStudio()+reelsSubs()+reelsBen()+reelsCases()+reelsFaq()+'</div>'}
+else if(s.id==='news'){h='<div class="fade">'+newsHero()+newsBen()+extra(s)+newsCases()+'</div>'}
+ else{h+='<div class="actions"><button class="btn-accent" onclick="openLead(cur)">'+(s.status==='live'?'Оставить заявку':'Предзапись')+'</button>'+(s.id==='news'?'<button class="btn-line" onclick="go(\'plans\')">Смотреть тарифы</button>':'')+'</div><div class="split"><div><p class="lead">'+s.desc+'</p><ul class="feat">'+s.feats.map(function(f){return '<li>'+f+'</li>'}).join('')+'</ul></div><div class="dark">'+(VIS[s.id]||VIS.soon)()+'</div></div></article>'+extra(s)+form(s)+'</div>'}
  $('#view').innerHTML=h;
  if(b){TOOLS[s.tool].init();if(s.tool!=='rand')[].forEach.call(document.querySelectorAll('.tin input'),function(i){i.oninput=s.tool==='score'?runScore:runBots})}
  if(s.id==='news')calc();if(s.id==='reels')initStudio();
 }
-document.addEventListener('click',function(e){var t=e.target.closest('[data-id]');if(t){e.preventDefault();pick(t.dataset.id)}});
 /* ===== Витрина ИИ-автопостинга ===== */
 var MK=[
 {k:'b',t:'Технологии',h:'Как ИИ меняет работу компаний',d:'Искусственный интеллект помогает автоматизировать рутинные задачи, повышать эффективность и открывать новые возможности для роста бизнеса.',w:'Сегодня, 09:00'},
@@ -782,14 +858,17 @@ function newsBen(){
  [I+'<path d="M12 6h17l9 9v27H12z"/><path d="M29 6v9h9"/><path d="M18 28l5 5 9-10"/></svg>','Уникальный контент','Генерация уникальных статей — проверяем информацию и исключаем дублирование тем'],
  [I+'<path d="M8 8h32a2 2 0 012 2v22a2 2 0 01-2 2H22l-9 8v-8H8a2 2 0 01-2-2V10a2 2 0 012-2z"/><path d="M17 21l5 5 9-9"/></svg>','Контроль публикаций','Возможность согласовать материалы перед публикацией']];
  return '<section class="card-panel nh-ben"><h3>Сайт обновляется. <em>Вы занимаетесь бизнесом.</em></h3><div class="ben-g">'+B.map(function(x){return '<div class="ben"><span class="ben-i">'+x[0]+'</span><div><b>'+x[1]+'</b><p>'+x[2]+'</p></div></div>'}).join('')+'</div></section>'}
+function newsCases(){
+ var C=[['Новостной портал','Региональное издание','newspaper','Автопубликация 2 новостей в день','Раздел обновляется без редакции'],['Строительная компания','Строительство','helmet-safety','Блог и новости отрасли на сайте','Регулярный контент для SEO'],['Частная клиника','Медицина','heart-pulse','3 категории: здоровье, акции, новости','Сайт живёт, команда занята пациентами'],['Автосалон','Авто','car','Сайт и Instagram одновременно','Новости рынка без ручной работы']];
+ return '<section class="card-panel how"><div class="kicker"><i></i><b>Кейсы</b></div><h3>Кто уже подключил ИИ-автопостинг</h3><div class="nc-g">'+C.map(function(x){return '<div class="nc"><i class="ic fa-solid fa-'+x[2]+'"></i><small>'+x[1]+'</small><b>'+x[0]+'</b><p>'+x[3]+'</p><div class="res">'+x[4]+'</div></div>'}).join('')+'</div><div class="cta-row"><div><b>Хотите так же?</b><p>Настроим бесплатно и проверим интеграцию до оплаты.</p></div><button type="button" class="btn-accent" onclick="openLead(\'news\')">Оставить заявку</button></div></section>'}
 function newsHero(){
  mkI=0;
  return '<section class="nh"><div class="nh-grid"><div>'+
  '<h2>Автоматическая публикация новостей <em>на вашем сайте</em></h2>'+
  '<p class="nh-lead">Сервис находит материалы по вашим темам, готовит тексты и изображения и публикует новости по расписанию.</p>'+
  '<p class="nh-free"><b>Настройка бесплатно.</b> Платите только за месячную подписку.</p>'+
- '<div class="nh-act"><button type="button" class="btn-accent" onclick="go(\'lead\')">Подключить сервис <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><button type="button" class="btn-line" onclick="go(\'plans\')">Посмотреть тарифы</button></div></div>'+
- '<div class="nh-demo"><div class="nh-cap">Так выглядят новости на вашем сайте</div><div class="bw" aria-label="Пример новостного раздела">'+
+ '<div class="nh-act"><button type="button" class="btn-accent" onclick="openLead(cur)">Подключить сервис <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button><button type="button" class="btn-line" onclick="go(\'plans\')">Посмотреть тарифы</button></div></div>'+
+ '<div class="nh-demo"><div class="nh-cap">Так примерно будут выглядеть новости на вашем сайте</div><div class="bw" aria-label="Пример новостного раздела">'+
  '<div class="bw-bar"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i><span class="bw-url">ваш-сайт.kz/news</span></div>'+
  '<div class="bw-body"><div class="bw-head"><b>Новости компании</b><span>Все новости</span></div><div id="bw-body">'+mkView()+'</div></div>'+
  '<div class="bw-foot"><span class="bw-ok"><i></i>Опубликовано автоматически</span><span class="bw-nx"><i class="fa-regular fa-clock" aria-hidden="true"></i>Следующая: завтра, 09:00</span></div></div></div></div>'+
@@ -834,7 +913,7 @@ function reelsBen(){
 var ORDER_URL='';
 var RS_PRICE={auto:{1:1990,5:8950,10:16900,15:23850},pro:{1:4990,5:22500,10:45000,15:60000}};
 var RS_ST=[['dyn','Динамичный','Быстрые склейки, крупные субтитры','bolt'],['min','Минимализм','Плавные переходы, чистые титры','leaf'],['exp','Экспертный','Говорящая голова, без пауз','microphone'],['pro','Промо','Продукт, цены, яркий призыв','tag']];
-var RS={files:[],mode:'auto',qty:1,style:'dyn',dur:30,lang:'Русский',sub:true,mus:true,task:'',hook:'',name:'',phone:'',msg:'',busy:false,done:null,uid:0,pv:null,ck:'',stage:0,built:0,rev:2,sec:0,play:0,cur:0,tm:0,bt:0};
+var RS={files:[],mode:'auto',qty:1,cases:false,notes:[],style:'dyn',dur:30,lang:'Русский',sub:true,mus:true,task:'',hook:'',name:'',phone:'',msg:'',busy:false,done:null,uid:0,pv:null,ck:'',stage:0,built:0,rev:2,sec:0,play:0,cur:0,tm:0,bt:0};
 function rsT(s){var m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r}
 function rsMB(b){return b>=1073741824?(b/1073741824).toFixed(1)+' ГБ':Math.max(1,Math.round(b/1048576))+' МБ'}
 function rsStats(){var sec=0,sz=0,err='';RS.files.forEach(function(f){sec+=f.dur;sz+=f.size});
@@ -857,12 +936,13 @@ function reelsStudio(){
   <button type="button" class="rs-mode" data-md="auto"><b>Автомонтаж</b><strong>1 990 ₸ <small>/ ролик</small></strong><span>ИИ собирает ролик по выбранному стилю. 2 правки включены.</span></button>
   <button type="button" class="rs-mode" data-md="pro"><em>ПОПУЛЯРНЫЙ</em><b>С монтажёром</b><strong>4 990 ₸ <small>/ ролик</small></strong><span>ИИ собирает, специалист дорабатывает. Для рекламы и интервью.</span></button></div></div>
  </div><aside class="rs-side"><div class="rs-prev"><div class="rl-phone"><div id="rs-scr"></div><div class="rl-shade"></div><div class="rs-bld" id="rs-bld"></div><button type="button" class="rs-pl" id="rs-pl" aria-label="Смотреть"><i class="fa-solid fa-play"></i></button><div class="rl-top"><span class="rl-rec"><i></i><span id="rs-pst"></span></span><span id="rs-pdur"></span></div><div id="rs-sub-t"></div><div class="rl-bar" id="rs-bar"><i></i></div></div><p id="rs-cap"></p></div>
- <div class="rs-box" id="rs-box"><div class="rs-qty"><span>Роликов</span><div>${[1,5,10,15].map(function(n){return '<button type="button" data-q="'+n+'">'+n+'</button>'}).join('')}</div></div>
+ <div class="rs-box" id="rs-box">
   <div class="rs-price"><div><b id="rs-pm"></b><span id="rs-pn"></span></div><strong id="rs-pr"></strong></div>
-  <button type="button" class="btn-accent" id="rs-mk" style="width:100%;justify-content:center"><i class="fa-solid fa-wand-magic-sparkles"></i>Создать Reels · бесплатно</button>
-  <div class="rs-ed" id="rs-ed"><div class="rs-edh"><b>Правки</b><span id="rs-rev"></span></div><label class="fl"><input id="rs-edt" maxlength="60" placeholder="Исправить текст на экране"></label><div style="display:flex;gap:.5rem;flex-wrap:wrap"><button type="button" class="btn-line" id="rs-e1">Применить текст</button><button type="button" class="btn-line" id="rs-e2">Заменить кадр</button></div><button type="button" class="rs-lnk" onclick="rsReset()">Начать заново</button></div>
+  <label class="rs-dsc" id="rs-dsc"><input type="checkbox" id="rs-cs"><span><b>Скидка 5%</b> — если разрешите показать готовый ролик в разделе «Кейсы» на сайте. Без разрешения ролик нигде не публикуется.</span></label><button type="button" class="btn-accent" id="rs-mk" style="width:100%;justify-content:center"><i class="fa-solid fa-wand-magic-sparkles"></i>Создать Reels · бесплатно</button>
+  <div class="rs-ed" id="rs-ed"><div class="rs-edh"><b>Правки</b><span id="rs-rev"></span></div><label class="fl"><textarea id="rs-edt" rows="5" maxlength="300" placeholder="Опишите, что изменить. Например: «сделать динамичнее», «заменить музыку», «субтитры крупнее»"></textarea></label><div class="rs-tips">${['Динамичнее','Убрать паузы','Другая музыка','Крупнее субтитры','Изменить текст на экране','Поменять порядок кадров'].map(function(t){return '<button type="button" data-tip="'+t+'">+ '+t+'</button>'}).join('')}</div><div style="display:flex;gap:.5rem;flex-wrap:wrap"><button type="button" class="btn-line" id="rs-e1">Отправить правку</button><button type="button" class="btn-line" id="rs-e2">Заменить кадр</button></div><button type="button" class="rs-lnk" onclick="rsReset()">Начать заново</button></div>
   <button type="button" class="btn-accent" id="rs-go" disabled style="width:100%;justify-content:center;margin-top:.75rem">Оплатить и скачать</button><div class="rs-prog" id="rs-prog"><i></i></div><p class="rs-err" id="rs-err"></p>
   <p class="disc">Нажимая кнопку, вы соглашаетесь с <a href="/legal#privacy-policy" style="text-decoration:underline">политикой конфиденциальности</a> и передачей материалов сервисам облачной видеообработки (хранение 30 дней).</p></div></aside></div></section>`}
+function rsPrice(){var p=RS_PRICE[RS.mode][1];return RS.cases?Math.round(p*.95/10)*10:p}
 function rsPaint(){
  var st=rsStats(),v=$('#rs-val'),i;if(!v||RS.done)return;
  var ch=RS.files.map(function(f){return '<div class="rs-clip">'+(f.thumb?'<img src="'+f.thumb+'" alt="">':'<div class="ph"><i class="fa-solid fa-film"></i></div>')+'<em>'+(f.type==='video'?(f.dur?rsT(f.dur):'видео'):'фото')+'</em><button type="button" aria-label="Удалить '+esc(f.name)+'" onclick="rsDel('+f.id+')">×</button></div>'}).join('');if(RS.ck!==ch){RS.ck=ch;$('#rs-clips').innerHTML=ch}
@@ -870,9 +950,8 @@ function rsPaint(){
  v.textContent=e?e:st.cnt?'✓ '+st.cnt+' из 10 файлов · '+rsT(st.sec)+' из 10:00 · '+rsMB(st.sz)+' из 1 ГБ':'Добавьте хотя бы один файл. Формат и объём проверяем сразу, до оплаты.';
  [].forEach.call(document.querySelectorAll('[data-st]'),function(b){b.classList.toggle('on',b.dataset.st===RS.style)});
  [].forEach.call(document.querySelectorAll('[data-md]'),function(b){b.classList.toggle('on',b.dataset.md===RS.mode)});
- [].forEach.call(document.querySelectorAll('[data-q]'),function(b){b.classList.toggle('on',+b.dataset.q===RS.qty)});
- var p=RS_PRICE[RS.mode][RS.qty];$('#rs-pm').textContent=(RS.mode==='auto'?'Автомонтаж':'С монтажёром')+' · '+RS.qty+' '+(RS.qty===1?'ролик':'роликов');
- $('#rs-pn').textContent=RS.qty>1?'≈ '+Math.round(p/RS.qty).toLocaleString('ru-RU')+' ₸ за ролик':'2 правки включены';$('#rs-pr').textContent=p.toLocaleString('ru-RU')+' ₸';
+  var p0=RS_PRICE[RS.mode][1],p=rsPrice();$('#rs-pm').textContent=(RS.mode==='auto'?'Автомонтаж':'С монтажёром')+' · 1 ролик';
+  $('#rs-pn').textContent=RS.cases?'Скидка 5% учтена · 2 правки включены':'2 правки включены';$('#rs-pr').innerHTML=(RS.cases?'<span class="rs-old">'+p0.toLocaleString('ru-RU')+' ₸</span>':'')+p.toLocaleString('ru-RU')+' ₸';$('#rs-dsc').style.display=RS.built?'none':'';
  var f=RS.files[RS.cur]||RS.files[0],key=f?f.id+(f.thumb?'t':'n'):'0';
  if(RS.pv!==key){RS.pv=key;$('#rs-scr').innerHTML=f&&f.thumb?'<img src="'+f.thumb+'" alt="Первый кадр">':RL_SC.replace(/rl([AG])/g,'rs$1')}
  var s=RS_ST.filter(function(x){return x[0]===RS.style})[0],h=RS.hook.trim()||(RS.lang==='Казахский'?'Таң осы жерден басталады':'Утро начинается здесь'),w=h.split(' '),l=w.pop(),t=$('#rs-sub-t');
@@ -905,16 +984,16 @@ function rsBuild(fast){
  RS.bt=setInterval(function(){i++;if(i<RS_BS.length){say();return}clearInterval(RS.bt);RS.stage=2;RS.built=1;RS.sec=0;RS.cur=0;rsPaint()},fast?450:800)}
 function rsEdit(k){
  if(RS.stage!==2||RS.rev<1)return;var er=$('#rs-err');
- if(k==='txt'){var t=$('#rs-edt').value.trim();if(!t){er.textContent='Введите новый текст.';return}RS.hook=t;$('#rs-hook').value=t}
+ if(k==='txt'){var t=$('#rs-edt').value.trim();if(t.length<3){er.textContent='Опишите правку: что именно изменить.';return}RS.notes.push(t)}
  else if(RS.files.length>1)RS.files.push(RS.files.shift());else{er.textContent='Для замены кадра нужно минимум 2 файла.';return}
  er.textContent='';RS.rev--;$('#rs-edt').value='';RS.pv=null;rsBuild(1)}
 function rsPlay(){if(RS.stage!==2)return;RS.play=RS.play?0:1;clearInterval(RS.tm);
  if(RS.play)RS.tm=setInterval(function(){RS.sec=(RS.sec+1)%RS.dur;RS.cur=Math.floor(RS.sec/RS.dur*RS.files.length);rsPaint()},400);rsPaint()}
 function rsDone(id,r){clearInterval(RS.tm);RS.done=1;$('#rs-box').innerHTML='<div class="rs-ok"><div style="font-size:2.5rem">✅</div><b>Заказ №'+id+(r.url?': ролик готов':' принят')+'</b><p>'+(r.url?'Файл можно скачать по кнопке ниже.':'Мы пришлём ссылку на оплату и скачивание готового ролика.')+'</p>'+(r.url?'<a class="btn-accent" style="justify-content:center;margin-bottom:.6rem" href="'+esc(r.url)+'" download>Скачать MP4</a><br>':'')+'<button type="button" class="btn-line" onclick="rsReset()">Создать ещё один</button></div>'}
-function rsReset(){clearInterval(RS.tm);clearInterval(RS.bt);RS.done=null;RS.busy=false;RS.files=[];RS.task=RS.hook=RS.msg='';RS.stage=RS.built=RS.sec=RS.play=RS.cur=0;RS.rev=2;RS.pv=null;RS.ck='';render();go('studio')}
+function rsReset(){clearInterval(RS.tm);clearInterval(RS.bt);RS.done=null;RS.busy=false;RS.files=[];RS.task=RS.hook=RS.msg='';RS.stage=RS.built=RS.sec=RS.play=RS.cur=0;RS.rev=2;RS.notes=[];RS.pv=null;RS.ck='';render();go('studio')}
 function rsSubmit(){
  if(RS.busy||RS.stage!==2)return;var er=$('#rs-err'),btn=$('#rs-go'),s=RS_ST.filter(function(x){return x[0]===RS.style})[0][1],id='R'+Date.now().toString(36).slice(-5).toUpperCase(),
- d={id:id,service:'ИИ-монтаж Reels',mode:RS.mode==='auto'?'Автомонтаж':'С монтажёром',qty:RS.qty,price:RS_PRICE[RS.mode][RS.qty]+' ₸',style:s,duration:RS.dur+' сек',lang:RS.lang,subtitles:RS.sub?'да':'нет',music:RS.mus?'да':'нет',task:RS.task,hook:RS.hook,edits_used:2-RS.rev,
+ d={id:id,service:'ИИ-монтаж Reels',mode:RS.mode==='auto'?'Автомонтаж':'С монтажёром',qty:1,price:rsPrice()+' ₸',cases_discount:RS.cases?'да, 5%':'нет',style:s,duration:RS.dur+' сек',lang:RS.lang,subtitles:RS.sub?'да':'нет',music:RS.mus?'да':'нет',task:RS.task,hook:RS.hook,edits_used:2-RS.rev,edits:RS.notes.join(' | '),
   files:RS.files.map(function(f){return f.name+' ('+rsMB(f.size)+(f.dur?', '+rsT(f.dur):'')+')'}).join('; '),date:new Date().toISOString()};
  if(!ORDER_URL){location.href='mailto:info@creators.kz?subject='+encodeURIComponent('Заказ Reels '+id)+'&body='+encodeURIComponent(Object.keys(d).map(function(k){return k+': '+d[k]}).join('\n'));rsDone(id,{});return}
  var x=new XMLHttpRequest(),fd=new FormData(),pr=$('#rs-prog');RS.busy=true;btn.disabled=true;btn.textContent='Загружаем… 0%';pr.style.display='block';er.textContent='';
@@ -923,10 +1002,17 @@ function rsSubmit(){
  x.upload.onprogress=function(ev){if(ev.lengthComputable){var p=Math.round(ev.loaded/ev.total*100);$('#rs-prog i').style.width=p+'%';btn.textContent='Загружаем… '+p+'%'}};
  x.onload=function(){if(x.status<200||x.status>299)return fail();RS.busy=false;var r={};try{r=JSON.parse(x.responseText)}catch(z){}if(r.payUrl){location.href=r.payUrl;return}if(r.downloadUrl)r.url=r.downloadUrl;rsDone(r.id||id,r)};
  x.onerror=fail;x.open('POST',ORDER_URL);x.send(fd)}
-var RC=[['Кофейня','Утро начинается здесь','Динамичный · 30 сек','#F7B28B,#C76B86','mug-hot'],['Барбершоп','Стиль без компромиссов','Промо · 15 сек','#6D5BD0,#2B2D6E','scissors'],['Фитнес-клуб','Первое занятие бесплатно','Динамичный · 30 сек','#34D399,#0F766E','dumbbell'],['Эксперт','3 ошибки при открытии ИП','Экспертный · 45 сек','#60A5FA,#1E3A8A','microphone'],['Салон красоты','Новый образ за час','Минимализм · 30 сек','#F9A8D4,#9D174D','spa'],['Магазин одежды','Скидки до −40%','Промо · 15 сек','#FBBF24,#B45309','shirt']];
-/* RC: вместо заглушек добавьте 6-м элементом ссылку на ваш MP4: ['Кофейня','Подпись','Стиль','#F7B28B,#C76B86','mug-hot','cases/cafe.mp4'] */
-function reelsCases(){var c=RC.concat(RC).map(function(x){return '<div class="rc-card" style="background:linear-gradient(160deg,'+x[3]+')">'+(x[5]?'<video src="'+esc(x[5])+'" autoplay muted loop playsinline preload="metadata"></video>':'<i class="fa-solid fa-'+x[4]+' rc-ic"></i>')+'<span class="rc-tag">'+x[0]+'</span><span class="rc-cap">'+x[1]+'</span><span class="rc-meta">'+x[2]+'</span></div>'}).join('');
- return '<section class="card-panel rc"><div class="rc-h"><div class="kicker"><i></i><b>Кейсы</b></div><h3>Reels, которые собрали у нас</h3></div><div class="rc-view" aria-label="Примеры роликов"><div class="rc-track">'+c+'</div></div></section>'}
+var RC=[['Кофейня','Утро начинается здесь','Динамичный · 30 сек','#F7B28B,#C76B86','mug-hot','','Акция «2 по цене 1»','Ролик для сторис и Reels кофейни'],['Барбершоп','Стиль без компромиссов','Промо · 15 сек','#6D5BD0,#2B2D6E','scissors','','Новые записи с Reels','Промо услуг и цен'],['Фитнес-клуб','Первое занятие бесплатно','Динамичный · 30 сек','#34D399,#0F766E','dumbbell','','Рост заявок на пробное','Привлечение новых клиентов'],['Эксперт','3 ошибки при открытии ИП','Экспертный · 45 сек','#60A5FA,#1E3A8A','microphone','','Охват выше обычных постов','Говорящая голова с субтитрами'],['Салон красоты','Новый образ за час','Минимализм · 30 сек','#F9A8D4,#9D174D','spa','','Больше сохранений','Спокойный ролик о работе мастера'],['Магазин одежды','Скидки до −40%','Промо · 15 сек','#FBBF24,#B45309','shirt','','Трафик в магазин','Распродажа с ценами и призывом']];
+/* RC: 6-й элемент — ссылка на MP4 (вместо заглушки), 7-й — результат, 8-й — задача. */
+function reelsCases(){var c=RC.map(function(x){return '<div><div class="rc-card" style="background:linear-gradient(160deg,'+x[3]+')">'+(x[5]?'<video src="'+esc(x[5])+'" autoplay muted loop playsinline preload="metadata"></video>':'<i class="fa-solid fa-'+x[4]+' rc-ic"></i>')+'<span class="rc-tag">'+x[0]+'</span><span class="rc-cap">'+x[1]+'</span><span class="rc-meta">'+x[2]+'</span></div><b>'+x[6]+'</b><p>'+x[7]+'</p></div>'}).join('');
+ return '<section class="card-panel rc"><div class="rc-h"><div class="kicker"><i></i><b>Кейсы</b></div><h3>Reels, которые собрали у нас</h3></div><div class="rc2" aria-label="Примеры роликов">'+c+'</div><div class="cta-row"><div><b>Есть своё видео?</b><p>Предложите ролик в кейсы. Лучшие покажем на сайте с указанием автора.</p></div><button type="button" class="btn-accent" onclick="openSuggest()"><i class="fa-solid fa-plus"></i> Предложить своё видео</button></div></section>'}
+function rlName(m,n){return (m==='auto'?'Автомонтаж':'С монтажёром')+' · '+n+' роликов — '+RS_PRICE[m][n].toLocaleString('ru-RU')+' ₸/мес'}
+function rlPk(){var o=[];[5,10,15].forEach(function(n){['auto','pro'].forEach(function(m){o.push(rlName(m,n))})});return o}
+function reelsSubs(){var f=function(x){return x.toLocaleString('ru-RU')+' ₸'};
+ return '<section class="card-panel rsub" id="subs"><div class="kicker"><i></i><b>Подписка</b></div><h3>Нужно много роликов? Не платите за каждый отдельно</h3><p class="lead">В студии выше вы платите за один ролик. Если снимаете регулярно, оформите подписку: оплата одним пакетом в месяц и цена за ролик ниже.</p><div class="rsub-g">'+[5,10,15].map(function(n,i){return '<div class="rsub-c'+(i===1?' pop':'')+'"><h4>'+n+' роликов в месяц</h4>'+[['auto','Автомонтаж'],['pro','С монтажёром']].map(function(m){var p=RS_PRICE[m[0]][n],sv=RS_PRICE[m[0]][1]*n-p;return '<button type="button" class="rsub-b" data-sub="'+m[0]+'|'+n+'"><span>'+m[1]+'<small>≈ '+f(Math.round(p/n))+' за ролик</small></span><span style="text-align:right"><strong>'+f(p)+'</strong><em>экономия '+f(sv)+'</em></span></button>'}).join('')+'</div>'}).join('')+'</div></section>'}
+document.addEventListener('click',function(e){var t=e.target.closest('[data-sub]');if(!t)return;var a=t.dataset.sub.split('|');openLead('reels',rlName(a[0],+a[1]))});
+function reelsFaq(){var Q=[['Как быстро будет готов ролик?','Автомонтаж собирается за несколько минут, и вы сразу видите черновик. Если выбран монтажёр, срок согласуем при заказе.'],['Сколько правок входит в заказ?','Две правки включены. Опишите, что изменить, и мы пересоберём ролик. Дополнительные правки обсуждаем отдельно.'],['Какие файлы подходят?','MP4, MOV, JPG и PNG: до 10 файлов, до 10 минут суммарно и до 1 ГБ. Проверяем это сразу, до оплаты.'],['Что со скидкой 5% за кейсы?','Если вы разрешили, готовый ролик может появиться в разделе «Кейсы». Если не разрешили, он нигде не публикуется.'],['Как хранятся мои материалы?','Исходники и готовые ролики хранятся 30 дней на сервисах облачной видеообработки, затем удаляются.']];
+ return '<section class="card-panel faq"><div class="kicker"><i></i><b>Вопросы</b></div><h3>Частые вопросы</h3>'+Q.map(function(q){return '<details><summary>'+q[0]+'</summary><p>'+q[1]+'</p></details>'}).join('')+'</section>'}
 function initStudio(){
  var f=$('#rs-file'),dz=$('#rs-drop');if(!f)return;
  function bind(id,k,ev,cb){var el=$(id);if(el.type==='checkbox')el.checked=RS[k];else el.value=RS[k];el.addEventListener(ev||'input',function(){RS[k]=el.type==='checkbox'?el.checked:(el.tagName==='SELECT'&&k==='dur'?+el.value:el.value);rsPaint()})}
@@ -937,14 +1023,15 @@ function initStudio(){
  dz.addEventListener('drop',function(e){if(e.dataTransfer)rsAdd(e.dataTransfer.files)});
  [].forEach.call(document.querySelectorAll('[data-st]'),function(b){b.onclick=function(){RS.style=b.dataset.st;rsPaint()}});
  [].forEach.call(document.querySelectorAll('[data-md]'),function(b){b.onclick=function(){RS.mode=b.dataset.md;rsPaint()}});
- [].forEach.call(document.querySelectorAll('[data-q]'),function(b){b.onclick=function(){RS.qty=+b.dataset.q;rsPaint()}});
+ var cs=$('#rs-cs');cs.checked=RS.cases;cs.onchange=function(){RS.cases=cs.checked;rsPaint()};
+ [].forEach.call(document.querySelectorAll('[data-tip]'),function(b){b.onclick=function(){var t=$('#rs-edt');t.value=(t.value.trim()?t.value.trim().replace(/[.]$/,'')+'. ':'')+b.dataset.tip;t.focus()}});
  $('#rs-go').onclick=rsSubmit;$('#rs-mk').onclick=function(){rsBuild()};$('#rs-pl').onclick=rsPlay;$('#rs-e1').onclick=function(){rsEdit('txt')};$('#rs-e2').onclick=function(){rsEdit('clip')};RS.pv=null;RS.ck='';rsPaint()}
 document.addEventListener('click',function(e){var t=e.target.closest('[data-mk]');if(!t)return;mkI=+t.dataset.mk;$('#bw-body').innerHTML=mkView()});
-/* Переход по ссылкам из выпадающего меню шапки (#news, #rand …) без перезагрузки */
-window.addEventListener('hashchange',function(){var id=location.hash.slice(1);if(!find(id)||id===cur)return;
- document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}));
- if(!$('#mobile-menu').classList.contains('hidden'))$('#mobile-menu-btn').click();
- setRole(find(id).aud);cur=id;render();$('#picker').scrollIntoView({behavior:'smooth'})});
+/* Выбор сервиса в меню шапки (#news, #rand …) меняет страницу: меню закрывается, сервис рисуется заново, прокрутка в самый верх; кнопка «Назад» работает */
+if('scrollRestoration' in history)history.scrollRestoration='manual';
+window.scrollTo(0,0);
+window.addEventListener('hashchange',function(){openSvc(location.hash.slice(1))});
+document.addEventListener('click',function(e){var a=e.target.closest('a[href*="services.html#"]');if(!a)return;var id=a.getAttribute('href').split('#')[1];if(!find(id))return;e.preventDefault();if(id!==location.hash.slice(1))location.hash=id;else openSvc(id)});
 (function(){var h=location.hash.slice(1),r;try{r=localStorage.getItem('ck_role')}catch(e){}
  role=find(h)?find(h).aud:(r==='blogger'?'blogger':'customer');
  cur=find(h)?h:S.filter(function(x){return x.aud===role})[0].id;

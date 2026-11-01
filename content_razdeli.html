@@ -14,7 +14,7 @@
                         sans: ['Montserrat', 'sans-serif'],
                     },
                     colors: {
-                        base: '#F8F7F5',
+                        canvas: '#F8F7F5',
                         text: '#1A1A1A',
                         accent: '#9C1C4F',
                         'accent-hover': '#7A1640',
@@ -166,6 +166,185 @@
         .heart-btn { transition: all 0.2s; }
         .heart-btn.liked { color: var(--accent); }
         .heart-btn.liked i { font-weight: 900; }
+    /* ===== Афиша v2 ===== */
+.card h3.text-base,.card h4.text-base{color:#1A1A1A}
+.av,.av-ov,.av-toast{--ac:#9C1C4F;--acl:#F3E4EA;--bd:#EDE6E9;--tx:#1A1A1A;--mt:#6B6570}
+.av,.av *,.av-ov,.av-ov *{box-sizing:border-box}
+.av button,.av select,.av input,.av-ov button,.av-ov select,.av-ov input,.av-ov textarea{font-family:inherit}
+.av-h{display:none!important}
+.av-bar{grid-template-columns:minmax(0,1fr);background:#fff;border:1px solid var(--bd);border-radius:20px;padding:20px 24px;margin-bottom:28px;display:grid;gap:18px}
+.av-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.av-row .sp{margin-left:auto}
+.av-lab{font-size:13px;font-weight:600;color:var(--mt)}
+.av-sel{height:44px;border:1px solid var(--bd);border-radius:12px;padding:0 40px 0 16px;font-size:14px;font-weight:600;color:var(--tx);cursor:pointer;appearance:none;-webkit-appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%239C1C4F' stroke-width='2'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 16px center}
+.av-chips{display:inline-flex;gap:4px;background:#F8F7F5;padding:4px;border-radius:99px;flex-wrap:wrap}
+.av-chip{height:36px;padding:0 18px;border-radius:99px;border:0;background:transparent;font-size:13px;font-weight:600;color:#4B4550;cursor:pointer;transition:all .15s}
+.av-chip:hover{color:var(--ac)}
+.av-chip.on{background:var(--ac);color:#fff;box-shadow:0 4px 12px -4px var(--ac)}
+.av-add{height:44px;padding:0 24px;border:0;border-radius:12px;background:var(--ac);color:#fff;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 10px 24px -10px var(--ac);transition:transform .2s,box-shadow .2s}
+.av-add:hover{transform:translateY(-2px);box-shadow:0 14px 28px -10px var(--ac)}
+.av{min-width:0}.av-layout{display:grid;grid-template-columns:288px minmax(0,1fr);gap:32px;align-items:start}
+.av-side{background:#fff;border:1px solid rgba(156,28,79,.08);border-radius:20px;padding:24px;position:sticky;top:88px}
+.av-side h3{margin:0;font-size:18px;font-weight:800;color:var(--tx)}
+.av-grp{padding:20px 0 4px;margin-top:20px;border-top:1px solid var(--bd)}
+.av-grp b{display:block;font-size:12px;font-weight:700;color:#9A939E;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.av-chk{display:flex;align-items:flex-start;gap:12px;padding:7px 0;font-size:14px;line-height:1.35;cursor:pointer;color:var(--tx)}
+.av-chk input{margin-top:1px;flex:none}
+.av-apply{width:100%;height:48px;margin-top:20px;border:0;border-radius:12px;background:var(--ac);color:#fff;font-size:14px;font-weight:700;cursor:pointer}
+.av-apply:hover{background:#7A1640}
+.av-count{font-size:13px;color:var(--mt);text-align:right;margin:0 0 14px;min-height:18px}
+.av-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+.av-card{background:#fff;border:1px solid rgba(156,28,79,.08);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:box-shadow .2s,transform .2s,border-color .2s}
+.av-card:hover{box-shadow:0 18px 40px -18px rgba(156,28,79,.4);transform:translateY(-3px);border-color:rgba(156,28,79,.25)}
+.av-ph{position:relative;aspect-ratio:16/10;background:var(--acl);overflow:hidden}
+.av-ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.av-card:hover .av-ph img{transform:scale(1.05)}
+.av-date{position:absolute;top:14px;left:14px;background:#fff;color:var(--ac);font-weight:800;font-size:14px;padding:7px 12px;border-radius:10px;line-height:1}
+.av-heart{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;background:#fff;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#4B4550}
+.av-heart.liked{color:var(--ac)}.av-heart.liked i{font-weight:900}
+.av-badge{position:absolute;left:14px;bottom:14px;background:#FEF3C7;color:#92400E;font-size:12px;font-weight:700;padding:5px 12px;border-radius:99px}
+.av-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:14px;flex:1}
+.av-t{margin:0;font-size:18px;font-weight:800;line-height:1.3;color:#1A1A1A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.av-meta{display:grid;gap:8px;font-size:13px;color:var(--mt)}
+.av-meta div{display:flex;gap:10px;align-items:center;min-width:0}
+.av-meta i{width:14px;text-align:center;color:var(--ac);flex:none}
+.av-meta span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.av-tags{display:flex;flex-wrap:wrap;gap:6px;min-height:28px;align-content:flex-start}
+.av-pill{font-size:12px;font-weight:600;padding:5px 12px;border-radius:99px;background:#F4F0F2;color:#5B5560;line-height:1}
+.av-d{margin:0;font-size:13px;line-height:1.6;color:var(--mt);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:4.8em}
+.av-foot{margin-top:auto;padding-top:16px;border-top:1px solid var(--bd);display:grid;gap:14px}
+.av-ft{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;font-weight:700}
+.av-ft .pr{color:#1A1A1A;white-space:nowrap}
+.av-more{height:46px;border-radius:12px;border:1.5px solid var(--ac);color:var(--ac);background:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.av-card:hover .av-more{background:var(--ac);color:#fff}
+.av-empty{grid-column:1/-1;text-align:center;padding:64px 24px;background:#fff;border:1px solid var(--bd);border-radius:20px}
+.av-empty b{display:block;font-size:18px;margin-bottom:6px;color:#1A1A1A}.av-empty p{margin:0 0 20px;color:var(--mt);font-size:14px}
+.av-pg{display:flex;justify-content:center;gap:8px;margin-top:36px}
+.av-pg button{width:40px;height:40px;border-radius:10px;border:1px solid var(--bd);background:#fff;font-size:14px;font-weight:600;cursor:pointer}
+.av-pg .on{background:var(--ac);border-color:var(--ac);color:#fff}
+/* окна */
+.av-ov{position:fixed;inset:0;z-index:100;background:rgba(26,10,18,.6);backdrop-filter:blur(6px);display:none;overflow-y:auto;padding:32px 16px}
+.av-ov.open{display:block}
+.av-md{background:#F8F7F5;border-radius:28px;max-width:1120px;margin:0 auto;position:relative;box-shadow:0 40px 100px -30px rgba(0,0,0,.5);animation:avin .25s ease;color:#1A1A1A}
+@keyframes avin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.av-x{position:absolute;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid var(--bd);z-index:6;cursor:pointer;font-size:16px;color:#1A1A1A}
+.av-x:hover{background:var(--ac);color:#fff;border-color:var(--ac)}
+.av-top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;padding:40px}
+.av-hero{position:relative;border-radius:22px;overflow:hidden;min-height:380px;background:var(--acl)}
+.av-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.av-hero .av-date{top:20px;left:20px;font-size:16px;padding:10px 16px}
+.av-info{display:flex;flex-direction:column;min-width:0}
+.av-info .av-tags{padding-right:52px;margin-bottom:16px}
+.av-h2{margin:0;font-size:40px;line-height:1.1;font-weight:900;letter-spacing:-.02em;color:#1A1A1A}
+.av-sub{margin:14px 0 0;font-size:15px;line-height:1.6;color:var(--mt)}
+.av-facts{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:14px}
+.av-facts li{display:flex;align-items:center;gap:14px;font-size:15px;font-weight:600}
+.av-facts i{width:40px;height:40px;border-radius:12px;background:var(--acl);color:var(--ac);display:flex;align-items:center;justify-content:center;flex:none;font-size:15px}
+.av-acts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:auto;padding-top:32px}
+.av-b{height:50px;border-radius:12px;border:1px solid var(--bd);background:#fff;font-size:14px;font-weight:700;color:#1A1A1A;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;text-decoration:none;padding:0 14px}
+.av-b:hover{border-color:var(--ac);color:var(--ac)}
+.av-b.p{background:var(--ac);border-color:var(--ac);color:#fff;grid-column:1/-1;box-shadow:0 10px 24px -10px var(--ac)}
+.av-b.p:hover{background:#7A1640;color:#fff}
+.av-sec{padding:0 40px 44px}
+.av-sec>h3{margin:0 0 20px;font-size:24px;font-weight:900;letter-spacing:-.01em;color:#1A1A1A}
+.av-two{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:0 40px 44px}
+.av-two h3{margin:0 0 16px;font-size:24px;font-weight:900;color:#1A1A1A}
+.av-two p{margin:0;font-size:15px;line-height:1.75;color:#4B4550}
+.av-panel{background:#fff;border:1px solid var(--bd);border-radius:20px;padding:24px}
+.av-map{height:130px;border-radius:14px;margin:16px 0;background:linear-gradient(135deg,#EFEAEC 25%,#F7F4F5 25% 50%,#EFEAEC 50% 75%,#F7F4F5 75%) 0 0/36px 36px;display:flex;align-items:center;justify-content:center;color:var(--ac);font-size:30px}
+.av-org{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.av-logo{width:72px;height:72px;border-radius:50%;background:var(--acl);color:var(--ac);font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;flex:none}
+.av-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.av-tile{background:#fff;border:1px solid var(--bd);border-radius:16px;padding:20px;display:flex;gap:14px}
+.av-tile i{font-size:22px;color:var(--ac);margin-top:2px}
+.av-tile b{display:block;font-size:14px;line-height:1.3;color:#1A1A1A}.av-tile span{display:block;font-size:13px;color:var(--mt);margin-top:4px;line-height:1.4}
+.av-note{margin:16px 0 0;font-size:13px;color:#8A8490}
+.av-cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.av-mini{background:#fff;border:1px solid var(--bd);border-radius:18px;overflow:hidden;text-align:left;padding:0;cursor:pointer;display:block;transition:box-shadow .2s,border-color .2s}
+.av-mini:hover{box-shadow:0 14px 30px -16px rgba(156,28,79,.4);border-color:rgba(156,28,79,.3)}
+.av-mini .im{position:relative;aspect-ratio:16/9;background:var(--acl)}.av-mini img{width:100%;height:100%;object-fit:cover;display:block}
+.av-mini .av-date{top:12px;left:12px;font-size:13px;padding:6px 10px}
+.av-mini .tx{padding:16px 18px 18px;font-size:15px;font-weight:800;line-height:1.35;color:#1A1A1A;display:flex;justify-content:space-between;gap:10px}
+.av-mini .tx small{display:block;font-size:13px;font-weight:500;color:var(--mt);margin-top:6px;line-height:1.5}
+.av-mini .tx i{color:var(--ac);margin-top:4px}
+/* форма */
+.av-fh{padding:40px 40px 0}
+.av-fh h2{margin:0;font-size:32px;font-weight:900;color:#1A1A1A;letter-spacing:-.01em;padding-right:56px}
+.av-steps{display:flex;align-items:center;gap:16px;margin-top:24px;max-width:560px;font-size:14px;font-weight:700}
+.av-steps em{font-style:normal}.av-steps span{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.av-steps b{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;background:#fff;border:1px solid var(--bd)}
+.av-steps i.ln{flex:1;height:1px;background:#DDD3D8}
+.av-steps .cur{color:var(--ac)}.av-steps .cur b{background:var(--ac);border-color:var(--ac);color:#fff}
+.av-steps .done b{background:#10B981;border-color:#10B981;color:#fff}.av-steps .todo{color:#9A939E}
+.av-form{display:block}
+.av-fgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:32px 40px 40px;align-items:stretch}
+.av-fs{background:#fff;border:1px solid rgba(156,28,79,.08);border-radius:20px;padding:28px;display:grid;gap:20px;align-content:start}
+.av-fs.full{grid-column:1/-1}
+.av-fs h4{margin:0;font-size:20px;font-weight:800;color:#1A1A1A}
+.av-fs .hint{margin:-14px 0 0;font-size:13px;color:#8A8490;line-height:1.5}
+.av-f{display:grid;gap:8px;min-width:0;align-content:start}
+.av-f label,.av-f .lb{font-size:13px;font-weight:600;color:#4B4550}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.inp{width:100%;height:48px;border:1px solid #E5DDE1;border-radius:12px;padding:0 16px;font-size:14px;background:#fff;color:#1A1A1A}
+select.inp{appearance:none;-webkit-appearance:none;padding-right:40px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%239C1C4F' stroke-width='2'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 16px center}
+textarea.inp{height:auto;padding:14px 16px;line-height:1.5;resize:vertical}
+.inp:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px rgba(156,28,79,.13)}
+.inp.err{border-color:#EF233C;background:#FFF6F7}
+.cnt{text-align:right;font-size:12px;color:#9A939E;margin-top:-2px}
+.av-seg{display:flex;gap:8px;flex-wrap:wrap}
+.av-seg label{position:relative;flex:1 1 0;min-width:84px;cursor:pointer}
+.av-seg input{position:absolute;opacity:0;pointer-events:none}
+.av-seg span{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:6px 12px;border:1px solid #E5DDE1;border-radius:12px;background:#fff;font-size:14px;font-weight:600;color:#1A1A1A;text-align:center;line-height:1.25;transition:all .15s}
+.av-seg input:checked+span{background:var(--acl);border-color:var(--ac);color:var(--ac)}
+.av-seg input:focus-visible+span{box-shadow:0 0 0 3px rgba(156,28,79,.2)}
+.av-yn{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:20px;border-bottom:1px solid var(--bd)}
+.av-yn:last-of-type{border:0;padding:0}
+.av-yn>div:first-child{font-size:14px;font-weight:600}.av-yn small{display:block;font-weight:400;color:#8A8490;font-size:12px;margin-top:2px}
+.av-yn .av-seg{width:180px;flex:none;flex-wrap:nowrap}.av-yn .av-seg label{min-width:0}
+.av-up{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.av-up img{width:120px;height:96px;object-fit:cover;border-radius:14px;border:1px solid var(--bd)}
+.av-up img.cover{outline:2px solid var(--ac);outline-offset:2px}
+.av-drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:120px;height:96px;border:2px dashed #D9CFD4;border-radius:14px;background:#FAF8F9;font-size:12px;font-weight:600;color:#8A8490;text-align:center;cursor:pointer;transition:all .15s}
+.av-drop:hover{border-color:var(--ac);color:var(--ac)}
+.av-drop.wide{width:100%;flex-direction:row;height:96px;font-size:13px}
+.av-ph2{display:grid;grid-template-columns:2fr 1fr;gap:32px}
+.av-bar2{position:sticky;bottom:0;z-index:5;background:#fff;border-top:1px solid var(--bd);border-radius:0 0 28px 28px;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.av-bar2 .r{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.av-ghost{height:50px;padding:0 26px;border-radius:12px;border:1px solid var(--bd);background:#F8F7F5;font-size:14px;font-weight:700;cursor:pointer;color:#1A1A1A}
+.av-link{background:none;border:0;font-size:14px;font-weight:600;color:#6B6570;cursor:pointer}.av-link:hover{color:var(--ac)}
+.av-pri{height:50px;padding:0 30px;border:0;border-radius:12px;background:var(--ac);color:#fff;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 10px 24px -10px var(--ac);display:inline-flex;align-items:center;gap:10px}
+.av-pri:hover{background:#7A1640}
+.av-info2{background:var(--acl);border-radius:14px;padding:16px 18px;font-size:13px;line-height:1.6;color:#4B4550}.av-info2 b{color:#1A1A1A}
+.av-toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,30px);background:#1A1A1A;color:#fff;padding:14px 22px;border-radius:14px;font-size:14px;font-weight:600;z-index:300;opacity:0;pointer-events:none;transition:all .25s}
+.av-toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:1100px){.av-layout{grid-template-columns:1fr}.av-side{position:static}.av-top{grid-template-columns:1fr}.av-hero{min-height:0;aspect-ratio:4/3}}
+@media(max-width:720px){.av-bar{padding:16px}.av-sel{flex:1 1 0;min-width:0}.av-chips{flex:1 1 100%;min-width:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.av-chip{flex:none}.av-row>.av-lab.sp{display:none}#f-sort{width:100%;flex:1 1 100%}.av-row .sp{margin-left:0;width:100%}.av-add{width:100%;justify-content:center}.av-ov{padding:0}.av-md{border-radius:0;min-height:100%}.av-top,.av-fh,.av-fgrid{padding-left:20px;padding-right:20px}.av-top{padding-top:64px;gap:24px}.av-sec,.av-two{padding-left:20px;padding-right:20px}.av-two,.av-cards3,.av-fgrid,.g2,.av-ph2{grid-template-columns:1fr}.av-h2{font-size:30px}.av-fs{padding:20px}.av-bar2{padding:16px 20px;border-radius:0}.av-bar2 .r{width:100%}.av-bar2 .r>*{flex:1}.av-yn{flex-direction:column;align-items:stretch}.av-yn .av-seg{width:100%}.av-steps span em{display:none}.av-steps span.cur em{display:inline}}
+@media(prefers-reduced-motion:reduce){.av-md{animation:none}.av-card,.av-card .av-ph img{transition:none}}
+/* ===== плитки разделов ===== */
+.avt-wrap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin-bottom:28px}
+.avt{position:relative;overflow:hidden;text-align:left;border:1px solid rgba(156,28,79,.1);border-radius:20px;padding:20px;min-height:132px;background:var(--g,#fff);cursor:pointer;display:flex;flex-direction:column;gap:14px;color:#1A1A1A;font-family:inherit;transition:transform .2s,box-shadow .2s;--ac:#9C1C4F}
+.avt:hover{transform:translateY(-3px);box-shadow:0 16px 32px -18px rgba(156,28,79,.45)}
+.avt .ic{width:44px;height:44px;border-radius:14px;background:#fff;color:var(--ac);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 6px 16px -8px rgba(156,28,79,.55);position:relative;z-index:1}
+.avt b{display:block;font-size:16px;font-weight:800;color:inherit;position:relative;z-index:1}
+.avt small{display:block;font-size:12.5px;line-height:1.4;color:#6B6570;margin-top:4px;font-weight:500}
+.avt .bg{position:absolute;right:-12px;bottom:-16px;font-size:96px;line-height:1;color:var(--ac);opacity:.07;pointer-events:none}
+.avt.on{background:linear-gradient(135deg,#9C1C4F 0%,#C42B68 100%);color:#fff;border-color:transparent;box-shadow:0 20px 40px -18px #9C1C4F}
+.avt.on small{color:rgba(255,255,255,.82)}.avt.on .bg{color:#fff;opacity:.16}.avt.on .ic{background:rgba(255,255,255,.2);color:#fff;box-shadow:none}
+/* единая шапка */
+.av-search{flex:1 1 320px;min-width:0;height:44px;display:flex;align-items:center;gap:10px;padding:0 16px;border:1px solid var(--bd);border-radius:12px;background:#fff}
+.av-search i{color:#9A939E;font-size:14px}.av-search:focus-within{border-color:var(--ac);box-shadow:0 0 0 3px rgba(156,28,79,.12)}
+.av-search input{border:0;outline:0;background:transparent;width:100%;height:100%;font-size:14px;color:#1A1A1A}
+.av-geo{display:inline-flex;align-items:center;gap:4px;background:#F8F7F5;padding:4px;border-radius:99px;flex-wrap:nowrap}
+.av-geo .av-chip{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+#geo-wrap{position:relative}
+.av-mn{display:inline-flex;align-items:center;gap:8px;flex:none}
+.av-mn button{width:40px;height:40px;border-radius:50%;border:1px solid var(--bd);background:#fff;cursor:pointer;color:#1A1A1A}
+.av-mn button:hover{border-color:var(--ac);color:var(--ac)}
+.av-mn span{height:40px;display:inline-flex;align-items:center;gap:8px;padding:0 18px;border:1px solid var(--bd);border-radius:99px;background:#fff;font-size:13px;font-weight:700;white-space:nowrap}
+.section-content aside>.card{border-radius:20px;padding:24px}
+@media(max-width:1100px){.avt-wrap{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}}
+@media(max-width:720px){.avt-wrap{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:200px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}.av-geo{flex-wrap:wrap;border-radius:20px}.av-mn{margin-left:0!important}.av-search{flex-basis:100%}}
+
     </style>
 </head>
 <body class="antialiased font-sans">
@@ -341,27 +520,26 @@
         <p id="page-subtitle" class="text-gray-500 mt-1.5 text-base">Праздники, памятные даты и идеи для публикаций</p>
     </div>
 
-    <!-- Section tabs -->
-    <div class="flex flex-wrap gap-2 mb-6 overflow-x-auto pb-1">
-        <button onclick="switchSection('afisha')" data-section="afisha" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-border text-gray-700 hover:border-accent/40">
-            <i class="fa-solid fa-calendar-days"></i> Афиша
-        </button>
-        <button onclick="switchSection('mesta')" data-section="mesta" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-border text-gray-700 hover:border-accent/40">
-            <i class="fa-solid fa-location-dot"></i> Места
-        </button>
-        <button onclick="switchSection('tehnika')" data-section="tehnika" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-border text-gray-700 hover:border-accent/40">
-            <i class="fa-solid fa-camera"></i> Техника
-        </button>
-        <button onclick="switchSection('rekvizit')" data-section="rekvizit" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-border text-gray-700 hover:border-accent/40">
-            <i class="fa-solid fa-cube"></i> Реквизит
-        </button>
-        <button onclick="switchSection('kalendar')" data-section="kalendar" class="tab-btn active flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold">
-            <i class="fa-solid fa-calendar-check"></i> Контент-календарь
-        </button>
+    <!-- Плитки разделов -->
+    <div class="avt-wrap">
+        <button type="button" class="avt" data-s="afisha" style="--g:linear-gradient(135deg,#FBEAF1,#fff 75%)" onclick="switchSection('afisha')"><span class="ic"><i class="fa-solid fa-calendar-days"></i></span><span><b>Афиша</b><small>Концерты, фестивали, выставки</small></span><i class="fa-solid fa-calendar-days bg"></i></button>
+        <button type="button" class="avt" data-s="mesta" style="--g:linear-gradient(135deg,#EFE9F7,#fff 75%)" onclick="switchSection('mesta')"><span class="ic"><i class="fa-solid fa-location-dot"></i></span><span><b>Места</b><small>Локации для съёмок</small></span><i class="fa-solid fa-location-dot bg"></i></button>
+        <button type="button" class="avt" data-s="tehnika" style="--g:linear-gradient(135deg,#E8F1F6,#fff 75%)" onclick="switchSection('tehnika')"><span class="ic"><i class="fa-solid fa-camera"></i></span><span><b>Техника</b><small>Аренда и обмен</small></span><i class="fa-solid fa-camera bg"></i></button>
+        <button type="button" class="avt" data-s="rekvizit" style="--g:linear-gradient(135deg,#F8EFE3,#fff 75%)" onclick="switchSection('rekvizit')"><span class="ic"><i class="fa-solid fa-cube"></i></span><span><b>Реквизит</b><small>Декор и предметы для кадра</small></span><i class="fa-solid fa-cube bg"></i></button>
+        <button type="button" class="avt on" data-s="kalendar" style="--g:linear-gradient(135deg,#FBE9E9,#fff 75%)" onclick="switchSection('kalendar')"><span class="ic"><i class="fa-solid fa-calendar-check"></i></span><span><b>Контент-календарь</b><small>Праздники и инфоповоды</small></span><i class="fa-solid fa-calendar-check bg"></i></button>
     </div>
 
     <!-- ========== SECTION: КАЛЕНДАРЬ ========== -->
-    <div id="section-kalendar" class="section-content active">
+    <div id="section-kalendar" class="section-content av active">
+        <div class="av-bar">
+            <div class="av-row"><label class="av-search"><i class="fa-solid fa-magnifying-glass"></i><input id="kalendar-q" type="search" placeholder="Поиск по праздникам и инфоповодам" aria-label="Поиск"></label><button type="button" class="av-add" onclick="openAdd('kalendar')"><i class="fa-solid fa-plus"></i> Предложить инфоповод</button></div>
+            <div class="av-row"><span class="av-lab">География</span><div class="av-geo"><div class="relative" id="geo-wrap"><button id="geo-btn" onclick="toggleCountryMenu(event)" class="av-chip on"><span id="geo-label">Мир</span><i class="fa-solid fa-chevron-down text-[9px]"></i></button>
+<div id="country-menu" class="hidden absolute left-0 top-full mt-2 w-64 bg-white rounded-2xl border border-border shadow-xl z-30 p-3">
+<div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2 px-1">Выберите страну</div>
+<div class="relative mb-2"><i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i><input id="country-search" oninput="filterCountries(this.value)" placeholder="Поиск страны" class="w-full pl-8 pr-3 py-2 rounded-xl border border-border text-xs outline-none focus:border-accent"></div>
+<div class="max-h-64 overflow-y-auto space-y-0.5" id="country-list"><button type="button" data-c="Весь мир" onclick="pickCountry('Весь мир')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🌍</span><span class="flex-1">Весь мир</span><i class="fa-solid fa-check text-accent text-xs "></i></button><button type="button" data-c="Казахстан" onclick="pickCountry('Казахстан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇿</span><span class="flex-1">Казахстан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Россия" onclick="pickCountry('Россия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇷🇺</span><span class="flex-1">Россия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Узбекистан" onclick="pickCountry('Узбекистан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇺🇿</span><span class="flex-1">Узбекистан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Кыргызстан" onclick="pickCountry('Кыргызстан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇬</span><span class="flex-1">Кыргызстан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Беларусь" onclick="pickCountry('Беларусь')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇧🇾</span><span class="flex-1">Беларусь</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Турция" onclick="pickCountry('Турция')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇹🇷</span><span class="flex-1">Турция</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="ОАЭ" onclick="pickCountry('ОАЭ')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇪</span><span class="flex-1">ОАЭ</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Грузия" onclick="pickCountry('Грузия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇬🇪</span><span class="flex-1">Грузия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Армения" onclick="pickCountry('Армения')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇲</span><span class="flex-1">Армения</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Азербайджан" onclick="pickCountry('Азербайджан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇿</span><span class="flex-1">Азербайджан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="США" onclick="pickCountry('США')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇺🇸</span><span class="flex-1">США</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Великобритания" onclick="pickCountry('Великобритания')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇬🇧</span><span class="flex-1">Великобритания</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Германия" onclick="pickCountry('Германия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇩🇪</span><span class="flex-1">Германия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Франция" onclick="pickCountry('Франция')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇫🇷</span><span class="flex-1">Франция</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Китай" onclick="pickCountry('Китай')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇨🇳</span><span class="flex-1">Китай</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Япония" onclick="pickCountry('Япония')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇯🇵</span><span class="flex-1">Япония</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Южная Корея" onclick="pickCountry('Южная Корея')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇷</span><span class="flex-1">Южная Корея</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button></div></div></div>
+                    <button type="button" class="av-chip">Казахстан</button><button type="button" class="av-chip">Город</button></div><select class="av-sel" aria-label="Город"><option>Алматы</option><option>Астана</option><option>Шымкент</option></select><div class="av-mn sp"><button type="button" aria-label="Предыдущий месяц"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i></button><span><i class="fa-regular fa-calendar"></i> Сентябрь 2025</span><button type="button" aria-label="Следующий месяц"><i class="fa-solid fa-chevron-right" style="font-size:11px"></i></button></div></div>
+        </div>
         <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
             <aside class="xl:col-span-3">
                 <div class="card p-5">
@@ -380,22 +558,6 @@
             </aside>
 
             <div class="xl:col-span-6">
-                <div class="flex flex-wrap items-center gap-2 mb-4">
-                    <span class="text-xs text-gray-500 mr-1">География:</span>
-                    <div class="relative" id="geo-wrap"><button id="geo-btn" onclick="toggleCountryMenu(event)" class="filter-chip active px-4 py-1.5 rounded-full text-xs font-semibold border flex items-center gap-1.5"><span id="geo-label">Мир</span><i class="fa-solid fa-chevron-down text-[9px]"></i></button>
-<div id="country-menu" class="hidden absolute left-0 top-full mt-2 w-64 bg-white rounded-2xl border border-border shadow-xl z-30 p-3">
-<div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2 px-1">Выберите страну</div>
-<div class="relative mb-2"><i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i><input id="country-search" oninput="filterCountries(this.value)" placeholder="Поиск страны" class="w-full pl-8 pr-3 py-2 rounded-xl border border-border text-xs outline-none focus:border-accent"></div>
-<div class="max-h-64 overflow-y-auto space-y-0.5" id="country-list"><button type="button" data-c="Весь мир" onclick="pickCountry('Весь мир')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🌍</span><span class="flex-1">Весь мир</span><i class="fa-solid fa-check text-accent text-xs "></i></button><button type="button" data-c="Казахстан" onclick="pickCountry('Казахстан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇿</span><span class="flex-1">Казахстан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Россия" onclick="pickCountry('Россия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇷🇺</span><span class="flex-1">Россия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Узбекистан" onclick="pickCountry('Узбекистан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇺🇿</span><span class="flex-1">Узбекистан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Кыргызстан" onclick="pickCountry('Кыргызстан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇬</span><span class="flex-1">Кыргызстан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Беларусь" onclick="pickCountry('Беларусь')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇧🇾</span><span class="flex-1">Беларусь</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Турция" onclick="pickCountry('Турция')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇹🇷</span><span class="flex-1">Турция</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="ОАЭ" onclick="pickCountry('ОАЭ')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇪</span><span class="flex-1">ОАЭ</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Грузия" onclick="pickCountry('Грузия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇬🇪</span><span class="flex-1">Грузия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Армения" onclick="pickCountry('Армения')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇲</span><span class="flex-1">Армения</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Азербайджан" onclick="pickCountry('Азербайджан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇿</span><span class="flex-1">Азербайджан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="США" onclick="pickCountry('США')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇺🇸</span><span class="flex-1">США</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Великобритания" onclick="pickCountry('Великобритания')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇬🇧</span><span class="flex-1">Великобритания</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Германия" onclick="pickCountry('Германия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇩🇪</span><span class="flex-1">Германия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Франция" onclick="pickCountry('Франция')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇫🇷</span><span class="flex-1">Франция</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Китай" onclick="pickCountry('Китай')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇨🇳</span><span class="flex-1">Китай</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Япония" onclick="pickCountry('Япония')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇯🇵</span><span class="flex-1">Япония</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Южная Корея" onclick="pickCountry('Южная Корея')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇷</span><span class="flex-1">Южная Корея</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button></div></div></div>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-semibold border border-border bg-white">Казахстан</button>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-semibold border border-border bg-white">Город</button>
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-semibold"><i class="fa-solid fa-location-dot text-accent"></i> Алматы <i class="fa-solid fa-chevron-down text-[9px] text-gray-400 ml-1"></i></div>
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-semibold"><i class="fa-regular fa-calendar"></i> Сентябрь 2025</div>
-                    <div class="flex gap-2 ml-auto">
-                        <button class="w-8 h-8 rounded-full border border-border bg-white flex items-center justify-center hover:bg-gray-50"><i class="fa-solid fa-chevron-left text-xs"></i></button>
-                        <button class="w-8 h-8 rounded-full border border-border bg-white flex items-center justify-center hover:bg-gray-50"><i class="fa-solid fa-chevron-right text-xs"></i></button>
-                    </div>
-                </div>
                 <div class="card p-5">
                     <div class="flex items-center justify-between mb-5">
                         <h2 class="text-xl font-extrabold">Сентябрь 2025</h2>
@@ -424,249 +586,48 @@
     </div>
 
     <!-- ========== SECTION: АФИША ========== -->
-    <div id="section-afisha" class="section-content">
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
-            <aside class="xl:col-span-3">
-                <div class="card p-5 sticky top-20">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="font-bold text-sm">Фильтры</h3>
-                        <button class="text-xs text-accent font-medium">Сбросить всё</button>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Формат</div>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Офлайн</label>
-                        <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Онлайн</label>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Возраст</div>
-                        <div class="space-y-2">
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> 0+</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> 6+</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> 12+</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> 16+</label>
-                            <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> 18+</label>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Условия съёмки</div>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Съёмка разрешена</label>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Требуется аккредитация</label>
-                        <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Разрешена проф. техника</label>
-                    </div>
-                    <button class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm">Применить фильтры</button>
+    <div id="section-afisha" class="section-content av">
+        <div class="av-bar">
+            <div class="av-row"><label class="av-search"><i class="fa-solid fa-magnifying-glass"></i><input id="f-q" type="search" placeholder="Название, место или описание события" aria-label="Поиск" oninput="applyEv()"></label><select id="f-city" class="av-sel" aria-label="Город" onchange="applyEv()"><option>Алматы</option><option>Астана</option><option>Шымкент</option></select><select id="f-cat" class="av-sel" aria-label="Категория" onchange="applyEv()"><option value="">Все категории</option></select><button type="button" class="av-add" onclick="openAdd('afisha')"><i class="fa-solid fa-plus"></i> Добавить событие</button></div>
+            <div class="av-row"><div class="av-chips" id="f-date"><button type="button" class="av-chip on" data-v="">Любая дата</button><button type="button" class="av-chip" data-v="today">Сегодня</button><button type="button" class="av-chip" data-v="tomorrow">Завтра</button><button type="button" class="av-chip" data-v="weekend">Выходные</button><button type="button" class="av-chip" data-v="week">Эта неделя</button></div><span class="av-lab">Стоимость</span><div class="av-chips" id="f-price"><button type="button" class="av-chip on" data-v="">Любая</button><button type="button" class="av-chip" data-v="free">Бесплатно</button><button type="button" class="av-chip" data-v="paid">Платно</button></div><select id="f-sort" class="av-sel sp" onchange="applyEv()" aria-label="Сортировка"><option value="">Рекомендуемые</option><option value="date">Сначала ближайшие</option><option value="free">Сначала бесплатные</option></select></div>
+        </div>
+        <div class="av-layout">
+            <aside class="av-side">
+                <div style="display:flex;justify-content:space-between;align-items:center"><h3>Фильтры</h3><button type="button" class="av-link" style="color:#9C1C4F;font-size:13px" onclick="resetEv()">Сбросить всё</button></div>
+                <div id="f-side">
+                    <div class="av-grp"><b>Формат</b>
+                        <label class="av-chk"><input type="checkbox" class="checkbox-custom" data-g="fmt" value="off"> Офлайн</label>
+                        <label class="av-chk"><input type="checkbox" class="checkbox-custom" data-g="fmt" value="on"> Онлайн</label></div>
+                    <div class="av-grp"><b>Возраст</b>
+                        <label class="av-chk"><input type="checkbox" class="checkbox-custom" data-g="age" value="0+"> 0+</label>
+                        <label class="av-chk"><input type="checkbox" class="checkbox-custom" data-g="age" value="6+"> 6+</label>
+                        <label class="av-chk"><input type="checkbox" class="checkbox-custom" data-g="age" value="12+"> 12+</label>
+                        <label class="av-chk"><input type="checkbox" class="checkbox-custom" data-g="age" value="16+"> 16+</label>
+                        <label class="av-chk"><input type="checkbox" class="checkbox-custom" data-g="age" value="18+"> 18+</label></div>
+                    <div class="av-grp"><b>Условия съёмки</b>
+                        <label class="av-chk"><input type="checkbox" class="checkbox-custom" data-g="shoot" value="ok"> Съёмка разрешена</label>
+                        <label class="av-chk"><input type="checkbox" class="checkbox-custom" data-g="shoot" value="acc"> Требуется аккредитация</label>
+                        <label class="av-chk"><input type="checkbox" class="checkbox-custom" data-g="shoot" value="ask"> Условия уточняются</label></div>
+                    <div class="av-grp"><b>Дополнительно</b>
+                        <label class="av-chk"><input type="checkbox" class="checkbox-custom" data-g="pro" value="1"> Разрешена профессиональная техника</label></div>
                 </div>
+                <button type="button" class="av-apply" onclick="applyEv()">Применить фильтры</button>
             </aside>
-            
-            <div class="xl:col-span-9">
-                <div class="flex flex-wrap items-center gap-2 mb-4">
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
-                        <i class="fa-solid fa-location-dot text-accent"></i> Алматы
-                    </div>
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
-                        Все категории
-                    </div>
-                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Все даты</button>
-                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Сегодня</button>
-                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Завтра</button>
-                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Выходные</button>
-                    <button class="filter-chip active px-3 py-1.5 rounded-full text-xs font-medium border">Все</button>
-                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Бесплатно</button>
-                    <button class="filter-chip px-3 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Платно</button>
-                    <div class="ml-auto text-xs text-gray-500">Показано 6 из 124 событий</div>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <!-- Card 1 -->
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-44">
-                            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-sm font-black text-accent">20 сен</div>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')">
-                                <i class="fa-regular fa-heart text-sm"></i>
-                            </button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base mb-1.5">Almaty Coffee Festival</h3>
-                            <div class="text-xs text-gray-500 space-y-0.5 mb-3">
-                                <div><i class="fa-regular fa-clock mr-1"></i> 10:00 – 20:00</div>
-                                <div><i class="fa-solid fa-location-dot mr-1"></i> Almaty Arena</div>
-                            </div>
-                            <div class="flex flex-wrap gap-1.5 mb-3">
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Фестиваль</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Еда</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Лайфстайл</span>
-                            </div>
-                            <p class="text-xs text-gray-500 line-clamp-2 mb-3">Крупнейший кофейный фестиваль Казахстана. Дегустации, лекции, зоны для контента и многое другое.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs font-medium text-emerald-600"><i class="fa-solid fa-camera mr-1"></i> Съёмка разрешена</span>
-                                <span class="text-xs font-semibold text-gray-700">Бесплатно</span>
-                            </div>
-                            <button class="w-full mt-3 py-2.5 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Almaty Coffee Festival', 'event')">Подробнее</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 2 -->
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-44">
-                            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-sm font-black text-accent">21 сен</div>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')">
-                                <i class="fa-regular fa-heart text-sm"></i>
-                            </button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base mb-1.5">Kazakhstan Fashion Week</h3>
-                            <div class="text-xs text-gray-500 space-y-0.5 mb-3">
-                                <div><i class="fa-regular fa-clock mr-1"></i> 12:00 – 23:00</div>
-                                <div><i class="fa-solid fa-location-dot mr-1"></i> Дворец Спорта</div>
-                            </div>
-                            <div class="flex flex-wrap gap-1.5 mb-3">
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Мода</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Выставка</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Алматы</span>
-                            </div>
-                            <p class="text-xs text-gray-500 line-clamp-2 mb-3">Главное модное событие сезона. Показы, дизайнеры, бэкстейдж и яркие инфлюенсеры.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs font-medium text-amber-600"><i class="fa-solid fa-id-card mr-1"></i> Нужна аккредитация</span>
-                                <span class="text-xs font-semibold text-gray-700">от 5 000 ₸</span>
-                            </div>
-                            <button class="w-full mt-3 py-2.5 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 3 -->
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-44">
-                            <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-sm font-black text-accent">23 сен</div>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')">
-                                <i class="fa-regular fa-heart text-sm"></i>
-                            </button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base mb-1.5">Ninety One Live Show</h3>
-                            <div class="text-xs text-gray-500 space-y-0.5 mb-3">
-                                <div><i class="fa-regular fa-clock mr-1"></i> 19:00 – 22:00</div>
-                                <div><i class="fa-solid fa-location-dot mr-1"></i> Almaty Arena</div>
-                            </div>
-                            <div class="flex flex-wrap gap-1.5 mb-3">
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Концерт</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Музыка</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Алматы</span>
-                            </div>
-                            <p class="text-xs text-gray-500 line-clamp-2 mb-3">Большой концерт Ninety One с новой программой. Яркое шоу, свет, звук и незабываемая атмосфера.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs font-medium text-emerald-600"><i class="fa-solid fa-camera mr-1"></i> Съёмка разрешена</span>
-                                <span class="text-xs font-semibold text-gray-700">от 8 000 ₸</span>
-                            </div>
-                            <button class="w-full mt-3 py-2.5 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 4 -->
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-44">
-                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-sm font-black text-accent">24 сен</div>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')">
-                                <i class="fa-regular fa-heart text-sm"></i>
-                            </button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base mb-1.5">Digital Horizons</h3>
-                            <div class="text-xs text-gray-500 space-y-0.5 mb-3">
-                                <div><i class="fa-regular fa-clock mr-1"></i> 11:00 – 19:00</div>
-                                <div><i class="fa-solid fa-location-dot mr-1"></i> ЦСИ Алматы</div>
-                            </div>
-                            <div class="flex flex-wrap gap-1.5 mb-3">
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Выставка</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Искусство</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Технологии</span>
-                            </div>
-                            <p class="text-xs text-gray-500 line-clamp-2 mb-3">Интерактивная выставка современного медиаискусства о человеке и технологиях.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs font-medium text-emerald-600"><i class="fa-solid fa-camera mr-1"></i> Съёмка разрешена</span>
-                                <span class="text-xs font-semibold text-gray-700">от 2 500 ₸</span>
-                            </div>
-                            <button class="w-full mt-3 py-2.5 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 5 -->
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-44">
-                            <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-sm font-black text-accent">27 сен</div>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')">
-                                <i class="fa-regular fa-heart text-sm"></i>
-                            </button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base mb-1.5">Almaty Film Nights</h3>
-                            <div class="text-xs text-gray-500 space-y-0.5 mb-3">
-                                <div><i class="fa-regular fa-clock mr-1"></i> 19:00 – 22:00</div>
-                                <div><i class="fa-solid fa-location-dot mr-1"></i> Парк Кок Тобе</div>
-                            </div>
-                            <div class="flex flex-wrap gap-1.5 mb-3">
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Кино</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Открытый показ</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Алматы</span>
-                            </div>
-                            <p class="text-xs text-gray-500 line-clamp-2 mb-3">Показы культовых фильмов под открытым небом. Атмосфера, друзья и кино.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs font-medium text-emerald-600"><i class="fa-solid fa-camera mr-1"></i> Съёмка разрешена</span>
-                                <span class="text-xs font-semibold text-gray-700">Бесплатно</span>
-                            </div>
-                            <button class="w-full mt-3 py-2.5 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 6 -->
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-44">
-                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <div class="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-sm font-black text-accent">29 сен</div>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')">
-                                <i class="fa-regular fa-heart text-sm"></i>
-                            </button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base mb-1.5">Маркет локальных брендов</h3>
-                            <div class="text-xs text-gray-500 space-y-0.5 mb-3">
-                                <div><i class="fa-regular fa-clock mr-1"></i> 12:00 – 20:00</div>
-                                <div><i class="fa-solid fa-location-dot mr-1"></i> ТРЦ Dostyk Plaza</div>
-                            </div>
-                            <div class="flex flex-wrap gap-1.5 mb-3">
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Маркет</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Локальные бренды</span>
-                                <span class="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">Алматы</span>
-                            </div>
-                            <p class="text-xs text-gray-500 line-clamp-2 mb-3">Одежда, аксессуары, декор и лайфстайл от казахстанских авторов. Идеальные места для съёмок.</p>
-                            <div class="flex items-center justify-between">
-                                <span class="text-xs font-medium text-emerald-600"><i class="fa-solid fa-camera mr-1"></i> Съёмка разрешена</span>
-                                <span class="text-xs font-semibold text-gray-700">Бесплатно</span>
-                            </div>
-                            <button class="w-full mt-3 py-2.5 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Pagination -->
-                <div class="flex justify-center gap-1.5 mt-8">
-                    <button class="w-9 h-9 rounded-lg border border-border bg-white text-sm hover:bg-gray-50">&lt;</button>
-                    <button class="w-9 h-9 rounded-lg bg-accent text-white text-sm font-semibold">1</button>
-                    <button class="w-9 h-9 rounded-lg border border-border bg-white text-sm hover:bg-gray-50">2</button>
-                    <button class="w-9 h-9 rounded-lg border border-border bg-white text-sm hover:bg-gray-50">3</button>
-                    <button class="w-9 h-9 rounded-lg border border-border bg-white text-sm hover:bg-gray-50">4</button>
-                    <button class="w-9 h-9 rounded-lg border border-border bg-white text-sm hover:bg-gray-50">5</button>
-                    <button class="w-9 h-9 rounded-lg border border-border bg-white text-sm hover:bg-gray-50">&gt;</button>
-                </div>
+            <div>
+                <p class="av-count" id="ev-count"></p>
+                <div id="ev-grid" class="av-grid"></div>
+                <div class="av-pg"><button type="button" aria-label="Назад"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i></button><button type="button" class="on">1</button><button type="button">2</button><button type="button">3</button><button type="button" aria-label="Вперёд"><i class="fa-solid fa-chevron-right" style="font-size:11px"></i></button></div>
             </div>
         </div>
     </div>
 
+
     <!-- ========== SECTION: МЕСТА ========== -->
-    <div id="section-mesta" class="section-content">
+    <div id="section-mesta" class="section-content av">
+        <div class="av-bar">
+            <div class="av-row"><label class="av-search"><i class="fa-solid fa-magnifying-glass"></i><input id="mesta-q" type="search" placeholder="Название, район или описание места" aria-label="Поиск"></label><select id="mesta-city" class="av-sel" aria-label="Город"><option>Алматы</option><option>Астана</option><option>Шымкент</option></select><select id="mesta-cat" class="av-sel" aria-label="Категория"><option value="">Все типы</option></select><button type="button" class="av-add" onclick="openAdd('mesta')"><i class="fa-solid fa-plus"></i> Добавить место</button></div>
+            <div class="av-row"><div class="av-chips" id="mesta-chips"><button type="button" class="av-chip on" data-v="">Все</button><button type="button" class="av-chip" data-v="Бесплатно">Бесплатно</button><button type="button" class="av-chip" data-v="За отметку">За отметку</button><button type="button" class="av-chip" data-v="По бартеру">По бартеру</button><button type="button" class="av-chip" data-v="Аренда">Аренда</button></div><span class="av-lab sp" id="mesta-count"></span></div>
+        </div>
         <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
             <aside class="xl:col-span-3">
                 <div class="card p-5 sticky top-20">
@@ -703,28 +664,6 @@
             </aside>
             
             <div class="xl:col-span-9">
-                <div class="flex flex-wrap items-center gap-2 mb-4">
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
-                        <i class="fa-solid fa-location-dot text-accent"></i> Алматы
-                    </div>
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">Все категории</div>
-                    <div class="flex-1 max-w-md">
-                        <div class="flex items-center bg-white border border-border rounded-full px-3 py-1.5">
-                            <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
-                            <input type="text" placeholder="Название, район или описание места" class="bg-transparent border-0 outline-none text-sm ml-2 w-full">
-                        </div>
-                    </div>
-                    <div class="text-xs text-gray-500 ml-auto">12 мест в Алматы</div>
-                </div>
-                
-                <div class="flex gap-2 mb-5 overflow-x-auto">
-                    <button class="filter-chip active px-4 py-1.5 rounded-full text-xs font-medium border">Все</button>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Бесплатно</button>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">За отметку</button>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">По бартеру</button>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Аренда</button>
-                </div>
-                
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     <!-- Place 1 -->
                     <div class="card overflow-hidden group">
@@ -827,7 +766,11 @@
     </div>
 
     <!-- ========== SECTION: ТЕХНИКА ========== -->
-    <div id="section-tehnika" class="section-content">
+    <div id="section-tehnika" class="section-content av">
+        <div class="av-bar">
+            <div class="av-row"><label class="av-search"><i class="fa-solid fa-magnifying-glass"></i><input id="tehnika-q" type="search" placeholder="Поиск по технике, бренду или описанию" aria-label="Поиск"></label><select id="tehnika-city" class="av-sel" aria-label="Город"><option>Алматы</option><option>Астана</option><option>Шымкент</option></select><select id="tehnika-cat" class="av-sel" aria-label="Категория"><option value="">Все категории</option></select><button type="button" class="av-add" onclick="openAdd('tehnika')"><i class="fa-solid fa-plus"></i> Добавить технику</button></div>
+            <div class="av-row"><div class="av-chips" id="tehnika-chips"><button type="button" class="av-chip on" data-v="">Все</button><button type="button" class="av-chip" data-v="Бесплатно">Бесплатно</button><button type="button" class="av-chip" data-v="За отметку">За отметку</button><button type="button" class="av-chip" data-v="По бартеру">По бартеру</button><button type="button" class="av-chip" data-v="Аренда">Аренда</button></div><span class="av-lab sp" id="tehnika-count"></span></div>
+        </div>
         <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
             <aside class="xl:col-span-3">
                 <div class="card p-5 sticky top-20">
@@ -855,31 +798,6 @@
             </aside>
             
             <div class="xl:col-span-9">
-                <div class="flex flex-wrap items-center gap-2 mb-4">
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
-                        <i class="fa-solid fa-location-dot text-accent"></i> Алматы
-                    </div>
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">Все категории</div>
-                    <div class="flex-1 max-w-md">
-                        <div class="flex items-center bg-white border border-border rounded-full px-3 py-1.5">
-                            <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
-                            <input type="text" placeholder="Поиск по технике, бренду или описанию" class="bg-transparent border-0 outline-none text-sm ml-2 w-full">
-                        </div>
-                    </div>
-                    <button class="ml-auto px-4 py-2 rounded-full border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">
-                        + Добавить технику
-                    </button>
-                </div>
-                
-                <div class="flex gap-2 mb-5 overflow-x-auto">
-                    <span class="text-sm text-gray-500 self-center mr-1">24 позиции в Алматы</span>
-                    <button class="filter-chip active px-4 py-1.5 rounded-full text-xs font-medium border">Все</button>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Бесплатно</button>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">За отметку</button>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">По бартеру</button>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Аренда</button>
-                </div>
-                
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     <div class="card overflow-hidden group">
                         <div class="relative h-48 bg-gray-50">
@@ -976,7 +894,11 @@
     </div>
 
     <!-- ========== SECTION: РЕКВИЗИТ ========== -->
-    <div id="section-rekvizit" class="section-content">
+    <div id="section-rekvizit" class="section-content av">
+        <div class="av-bar">
+            <div class="av-row"><label class="av-search"><i class="fa-solid fa-magnifying-glass"></i><input id="rekvizit-q" type="search" placeholder="Поиск реквизита, стиля, бренда или описания" aria-label="Поиск"></label><select id="rekvizit-city" class="av-sel" aria-label="Город"><option>Алматы</option><option>Астана</option><option>Шымкент</option></select><select id="rekvizit-cat" class="av-sel" aria-label="Категория"><option value="">Все категории</option></select><button type="button" class="av-add" onclick="openAdd('rekvizit')"><i class="fa-solid fa-plus"></i> Добавить реквизит</button></div>
+            <div class="av-row"><div class="av-chips" id="rekvizit-chips"><button type="button" class="av-chip on" data-v="">Все</button><button type="button" class="av-chip" data-v="В аренду">В аренду</button><button type="button" class="av-chip" data-v="Бесплатно">Бесплатно</button><button type="button" class="av-chip" data-v="По бартеру">По бартеру</button></div><span class="av-lab sp" id="rekvizit-count"></span></div>
+        </div>
         <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
             <aside class="xl:col-span-3">
                 <div class="card p-5 sticky top-20">
@@ -1037,30 +959,6 @@
             </aside>
             
             <div class="xl:col-span-9">
-                <div class="flex flex-wrap items-center gap-2 mb-4">
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">
-                        <i class="fa-solid fa-location-dot text-accent"></i> Алматы
-                    </div>
-                    <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-white text-xs font-medium">Все категории</div>
-                    <div class="flex-1 max-w-md">
-                        <div class="flex items-center bg-white border border-border rounded-full px-3 py-1.5">
-                            <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
-                            <input type="text" placeholder="Поиск реквизита, стиля, бренда или описания" class="bg-transparent border-0 outline-none text-sm ml-2 w-full">
-                        </div>
-                    </div>
-                    <button class="ml-auto px-4 py-2 rounded-full border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">
-                        + Добавить реквизит
-                    </button>
-                </div>
-                
-                <div class="flex gap-2 mb-5 overflow-x-auto">
-                    <span class="text-sm text-gray-500 self-center mr-1">24 позиции в Алматы</span>
-                    <button class="filter-chip active px-4 py-1.5 rounded-full text-xs font-medium border">Все</button>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">В аренду</button>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">Бесплатно</button>
-                    <button class="filter-chip px-4 py-1.5 rounded-full text-xs font-medium border border-border bg-white">По бартеру</button>
-                </div>
-                
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     <div class="card overflow-hidden group">
                         <div class="relative h-48">
@@ -1528,6 +1426,215 @@ window.dayFilter=function(c){flt=c;sel=0;render();};
 window.daySel=function(i){sel=i;render();var l=document.getElementById('dm-detail');l.scrollTop=0;};
 window.copyEv=function(b){var e=window._cur,t=e.t+' — '+cur+' сентября\n'+e.d+'\nИдеи:\n'+e.ideas.map(function(x,i){return (i+1)+'. '+x;}).join('\n');try{navigator.clipboard.writeText(t);}catch(x){}b.innerHTML='<i class="fa-solid fa-check mr-1.5"></i>Скопировано';setTimeout(function(){b.innerHTML='<i class="fa-regular fa-copy mr-1.5"></i>Скопировать';},1500);};
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDay();});
+})();
+</script>
+<!-- ========== АФИША: ОКНО СОБЫТИЯ ========== -->
+<div id="ev-detail" class="av-ov" onclick="if(event.target===this)closeEv()" role="dialog" aria-modal="true" aria-label="Событие"><div class="av-md"><button type="button" class="av-x" onclick="closeEv()" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button><div id="ev-detail-body"></div></div></div>
+
+<!-- ========== АФИША: ФОРМА ========== -->
+<div id="ev-form-ov" class="av-ov" onclick="if(event.target===this)closeEvForm()" role="dialog" aria-modal="true" aria-label="Добавить событие"><div class="av-md">
+<button type="button" class="av-x" onclick="closeEvForm()" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
+<div class="av-fh"><h2>Добавить событие</h2>
+  <div class="av-steps"><span id="st1" class="cur"><b>1</b><em>Основная информация</em></span><i class="ln"></i><span id="st2" class="todo"><b>2</b><em>Условия и публикация</em></span></div></div>
+<form id="ev-form" class="av-form" novalidate onsubmit="return submitEv(event)">
+ <div id="step1" class="av-fgrid">
+  <div class="av-fs"><h4>Основное</h4><p class="hint">Расскажите о мероприятии. Чем подробнее, тем выше шанс публикации.</p>
+    <div class="av-f"><label>Название события *</label><input class="inp" name="t" required placeholder="Например, Almaty Coffee Festival"></div>
+    <div class="av-f"><label>Категория *</label><select class="inp" name="cat" required><option value="">Выберите категорию</option><option>Фестиваль</option><option>Концерт</option><option>Выставка</option><option>Мода</option><option>Кино</option><option>Маркет</option><option>Другое</option></select></div>
+    <div class="av-f"><label>Краткое описание *</label><textarea class="inp" name="desc" rows="4" maxlength="500" required placeholder="О чём мероприятие и что ждёт посетителей?" oninput="this.nextElementSibling.textContent=this.value.length+'/500'"></textarea><div class="cnt">0/500</div></div>
+    <div class="av-f"><span class="lb">Формат события *</span><div class="av-seg"><label><input type="radio" name="fmt" value="off" checked><span><i class="fa-solid fa-location-dot"></i> Офлайн</span></label><label><input type="radio" name="fmt" value="on"><span><i class="fa-solid fa-wifi"></i> Онлайн</span></label><label><input type="radio" name="fmt" value="hyb"><span><i class="fa-solid fa-link"></i> Гибрид</span></label></div></div>
+    <div class="av-f"><label>Возрастное ограничение *</label><select class="inp" name="age" required><option value="">Выберите возрастное ограничение</option><option>0+</option><option>6+</option><option>12+</option><option>16+</option><option>18+</option></select></div>
+  </div>
+  <div style="display:grid;gap:24px;align-content:start">
+    <div class="av-fs"><h4>Дата и время</h4><p class="hint">Укажите, когда проходит мероприятие.</p>
+      <div class="g2"><div class="av-f"><label>Дата начала *</label><input type="date" class="inp" name="d1" value="2025-09-20" required></div><div class="av-f"><label>Дата окончания *</label><input type="date" class="inp" name="d2" value="2025-09-20" required></div>
+      <div class="av-f"><label>Время начала *</label><input type="time" class="inp" name="t1" value="10:00" required></div><div class="av-f"><label>Время окончания *</label><input type="time" class="inp" name="t2" value="20:00" required></div></div>
+      <label class="av-chk" style="padding:0"><input type="checkbox" class="checkbox-custom" name="allday"> <span><b>Весь день</b><br><small style="color:#8A8490">Мероприятие идёт в течение всего дня</small></span></label></div>
+    <div class="av-fs"><h4>Место проведения</h4><p class="hint">Укажите город, площадку и точный адрес.</p>
+      <div class="g2"><div class="av-f"><label>Город *</label><select class="inp" name="city"><option>Алматы</option><option>Астана</option><option>Шымкент</option></select></div><div class="av-f"><label>Площадка / адрес *</label><input class="inp" name="place" required placeholder="Дворец Республики"></div></div>
+      <div class="g2"><div class="av-f"><label>Сервис карты</label><select class="inp"><option>2GIS</option><option>Google Maps</option><option>Яндекс Карты</option></select></div><div class="av-f"><label>Ссылка на карту</label><input class="inp" placeholder="https://2gis.kz/..."></div></div></div>
+  </div>
+  <div class="av-fs full"><h4>Фотографии и материалы</h4><p class="hint">До 10 фото. Первое фото станет обложкой события.</p>
+    <div class="av-ph2">
+      <div class="av-f"><span class="lb">Фотографии события *</span><div class="av-up"><span id="ph-prev" style="display:contents"></span><label class="av-drop"><i class="fa-solid fa-plus" style="font-size:18px"></i>Добавить фото<input type="file" accept="image/*" multiple class="av-h" onchange="evPhotos(this)"></label></div><div style="font-size:12px;color:#9A939E">JPG, PNG, WebP до 10 МБ</div><div id="ph-err" class="av-h" style="font-size:13px;color:#EF233C;font-weight:600">Добавьте хотя бы одно фото</div></div>
+      <div class="av-f"><span class="lb">Афиша / программа (необязательно)</span><label class="av-drop wide"><i class="fa-solid fa-file-arrow-up" style="font-size:18px"></i><span id="pg-name">Загрузить файл (PDF, JPG)</span><input type="file" class="av-h" onchange="document.getElementById('pg-name').textContent=this.files[0]?this.files[0].name:'Загрузить файл (PDF, JPG)'"></label></div>
+    </div></div>
+ </div>
+
+ <div id="step2" class="av-fgrid av-h">
+  <div class="av-fs"><h4>Условия съёмки</h4><p class="hint">Можно ли снимать на площадке и нужны ли дополнительные согласования.</p>
+    <div class="av-yn"><div>Съёмка разрешена *</div><div class="av-seg"><label><input type="radio" name="shoot" value="1" checked><span>Да</span></label><label><input type="radio" name="shoot" value="0"><span>Нет</span></label></div></div>
+    <div class="av-yn"><div>Требуется аккредитация *</div><div class="av-seg"><label><input type="radio" name="accr" value="1" onchange="document.getElementById('accr-box').classList.remove('av-h')"><span>Да</span></label><label><input type="radio" name="accr" value="0" checked onchange="document.getElementById('accr-box').classList.add('av-h')"><span>Нет</span></label></div></div>
+    <div class="av-yn"><div>Разрешена проф. техника *</div><div class="av-seg"><label><input type="radio" name="pro" value="1" checked><span>Да</span></label><label><input type="radio" name="pro" value="0"><span>Нет</span></label></div></div>
+    <div class="av-f"><span class="lb">Что разрешено</span><div class="av-seg"><label><input type="checkbox" checked><span>Фото</span></label><label><input type="checkbox" checked><span>Видео</span></label><label><input type="checkbox"><span>Штатив</span></label><label><input type="checkbox"><span>Свет</span></label></div></div>
+    <div id="accr-box" class="av-h" style="display:grid;gap:20px"><div class="g2"><div class="av-f"><label>Дедлайн аккредитации *</label><input type="date" class="inp" name="adl"></div><div class="av-f"><label>Контакт для аккредитации *</label><input type="email" class="inp" name="aml" placeholder="press@event.kz"></div></div><div class="av-f"><label>Условия аккредитации</label><textarea class="inp" rows="3" maxlength="500" placeholder="Заполните форму и дождитесь подтверждения"></textarea></div></div>
+    <div class="av-f"><label>Дополнительные ограничения</label><textarea class="inp" rows="3" maxlength="500" placeholder="Например, съёмка со вспышкой запрещена"></textarea></div></div>
+  <div class="av-fs"><h4>Билеты и участие</h4><p class="hint">Стоимость, регистрация и полезные ссылки.</p>
+    <div class="av-f"><span class="lb">Стоимость участия *</span><div class="av-seg"><label><input type="radio" name="price" value="free" checked onchange="document.getElementById('pr-in').classList.add('av-h')"><span>Бесплатно</span></label><label><input type="radio" name="price" value="paid" onchange="document.getElementById('pr-in').classList.remove('av-h')"><span>Платно</span></label></div><input id="pr-in" class="inp av-h" name="pv" placeholder="Например, от 5 000 ₸"></div>
+    <div class="av-f"><label>Официальная страница *</label><input class="inp" name="site" required placeholder="https://coffeefest.kz"></div>
+    <div class="av-f"><label>Ссылка на билеты / регистрацию</label><input class="inp" placeholder="https://tickets.kz/..."></div>
+    <div class="av-f"><label>Ссылка на программу</label><input class="inp" placeholder="https://coffeefest.kz/program"></div></div>
+  <div class="av-fs"><h4>Организатор</h4><p class="hint">Эта информация будет показана в карточке события.</p>
+    <div class="av-f"><label>Название организатора *</label><input class="inp" name="org" required></div>
+    <div class="g2"><div class="av-f"><label>Контактное лицо *</label><input class="inp" name="cp" required></div><div class="av-f"><label>Телефон *</label><input class="inp" name="ph" required placeholder="+7 701 123 45 67"></div>
+    <div class="av-f"><label>Email *</label><input type="email" class="inp" name="em" required></div><div class="av-f"><label>Instagram</label><input class="inp" placeholder="@coffeefestkz"></div></div></div>
+  <div class="av-fs"><h4>Публикация</h4><p class="hint">Выберите, как событие будет опубликовано на сайте.</p>
+    <div class="av-seg"><label><input type="radio" name="pub" value="mod" checked><span>Опубликовать после модерации</span></label><label><input type="radio" name="pub" value="draft"><span>Сохранить как черновик</span></label></div>
+    <div><label class="av-chk"><input type="checkbox" class="checkbox-custom" checked> Показывать контакты организатора</label><label class="av-chk"><input type="checkbox" class="checkbox-custom" checked> Показывать стоимость участия</label><label class="av-chk"><input type="checkbox" class="checkbox-custom" checked> Разрешить пользователям добавлять событие в подборку</label></div>
+    <div class="av-info2"><b>Что будет после отправки.</b> Модерация проверит данные, после одобрения событие появится в Афише, а уведомление придёт в личный кабинет.</div></div>
+  <div class="av-fs full"><h4>Подтверждение</h4><p class="hint">Перед отправкой подтвердите правила публикации.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px 28px"><label class="av-chk"><input type="checkbox" class="checkbox-custom cf"> Подтверждаю, что информация о событии указана верно</label><label class="av-chk"><input type="checkbox" class="checkbox-custom cf"> Подтверждаю, что имею право публиковать материалы и изображения</label><label class="av-chk"><input type="checkbox" class="checkbox-custom cf"> <span>Согласен с <a href="#" style="color:#9C1C4F;text-decoration:underline">правилами публикации Creators.kz</a></span></label></div></div>
+ </div>
+ <div class="av-bar2">
+  <button type="button" id="b-back" class="av-ghost">Отмена</button>
+  <div class="r"><button type="button" class="av-link" onclick="evDraft()">Сохранить как черновик</button>
+  <button type="button" id="b-next" class="av-pri" onclick="evStep(2)">Далее <i class="fa-solid fa-arrow-right" style="font-size:12px"></i></button>
+  <button type="submit" id="b-send" class="av-pri av-h">Отправить на модерацию <i class="fa-solid fa-arrow-right" style="font-size:12px"></i></button></div>
+ </div>
+</form></div></div>
+<div id="ev-toast" class="av-toast" role="status"></div>
+
+<script>
+(function(){
+var U='https://images.unsplash.com/',EV=[
+{id:1,n:20,d:'20 сен',date:'20 сентября 2025',t:'Almaty Coffee Festival',time:'10:00 – 20:00',place:'Almaty Arena',addr:'пр. Абая, 44, Алматы',tags:['Фестиваль','Еда','Лайфстайл'],age:'0+',fmt:'off',city:'Алматы',price:'Бесплатно',paid:0,shoot:'ok',pro:1,img:'photo-1495474472287-4d71bcdd2085',sub:'Главный кофейный фестиваль Казахстана — встреча людей, вкуса и вдохновения.',desc:'Крупнейший кофейный фестиваль Казахстана. Дегустации, лекции, зоны для контента и многое другое. Вас ждут мастер-классы, зоны от локальных брендов и насыщенная развлекательная программа.'},
+{id:2,n:21,d:'21 сен',date:'21 сентября 2025',t:'Kazakhstan Fashion Week',time:'12:00 – 23:00',place:'Дворец Спорта',addr:'пр. Достык, 136, Алматы',tags:['Мода','Выставка','Алматы'],age:'16+',fmt:'off',city:'Алматы',price:'от 5 000 ₸',paid:1,shoot:'acc',pro:0,img:'photo-1469334031218-e382a71b716b',sub:'Главное модное событие сезона: показы, дизайнеры, бэкстейдж и яркие инфлюенсеры.',desc:'Главное модное событие сезона. Показы, дизайнеры, бэкстейдж и яркие инфлюенсеры. Для съёмки в зоне подиума нужна аккредитация.'},
+{id:3,n:23,d:'23 сен',date:'23 сентября 2025',t:'Ninety One Live Show',time:'19:00 – 22:00',place:'Almaty Arena',addr:'пр. Абая, 44, Алматы',tags:['Концерт','Музыка','Алматы'],age:'16+',fmt:'off',city:'Алматы',price:'от 8 000 ₸',paid:1,shoot:'ok',pro:0,img:'photo-1470229722913-7c0e2dbbafd3',sub:'Большой концерт Ninety One с новой программой: яркое шоу, свет, звук и эмоции.',desc:'Большой концерт Ninety One с новой программой. Яркое шоу, свет, звук и живая энергия зала. Съёмка на телефон разрешена.'},
+{id:4,n:24,d:'24 сен',date:'24 сентября 2025',t:'Digital Horizons',time:'11:00 – 19:00',place:'ЦСИ Алматы',addr:'ул. Тулебаева, 38, Алматы',tags:['Выставка','Искусство','Технологии'],age:'6+',fmt:'off',city:'Алматы',price:'от 2 500 ₸',paid:1,shoot:'ask',pro:1,img:'photo-1540575467063-178a50c2df87',sub:'Интерактивная выставка современного медиаискусства о человеке и технологиях.',desc:'Интерактивная выставка современного медиаискусства о человеке и технологиях. Условия съёмки зависят от зала — уточняйте у организатора.'},
+{id:5,n:27,d:'27 сен',date:'27 сентября 2025',t:'Almaty Film Nights',time:'19:00 – 22:00',place:'Парк Кок Тобе',addr:'Кок Тобе, Алматы',tags:['Кино','Открытый показ','Алматы'],age:'12+',fmt:'off',city:'Алматы',price:'Бесплатно',paid:0,shoot:'ok',pro:1,img:'photo-1489599849927-2ee91cede3ba',sub:'Культовые фильмы под открытым небом. Атмосфера, друзья и кино.',desc:'Показы культовых фильмов под открытым небом. Атмосфера, друзья и кино. Отличное место для вечерних съёмок.'},
+{id:6,n:29,d:'29 сен',date:'29 сентября 2025',t:'Маркет локальных брендов',time:'12:00 – 20:00',place:'ТРЦ Dostyk Plaza',addr:'пр. Самал-2, Алматы',tags:['Маркет','Локальные бренды','Алматы'],age:'0+',fmt:'off',city:'Алматы',price:'Бесплатно',paid:0,shoot:'ok',pro:1,img:'photo-1441986300917-64674bd600d8',sub:'Одежда, аксессуары и декор от казахстанских авторов.',desc:'Одежда, аксессуары, декор и лайфстайл от казахстанских авторов. Идеальные места для съёмок.'}];
+var SH={ok:['fa-camera','#059669','Съёмка разрешена'],acc:['fa-id-badge','#EA580C','Нужна аккредитация'],ask:['fa-circle-info','#2563EB','Условия уточняются']};
+var st={date:'',price:''},$=function(i){return document.getElementById(i)};
+function im(e,w,h){return e.url||U+e.img+'?w='+w+'&h='+h+'&fit=crop'}
+function pills(e){return e.tags.map(function(x){return '<span class="av-pill">'+x+'</span>'}).join('')}
+function sh(e){var s=SH[e.shoot];return '<span style="color:'+s[1]+'"><i class="fa-solid '+s[0]+'" style="margin-right:6px"></i>'+s[2]+'</span>'}
+function byId(i){return EV.filter(function(e){return e.id==i})[0]}
+var cs=[];EV.forEach(function(e){if(cs.indexOf(e.tags[0])<0)cs.push(e.tags[0])});
+$('f-cat').innerHTML+=cs.map(function(c){return '<option>'+c+'</option>'}).join('');
+function chips(id,k){$(id).addEventListener('click',function(ev){var b=ev.target.closest('.av-chip');if(!b)return;[].forEach.call($(id).querySelectorAll('.av-chip'),function(x){x.classList.remove('on')});b.classList.add('on');st[k]=b.dataset.v;window.applyEv()})}
+chips('f-date','date');chips('f-price','price');
+function checked(g){return [].map.call(document.querySelectorAll('#f-side [data-g="'+g+'"]:checked'),function(x){return x.value})}
+window.applyEv=function(){
+ var q=$('f-q').value.trim().toLowerCase(),fm=checked('fmt'),ag=checked('age'),sc=checked('shoot'),pr=checked('pro').length,city=$('f-city').value,cat=$('f-cat').value,sort=$('f-sort').value;
+ var L=EV.filter(function(e){
+  if(e.city!==city)return false;if(q&&(e.t+e.place+e.tags.join(' ')+e.desc).toLowerCase().indexOf(q)<0)return false;if(cat&&e.tags[0]!==cat)return false;
+  if(fm.length&&fm.indexOf(e.fmt)<0&&e.fmt!=='hyb')return false;
+  if(ag.length&&ag.indexOf(e.age)<0)return false;if(sc.length&&sc.indexOf(e.shoot)<0)return false;if(pr&&!e.pro)return false;
+  if(st.price==='free'&&e.paid)return false;if(st.price==='paid'&&!e.paid)return false;
+  if(st.date==='today'&&e.n!==20)return false;if(st.date==='tomorrow'&&e.n!==21)return false;
+  if(st.date==='weekend'&&[20,21,27,28].indexOf(e.n)<0)return false;if(st.date==='week'&&(e.n<20||e.n>26))return false;return true});
+ if(sort==='date')L.sort(function(a,b){return a.n-b.n});if(sort==='free')L.sort(function(a,b){return a.paid-b.paid});
+ $('ev-count').textContent=L.length?'Показано '+L.length+' из 124 событий':'';
+ $('ev-grid').innerHTML=L.length?L.map(card).join(''):'<div class="av-empty"><b>Ничего не найдено</b><p>Измените фильтры или сбросьте их.</p><button type="button" class="av-more" style="padding:0 24px" onclick="resetEv()">Сбросить фильтры</button></div>'};
+window.resetEv=function(){[].forEach.call(document.querySelectorAll('#f-side input'),function(x){x.checked=false});['f-date','f-price'].forEach(function(id){[].forEach.call($(id).querySelectorAll('.av-chip'),function(x,i){x.classList.toggle('on',i===0)})});st={date:'',price:''};$('f-city').selectedIndex=0;$('f-cat').selectedIndex=0;$('f-sort').selectedIndex=0;applyEv()};
+function card(e){return '<article class="av-card" tabindex="0" onclick="openEvent('+e.id+')" onkeydown="if(event.key===\'Enter\')openEvent('+e.id+')"><div class="av-ph"><img src="'+im(e,640,400)+'" alt="" loading="lazy"><span class="av-date">'+e.d+'</span><button type="button" class="av-heart" aria-label="В избранное" onclick="event.stopPropagation();this.classList.toggle(\'liked\')"><i class="fa-regular fa-heart"></i></button>'+(e.pending?'<span class="av-badge">'+(e.draft?'Черновик':'На модерации')+'</span>':'')+'</div><div class="av-body"><h3 class="av-t" title="'+e.t+'">'+e.t+'</h3><div class="av-meta"><div><i class="fa-regular fa-clock"></i><span>'+e.time+'</span></div><div><i class="fa-solid fa-location-dot"></i><span>'+e.place+'</span></div></div><div class="av-tags">'+pills(e)+'</div><p class="av-d">'+e.desc+'</p><div class="av-foot"><div class="av-ft">'+sh(e)+'<span class="pr">'+e.price+'</span></div><button type="button" class="av-more">Подробнее</button></div></div></article>'}
+function tile(ic,a,b){return '<div class="av-tile"><i class="fa-solid '+ic+'"></i><div><b>'+a+'</b><span>'+b+'</span></div></div>'}
+function ini(t){return t.split(/\s+/).slice(0,2).map(function(w){return w[0]}).join('').toUpperCase()}
+window.openEvent=function(id){var e=byId(id),s=e.shoot,ok=s==='ok'||s==='acc',nm=e.t.replace(/['"]/g,'');
+ var idea=[['Что снять за 30 минут','Готовый план: ключевые зоны, кадры и атмосферные детали.'],['5 кадров для Reels','Эстетичные ракурсы, детали и лайфхаки для стильного видео.'],['Сторис с места событий','Как показать атмосферу и сохранить в Highlights.']],sim=EV.filter(function(x){return x.id!==id}).slice(0,3);
+ $('ev-detail-body').innerHTML='<div class="av-top"><div class="av-hero"><img src="'+im(e,1000,750)+'" alt=""><span class="av-date">'+e.d+'</span></div>'
+ +'<div class="av-info"><div class="av-tags">'+pills(e)+'<span class="av-pill">'+e.age+'</span></div><h2 class="av-h2">'+e.t+'</h2><p class="av-sub">'+e.sub+'</p>'
+ +'<ul class="av-facts"><li><i class="fa-regular fa-calendar"></i>'+e.date+'</li><li><i class="fa-regular fa-clock"></i>'+e.time+'</li><li><i class="fa-solid fa-location-dot"></i>'+e.place+', '+e.city+'</li><li><i class="fa-solid fa-ticket"></i>'+e.price+'</li></ul>'
+ +'<div class="av-acts"><a href="#" class="av-b p"><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px"></i> Официальная страница</a><button type="button" class="av-b"><i class="fa-solid fa-download"></i> Программа</button><button type="button" class="av-b" onclick="toast(\'Контакты организатора скопированы\')"><i class="fa-regular fa-user"></i> Контакты</button><button type="button" class="av-b" onclick="addToPlan(\''+nm+'\',\'event\');toast(\'Добавлено в контент-план\')"><i class="fa-regular fa-calendar-plus"></i> В контент-план</button><button type="button" class="av-b" onclick="toast(\'Ссылка скопирована\')"><i class="fa-solid fa-share-nodes"></i> Поделиться</button></div></div></div>'
+ +'<div class="av-two"><section><h3>О событии</h3><p>'+e.desc+'</p></section><section class="av-panel"><h3 style="font-size:20px;margin-bottom:4px">Где проходит</h3><div style="font-weight:700;font-size:15px;margin-top:8px">'+e.place+'</div><div style="font-size:13px;color:#6B6570;margin-top:2px">'+e.addr+'</div><div class="av-map"><i class="fa-solid fa-location-dot"></i></div><a href="#" class="av-b" style="width:100%">Открыть на карте</a></section></div>'
+ +'<div class="av-sec"><h3>Организатор</h3><div class="av-panel av-org"><div class="av-logo">'+ini(nm)+'</div><div style="flex:1;min-width:180px"><div style="font-weight:800;font-size:18px">'+nm+'</div><div style="font-size:13px;color:#6B6570;margin-top:2px">Официальный организатор</div></div><a href="#" class="av-b"><i class="fa-brands fa-instagram"></i> Instagram</a><a href="#" class="av-b"><i class="fa-solid fa-link"></i> Сайт</a></div></div>'
+ +'<div class="av-sec"><h3>Для создания контента</h3><div class="av-tiles">'+tile('fa-camera','Фото: '+(ok?'разрешено':'уточняйте'),ok?'Без ограничений':'Спросите организатора')+tile('fa-video','Видео: '+(ok?'разрешено':'уточняйте'),'В том числе для YouTube и соцсетей')+tile('fa-camera-retro','Проф. техника: '+(e.pro?'разрешена':'нет'),e.pro?'Штативы, свет, микрофоны':'Только телефон')+tile('fa-id-badge','Аккредитация',s==='acc'?'Нужна — заявка у организатора':'Не требуется')+'</div><p class="av-note"><i class="fa-solid fa-circle-info"></i> Условия предоставлены организатором. Уточните ограничения перед съёмкой.</p></div>'
+ +'<div class="av-sec"><h3>Идеи для контента</h3><div class="av-cards3">'+idea.map(function(x,i){return '<div class="av-mini"><div class="im"><img src="'+im(sim[i]||e,600,340)+'" alt=""></div><div class="tx"><div>'+x[0]+'<small>'+x[1]+'</small></div><i class="fa-solid fa-arrow-right"></i></div></div>'}).join('')+'</div></div>'
+ +'<div class="av-sec"><h3>Похожие события</h3><div class="av-cards3">'+sim.map(function(x){return '<button type="button" class="av-mini" onclick="openEvent('+x.id+')"><div class="im"><img src="'+im(x,600,340)+'" alt=""><span class="av-date">'+x.d+'</span></div><div class="tx"><div>'+x.t+'<small>'+x.price+'</small></div></div></button>'}).join('')+'</div></div>';
+ $('ev-detail').classList.add('open');$('ev-detail').scrollTop=0;document.body.style.overflow='hidden'};
+window.closeEv=function(){$('ev-detail').classList.remove('open');document.body.style.overflow=''};
+window.toast=function(m){var t=$('ev-toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('show')},2400)};
+var photos=[];
+window.openEvForm=function(){evStep(1);$('ev-form-ov').classList.add('open');$('ev-form-ov').scrollTop=0;document.body.style.overflow='hidden'};
+window.closeEvForm=function(){$('ev-form-ov').classList.remove('open');document.body.style.overflow=''};
+window.evPhotos=function(inp){[].forEach.call(inp.files,function(f){if(photos.length<10)photos.push(URL.createObjectURL(f))});$('ph-prev').innerHTML=photos.map(function(u,i){return '<img src="'+u+'" class="'+(i?'':'cover')+'" alt="">'}).join('');$('ph-err').classList.add('av-h');inp.value=''};
+function valid(step){var ok=true,first=null;[].forEach.call($(step).querySelectorAll('[required]'),function(i){var bad=!i.value.trim();i.classList.toggle('err',bad);if(bad){ok=false;first=first||i}});
+ if(step==='step1'&&!photos.length){ok=false;$('ph-err').classList.remove('av-h');first=first||$('ph-err')}
+ if(step==='step2'&&document.querySelector('[name=accr]:checked').value==='1'){['adl','aml'].forEach(function(n){var i=document.querySelector('[name='+n+']'),bad=!i.value;i.classList.toggle('err',bad);if(bad){ok=false;first=first||i}})}
+ if(!ok&&first)first.scrollIntoView({block:'center',behavior:'smooth'});return ok}
+window.evStep=function(n){if(n===2&&!valid('step1'))return;
+ $('step1').classList.toggle('av-h',n!==1);$('step2').classList.toggle('av-h',n!==2);$('b-next').classList.toggle('av-h',n===2);$('b-send').classList.toggle('av-h',n!==2);
+ $('b-back').textContent=n===2?'Назад':'Отмена';$('b-back').onclick=function(){if(n===2)evStep(1);else closeEvForm()};
+ $('st1').className=n===1?'cur':'done';$('st1').firstChild.innerHTML=n===1?'1':'<i class="fa-solid fa-check" style="font-size:12px"></i>';$('st2').className=n===2?'cur':'todo';$('ev-form-ov').scrollTop=0};
+function build(draft){var F=$('ev-form').elements,g=function(n){return F[n]?F[n].value:''},p=g('price')==='paid'?(g('pv')||'Платно'):'Бесплатно',a=g('d1').split('-'),M=['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'];
+ EV.unshift({id:Date.now(),n:+a[2]||1,d:(+a[2]||'')+' '+(M[+a[1]-1]||''),date:g('d1').split('-').reverse().join('.'),t:g('t')||'Без названия',time:F.allday.checked?'Весь день':g('t1')+' – '+g('t2'),place:g('place')||'—',addr:g('place'),tags:[g('cat')||'Событие'],age:g('age')||'0+',fmt:g('fmt'),city:g('city'),price:p,paid:g('price')==='paid'?1:0,shoot:g('accr')==='1'?'acc':g('shoot')==='1'?'ok':'ask',pro:g('pro')==='1'?1:0,url:photos[0]||'',sub:g('desc').slice(0,110),desc:g('desc')||'Описание не заполнено.',pending:1,draft:draft});
+ $('ev-form').reset();photos=[];$('ph-prev').innerHTML='';resetEv();closeEvForm()}
+window.submitEv=function(ev){ev.preventDefault();if(!valid('step2'))return false;if(![].every.call(document.querySelectorAll('.cf'),function(x){return x.checked})){toast('Подтвердите правила публикации');return false}build(false);toast('Событие отправлено на модерацию');return false};
+window.evDraft=function(){if(!$('ev-form').elements.t.value.trim()){evStep(1);valid('step1');return}build(true);toast('Черновик сохранён')};
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeEv();closeEvForm()}});
+applyEv();
+})();
+</script>
+<!-- ========== ОБЩАЯ ФОРМА ДОБАВЛЕНИЯ ========== -->
+<div id="ad-ov" class="av-ov" onclick="if(event.target===this)closeAdd()" role="dialog" aria-modal="true" aria-labelledby="ad-t"><div class="av-md" style="max-width:940px">
+<button type="button" class="av-x" onclick="closeAdd()" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
+<div class="av-fh"><h2 id="ad-t"></h2><p id="ad-s" style="margin:10px 0 0;font-size:14px;color:#6B6570;padding-right:56px"></p></div>
+<form id="ad-form" novalidate onsubmit="return adSubmit(event)"><div id="ad-body" class="av-fgrid"></div>
+<div class="av-bar2"><button type="button" class="av-ghost" onclick="closeAdd()">Отмена</button><div class="r"><button type="button" class="av-link" onclick="adDraft()">Сохранить как черновик</button><button type="submit" id="ad-send" class="av-pri">Отправить на модерацию <i class="fa-solid fa-arrow-right" style="font-size:12px"></i></button></div></div></form></div></div>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)},cur='',ph=[];
+var CITY=['Алматы','Астана','Шымкент'],DEAL=['Аренда','За отметку','По бартеру','Бесплатно'];
+var CONTACT={h:'Контакты',p:'Как с вами связаться заинтересованным креаторам.',f:[{row:[{k:'cn',l:'Контактное лицо',req:1},{k:'ph',l:'Телефон',req:1,ph:'+7 701 123 45 67'}]},{row:[{k:'ig',l:'Instagram',ph:'@username'},{k:'em',l:'Email',t:'email'}]}]};
+var ADD={
+mesta:{t:'Добавить место',s:'Расскажите, где креаторы могут снимать контент.',ok:'Место отправлено на модерацию',photo:1,box:[
+ {h:'О месте',p:'Название, тип и описание.',f:[{k:'n',l:'Название места',req:1,ph:'Например, Студия Luma'},{row:[{k:'c',l:'Тип места',t:'select',req:1,o:['Фотостудия','Кафе','Отель','Лофт','Оранжерея','Терраса','Другое']},{k:'st',l:'Стиль',t:'select',o:['Минимализм','Лофт','Классика','Современный','Уютный','Люкс']}]},{k:'d',l:'Описание',t:'area',req:1,ph:'Чем место интересно для съёмок?'}]},
+ {h:'Адрес и время',p:'Где находится место и когда работает.',f:[{row:[{k:'ct',l:'Город',t:'select',req:1,o:CITY,nb:1},{k:'a',l:'Адрес',req:1,ph:'ул. Фурманова, 100'}]},{row:[{k:'hr',l:'Часы работы',ph:'10:00 – 22:00'},{k:'ar',l:'Площадь, м²',t:'number',ph:'60'}]}]},
+ {h:'Возможности',p:'Отметьте всё, что есть на месте.',f:[{k:'ft',t:'multi',o:['Естественный свет','Студийный свет','Можно снимать видео','Парковка','Гримёрка','Wi-Fi']}]},
+ {h:'Условия съёмки',p:'На каких условиях можно снимать.',f:[{k:'dl',l:'Формат сотрудничества',t:'seg',o:DEAL},{k:'pr',l:'Стоимость',ph:'от 10 000 ₸ / час'}]},
+ {h:'Фотографии',full:1,p:'До 10 фото. Первое станет обложкой.',f:[{t:'photos'}]},CONTACT]},
+tehnika:{t:'Добавить технику',s:'Предложите камеру, свет или звук для аренды и обмена.',ok:'Техника отправлена на модерацию',photo:1,box:[
+ {h:'О технике',p:'Что это и в каком состоянии.',f:[{k:'n',l:'Название',req:1,ph:'Например, Sony A7 IV'},{row:[{k:'c',l:'Категория',t:'select',req:1,o:['Камера','Объектив','Постоянный свет','Стабилизатор','Дрон','Звук','Фоны и декор','Другое']},{k:'b',l:'Бренд / модель',ph:'Sony'}]},{k:'sc',l:'Состояние',t:'seg',o:['Отличное','Хорошее','Б/у']},{k:'d',l:'Описание',t:'area',req:1,ph:'Комплектация, особенности, что входит в аренду'}]},
+ {h:'Условия',p:'Цена и формат передачи.',f:[{k:'dl',l:'Формат сотрудничества',t:'seg',o:DEAL},{row:[{k:'pr',l:'Цена за день, ₸',t:'number',ph:'15000'},{k:'dp',l:'Залог, ₸',t:'number',ph:'0'}]},{row:[{k:'ct',l:'Город',t:'select',req:1,o:CITY,nb:1},{k:'a',l:'Где забрать',ph:'Район или адрес'}]}]},
+ {h:'Дополнительно',p:'Что вы можете предложить вместе с техникой.',f:[{k:'ft',t:'multi',o:['Доставка','Штатив в комплекте','Инструктаж','Запасные аккумуляторы','Карты памяти']}]},
+ {h:'Фотографии',full:1,p:'До 10 фото. Первое станет обложкой.',f:[{t:'photos'}]},CONTACT]},
+rekvizit:{t:'Добавить реквизит',s:'Предложите предметы для кадра: декор, мебель, одежду.',ok:'Реквизит отправлен на модерацию',photo:1,box:[
+ {h:'О предмете',p:'Название, тип и описание.',f:[{k:'n',l:'Название',req:1,ph:'Например, Стул Eames'},{row:[{k:'c',l:'Категория',t:'select',req:1,o:['Мебель','Декор','Интерьерный реквизит','Одежда и аксессуары','Посуда','Другое']},{k:'st',l:'Стиль',t:'select',o:['Минимализм','Классика','Винтаж','Лофт','Бохо','Другое']}]},{k:'d',l:'Описание',t:'area',req:1,ph:'Размер, состояние, для каких съёмок подойдёт'}]},
+ {h:'Внешний вид',p:'Материал, цвет и размер.',f:[{row:[{k:'m',l:'Материал',t:'select',o:['Дерево','Металл','Ткань','Пластик','Стекло']},{k:'sz',l:'Размер',ph:'80 × 45 × 45 см'}]},{k:'cl',l:'Цвет',t:'multi',o:['Белый','Чёрный','Серый','Розовый','Красный','Жёлтый','Зелёный','Синий','Коричневый']}]},
+ {h:'Условия',p:'Цена и срок.',f:[{k:'dl',l:'Формат сотрудничества',t:'seg',o:['В аренду','Бесплатно','По бартеру']},{row:[{k:'pr',l:'Цена за день, ₸',t:'number',ph:'3000'},{k:'md',l:'Минимум, дней',t:'number',ph:'1'}]},{k:'ct',l:'Город',t:'select',req:1,o:CITY,nb:1}]},
+ {h:'Фотографии',full:1,p:'До 10 фото. Первое станет обложкой.',f:[{t:'photos'}]},CONTACT]},
+kalendar:{t:'Предложить инфоповод',s:'Помогите пополнить календарь датой, которой в нём не хватает.',ok:'Спасибо! Инфоповод отправлен на проверку',send:'Отправить предложение',box:[
+ {h:'Инфоповод',p:'Что за дата и когда она отмечается.',f:[{k:'n',l:'Название',req:1,ph:'Например, Международный день кофе'},{row:[{k:'dt',l:'Дата',t:'date',req:1},{k:'c',l:'Тип',t:'select',req:1,o:['Праздник','Международная дата','Событие']}]},{k:'rp',l:'Как часто',t:'seg',o:['Ежегодно','Один раз']},{k:'g',l:'География',t:'select',o:['Весь мир','Казахстан','Алматы','Астана']}]},
+ {h:'Описание и идеи',p:'Расскажите о дате и подскажите, как о ней снимать.',f:[{k:'d',l:'О чём этот инфоповод',t:'area',req:1,ph:'Коротко: история, смысл, кто отмечает'},{k:'i1',l:'Идея для контента',ph:'Например, Reels «5 способов заварить кофе»'},{k:'i2',l:'Ещё идея',ph:'Необязательно'},{k:'src',l:'Ссылка на источник',ph:'https://'}]},
+ {h:'Контакт',full:1,p:'Напишем, если понадобятся уточнения. Необязательно.',f:[{row:[{k:'cn',l:'Имя'},{k:'em',l:'Email',t:'email'}]}]}]}};
+function opt(o,nb){return (nb?'':'<option value="">Выберите</option>')+o.map(function(x){return '<option>'+x+'</option>'}).join('')}
+function fld(f){if(f.row)return '<div class="g2">'+f.row.map(fld).join('')+'</div>';var r=f.req?' *':'',q=f.req?' required':'';
+ if(f.t==='photos')return '<div class="av-f"><span class="lb">Фотографии *</span><div class="av-up"><span id="ad-prev" style="display:contents"></span><label class="av-drop"><i class="fa-solid fa-plus" style="font-size:18px"></i>Добавить фото<input type="file" accept="image/*" multiple class="av-h" onchange="adPh(this)"></label></div><div style="font-size:12px;color:#9A939E">JPG, PNG, WebP до 10 МБ</div><div id="ad-err" class="av-h" style="font-size:13px;color:#EF233C;font-weight:600">Добавьте хотя бы одно фото</div></div>';
+ if(f.t==='seg')return '<div class="av-f"><span class="lb">'+f.l+'</span><div class="av-seg">'+f.o.map(function(o,i){return '<label><input type="radio" name="'+f.k+'" value="'+o+'"'+(i?'':' checked')+'><span>'+o+'</span></label>'}).join('')+'</div></div>';
+ if(f.t==='multi')return '<div class="av-f">'+(f.l?'<span class="lb">'+f.l+'</span>':'')+'<div class="av-seg">'+f.o.map(function(o){return '<label style="flex:0 0 auto"><input type="checkbox" name="'+f.k+'" value="'+o+'"><span style="padding:6px 16px">'+o+'</span></label>'}).join('')+'</div></div>';
+ if(f.t==='select')return '<div class="av-f"><label>'+f.l+r+'</label><select class="inp" name="'+f.k+'"'+q+'>'+opt(f.o,f.nb)+'</select></div>';
+ if(f.t==='area')return '<div class="av-f"><label>'+f.l+r+'</label><textarea class="inp" name="'+f.k+'" rows="4" maxlength="500"'+q+' placeholder="'+(f.ph||'')+'"></textarea></div>';
+ return '<div class="av-f"><label>'+f.l+r+'</label><input class="inp" type="'+(f.t||'text')+'" name="'+f.k+'"'+q+' placeholder="'+(f.ph||'')+'"></div>'}
+window.openAdd=function(k){if(k==='afisha'){openEvForm();return}cur=k;var c=ADD[k];ph=[];
+ $('ad-t').textContent=c.t;$('ad-s').textContent=c.s;$('ad-send').firstChild.textContent=(c.send||'Отправить на модерацию')+' ';
+ $('ad-body').innerHTML=c.box.map(function(b){return '<div class="av-fs'+(b.full?' full':'')+'"><h4>'+b.h+'</h4><p class="hint">'+b.p+'</p>'+b.f.map(fld).join('')+'</div>'}).join('');
+ $('ad-ov').classList.add('open');$('ad-ov').scrollTop=0;document.body.style.overflow='hidden'};
+window.closeAdd=function(){$('ad-ov').classList.remove('open');document.body.style.overflow=''};
+window.adPh=function(inp){[].forEach.call(inp.files,function(f){if(ph.length<10)ph.push(URL.createObjectURL(f))});$('ad-prev').innerHTML=ph.map(function(u,i){return '<img src="'+u+'" class="'+(i?'':'cover')+'" alt="">'}).join('');$('ad-err').classList.add('av-h');inp.value=''};
+window.adSubmit=function(e){e.preventDefault();var ok=true,first=null;[].forEach.call($('ad-body').querySelectorAll('[required]'),function(i){var bad=!i.value.trim();i.classList.toggle('err',bad);if(bad){ok=false;first=first||i}});
+ if(ADD[cur].photo&&!ph.length){ok=false;$('ad-err').classList.remove('av-h');first=first||$('ad-err')}
+ if(!ok){first.scrollIntoView({block:'center',behavior:'smooth'});return false}
+ var m=ADD[cur].ok;closeAdd();toast(m);return false};
+window.adDraft=function(){closeAdd();toast('Черновик сохранён')};
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAdd()});
+document.addEventListener('input',function(e){if(e.target.classList&&e.target.classList.contains('err')&&e.target.value.trim())e.target.classList.remove('err')});
+/* ---- плитки ---- */
+var _ss=window.switchSection;window.switchSection=function(id){_ss(id);[].forEach.call(document.querySelectorAll('.avt'),function(b){b.classList.toggle('on',b.dataset.s===id)})};
+/* ---- шапка: места, техника, реквизит ---- */
+function plur(n,w){var m=n%10,h=n%100;return n+' '+(h>10&&h<15?w[2]:m==1?w[0]:m>1&&m<5?w[1]:w[2])}
+var U={mesta:['место','места','мест'],tehnika:['позиция','позиции','позиций'],rekvizit:['позиция','позиции','позиций']};
+Object.keys(U).forEach(function(s){var sec=$('section-'+s),cards=[].slice.call(sec.querySelectorAll('div[class*="lg:grid-cols-3"] > .card'));if(!cards.length)return;
+ var grid=cards[0].parentNode,empty=document.createElement('div');empty.className='av-empty';empty.style.display='none';empty.innerHTML='<b>Ничего не найдено</b><p>Измените запрос или фильтры.</p>';grid.appendChild(empty);
+ var cats=[];cards.forEach(function(c){var l=c.querySelector('h3').nextElementSibling.textContent.split('·'),b=c.querySelector('span.absolute');c._d={cat:l[0].trim(),city:(l[1]||'').trim(),deal:b?b.textContent.trim():'',tx:c.textContent.toLowerCase()};if(cats.indexOf(c._d.cat)<0)cats.push(c._d.cat)});
+ $(s+'-cat').innerHTML+=cats.map(function(c){return '<option>'+c+'</option>'}).join('');var dl='';
+ function run(){var q=$(s+'-q').value.trim().toLowerCase(),ct=$(s+'-city').value,ca=$(s+'-cat').value,n=0;cards.forEach(function(c){var d=c._d,ok=(!q||d.tx.indexOf(q)>-1)&&d.city===ct&&(!ca||d.cat===ca)&&(!dl||d.deal===dl);c.style.display=ok?'':'none';if(ok)n++});empty.style.display=n?'none':'';$(s+'-count').textContent=plur(n,U[s])+' в '+ct}
+ $(s+'-q').addEventListener('input',run);$(s+'-city').onchange=run;$(s+'-cat').onchange=run;
+ $(s+'-chips').addEventListener('click',function(e){var b=e.target.closest('.av-chip');if(!b)return;[].forEach.call(this.children,function(x){x.classList.remove('on')});b.classList.add('on');dl=b.dataset.v;run()});run()});
+/* ---- календарь ---- */
+var ks=$('kalendar-q');if(ks)ks.addEventListener('input',function(){var q=this.value.trim().toLowerCase();[].forEach.call(document.querySelectorAll('#section-kalendar aside:last-of-type .group'),function(i){i.style.display=!q||i.textContent.toLowerCase().indexOf(q)>-1?'':'none'})});
+var geo=document.querySelector('.av-geo');if(geo)geo.addEventListener('click',function(e){var b=e.target.closest('.av-chip');if(!b)return;[].forEach.call(geo.querySelectorAll('.av-chip'),function(x){x.classList.remove('on')});b.classList.add('on')});
+var m=window.pickCountry;if(m)window.pickCountry=function(n){m(n);[].forEach.call(document.querySelectorAll('.av-geo .av-chip'),function(x){x.classList.toggle('on',x.id==='geo-btn')})};
+switchSection('kalendar');window.scrollTo(0,0);
 })();
 </script>
 </body>

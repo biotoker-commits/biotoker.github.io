@@ -889,9 +889,9 @@ main h1{font-size:28px;line-height:1.15}
     </div>
 
     <!-- Title -->
-    <div class="mb-6">
-        <h1 id="page-title" class="text-3xl md:text-4xl font-black tracking-tight text-gray-900">Афиша</h1>
-        <p id="page-subtitle" class="text-gray-500 mt-1.5 text-base">Концерты, фестивали, выставки и другие события для создания контента</p>
+    <div class="mb-8">
+        <h1 id="page-title" class="text-3xl md:text-4xl font-black tracking-tight leading-tight text-gray-900">Афиша</h1>
+        <p id="page-subtitle" class="text-gray-500 mt-3 text-base leading-relaxed">Концерты, фестивали, выставки и другие события для создания контента</p>
     </div>
 
     <!-- Section tabs -->
@@ -913,18 +913,18 @@ main h1{font-size:28px;line-height:1.15}
             <i class="fa-solid fa-calendar-check"></i> Контент-календарь
         </button>
     </div>
-    <div class="av-tabact"><button type="button" class="av-add2" data-for="afisha" onclick="openAdd('afisha')"><i class="fa-solid fa-plus"></i> Добавить событие</button><button type="button" class="av-add2" data-for="kalendar" onclick="openAdd('kalendar')" hidden><i class="fa-solid fa-plus"></i> Предложить инфоповод</button></div>
+    <div class="av-tabact"><button type="button" class="av-add2" data-for="afisha" onclick="openAdd('afisha')"><i class="fa-solid fa-plus"></i> Добавить событие</button></div>
     </div>
 
         <!-- ========== SECTION: КАЛЕНДАРЬ ========== -->
     <div id="section-kalendar" class="section-content av">
         <div class="av-bar av-one">
-            <div class="av-row"><label class="av-selw w-city"><i class="fa-solid fa-location-dot"></i><select class="av-sel" id="kalendar-city" aria-label="Город"><option>Алматы</option><option>Астана</option><option>Шымкент</option></select></label><span class="av-vd"></span><span class="av-lab">География</span><div class="av-geo"><div class="relative" id="geo-wrap"><button id="geo-btn" onclick="toggleCountryMenu(event)" class="av-chip on"><span id="geo-label">Мир</span><i class="fa-solid fa-chevron-down text-[9px]"></i></button>
+            <div class="av-row"><span class="av-lab">География</span><div class="av-geo"><div class="relative" id="geo-wrap"><button id="geo-btn" onclick="toggleCountryMenu(event)" class="av-chip on"><span id="geo-label">Мир</span><i class="fa-solid fa-chevron-down text-[9px]"></i></button>
 <div id="country-menu" class="hidden absolute left-0 top-full mt-2 w-64 bg-white rounded-2xl border border-border shadow-xl z-30 p-3">
 <div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2 px-1">Выберите страну</div>
 <div class="relative mb-2"><i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i><input id="country-search" oninput="filterCountries(this.value)" placeholder="Поиск страны" class="w-full pl-8 pr-3 py-2 rounded-xl border border-border text-xs outline-none focus:border-accent"></div>
 <div class="max-h-64 overflow-y-auto space-y-0.5" id="country-list"><button type="button" data-c="Весь мир" onclick="pickCountry('Весь мир')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🌍</span><span class="flex-1">Весь мир</span><i class="fa-solid fa-check text-accent text-xs "></i></button><button type="button" data-c="Казахстан" onclick="pickCountry('Казахстан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇿</span><span class="flex-1">Казахстан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Россия" onclick="pickCountry('Россия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇷🇺</span><span class="flex-1">Россия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Узбекистан" onclick="pickCountry('Узбекистан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇺🇿</span><span class="flex-1">Узбекистан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Кыргызстан" onclick="pickCountry('Кыргызстан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇬</span><span class="flex-1">Кыргызстан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Беларусь" onclick="pickCountry('Беларусь')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇧🇾</span><span class="flex-1">Беларусь</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Турция" onclick="pickCountry('Турция')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇹🇷</span><span class="flex-1">Турция</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="ОАЭ" onclick="pickCountry('ОАЭ')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇪</span><span class="flex-1">ОАЭ</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Грузия" onclick="pickCountry('Грузия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇬🇪</span><span class="flex-1">Грузия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Армения" onclick="pickCountry('Армения')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇲</span><span class="flex-1">Армения</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Азербайджан" onclick="pickCountry('Азербайджан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇿</span><span class="flex-1">Азербайджан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="США" onclick="pickCountry('США')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇺🇸</span><span class="flex-1">США</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Великобритания" onclick="pickCountry('Великобритания')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇬🇧</span><span class="flex-1">Великобритания</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Германия" onclick="pickCountry('Германия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇩🇪</span><span class="flex-1">Германия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Франция" onclick="pickCountry('Франция')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇫🇷</span><span class="flex-1">Франция</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Китай" onclick="pickCountry('Китай')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇨🇳</span><span class="flex-1">Китай</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Япония" onclick="pickCountry('Япония')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇯🇵</span><span class="flex-1">Япония</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Южная Корея" onclick="pickCountry('Южная Корея')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇷</span><span class="flex-1">Южная Корея</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button></div></div></div>
-                    <button type="button" class="av-chip">Казахстан</button><button type="button" class="av-chip">Город</button></div><div class="av-mn sp"><button type="button" aria-label="Предыдущий месяц"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i></button><span><i class="fa-regular fa-calendar"></i> Сентябрь 2025</span><button type="button" aria-label="Следующий месяц"><i class="fa-solid fa-chevron-right" style="font-size:11px"></i></button></div></div>
+                    <button type="button" class="av-chip">Казахстан</button><div class="relative" id="city-wrap"><button type="button" id="city-btn" onclick="toggleCityMenu(event)" class="av-chip"><span id="city-label">Город</span><i class="fa-solid fa-chevron-down text-[9px]"></i></button><div id="city-menu" class="hidden absolute left-0 top-full mt-2 w-64 bg-white rounded-2xl border border-border shadow-xl z-30 p-3"><div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2 px-1">Выберите город</div><div class="relative mb-2"><i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i><input id="city-search" oninput="filterCities(this.value)" placeholder="Поиск города" class="w-full pl-8 pr-3 py-2 rounded-xl border border-border text-xs outline-none focus:border-accent"></div><div class="max-h-64 overflow-y-auto space-y-0.5" id="city-list"><button type="button" data-ci="Алматы" onclick="pickCity('Алматы')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Алматы</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Астана" onclick="pickCity('Астана')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Астана</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Шымкент" onclick="pickCity('Шымкент')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Шымкент</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Караганда" onclick="pickCity('Караганда')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Караганда</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Актобе" onclick="pickCity('Актобе')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Актобе</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Атырау" onclick="pickCity('Атырау')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Атырау</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Актау" onclick="pickCity('Актау')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Актау</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Павлодар" onclick="pickCity('Павлодар')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Павлодар</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Семей" onclick="pickCity('Семей')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Семей</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Усть-Каменогорск" onclick="pickCity('Усть-Каменогорск')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Усть-Каменогорск</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Костанай" onclick="pickCity('Костанай')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Костанай</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Кызылорда" onclick="pickCity('Кызылорда')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Кызылорда</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Тараз" onclick="pickCity('Тараз')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Тараз</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Туркестан" onclick="pickCity('Туркестан')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Туркестан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Уральск" onclick="pickCity('Уральск')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Уральск</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Петропавловск" onclick="pickCity('Петропавловск')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Петропавловск</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button></div></div></div></div><div class="av-mn sp"><button type="button" aria-label="Предыдущий месяц"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i></button><span><i class="fa-regular fa-calendar"></i> Сентябрь 2025</span><button type="button" aria-label="Следующий месяц"><i class="fa-solid fa-chevron-right" style="font-size:11px"></i></button></div></div>
         </div>
         <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
             <aside class="xl:col-span-3">
@@ -1038,6 +1038,7 @@ main h1{font-size:28px;line-height:1.15}
                 </div>
             </aside>
             <div class="xl:col-span-9">
+                <div class="av-total"><span class="ic"><i class="fa-solid fa-bullhorn"></i></span><span class="tx">Всего объявлений</span><b id="ev-total">0</b></div>
                 <div id="ev-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
                 <div class="av-pg"><button type="button" aria-label="Назад"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i></button><button type="button" class="on">1</button><button type="button">2</button><button type="button">3</button><button type="button" aria-label="Вперёд"><i class="fa-solid fa-chevron-right" style="font-size:11px"></i></button></div>
             </div>
@@ -1531,7 +1532,7 @@ main h1{font-size:28px;line-height:1.15}
             <div class="w-9 h-9 rounded-full border-2 border-white bg-gray-800 text-white text-xs font-bold flex items-center justify-center">+2</div>
         </div>
         <div class="flex-1 min-w-0">
-            <div class="font-semibold text-sm">Моя подборка · <span id="plan-count">5 позиций</span></div>
+            <div class="font-semibold text-sm">Моя подборка<span id="plan-count" hidden></span></div>
             <div class="text-xs text-gray-500">События, дни, места, техника и реквизит</div>
         </div>
         <button onclick="openContentPlan()" class="px-5 py-2.5 rounded-full bg-accent text-white text-sm font-semibold hover:bg-accent-hover transition flex items-center gap-2">
@@ -1545,7 +1546,7 @@ main h1{font-size:28px;line-height:1.15}
     <div class="p-5 pb-4 border-b border-border">
         <div class="flex items-start justify-between gap-3">
             <div>
-                <h2 class="font-bold text-lg">Моя подборка <span class="text-accent" id="plan-count-side">0</span></h2>
+                <h2 class="font-bold text-lg">Моя подборка<span id="plan-count-side" hidden></span></h2>
                 <p class="text-xs text-gray-500 mt-0.5 leading-snug">События, дни из календаря, места, техника и реквизит. Заявки уходят владельцам, а дни остаются идеями для контента.</p>
             </div>
             <button type="button" onclick="closeContentPlan()" class="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center flex-shrink-0" aria-label="Закрыть">
@@ -1560,7 +1561,7 @@ main h1{font-size:28px;line-height:1.15}
     <div class="p-5 border-t border-border space-y-3">
         <div id="plan-ready" class="space-y-1.5"></div>
         <button type="button" id="pl-send" onclick="openRequest()" class="w-full py-3.5 rounded-xl bg-accent text-white font-bold text-sm hover:bg-accent-hover transition disabled:opacity-40 disabled:cursor-not-allowed">
-            Отправить заявки →
+            Перейти к отправке заявок →
         </button>
         <div class="flex gap-2">
             <button type="button" data-act="share" class="flex-1 py-3 rounded-xl border border-border text-sm font-medium hover:bg-gray-50 transition flex items-center justify-center gap-2">
@@ -1885,14 +1886,14 @@ function itemHTML(it){
 }
 function renderPanel(){
  var c={all:PLAN.length},r=recs();ORDER.forEach(function(k){c[k]=0});PLAN.forEach(function(i){c[i.k]++});
- if(tab!=='all'&&!c[tab])tab='all';
- $('plan-count-side').textContent=c.all;
+  $('plan-count-side').textContent=c.all;
  var bar=$('plan-count');if(bar)bar.textContent=c.all?plur(c.all,['позиция','позиции','позиций']):'пока пусто';
- $('pl-tabs').innerHTML=[['all','Все']].concat(ORDER.map(function(k){return [k,KIND[k].tab]})).filter(function(t){return t[0]==='all'||c[t[0]]}).map(function(t){return '<button type="button" data-tab="'+t[0]+'" class="pl-tab'+(tab===t[0]?' on':'')+'">'+t[1]+' <b>'+c[t[0]]+'</b></button>'}).join('');
+ $('pl-tabs').innerHTML=[['all','Все']].concat(ORDER.map(function(k){return [k,KIND[k].tab]})).map(function(t){return '<button type="button" data-tab="'+t[0]+'" class="pl-tab'+(tab===t[0]?' on':'')+'">'+t[1]+(c[t[0]]?' <b>'+c[t[0]]+'</b>':'')+'</button>'}).join('');
  var h='';
  if(!PLAN.length)h='<div class="pl-empty"><i class="fa-regular fa-bookmark"></i>В подборке пока пусто.<br>Добавляйте события из Афиши, дни из календаря, места, технику и реквизит.</div>';
  else (tab==='all'?ORDER:[tab]).forEach(function(k){var L=PLAN.filter(function(i){return i.k===k});if(!L.length)return;
   h+='<div>'+(tab==='all'?'<div class="pl-gh"><i class="fa-solid '+KIND[k].ic+'"></i>'+KIND[k].g+' <b>'+L.length+'</b>'+(KIND[k].hint?'<small>'+KIND[k].hint+'</small>':'')+'</div>':'')+'<div class="space-y-3">'+L.map(itemHTML).join('')+'</div></div>'});
+ if(PLAN.length&&tab!=='all'&&!c[tab])h='<div class="pl-empty"><i class="fa-regular fa-bookmark"></i>В этой категории пока ничего нет</div>';
  if(PLAN.length)h+='<button type="button" data-act="more" class="w-full py-3 rounded-xl border-2 border-dashed border-gray-200 text-sm text-gray-500 font-medium hover:border-accent hover:text-accent transition flex items-center justify-center gap-2"><i class="fa-solid fa-plus"></i> Добавить ещё позиции</button>';
  $('plan-items').innerHTML=h;
  var req=PLAN.filter(function(i){return KIND[i.k].send}).length,s='';
@@ -1900,7 +1901,7 @@ function renderPanel(){
  else if(PLAN.length)s+='<div class="text-xs text-gray-500">Добавьте событие, место, технику или реквизит — тогда можно отправить заявки.</div>';
  if(c.day)s+='<div class="text-xs text-gray-500 flex gap-2"><i class="fa-regular fa-lightbulb mt-0.5"></i><span>'+plur(c.day,['день','дня','дней'])+' из календаря — идеи для контента, заявки по ним не отправляются.</span></div>';
  $('plan-ready').innerHTML=s;
- var b=$('pl-send');b.disabled=!req;b.innerHTML='Отправить заявки'+(r.length?' ('+r.length+')':'')+' →';
+ var b=$('pl-send');b.disabled=!req;b.innerHTML='Перейти к отправке заявок →';
 }
 function refresh(){renderPanel();if($('rq-ov').classList.contains('open')){if(!recs().length)closeRequest();else renderReq()}}
 
@@ -1920,6 +1921,18 @@ function build(name,type){
   if(cl.e[0]==='Событие')return {key:'event:'+nm,k:'event',name:nm,meta:cl.d+' сентября · '+cl.e[3],g:cl.g,o:evOwner(nm)};
   return {key:'day:'+cl.d+':'+nm,k:'day',name:nm,meta:cl.d+' сентября · '+cl.e[0],g:cl.g}}
  var it={key:k+':'+nm,k:k,name:nm,meta:''};if(KIND[k].send)it.o=genOwner(nm);else it.g=['from-slate-400 to-slate-700','fa-star'];return it}
+window.openContacts=function(name){
+ var o=OW[evOwner(name)];if(!o)return;
+ var wa=o.ph.replace(/\D/g,''),ini=o.n.replace(/[«»"]/g,'').split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w[0]}).join('').toUpperCase();
+ $('oc-body').innerHTML='<div class="rq-r"><div class="rq-rh"><div class="rq-av">'+esc(ini)+'</div><div style="min-width:0;flex:1"><div class="rq-n">'+esc(o.n)+'</div><div class="rq-s">Организатор · '+esc(o.p)+'</div></div></div>'
+  +'<div class="rq-it"><span class="rq-chip"><i class="fa-solid fa-calendar-days"></i>'+esc(name)+'</span></div>'
+  +'<div class="rq-cts"><a class="rq-ct" href="tel:'+esc(o.ph.replace(/[^\d+]/g,''))+'"><i class="fa-solid fa-phone"></i>'+esc(o.ph)+'</a>'
+  +'<a class="rq-ct" href="https://wa.me/'+wa+'" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>WhatsApp</a>'
+  +'<a class="rq-ct" href="mailto:'+esc(o.em)+'"><i class="fa-regular fa-envelope"></i>'+esc(o.em)+'</a>'
+  +(o.ig?'<a class="rq-ct" href="https://instagram.com/'+esc(o.ig)+'" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>@'+esc(o.ig)+'</a>':'')+'</div></div>';
+ var ov=$('oc-ov');ov.classList.add('open');ov.scrollTop=0;document.body.style.overflow='hidden'};
+window.closeContacts=function(){$('oc-ov').classList.remove('open');var d=$('ev-detail');document.body.style.overflow=(d&&d.classList.contains('open'))?'hidden':''};
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&$('oc-ov').classList.contains('open')){e.stopImmediatePropagation();closeContacts()}},true);
 window.addToPlan=function(name,type){
  var it=build(name,type);push(it);
  if(!modalOpen())openContentPlan()};
@@ -2097,7 +2110,7 @@ function render(){var L=evs(cur),cats=['Все','Праздник','Междун
  var V=L.filter(function(e){return flt=='Все'||e.cat==flt;});if(sel>=V.length)sel=0;
  document.getElementById('dm-list').innerHTML=V.map(function(e,i){return '<button onclick="daySel('+i+')" class="w-full flex items-center gap-3 p-2.5 rounded-2xl text-left transition '+(i==sel?'bg-pink-50':'hover:bg-gray-50')+'"><div class="w-14 h-14 rounded-xl bg-gradient-to-br '+e.g[0]+' text-white flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid '+e.g[1]+'"></i></div><div class="flex-1 min-w-0"><span class="inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full '+C[e.cat][0]+'">'+e.cat+'</span><div class="font-bold text-sm leading-tight mt-1">'+e.t+'</div><div class="text-xs text-gray-500 mt-0.5"><i class="fa-solid fa-location-dot text-[10px] text-accent mr-1"></i>'+e.pl+'</div><div class="text-[11px] text-gray-400 mt-0.5 truncate">'+e.sh+'</div></div><i class="fa-solid fa-chevron-right text-xs text-gray-400"></i></button>';}).join('');
  var e=V[sel];window._cur=e;
- document.getElementById('dm-detail').innerHTML='<div class="h-44 md:h-52 rounded-2xl bg-gradient-to-br '+e.g[0]+' flex items-center justify-center text-white text-7xl"><i class="fa-solid '+e.g[1]+'"></i></div><span class="inline-block mt-4 text-[10px] font-bold px-2.5 py-1 rounded-md '+C[e.cat][0]+'">'+C[e.cat][1]+' · '+e.pl.split(',')[0].toUpperCase()+'</span><h3 class="text-2xl font-black mt-2 leading-tight">'+e.t+'</h3><div class="text-sm text-gray-500 mt-1.5"><i class="fa-regular fa-calendar mr-1.5"></i>'+cur+' сентября · ежегодно</div><h4 class="font-extrabold mt-5 mb-1.5">О событии</h4><p class="text-sm text-gray-600 leading-relaxed">'+e.d+'</p><h4 class="font-extrabold mt-5 mb-2">Идеи для контента</h4><div class="space-y-2.5">'+e.ideas.map(function(x,i){return '<div class="flex gap-3 items-start text-sm text-gray-600"><span class="w-6 h-6 rounded-full bg-pink-50 text-accent text-xs font-bold flex items-center justify-center flex-shrink-0">'+(i+1)+'</span><span>'+x+'</span></div>';}).join('')+'</div><h4 class="font-extrabold mt-5 mb-2 text-sm">Теги</h4><div class="flex flex-wrap gap-2">'+e.tags.map(function(t){return '<span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-600">'+t+'</span>';}).join('')+'</div><div class="flex flex-wrap items-center gap-3 mt-6 pt-4 border-t border-border"><span class="text-[11px] text-gray-400 flex-1 min-w-[140px]"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Источник: международный календарь дат</span><button onclick="addCalItem()" class="px-5 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accent-hover"><i class="fa-regular fa-calendar-plus mr-1.5"></i>'+(e.cat==='Событие'?'Событие в подборку':'Дату в подборку')+'</button><button onclick="copyEv(this)" class="px-4 py-2.5 rounded-xl border border-border text-sm font-semibold hover:bg-gray-50"><i class="fa-regular fa-copy mr-1.5"></i>Скопировать</button></div>';}
+ document.getElementById('dm-detail').innerHTML='<div class="h-44 md:h-52 rounded-2xl bg-gradient-to-br '+e.g[0]+' flex items-center justify-center text-white text-7xl"><i class="fa-solid '+e.g[1]+'"></i></div><span class="inline-block mt-4 text-[10px] font-bold px-2.5 py-1 rounded-md '+C[e.cat][0]+'">'+C[e.cat][1]+' · '+e.pl.split(',')[0].toUpperCase()+'</span><h3 class="text-2xl font-black mt-2 leading-tight">'+e.t+'</h3><div class="text-sm text-gray-500 mt-1.5"><i class="fa-regular fa-calendar mr-1.5"></i>'+cur+' сентября · ежегодно</div><h4 class="font-extrabold mt-5 mb-1.5">О событии</h4><p class="text-sm text-gray-600 leading-relaxed">'+e.d+'</p><h4 class="font-extrabold mt-5 mb-2">Идеи для контента</h4><div class="space-y-2.5">'+e.ideas.map(function(x,i){return '<div class="flex gap-3 items-start text-sm text-gray-600"><span class="w-6 h-6 rounded-full bg-pink-50 text-accent text-xs font-bold flex items-center justify-center flex-shrink-0">'+(i+1)+'</span><span>'+x+'</span></div>';}).join('')+'</div><h4 class="font-extrabold mt-5 mb-2 text-sm">Теги</h4><div class="flex flex-wrap gap-2">'+e.tags.map(function(t){return '<span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-600">'+t+'</span>';}).join('')+'</div><div class="flex flex-wrap items-center gap-3 mt-6 pt-4 border-t border-border"><span class="text-[11px] text-gray-400 flex-1 min-w-[140px]"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Источник: международный календарь дат</span><button onclick="addCalItem()" class="px-5 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accent-hover"><i class="fa-regular fa-calendar-plus mr-1.5"></i>'+(e.cat==='Событие'?'Добавить событие в подборку':'Добавить дату в подборку')+'</button></div>';}
 window.openDay=function(d){if(!D[d])return;cur=d;flt='Все';sel=0;render();document.getElementById('day-modal').classList.remove('hidden');document.body.style.overflow='hidden';};
 window.closeDay=function(){document.getElementById('day-modal').classList.add('hidden');document.body.style.overflow='';};
 window.dayFilter=function(c){flt=c;sel=0;render();};
@@ -2191,6 +2204,8 @@ function im(e,w,h){return e.url||U+e.img+'?w='+w+'&h='+h+'&fit=crop'}
 function pills(e){return e.tags.map(function(x){return '<span class="av-pill">'+x+'</span>'}).join('')}
 function sh(e){return '<div class="av-st">'+shk(e).map(function(k){var s=SH[k];return '<span class="av-stc" style="color:'+s[1]+';background:'+s[3]+';border-color:'+s[4]+'"><i class="fa-solid '+s[0]+'"></i>'+s[2]+'</span>'}).join('')+'</div>'}
 function byId(i){return EV.filter(function(e){return e.id==i})[0]}window.__EV=EV;
+var MORE={2:['photo-1441986300917-64674bd600d8','photo-1540575467063-178a50c2df87','photo-1470229722913-7c0e2dbbafd3'],3:['photo-1540575467063-178a50c2df87','photo-1469334031218-e382a71b716b','photo-1495474472287-4d71bcdd2085'],4:['photo-1470229722913-7c0e2dbbafd3','photo-1489599849927-2ee91cede3ba','photo-1469334031218-e382a71b716b'],5:['photo-1470229722913-7c0e2dbbafd3','photo-1540575467063-178a50c2df87','photo-1495474472287-4d71bcdd2085'],6:['photo-1469334031218-e382a71b716b','photo-1495474472287-4d71bcdd2085','photo-1509042239860-f550ce710b93']};
+EV.forEach(function(e){if(!e.more||!e.more.length)e.more=MORE[e.id]||[]});
 var cs=[];EV.forEach(function(e){if(cs.indexOf(e.tags[0])<0)cs.push(e.tags[0])});
 var SUBS=window.AFISHA_SUBS={'Фестиваль':['Еда и напитки','Музыка','Городской','Культурный'],'Концерт':['Поп','Рок','Хип-хоп','Классика','Электронная'],'Выставка':['Искусство','Фото','Диджитал','Дизайн'],'Мода':['Показ','Шоурум','Мастер-класс','Pop-up'],'Кино':['Премьера','Открытый показ','Кинофестиваль'],'Маркет':['Локальные бренды','Винтаж','Еда','Хендмейд']};
 var SUBOF={1:'Еда и напитки',2:'Показ',3:'Поп',4:'Диджитал',5:'Открытый показ',6:'Локальные бренды'};EV.forEach(function(e){e.subcat=SUBOF[e.id]||''});
@@ -2214,7 +2229,8 @@ window.applyEv=function(){
   if(st.date==='today'&&e.n!==20)return false;if(st.date==='tomorrow'&&e.n!==21)return false;
   if(st.date==='weekend'&&[20,21,27,28].indexOf(e.n)<0)return false;if(st.date==='week'&&(e.n<20||e.n>26))return false;return true});
  if(sort==='date')L.sort(function(a,b){return a.n-b.n});if(sort==='free')L.sort(function(a,b){return a.paid-b.paid});
- $('ev-grid').innerHTML=L.length?L.map(card).join(''):'<div class="av-empty"><b>Ничего не найдено</b><p>Измените фильтры или сбросьте их.</p><button type="button" class="av-more" style="padding:0 24px" onclick="resetEv()">Сбросить фильтры</button></div>'};
+ var tt=$('ev-total');if(tt)tt.textContent=L.length;
+  $('ev-grid').innerHTML=L.length?L.map(card).join(''):'<div class="av-empty"><b>Ничего не найдено</b><p>Измените фильтры или сбросьте их.</p><button type="button" class="av-more" style="padding:0 24px" onclick="resetEv()">Сбросить фильтры</button></div>'};
 window.resetEv=function(){[].forEach.call(document.querySelectorAll('#f-side input'),function(x){x.checked=false});['f-date','f-price'].forEach(function(id){[].forEach.call($(id).querySelectorAll('.av-chip'),function(x,i){x.classList.toggle('on',i===0)})});st={date:'',price:''};$('f-city').selectedIndex=0;$('f-cat').selectedIndex=0;$('f-sort').selectedIndex=0;applyEv()};
 (function(){var sel=$('f-date-sel'),box=$('f-date');if(!sel||!box)return;
  box.addEventListener('click',function(ev){var b=ev.target.closest('.av-chip');if(!b)return;
@@ -2228,19 +2244,22 @@ function tile(ic,a,b){return '<div class="av-tile"><i class="fa-solid '+ic+'"></
 function ini(t){return t.split(/\s+/).slice(0,2).map(function(w){return w[0]}).join('').toUpperCase()}
 function gal(e){return [im(e,1000,750)].concat((e.more||[]).map(function(x){return /^blob:/.test(x)?x:U+x+'?w=1000&h=750&fit=crop'}))}
 function carousel(e){var g=gal(e),m=g.length>1;return '<div class="av-car" onscroll="carUpd(this)">'+g.map(function(u,i){return '<img src="'+u+'" alt="'+(i?'Фото '+(i+1):'Главное фото')+'">'}).join('')+'</div>'+(m?'<button type="button" class="av-cb l" aria-label="Предыдущее фото" onclick="carGo(this,-1)"><i class="fa-solid fa-chevron-left"></i></button><button type="button" class="av-cb r" aria-label="Следующее фото" onclick="carGo(this,1)"><i class="fa-solid fa-chevron-right"></i></button><div class="av-dots">'+g.map(function(u,i){return '<i'+(i?'':' class="on"')+'></i>'}).join('')+'</div>':'')}
+function thumbs(e){var g=gal(e);if(g.length<2)return '';return '<div class="av-thumbs">'+g.map(function(u,i){return '<button type="button" class="'+(i?'':'on')+'" aria-label="Фото '+(i+1)+'" onclick="carTo(this,'+i+')"><img src="'+u+'" alt="" loading="lazy"></button>'}).join('')+'</div>'}
+window.carTo=function(b,i){var c=b.closest('.av-gal').querySelector('.av-car');c.scrollTo({left:i*c.clientWidth,behavior:'smooth'})};
 window.carGo=function(b,d){var c=b.parentNode.querySelector('.av-car');c.scrollBy({left:d*c.clientWidth})};
-window.carUpd=function(c){var k=Math.round(c.scrollLeft/c.clientWidth);[].forEach.call(c.parentNode.querySelectorAll('.av-dots i'),function(x,j){x.classList.toggle('on',j===k)})};
+window.carUpd=function(c){var k=Math.round(c.scrollLeft/c.clientWidth);var gl=c.closest('.av-gal');if(gl)[].forEach.call(gl.querySelectorAll('.av-thumbs button'),function(x,j){x.classList.toggle('on',j===k)});[].forEach.call(c.parentNode.querySelectorAll('.av-dots i'),function(x,j){x.classList.toggle('on',j===k)})};
 window.openEvent=function(id){var e=byId(id),s=e.shoot,ok=s==='ok'||s==='acc'||s==='both',nm=e.t.replace(/['"]/g,'');
  var idea=[['Что снять за 30 минут','Готовый план: ключевые зоны, кадры и атмосферные детали.'],['5 кадров для Reels','Эстетичные ракурсы, детали и лайфхаки для стильного видео.'],['Сторис с места событий','Как показать атмосферу и сохранить в Highlights.']],sim=EV.filter(function(x){return x.id!==id}).slice(0,3);
- $('ev-detail-body').innerHTML='<div class="av-top"><div class="av-hero">'+carousel(e)+'<span class="av-date">'+e.d+'</span></div>'
+ $('ev-detail-body').innerHTML='<div class="av-top"><div class="av-gal"><div class="av-hero">'+carousel(e)+'<span class="av-date">'+e.d+'</span></div>'+thumbs(e)+'</div>'
  +'<div class="av-info"><div class="av-tags">'+pills(e)+'<span class="av-pill">'+e.age+'</span></div><h2 class="av-h2">'+e.t+'</h2><p class="av-sub">'+e.sub+'</p>'
  +'<ul class="av-facts"><li><i class="fa-regular fa-calendar"></i>'+e.date+'</li><li><i class="fa-regular fa-clock"></i>'+e.time+'</li><li><i class="fa-solid fa-location-dot"></i>'+e.place+', '+e.city+'</li><li><i class="fa-solid fa-ticket"></i>'+e.price+'</li></ul>'
- +'<div class="av-acts"><a href="#" class="av-b p"><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px"></i> Официальная страница</a><button type="button" class="av-b"><i class="fa-solid fa-download"></i> Программа</button><button type="button" class="av-b" onclick="toast(\'Контакты организатора скопированы\')"><i class="fa-regular fa-user"></i> Контакты</button><button type="button" class="av-b" onclick="addToPlan(\''+nm+'\',\'event\')"><i class="fa-regular fa-calendar-plus"></i> В подборку</button><button type="button" class="av-b" onclick="toast(\'Ссылка скопирована\')"><i class="fa-solid fa-share-nodes"></i> Поделиться</button></div></div></div>'
+ +'<div class="av-acts"><a href="#" class="av-b p"><i class="fa-solid fa-arrow-up-right-from-square" style="font-size:12px"></i> Официальная страница</a><button type="button" class="av-b"><i class="fa-solid fa-download"></i> Программа</button><button type="button" class="av-b" onclick="openContacts(\''+nm+'\')"><i class="fa-regular fa-user"></i> Контакты</button><button type="button" class="av-b" onclick="addToPlan(\''+nm+'\',\'event\')"><i class="fa-regular fa-calendar-plus"></i> В подборку</button><button type="button" class="av-b" onclick="toast(\'Ссылка скопирована\')"><i class="fa-solid fa-share-nodes"></i> Поделиться</button></div></div></div>'
  +'<div class="av-two"><section><h3>О событии</h3><p>'+e.desc+'</p></section><section class="av-panel"><h3 style="font-size:20px;margin-bottom:4px">Где проходит</h3><div style="font-weight:700;font-size:15px;margin-top:8px">'+e.place+'</div><div style="font-size:13px;color:#6B6570;margin-top:2px">'+e.addr+'</div><div class="av-map"><i class="fa-solid fa-location-dot"></i></div><a href="#" class="av-b" style="width:100%">Открыть на карте</a></section></div>'
  +'<div class="av-sec"><h3>Организатор</h3><div class="av-panel av-org"><div class="av-logo">'+ini(nm)+'</div><div style="flex:1;min-width:180px"><div style="font-weight:800;font-size:18px">'+nm+'</div><div style="font-size:13px;color:#6B6570;margin-top:2px">Официальный организатор</div></div><a href="#" class="av-b"><i class="fa-brands fa-instagram"></i> Instagram</a><a href="#" class="av-b"><i class="fa-solid fa-link"></i> Сайт</a></div></div>'
  +'<div class="av-sec"><h3>Для создания контента</h3><div class="av-tiles">'+tile('fa-camera','Фото: '+(ok?'разрешено':'уточняйте'),ok?'Без ограничений':'Спросите организатора')+tile('fa-video','Видео: '+(ok?'разрешено':'уточняйте'),'В том числе для YouTube и соцсетей')+tile('fa-camera-retro','Проф. техника: '+(e.pro?'разрешена':'нет'),e.pro?'Штативы, свет, микрофоны':'Только телефон')+tile('fa-id-badge','Аккредитация',(s==='acc'||s==='both')?'Нужна — заявка у организатора':'Не требуется')+'</div><p class="av-note"><i class="fa-solid fa-circle-info"></i> Условия предоставлены организатором. Уточните ограничения перед съёмкой.</p></div>'
  +'<div class="av-sec"><h3>Идеи для контента</h3><div class="av-cards3">'+idea.map(function(x,i){return '<div class="av-mini"><div class="im"><img src="'+im(sim[i]||e,600,340)+'" alt=""></div><div class="tx"><div>'+x[0]+'<small>'+x[1]+'</small></div><i class="fa-solid fa-arrow-right"></i></div></div>'}).join('')+'</div></div>'
- +'<div class="av-sec"><h3>Похожие события</h3><div class="av-cards3">'+sim.map(function(x){return '<button type="button" class="av-mini" onclick="openEvent('+x.id+')"><div class="im"><img src="'+im(x,600,340)+'" alt=""><span class="av-date">'+x.d+'</span></div><div class="tx"><div>'+x.t+'<small>'+x.price+'</small></div></div></button>'}).join('')+'</div></div>';
+ +'<div class="av-sec"><h3>Похожие события</h3><div class="av-cards3">'+sim.map(function(x){return '<button type="button" class="av-mini" onclick="openEvent('+x.id+')"><div class="im"><img src="'+im(x,600,340)+'" alt=""><span class="av-date">'+x.d+'</span></div><div class="tx"><div>'+x.t+'<small>'+x.price+'</small></div></div></button>'}).join('')+'</div></div>'
+ +'<div class="av-sec"><div class="av-promo"><span class="ic"><i class="fa-solid fa-thumbtack"></i></span><div class="tx"><h3>Закрепите событие и привлеките больше креаторов</h3><p>Поднимите событие в афише и покажите его блогерам: закреп на первом месте и продвижение.</p><ul><li>Закреп в городе</li><li>Закреп на главной</li><li>Выделение карточки</li></ul></div><button type="button" class="av-promo-cta" onclick="openPromo('+e.id+')">Закрепить и продвинуть <i class="fa-solid fa-arrow-right"></i></button></div></div>';
  $('ev-detail').classList.add('open');$('ev-detail').scrollTop=0;document.body.style.overflow='hidden'};
 window.closeEv=function(){$('ev-detail').classList.remove('open');document.body.style.overflow=''};
 window.toast=function(m){var t=$('ev-toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('show')},2400)};
@@ -2269,7 +2288,7 @@ window.openPromo=function(id){var e=byId(id),o=$('pr-ov');$('pr-ev').innerHTML='
  PM.mount($('pr-box'),'afisha',function(t){$('pr-pay-s').textContent=PM.money(t);$('pr-pay').disabled=!t});
  $('pr-pay').onclick=function(){var t=$('pr-box')._t();closePromo();toast('Переход к оплате · '+PM.money(t))};
  o.classList.add('open');o.scrollTop=0;document.body.style.overflow='hidden'};
-window.closePromo=function(){$('pr-ov').classList.remove('open');document.body.style.overflow=''};
+window.closePromo=function(){$('pr-ov').classList.remove('open');document.body.style.overflow=$('ev-detail').classList.contains('open')?'hidden':''};
 applyEv();
 })();
 </script>
@@ -2341,18 +2360,19 @@ rekvizit:{t:'Добавить реквизит',s:'Предложите пред
  {h:'Внешний вид',p:'Материал, цвет и размер.',f:[{row:[{k:'m',l:'Материал',t:'select',o:['Дерево','Металл','Ткань','Пластик','Стекло']},{k:'sz',l:'Размер',ph:'80 × 45 × 45 см'}]},{k:'cl',l:'Цвет',t:'multi',o:['Белый','Чёрный','Серый','Розовый','Красный','Жёлтый','Зелёный','Синий','Коричневый']}]},
  {h:'Условия',p:'Цена и срок.',f:[{k:'dl',l:'Формат сотрудничества',t:'seg',o:['В аренду','Бесплатно','По бартеру']},{row:[{k:'pr',l:'Цена за день, ₸',t:'number',ph:'3000'},{k:'md',l:'Минимум, дней',t:'number',ph:'1'}]},{k:'ct',l:'Город',t:'select',req:1,o:CITY,nb:1}]},
  {h:'Фотографии',full:1,p:'До 10 фото. Первое станет обложкой.',f:[{t:'photos'}]},CONTACT]},
-brief:{t:'Подобрать блогеров',s:'Расскажите о событии: подберём блогеров, согласуем условия и вернёмся с отчётом.',ok:'Заявка отправлена. Мы свяжемся с вами в ближайшее время',send:'Отправить заявку',nd:1,box:[
- {h:'О событии',p:'Что продвигаем и когда.',f:[{k:'n',l:'Название события',req:1,ph:'Например, Almaty Coffee Festival'},{row:[{k:'ct',l:'Город',t:'select',req:1,o:CITY,nb:1},{k:'dt',l:'Дата события',t:'date',req:1}]},{k:'d',l:'Что показать блогерам',t:'area',req:1,ph:'Программа, гости, что можно снять'}]},
- {h:'Задача и бюджет',p:'Чтобы подобрать подходящих блогеров.',f:[{k:'g',l:'Цель',t:'seg',o:['Охват','Посетители','Узнаваемость']},{row:[{k:'bg',l:'Бюджет, ₸',t:'number',ph:'300000'},{k:'bl',l:'Сколько блогеров',t:'number',ph:'5'}]}]},
- {h:'Контакты',full:1,p:'Как с вами связаться.',f:[{row:[{k:'cn',l:'Контактное лицо',req:1},{k:'ph',l:'Телефон',req:1,ph:'+7 701 123 45 67'}]},{k:'em',l:'Email',t:'email'}]}]},
+brief:{t:'Заказать продвижение',s:'Расскажите, что нужно продвинуть: событие, место, бренд или проект. Мы уточним детали, предложим формат и вернёмся с планом и стоимостью.',ok:'Заявка отправлена. Мы свяжемся с вами в ближайшее время',send:'Отправить заявку',nd:1,box:[
+ {h:'Что продвигаем',p:'Коротко о задаче: название и тип.',f:[{k:'n',l:'Название',req:1,ph:'Событие, место, бренд или проект'},{k:'tp',l:'Тип',t:'seg',o:['Событие','Место','Бренд','Другое']},{row:[{k:'ct',l:'Город',t:'select',req:1,o:CITY,nb:1},{k:'dt',l:'Дата или период',t:'date'}]},{k:'d',l:'Описание и задача',t:'area',req:1,ph:'Что продвигаем, для кого и какого результата ждёте'}]},
+ {h:'Формат и бюджет',p:'Отметьте, что вам подходит. Если не уверены, оставьте пустым — подскажем.',f:[{k:'fm',l:'Формат продвижения',t:'mgrid',o:['Блогеры','Анонсы','UGC','Таргет-реклама','Оформление страницы']},{k:'g',l:'Цель',t:'seg',o:['Охват','Посетители','Узнаваемость']},{row:[{k:'bg',l:'Бюджет, ₸',t:'number',ph:'300000'},{k:'lk',l:'Ссылка',ph:'https://'}]}]},
+ {h:'Контакты',full:1,p:'Как с вами связаться.',f:[{row:[{k:'cn',l:'Контактное лицо',req:1},{k:'ph',l:'Телефон',req:1,ph:'+7 701 123 45 67'},{k:'em',l:'Email',t:'email',ph:'name@mail.kz'}]}]}]},
 kalendar:{t:'Предложить инфоповод',s:'Помогите пополнить календарь датой, которой в нём не хватает.',ok:'Спасибо! Инфоповод отправлен на проверку',send:'Отправить предложение',box:[
  {h:'Инфоповод',p:'Что за дата и когда она отмечается.',f:[{k:'n',l:'Название',req:1,ph:'Например, Международный день кофе'},{row:[{k:'dt',l:'Дата',t:'date',req:1},{k:'c',l:'Тип',t:'select',req:1,o:['Праздник','Международная дата','Событие']}]},{k:'rp',l:'Как часто',t:'seg',o:['Ежегодно','Один раз']},{k:'g',l:'География',t:'select',o:['Весь мир','Казахстан','Алматы','Астана']}]},
  {h:'Описание и идеи',p:'Расскажите о дате и подскажите, как о ней снимать.',f:[{k:'d',l:'О чём этот инфоповод',t:'area',req:1,ph:'Коротко: история, смысл, кто отмечает'},{k:'i1',l:'Идея для контента',ph:'Например, Reels «5 способов заварить кофе»'},{k:'i2',l:'Ещё идея',ph:'Необязательно'},{k:'src',l:'Ссылка на источник',ph:'https://'}]},
  {h:'Контакт',full:1,p:'Напишем, если понадобятся уточнения. Необязательно.',f:[{row:[{k:'cn',l:'Имя'},{k:'em',l:'Email',t:'email'}]}]}]}};
 function opt(o,nb){return (nb?'':'<option value="">Выберите</option>')+o.map(function(x){return '<option>'+x+'</option>'}).join('')}
-function fld(f){if(f.row)return '<div class="g2">'+f.row.map(fld).join('')+'</div>';var r=f.req?' *':'',q=f.req?' required':'';
+function fld(f){if(f.row)return '<div class="g'+(f.row.length>2?'3':'2')+'">'+f.row.map(fld).join('')+'</div>';var r=f.req?' *':'',q=f.req?' required':'';
  if(f.t==='photos')return '<div class="av-f"><span class="lb">Фотографии *</span><div class="av-up"><span id="ad-prev" style="display:contents"></span><label class="av-drop"><i class="fa-solid fa-plus" style="font-size:18px"></i>Добавить фото<input type="file" accept="image/*" multiple class="av-h" onchange="adPh(this)"></label></div><div style="font-size:12px;color:#9A939E">JPG, PNG, WebP до 10 МБ</div><div id="ad-err" class="av-h" style="font-size:13px;color:#EF233C;font-weight:600">Добавьте хотя бы одно фото</div></div>';
  if(f.t==='seg')return '<div class="av-f"><span class="lb">'+f.l+'</span><div class="av-seg">'+f.o.map(function(o,i){return '<label><input type="radio" name="'+f.k+'" value="'+o+'"'+(i?'':' checked')+'><span>'+o+'</span></label>'}).join('')+'</div></div>';
+ if(f.t==='mgrid')return '<div class="av-f">'+(f.l?'<span class="lb">'+f.l+'</span>':'')+'<div class="av-mg">'+f.o.map(function(o){return '<label><input type="checkbox" name="'+f.k+'" value="'+o+'"><span><i class="fa-solid fa-check"></i>'+o+'</span></label>'}).join('')+'</div></div>';
  if(f.t==='multi')return '<div class="av-f">'+(f.l?'<span class="lb">'+f.l+'</span>':'')+'<div class="av-seg">'+f.o.map(function(o){return '<label style="flex:0 0 auto"><input type="checkbox" name="'+f.k+'" value="'+o+'"><span style="padding:6px 16px">'+o+'</span></label>'}).join('')+'</div></div>';
  if(f.t==='select')return '<div class="av-f"><label>'+f.l+r+'</label><select class="inp" name="'+f.k+'"'+q+'>'+opt(f.o,f.nb)+'</select></div>';
  if(f.t==='area')return '<div class="av-f"><label>'+f.l+r+'</label><textarea class="inp" name="'+f.k+'" rows="4" maxlength="500"'+q+' placeholder="'+(f.ph||'')+'"></textarea></div>';
@@ -2454,5 +2474,86 @@ switchSection('afisha');window.scrollTo(0,0);
   var ss=(window.AFISHA_SUBS||{})[t.value]||[];sel.innerHTML='<option value="">Выберите подкатегорию</option>'+ss.map(function(x){return '<option>'+x+'</option>'}).join('');w.hidden=!ss.length;sel.required=!!ss.length});
 })();
 </script>
+
+<style>
+/* Афиша: счётчик объявлений */
+#section-afisha .av-total{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:14px;font-weight:600;color:#4B4550}
+#section-afisha .av-total .ic{width:34px;height:34px;border-radius:11px;background:var(--acl);color:var(--ac);display:flex;align-items:center;justify-content:center;font-size:14px}
+#section-afisha .av-total b{min-width:30px;height:28px;padding:0 11px;border-radius:99px;background:var(--ac);color:#fff;font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+/* Афиша: небольшой разрыв между датой и стоимостью, стоимость и сортировка чуть правее */
+@media(min-width:1400px){#section-afisha .av-bar .av-prw{margin-left:32px}#section-afisha .av-bar .w-sort{margin-left:8px}}
+/* Подборка: вкладки в несколько рядов */
+.pl-tabs{flex-wrap:wrap;overflow:visible;gap:8px 6px}
+/* Календарь: выбор города */
+#city-menu .city-item[style*="none"]{display:none}
+</style>
+<script>
+(function(){
+ function $(i){return document.getElementById(i)}
+ function closeCity(){var m=$('city-menu');if(m)m.classList.add('hidden')}
+ window.toggleCityMenu=function(e){e.stopPropagation();var cm=$('country-menu');if(cm)cm.classList.add('hidden');
+  $('city-menu').classList.toggle('hidden');var i=$('city-search');if(i){i.value='';filterCities('');i.focus()}};
+ window.filterCities=function(q){q=q.toLowerCase();[].forEach.call(document.querySelectorAll('.city-item'),function(b){b.style.display=b.dataset.ci.toLowerCase().indexOf(q)>-1?'':'none'})};
+ window.pickCity=function(n){$('city-label').textContent=n;
+  [].forEach.call(document.querySelectorAll('.city-item i'),function(i){i.classList.add('invisible')});
+  var b=document.querySelector('.city-item[data-ci="'+n+'"] i');if(b)b.classList.remove('invisible');
+  [].forEach.call(document.querySelectorAll('.av-geo .av-chip'),function(x){x.classList.toggle('on',x.id==='city-btn')});
+  closeCity()};
+ var pc=window.pickCountry;
+ window.pickCountry=function(n){pc.apply(this,arguments);var l=$('city-label');if(l)l.textContent='Город';
+  [].forEach.call(document.querySelectorAll('.city-item i'),function(i){i.classList.add('invisible')});closeCity()};
+ var tc=window.toggleCountryMenu;
+ window.toggleCountryMenu=function(e){closeCity();tc.apply(this,arguments)};
+ document.addEventListener('click',function(e){var w=$('city-wrap');if(w&&!w.contains(e.target))closeCity()});
+ if(window.applyEv)window.applyEv();
+})();
+</script>
+
+<style>
+/* ===== Форма «Заказать продвижение» ===== */
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.g2,.g3{align-items:start}
+.av-f>label,.av-f>.lb{line-height:18px}
+#ad-form .av-seg{flex-wrap:nowrap}
+#ad-form .av-seg label{min-width:0}
+#ad-form .av-seg span{padding:6px 8px;font-size:13.5px;white-space:nowrap}
+#ad-form input[type=number]{-moz-appearance:textfield;appearance:textfield}
+#ad-form input[type=number]::-webkit-inner-spin-button,#ad-form input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.av-mg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.av-mg label{position:relative;cursor:pointer;min-width:0}
+.av-mg input{position:absolute;opacity:0;pointer-events:none}
+.av-mg span{display:flex;align-items:center;gap:10px;min-height:48px;padding:6px 14px;border:1px solid #E5DDE1;border-radius:12px;background:#fff;font-size:13.5px;font-weight:600;line-height:1.25;color:#1A1A1A;transition:all .15s}
+.av-mg span i{width:20px;height:20px;border-radius:6px;border:1.5px solid #D5CBD1;display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;flex:none;transition:all .15s}
+.av-mg input:checked+span{background:var(--acl);border-color:var(--ac);color:var(--ac)}
+.av-mg input:checked+span i{background:var(--ac);border-color:var(--ac);color:#fff}
+.av-mg input:focus-visible+span{box-shadow:0 0 0 3px rgba(156,28,79,.2)}
+.av-mg label:last-child:nth-child(odd){grid-column:1/-1}
+@media(max-width:720px){.g3{grid-template-columns:1fr}.av-mg{grid-template-columns:1fr}}
+/* ===== Окно события: миниатюры под большим фото ===== */
+.av-gal{display:grid;gap:12px;align-content:start;min-width:0}
+.av-thumbs{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:10px}
+.av-thumbs button{padding:0;border:2px solid transparent;border-radius:14px;overflow:hidden;background:var(--acl);cursor:pointer;aspect-ratio:4/3;opacity:.72;transition:opacity .15s,border-color .15s,transform .15s}
+.av-thumbs button img{width:100%;height:100%;object-fit:cover;display:block}
+.av-thumbs button:hover{opacity:1;transform:translateY(-2px)}
+.av-thumbs button.on{opacity:1;border-color:var(--ac)}
+/* ===== Окно события: баннер закрепа и продвижения ===== */
+.av-promo{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:24px;padding:24px 28px;border-radius:20px;background:var(--acl);border:1px solid rgba(156,28,79,.14)}
+.av-promo .ic{width:72px;height:72px;border-radius:20px;background:#fff;color:var(--ac);display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 10px 24px -14px var(--ac)}
+.av-promo .tx h3{margin:0;font-size:20px;font-weight:800;line-height:1.25;color:#1A1A1A}
+.av-promo .tx p{margin:6px 0 0;font-size:14px;line-height:1.45;color:#4B4550}
+.av-promo ul{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.av-promo li{display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:99px;background:#fff;font-size:12px;font-weight:700;color:var(--ac)}
+.av-promo-cta{height:46px;padding:0 24px;border:0;border-radius:12px;background:var(--ac);color:#fff;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:10px;cursor:pointer;white-space:nowrap;font-family:inherit;box-shadow:0 10px 24px -10px var(--ac);transition:background .2s}
+.av-promo-cta:hover{background:#7A1640}
+@media(max-width:860px){.av-promo{grid-template-columns:auto minmax(0,1fr);padding:20px}.av-promo-cta{grid-column:1/-1;justify-content:center}}
+@media(max-width:520px){.av-promo{grid-template-columns:1fr}.av-promo-cta{grid-column:auto}}
+</style>
+
+<!-- ========== АФИША: КОНТАКТЫ ОРГАНИЗАТОРА ========== -->
+<div id="oc-ov" class="av-ov" onclick="if(event.target===this)closeContacts()" role="dialog" aria-modal="true" aria-labelledby="oc-t"><div class="av-md" style="max-width:520px;margin:auto">
+<button type="button" class="av-x" onclick="closeContacts()" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
+<div class="av-fh" style="padding:32px 32px 0"><h2 id="oc-t" style="font-size:26px">Контакты организатора</h2><p style="margin:8px 0 0;font-size:14px;color:#6B6570;padding-right:56px;line-height:1.5">Свяжитесь напрямую: уточните условия съёмки, аккредитацию или предложите сотрудничество.</p></div>
+<div id="oc-body" style="padding:20px 32px 32px"></div></div></div>
+<style>#oc-ov.open{display:flex;align-items:center;justify-content:center;padding:16px}#oc-ov .av-md{width:100%;min-height:0}#oc-ov .rq-r{gap:14px;padding:18px}#oc-ov .rq-ct{min-height:36px;font-size:13px}</style>
 </body>
 </html>

@@ -410,6 +410,9 @@ main h1{font-size:28px;line-height:1.15}
 .av-tabrow>div:first-child{overflow-x:auto;flex:0 1 auto;min-width:0}
 .av-tabact{margin-left:auto;flex:none}
 .av-add2{height:52px;padding:0 28px}
+.av-tabact .av-add2{height:auto;padding:10px 20px;border:1px solid #1F2937;border-radius:9999px;font-family:'Montserrat',sans-serif;font-size:14px;line-height:20px;font-weight:600;gap:8px;white-space:nowrap;transition:all .2s ease}
+.av-tabact .av-add2 i{font-size:14px}
+.av-tabact .av-add2:hover{border-color:#111827}
 .av-add2[hidden]{display:none}
 #section-afisha .av-bar,#section-kalendar .av-bar{gap:0;padding:18px 24px}
 #section-afisha .av-bar .av-row+.av-row{margin-top:16px;padding-top:16px;border-top:1px solid #F0ECEE}
@@ -717,8 +720,8 @@ main h1{font-size:28px;line-height:1.15}
 </style>
 <style>
 /* значок у выбора города — как в Афише, для остальных разделов */
-:is(#section-kalendar,#section-mesta,#section-tehnika,#section-rekvizit) .av-bar .av-selw.w-city{flex:1 1 150px;min-width:140px;max-width:190px;margin:0}
-:is(#section-kalendar,#section-mesta,#section-tehnika,#section-rekvizit) .av-bar .av-selw.w-city select.av-sel{width:100%;max-width:none;min-width:0;flex:none;margin:0;padding-left:42px;padding-right:34px;text-overflow:ellipsis;background-position:right 14px center}
+#section-kalendar .av-bar .av-selw.w-city{flex:1 1 150px;min-width:140px;max-width:190px;margin:0}
+#section-kalendar .av-bar .av-selw.w-city select.av-sel{width:100%;max-width:none;min-width:0;flex:none;margin:0;padding-left:42px;padding-right:34px;text-overflow:ellipsis;background-position:right 14px center}
 </style>
 </head>
 <body class="antialiased font-sans">
@@ -761,34 +764,7 @@ main h1{font-size:28px;line-height:1.15}
                                     <div class="text-xs text-gray-500 mt-0.5 leading-snug">Концерты, фестивали, премьеры и инфоповоды для съёмок</div>
                                 </div>
                             </a>
-                            <a href="#mesta" onclick="switchSection('mesta'); closeHubMenu()" class="flex gap-3 p-3 rounded-2xl hover:bg-accent-light/40 transition group">
-                                <div class="w-11 h-11 rounded-xl bg-accent-light text-[var(--accent)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--accent)] group-hover:text-white transition">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
-                                <div>
-                                    <div class="font-bold text-sm text-[#1A1A1A] group-hover:text-[var(--accent)] transition">Места</div>
-                                    <div class="text-xs text-gray-500 mt-0.5 leading-snug">Кафе, студии, отели и другие локации для съёмок</div>
-                                </div>
-                            </a>
-                            <a href="#tehnika" onclick="switchSection('tehnika'); closeHubMenu()" class="flex gap-3 p-3 rounded-2xl hover:bg-accent-light/40 transition group">
-                                <div class="w-11 h-11 rounded-xl bg-accent-light text-[var(--accent)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--accent)] group-hover:text-white transition">
-                                    <i class="fa-solid fa-camera"></i>
-                                </div>
-                                <div>
-                                    <div class="font-bold text-sm text-[#1A1A1A] group-hover:text-[var(--accent)] transition">Техника</div>
-                                    <div class="text-xs text-gray-500 mt-0.5 leading-snug">Камеры, свет и звук в аренду для профессиональной съёмки</div>
-                                </div>
-                            </a>
-                            <a href="#rekvizit" onclick="switchSection('rekvizit'); closeHubMenu()" class="flex gap-3 p-3 rounded-2xl hover:bg-accent-light/40 transition group">
-                                <div class="w-11 h-11 rounded-xl bg-accent-light text-[var(--accent)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--accent)] group-hover:text-white transition">
-                                    <i class="fa-solid fa-cube"></i>
-                                </div>
-                                <div>
-                                    <div class="font-bold text-sm text-[#1A1A1A] group-hover:text-[var(--accent)] transition">Реквизит</div>
-                                    <div class="text-xs text-gray-500 mt-0.5 leading-snug">Декор и предметы, которые оживят кадр</div>
-                                </div>
-                            </a>
-                            <a href="#kalendar" onclick="switchSection('kalendar'); closeHubMenu()" class="flex gap-3 p-3 rounded-2xl hover:bg-accent-light/40 transition group col-span-2">
+                            <a href="#kalendar" onclick="switchSection('kalendar'); closeHubMenu()" class="flex gap-3 p-3 rounded-2xl hover:bg-accent-light/40 transition group">
                                 <div class="w-11 h-11 rounded-xl bg-accent-light text-[var(--accent)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--accent)] group-hover:text-white transition">
                                     <i class="fa-solid fa-calendar-check"></i>
                                 </div>
@@ -854,18 +830,6 @@ main h1{font-size:28px;line-height:1.15}
                 <div class="text-base font-semibold text-gray-800">Афиша</div>
                 <div class="text-xs text-gray-500">Концерты, фестивали и события для съёмок</div>
             </a>
-            <a href="#" onclick="switchSection('mesta'); closeMobile()" class="block py-2.5 pl-3">
-                <div class="text-base font-semibold text-gray-800">Места</div>
-                <div class="text-xs text-gray-500">Кафе, студии и локации для контента</div>
-            </a>
-            <a href="#" onclick="switchSection('tehnika'); closeMobile()" class="block py-2.5 pl-3">
-                <div class="text-base font-semibold text-gray-800">Техника</div>
-                <div class="text-xs text-gray-500">Камеры, свет и звук в аренду</div>
-            </a>
-            <a href="#" onclick="switchSection('rekvizit'); closeMobile()" class="block py-2.5 pl-3">
-                <div class="text-base font-semibold text-gray-800">Реквизит</div>
-                <div class="text-xs text-gray-500">Декор и предметы для кадра</div>
-            </a>
             <a href="#" onclick="switchSection('kalendar'); closeMobile()" class="block py-2.5 pl-3">
                 <div class="text-base font-semibold text-gray-800">Контент-календарь</div>
                 <div class="text-xs text-gray-500">Главные даты и инфоповоды месяца</div>
@@ -900,15 +864,6 @@ main h1{font-size:28px;line-height:1.15}
         <button onclick="switchSection('afisha')" data-section="afisha" class="tab-btn active flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold">
             <i class="fa-solid fa-calendar-days"></i> Афиша
         </button>
-        <button onclick="switchSection('mesta')" data-section="mesta" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-border text-gray-700 hover:border-accent/40">
-            <i class="fa-solid fa-location-dot"></i> Места
-        </button>
-        <button onclick="switchSection('tehnika')" data-section="tehnika" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-border text-gray-700 hover:border-accent/40">
-            <i class="fa-solid fa-camera"></i> Техника
-        </button>
-        <button onclick="switchSection('rekvizit')" data-section="rekvizit" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-border text-gray-700 hover:border-accent/40">
-            <i class="fa-solid fa-cube"></i> Реквизит
-        </button>
         <button onclick="switchSection('kalendar')" data-section="kalendar" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white border border-border text-gray-700 hover:border-accent/40">
             <i class="fa-solid fa-calendar-check"></i> Контент-календарь
         </button>
@@ -918,14 +873,7 @@ main h1{font-size:28px;line-height:1.15}
 
         <!-- ========== SECTION: КАЛЕНДАРЬ ========== -->
     <div id="section-kalendar" class="section-content av">
-        <div class="av-bar av-one">
-            <div class="av-row"><span class="av-lab">География</span><div class="av-geo"><div class="relative" id="geo-wrap"><button id="geo-btn" onclick="toggleCountryMenu(event)" class="av-chip on"><span id="geo-label">Мир</span><i class="fa-solid fa-chevron-down text-[9px]"></i></button>
-<div id="country-menu" class="hidden absolute left-0 top-full mt-2 w-64 bg-white rounded-2xl border border-border shadow-xl z-30 p-3">
-<div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2 px-1">Выберите страну</div>
-<div class="relative mb-2"><i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i><input id="country-search" oninput="filterCountries(this.value)" placeholder="Поиск страны" class="w-full pl-8 pr-3 py-2 rounded-xl border border-border text-xs outline-none focus:border-accent"></div>
-<div class="max-h-64 overflow-y-auto space-y-0.5" id="country-list"><button type="button" data-c="Весь мир" onclick="pickCountry('Весь мир')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🌍</span><span class="flex-1">Весь мир</span><i class="fa-solid fa-check text-accent text-xs "></i></button><button type="button" data-c="Казахстан" onclick="pickCountry('Казахстан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇿</span><span class="flex-1">Казахстан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Россия" onclick="pickCountry('Россия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇷🇺</span><span class="flex-1">Россия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Узбекистан" onclick="pickCountry('Узбекистан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇺🇿</span><span class="flex-1">Узбекистан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Кыргызстан" onclick="pickCountry('Кыргызстан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇬</span><span class="flex-1">Кыргызстан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Беларусь" onclick="pickCountry('Беларусь')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇧🇾</span><span class="flex-1">Беларусь</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Турция" onclick="pickCountry('Турция')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇹🇷</span><span class="flex-1">Турция</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="ОАЭ" onclick="pickCountry('ОАЭ')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇪</span><span class="flex-1">ОАЭ</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Грузия" onclick="pickCountry('Грузия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇬🇪</span><span class="flex-1">Грузия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Армения" onclick="pickCountry('Армения')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇲</span><span class="flex-1">Армения</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Азербайджан" onclick="pickCountry('Азербайджан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇿</span><span class="flex-1">Азербайджан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="США" onclick="pickCountry('США')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇺🇸</span><span class="flex-1">США</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Великобритания" onclick="pickCountry('Великобритания')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇬🇧</span><span class="flex-1">Великобритания</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Германия" onclick="pickCountry('Германия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇩🇪</span><span class="flex-1">Германия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Франция" onclick="pickCountry('Франция')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇫🇷</span><span class="flex-1">Франция</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Китай" onclick="pickCountry('Китай')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇨🇳</span><span class="flex-1">Китай</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Япония" onclick="pickCountry('Япония')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇯🇵</span><span class="flex-1">Япония</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Южная Корея" onclick="pickCountry('Южная Корея')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇷</span><span class="flex-1">Южная Корея</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button></div></div></div>
-                    <button type="button" class="av-chip">Казахстан</button><div class="relative" id="city-wrap"><button type="button" id="city-btn" onclick="toggleCityMenu(event)" class="av-chip"><span id="city-label">Город</span><i class="fa-solid fa-chevron-down text-[9px]"></i></button><div id="city-menu" class="hidden absolute left-0 top-full mt-2 w-64 bg-white rounded-2xl border border-border shadow-xl z-30 p-3"><div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2 px-1">Выберите город</div><div class="relative mb-2"><i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i><input id="city-search" oninput="filterCities(this.value)" placeholder="Поиск города" class="w-full pl-8 pr-3 py-2 rounded-xl border border-border text-xs outline-none focus:border-accent"></div><div class="max-h-64 overflow-y-auto space-y-0.5" id="city-list"><button type="button" data-ci="Алматы" onclick="pickCity('Алматы')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Алматы</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Астана" onclick="pickCity('Астана')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Астана</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Шымкент" onclick="pickCity('Шымкент')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Шымкент</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Караганда" onclick="pickCity('Караганда')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Караганда</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Актобе" onclick="pickCity('Актобе')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Актобе</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Атырау" onclick="pickCity('Атырау')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Атырау</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Актау" onclick="pickCity('Актау')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Актау</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Павлодар" onclick="pickCity('Павлодар')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Павлодар</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Семей" onclick="pickCity('Семей')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Семей</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Усть-Каменогорск" onclick="pickCity('Усть-Каменогорск')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Усть-Каменогорск</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Костанай" onclick="pickCity('Костанай')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Костанай</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Кызылорда" onclick="pickCity('Кызылорда')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Кызылорда</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Тараз" onclick="pickCity('Тараз')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Тараз</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Туркестан" onclick="pickCity('Туркестан')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Туркестан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Уральск" onclick="pickCity('Уральск')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Уральск</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Петропавловск" onclick="pickCity('Петропавловск')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Петропавловск</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button></div></div></div></div><div class="av-mn sp"><button type="button" aria-label="Предыдущий месяц"><i class="fa-solid fa-chevron-left" style="font-size:11px"></i></button><span><i class="fa-regular fa-calendar"></i> Сентябрь 2025</span><button type="button" aria-label="Следующий месяц"><i class="fa-solid fa-chevron-right" style="font-size:11px"></i></button></div></div>
-        </div>
+        
         <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
             <aside class="xl:col-span-3">
                 <div class="card p-5">
@@ -944,9 +892,14 @@ main h1{font-size:28px;line-height:1.15}
             </aside>
 
             <div class="xl:col-span-6">
+                <div class="kal-ctl"><div class="av-selw av-dd kal-w" id="geo-wrap"><i class="fa-solid fa-earth-europe"></i><button type="button" id="geo-btn" onclick="toggleCountryMenu(event)" class="av-sel av-ddbtn" aria-haspopup="listbox" aria-label="Страна"><span id="geo-label">Весь мир</span></button>
+<div id="country-menu" class="hidden absolute left-0 top-full mt-2 w-64 bg-white rounded-2xl border border-border shadow-xl z-30 p-3">
+<div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2 px-1">Выберите страну</div>
+<div class="relative mb-2"><i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i><input id="country-search" oninput="filterCountries(this.value)" placeholder="Поиск страны" class="w-full pl-8 pr-3 py-2 rounded-xl border border-border text-xs outline-none focus:border-accent"></div>
+<div class="max-h-64 overflow-y-auto space-y-0.5" id="country-list"><button type="button" data-c="Весь мир" onclick="pickCountry('Весь мир')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🌍</span><span class="flex-1">Весь мир</span><i class="fa-solid fa-check text-accent text-xs "></i></button><button type="button" data-c="Казахстан" onclick="pickCountry('Казахстан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇿</span><span class="flex-1">Казахстан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Россия" onclick="pickCountry('Россия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇷🇺</span><span class="flex-1">Россия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Узбекистан" onclick="pickCountry('Узбекистан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇺🇿</span><span class="flex-1">Узбекистан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Кыргызстан" onclick="pickCountry('Кыргызстан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇬</span><span class="flex-1">Кыргызстан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Беларусь" onclick="pickCountry('Беларусь')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇧🇾</span><span class="flex-1">Беларусь</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Турция" onclick="pickCountry('Турция')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇹🇷</span><span class="flex-1">Турция</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="ОАЭ" onclick="pickCountry('ОАЭ')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇪</span><span class="flex-1">ОАЭ</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Грузия" onclick="pickCountry('Грузия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇬🇪</span><span class="flex-1">Грузия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Армения" onclick="pickCountry('Армения')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇲</span><span class="flex-1">Армения</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Азербайджан" onclick="pickCountry('Азербайджан')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇦🇿</span><span class="flex-1">Азербайджан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="США" onclick="pickCountry('США')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇺🇸</span><span class="flex-1">США</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Великобритания" onclick="pickCountry('Великобритания')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇬🇧</span><span class="flex-1">Великобритания</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Германия" onclick="pickCountry('Германия')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇩🇪</span><span class="flex-1">Германия</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Франция" onclick="pickCountry('Франция')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇫🇷</span><span class="flex-1">Франция</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Китай" onclick="pickCountry('Китай')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇨🇳</span><span class="flex-1">Китай</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Япония" onclick="pickCountry('Япония')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇯🇵</span><span class="flex-1">Япония</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-c="Южная Корея" onclick="pickCountry('Южная Корея')" class="country-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">🇰🇷</span><span class="flex-1">Южная Корея</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button></div></div></div><div class="av-selw av-dd kal-w" id="city-wrap"><i class="fa-solid fa-location-dot"></i><button type="button" id="city-btn" onclick="toggleCityMenu(event)" class="av-sel av-ddbtn" aria-haspopup="listbox" aria-label="Город"><span id="city-label">Город</span></button><div id="city-menu" class="hidden absolute left-0 top-full mt-2 w-64 bg-white rounded-2xl border border-border shadow-xl z-30 p-3"><div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2 px-1">Выберите город</div><div class="relative mb-2"><i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i><input id="city-search" oninput="filterCities(this.value)" placeholder="Поиск города" class="w-full pl-8 pr-3 py-2 rounded-xl border border-border text-xs outline-none focus:border-accent"></div><div class="max-h-64 overflow-y-auto space-y-0.5" id="city-list"><button type="button" data-ci="Алматы" onclick="pickCity('Алматы')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Алматы</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Астана" onclick="pickCity('Астана')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Астана</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Шымкент" onclick="pickCity('Шымкент')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Шымкент</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Караганда" onclick="pickCity('Караганда')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Караганда</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Актобе" onclick="pickCity('Актобе')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Актобе</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Атырау" onclick="pickCity('Атырау')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Атырау</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Актау" onclick="pickCity('Актау')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Актау</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Павлодар" onclick="pickCity('Павлодар')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Павлодар</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Семей" onclick="pickCity('Семей')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Семей</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Усть-Каменогорск" onclick="pickCity('Усть-Каменогорск')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Усть-Каменогорск</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Костанай" onclick="pickCity('Костанай')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Костанай</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Кызылорда" onclick="pickCity('Кызылорда')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Кызылорда</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Тараз" onclick="pickCity('Тараз')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Тараз</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Туркестан" onclick="pickCity('Туркестан')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Туркестан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Уральск" onclick="pickCity('Уральск')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Уральск</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Петропавловск" onclick="pickCity('Петропавловск')" class="city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Петропавловск</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button></div></div></div><div class="av-selw av-dd kal-w kal-wm" id="kal-month-wrap"><i class="fa-regular fa-calendar"></i><button type="button" id="kal-month-btn" class="av-sel av-ddbtn" aria-haspopup="dialog" aria-expanded="false" aria-label="Месяц" onclick="kalMonthToggle(event)"><span id="kal-month-label">Сентябрь 2025</span></button><div id="kal-month-menu" class="af-pop hidden" onclick="event.stopPropagation()"><div class="af-cal-h"><button type="button" class="af-nav" aria-label="Предыдущий год" onclick="kalYear(-1)"><i class="fa-solid fa-chevron-left"></i></button><b id="kal-year">2025</b><button type="button" class="af-nav" aria-label="Следующий год" onclick="kalYear(1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="kal-mg" id="kal-mg"></div></div></div><div class="kal-nav"><button type="button" class="kal-nv" aria-label="Предыдущий месяц" onclick="kalStep(-1)"><i class="fa-solid fa-chevron-left"></i></button><button type="button" class="kal-nv" aria-label="Следующий месяц" onclick="kalStep(1)"><i class="fa-solid fa-chevron-right"></i></button></div></div>
                 <div class="card p-5">
                     <div class="flex items-center justify-between mb-5">
-                        <h2 class="text-xl font-extrabold">Сентябрь 2025</h2>
+                        <h2 id="kal-title" class="text-xl font-extrabold">Сентябрь 2025</h2>
                         <button class="text-xs font-semibold text-accent border border-accent/40 px-4 py-1.5 rounded-full hover:bg-accent-light">Сегодня</button>
                     </div>
                     <div class="grid grid-cols-7 gap-1.5 mb-2"><div class="text-center text-xs font-semibold text-gray-400 py-1">Пн</div><div class="text-center text-xs font-semibold text-gray-400 py-1">Вт</div><div class="text-center text-xs font-semibold text-gray-400 py-1">Ср</div><div class="text-center text-xs font-semibold text-gray-400 py-1">Чт</div><div class="text-center text-xs font-semibold text-gray-400 py-1">Пт</div><div class="text-center text-xs font-semibold text-gray-400 py-1">Сб</div><div class="text-center text-xs font-semibold text-gray-400 py-1">Вс</div></div>
@@ -974,13 +927,13 @@ main h1{font-size:28px;line-height:1.15}
     <!-- ========== SECTION: АФИША ========== -->
     <div id="section-afisha" class="section-content av active">
         <div class="av-bar">
-            <div class="av-row"><label class="av-selw w-city"><i class="fa-solid fa-location-dot"></i><select id="f-city" class="av-sel" aria-label="Город" onchange="applyEv()"><option>Алматы</option><option>Астана</option><option>Шымкент</option></select></label><label class="av-selw w-cat"><i class="fa-solid fa-table-cells-large"></i><select id="f-cat" class="av-sel" aria-label="Категория" onchange="applyEv()"><option value="">Все категории</option></select></label><label class="av-selw w-sort"><i class="fa-solid fa-arrow-down-wide-short"></i><select id="f-sort" class="av-sel" onchange="applyEv()" aria-label="Сортировка"><option value="">Рекомендуемые</option><option value="date">Сначала ближайшие</option><option value="free">Сначала бесплатные</option></select></label></div>
-            <div class="av-row"><div class="av-dategrp"><label class="av-selw w-date"><i class="fa-regular fa-calendar"></i><select id="f-date-sel" class="av-sel" aria-label="Дата"><option value="">Любая дата</option><option value="today">Сегодня</option><option value="tomorrow">Завтра</option><option value="weekend">Выходные</option><option value="week">Эта неделя</option></select></label><div id="f-date" hidden></div></div><div class="av-prw sp"><span class="av-lab">Стоимость</span><div class="av-chips" id="f-price"><button type="button" class="av-chip on" data-v="">Любая</button><button type="button" class="av-chip" data-v="free">Бесплатно</button><button type="button" class="av-chip" data-v="paid">Платно</button></div></div></div>
+            <div class="av-row"><div class="av-selw w-city av-dd" id="af-city-wrap"><i class="fa-solid fa-location-dot"></i><button type="button" id="af-city-btn" class="av-sel av-ddbtn" aria-haspopup="listbox" aria-label="Город" onclick="afDD('city',event)"><span id="af-city-label">Алматы</span></button><input type="hidden" id="f-city" value="Алматы"><div id="af-city-menu" class="hidden absolute left-0 top-full mt-2 w-64 bg-white rounded-2xl border border-border shadow-xl z-30 p-3"><div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2 px-1">Выберите город</div><div class="relative mb-2"><i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs" style="position:absolute;width:auto;pointer-events:none"></i><input id="af-city-search" oninput="afFilterCities(this.value)" placeholder="Поиск города" class="w-full pl-8 pr-3 py-2 rounded-xl border border-border text-xs outline-none focus:border-accent"></div><div class="max-h-64 overflow-y-auto space-y-0.5" id="af-city-list"><button type="button" data-ci="Алматы" onclick="afPickCity('Алматы')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Алматы</span><i class="fa-solid fa-check text-accent text-xs"></i></button><button type="button" data-ci="Астана" onclick="afPickCity('Астана')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Астана</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Шымкент" onclick="afPickCity('Шымкент')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Шымкент</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Караганда" onclick="afPickCity('Караганда')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Караганда</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Актобе" onclick="afPickCity('Актобе')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Актобе</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Атырау" onclick="afPickCity('Атырау')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Атырау</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Актау" onclick="afPickCity('Актау')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Актау</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Павлодар" onclick="afPickCity('Павлодар')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Павлодар</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Семей" onclick="afPickCity('Семей')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Семей</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Усть-Каменогорск" onclick="afPickCity('Усть-Каменогорск')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Усть-Каменогорск</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Костанай" onclick="afPickCity('Костанай')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Костанай</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Кызылорда" onclick="afPickCity('Кызылорда')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Кызылорда</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Тараз" onclick="afPickCity('Тараз')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Тараз</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Туркестан" onclick="afPickCity('Туркестан')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Туркестан</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Уральск" onclick="afPickCity('Уральск')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Уральск</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button><button type="button" data-ci="Петропавловск" onclick="afPickCity('Петропавловск')" class="af-city-item w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] text-left hover:bg-accent-light"><span class="text-base">📍</span><span class="flex-1">Петропавловск</span><i class="fa-solid fa-check text-accent text-xs invisible"></i></button></div></div></div><div class="av-selw w-cat av-dd" id="af-cat-wrap"><i class="fa-solid fa-table-cells-large"></i><button type="button" id="af-cat-btn" class="av-sel av-ddbtn" aria-haspopup="listbox" aria-label="Категория" onclick="afDD('cat',event)"><span id="af-cat-label">Все категории</span></button><input type="hidden" id="f-cat" value=""><div id="af-cat-menu" class="hidden absolute left-0 top-full mt-2 w-72 bg-white rounded-2xl border border-border shadow-xl z-30 p-3" style="max-width:min(300px,calc(100vw - 32px))"><div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-2 px-1">Выберите категорию</div><div class="max-h-72 overflow-y-auto space-y-0.5" id="af-cat-list"></div></div></div><label class="av-selw w-sort"><i class="fa-solid fa-arrow-down-wide-short"></i><select id="f-sort" class="av-sel" onchange="applyEv()" aria-label="Сортировка"><option value="">Рекомендуемые</option><option value="date">Сначала ближайшие</option><option value="free">Сначала бесплатные</option></select></label></div>
+            <div class="av-row"><div class="av-dategrp"><div class="av-selw w-date av-dd" id="af-date-wrap"><i class="fa-regular fa-calendar"></i><button type="button" id="af-date-btn" class="av-sel av-ddbtn" aria-haspopup="dialog" aria-label="Дата" onclick="afDD('date',event)"><span id="af-date-label">Любая дата</span></button><div id="af-date-menu" class="af-pop hidden" onclick="event.stopPropagation()"><div class="af-cal-h"><button type="button" class="af-nav" aria-label="Предыдущий месяц" onclick="afCalNav(-1)"><i class="fa-solid fa-chevron-left"></i></button><b id="af-cal-title"></b><button type="button" class="af-nav" aria-label="Следующий месяц" onclick="afCalNav(1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="af-wd"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div><div class="af-days" id="af-days"></div><div class="af-quick"><div class="af-qt">Быстрый выбор</div><div class="af-qg"><button type="button" class="af-q" data-v="today" onclick="afPickDate('today')">Сегодня</button><button type="button" class="af-q" data-v="tomorrow" onclick="afPickDate('tomorrow')">Завтра</button><button type="button" class="af-q" data-v="weekend" onclick="afPickDate('weekend')">Выходные</button><button type="button" class="af-q" data-v="week" onclick="afPickDate('week')">Эта неделя</button></div><button type="button" class="af-qr" id="af-qr" onclick="afPickDate('')">Сбросить дату</button></div></div></div><div id="f-date" hidden></div></div><div class="av-prw sp"><span class="av-lab">Стоимость</span><div class="av-chips" id="f-price"><button type="button" class="av-chip on" data-v="">Любая</button><button type="button" class="av-chip" data-v="free">Бесплатно</button><button type="button" class="av-chip" data-v="paid">Платно</button></div></div></div>
         </div>
         <div class="av-ban" id="av-ban" role="complementary" aria-label="Блок продвижения">
-            <div class="av-ban-head"><span class="av-adtag"><i class="fa-solid fa-circle-info"></i> <span data-ban="tag">Продвижение</span></span><button type="button" class="av-ban-x" onclick="toggleAfishaBan(true)" aria-label="Свернуть блок продвижения">Свернуть <i class="fa-solid fa-chevron-up"></i></button></div>
+            <div class="av-ban-head"><span class="av-adtag"><i class="fa-solid fa-circle-info"></i> <span data-ban="tag">Продвижение</span></span><div class="av-ban-r"><div class="av-ban-dots" role="tablist" aria-label="Переключение баннеров"><button type="button" role="tab" class="on" aria-label="Баннер 1" onclick="afBan(0)"></button><button type="button" role="tab" aria-label="Баннер 2" onclick="afBan(1)"></button><button type="button" role="tab" aria-label="Баннер 3" onclick="afBan(2)"></button></div><button type="button" class="av-ban-x" onclick="toggleAfishaBan(true)" aria-label="Свернуть блок продвижения">Свернуть <i class="fa-solid fa-chevron-up"></i></button></div></div>
             <div class="av-ban-grid">
-                <article class="av-ban-card is-narrow">
+<article class="av-ban-card is-narrow">
                     <div class="av-ban-media"><img alt="" src=""><span class="ph"><i class="fa-solid fa-bullhorn"></i></span></div>
                     <div class="av-ban-main">
                         <h2 data-ban="title">Организуете мероприятие?</h2>
@@ -989,7 +942,8 @@ main h1{font-size:28px;line-height:1.15}
                     </div>
                     <button type="button" class="av-ban-cta" data-ban="cta" onclick="openAdd('brief')"><span data-ban="cta-text">Подобрать блогеров</span> <i class="fa-solid fa-arrow-right" style="font-size:12px"></i></button>
                 </article>
-                <article class="av-ban-card is-wide">
+<div class="av-ban-track">
+<article class="av-ban-card is-wide">
                     <div class="av-ban-media"><img alt="" src=""><span class="ph"><i class="fa-solid fa-rocket"></i></span></div>
                     <div class="av-ban-main">
                         <h2 data-ban="title">Продвижение под ключ</h2>
@@ -999,7 +953,9 @@ main h1{font-size:28px;line-height:1.15}
                     </div>
                     <button type="button" class="av-ban-cta" data-ban="cta" onclick="openAdd('brief')"><span data-ban="cta-text">Заказать продвижение</span> <i class="fa-solid fa-arrow-right" style="font-size:12px"></i></button>
                 </article>
-            </div>
+<article class="av-ban-card is-wide"><div class="av-ban-media"><img alt="" src=""><span class="ph"><i class="fa-solid fa-bolt"></i></span></div><div class="av-ban-main"><h2 data-ban="title">Выделите карточку и привлеките больше креаторов</h2><p data-ban="text">Цветная рамка в каталоге и размещение на главной странице сайта помогут блогерам быстрее заметить ваше событие.</p><ul class="av-ban-list" data-ban="list"></ul><small class="av-ban-note" data-ban="note"></small></div><button type="button" class="av-ban-cta" data-ban="cta" onclick="openAdd('brief')"><span data-ban="cta-text">Продвинуть событие</span> <i class="fa-solid fa-arrow-right" style="font-size:12px"></i></button></article>
+<article class="av-ban-card is-wide"><div class="av-ban-media"><img alt="" src=""><span class="ph"><i class="fa-solid fa-chart-line"></i></span></div><div class="av-ban-main"><h2 data-ban="title">Итоги кампании в одном отчёте</h2><p data-ban="text">После события вы получите охваты, публикации блогеров и результаты продвижения в понятном отчёте.</p><ul class="av-ban-list" data-ban="list"></ul><small class="av-ban-note" data-ban="note"></small></div><button type="button" class="av-ban-cta" data-ban="cta" onclick="openAdd('brief')"><span data-ban="cta-text">Узнать подробнее</span> <i class="fa-solid fa-arrow-right" style="font-size:12px"></i></button></article>
+</div></div>
         </div>
         <div class="av-ban-mini" id="av-ban-mini" hidden><span class="av-adtag"><i class="fa-solid fa-circle-info"></i> Продвижение</span><span class="mt">Организуете мероприятие? Подберём блогеров для продвижения</span><button type="button" class="av-ban-x" onclick="toggleAfishaBan(false)" aria-label="Развернуть блок продвижения">Развернуть <i class="fa-solid fa-chevron-down"></i></button></div>
         <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
@@ -1046,437 +1002,6 @@ main h1{font-size:28px;line-height:1.15}
     </div>
 
 
-    <!-- ========== SECTION: МЕСТА ========== -->
-    <div id="section-mesta" class="section-content av">
-        <div class="av-bar">
-            <div class="av-row"><label class="av-search"><i class="fa-solid fa-magnifying-glass"></i><input id="mesta-q" type="search" placeholder="Название, район или описание места" aria-label="Поиск"></label><label class="av-selw w-city"><i class="fa-solid fa-location-dot"></i><select id="mesta-city" class="av-sel" aria-label="Город"><option>Алматы</option><option>Астана</option><option>Шымкент</option></select></label><select id="mesta-cat" class="av-sel" aria-label="Категория"><option value="">Все типы</option></select><button type="button" class="av-add" onclick="openAdd('mesta')"><i class="fa-solid fa-plus"></i> Добавить место</button></div>
-            <div class="av-row"><div class="av-chips" id="mesta-chips"><button type="button" class="av-chip on" data-v="">Все</button><button type="button" class="av-chip" data-v="Бесплатно">Бесплатно</button><button type="button" class="av-chip" data-v="За отметку">За отметку</button><button type="button" class="av-chip" data-v="По бартеру">По бартеру</button><button type="button" class="av-chip" data-v="Аренда">Аренда</button></div><span class="av-lab sp" id="mesta-count"></span></div>
-        </div>
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
-            <aside class="xl:col-span-3">
-                <div class="card p-5 sticky top-20">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="font-bold text-sm">Фильтры</h3>
-                        <button class="text-xs text-accent font-medium">Сбросить всё</button>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Стиль</div>
-                        <div class="flex flex-wrap gap-1.5">
-                            <button class="filter-chip px-3 py-1 rounded-full text-xs border border-border bg-white">Минимализм</button>
-                            <button class="filter-chip px-3 py-1 rounded-full text-xs border border-border bg-white">Лофт</button>
-                            <button class="filter-chip active px-3 py-1 rounded-full text-xs border">Классика</button>
-                            <button class="filter-chip px-3 py-1 rounded-full text-xs border border-border bg-white">Современный</button>
-                            <button class="filter-chip px-3 py-1 rounded-full text-xs border border-border bg-white">Уютный</button>
-                            <button class="filter-chip px-3 py-1 rounded-full text-xs border border-border bg-white">Люкс</button>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Оборудование и возможности</div>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Естественный свет</label>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Студийный свет</label>
-                        <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Можно снимать видео</label>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Стоимость, ₸</div>
-                        <div class="flex gap-2">
-                            <input type="text" placeholder="От" class="w-full p-2.5 border border-border rounded-lg text-sm outline-none focus:border-accent">
-                            <input type="text" placeholder="До" class="w-full p-2.5 border border-border rounded-lg text-sm outline-none focus:border-accent">
-                        </div>
-                    </div>
-                    <button class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm">Применить фильтры</button>
-                </div>
-            </aside>
-            
-            <div class="xl:col-span-9">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <!-- Place 1 -->
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48">
-                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Бесплатно</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Кофейня «Тёплый свет»</h3>
-                            <div class="text-xs text-gray-500 mt-0.5">Кафе · Алматы</div>
-                            <div class="mt-3 font-semibold text-emerald-600 text-sm">Бесплатно</div>
-                            <div class="text-xs text-gray-500">1 Stories с отметкой</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Кофейня «Тёплый свет»', 'place')">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Place 2 -->
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48">
-                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Аренда</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Студия Luma</h3>
-                            <div class="text-xs text-gray-500 mt-0.5">Фотостудия · Алматы</div>
-                            <div class="mt-3 font-semibold text-accent text-sm">от 8 000 ₸ / час</div>
-                            <div class="text-xs text-gray-500">Свет включён</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Студия Luma', 'place')">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Place 3 -->
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48">
-                            <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-purple-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">По бартеру</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Отель Aspan</h3>
-                            <div class="text-xs text-gray-500 mt-0.5">Отель · Алматы</div>
-                            <div class="mt-3 font-semibold text-purple-600 text-sm">Проживание за контент</div>
-                            <div class="text-xs text-gray-500">1 Reels + 3 Stories</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Отель Aspan', 'place')">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Place 4 -->
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48">
-                            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Аренда</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Лофт «Фактура»</h3>
-                            <div class="text-xs text-gray-500 mt-0.5">Лофт · Алматы</div>
-                            <div class="mt-3 font-semibold text-accent text-sm">от 6 000 ₸ / час</div>
-                            <div class="text-xs text-gray-500">Минимум 1 час</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Place 5 -->
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48">
-                            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">За отметку</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Оранжерея Garden</h3>
-                            <div class="text-xs text-gray-500 mt-0.5">Оранжерея · Алматы</div>
-                            <div class="mt-3 font-semibold text-emerald-600 text-sm">Бесплатно</div>
-                            <div class="text-xs text-gray-500">2 Stories с отметкой</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Place 6 -->
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48">
-                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-purple-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">По бартеру</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Терраса Panorama</h3>
-                            <div class="text-xs text-gray-500 mt-0.5">Терраса · Алматы</div>
-                            <div class="mt-3 font-semibold text-purple-600 text-sm">Ужин за контент</div>
-                            <div class="text-xs text-gray-500">1 Reels с обзором</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========== SECTION: ТЕХНИКА ========== -->
-    <div id="section-tehnika" class="section-content av">
-        <div class="av-bar">
-            <div class="av-row"><label class="av-search"><i class="fa-solid fa-magnifying-glass"></i><input id="tehnika-q" type="search" placeholder="Поиск по технике, бренду или описанию" aria-label="Поиск"></label><label class="av-selw w-city"><i class="fa-solid fa-location-dot"></i><select id="tehnika-city" class="av-sel" aria-label="Город"><option>Алматы</option><option>Астана</option><option>Шымкент</option></select></label><select id="tehnika-cat" class="av-sel" aria-label="Категория"><option value="">Все категории</option></select><button type="button" class="av-add" onclick="openAdd('tehnika')"><i class="fa-solid fa-plus"></i> Добавить технику</button></div>
-            <div class="av-row"><div class="av-chips" id="tehnika-chips"><button type="button" class="av-chip on" data-v="">Все</button><button type="button" class="av-chip" data-v="Бесплатно">Бесплатно</button><button type="button" class="av-chip" data-v="За отметку">За отметку</button><button type="button" class="av-chip" data-v="По бартеру">По бартеру</button><button type="button" class="av-chip" data-v="Аренда">Аренда</button></div><span class="av-lab sp" id="tehnika-count"></span></div>
-        </div>
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
-            <aside class="xl:col-span-3">
-                <div class="card p-5 sticky top-20">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="font-bold text-sm">Фильтры</h3>
-                        <button class="text-xs text-accent font-medium">Сбросить всё</button>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Условия</div>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="radio" name="cond" class="accent-accent" checked> Все</label>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="radio" name="cond" class="accent-accent"> Бесплатно</label>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="radio" name="cond" class="accent-accent"> За отметку</label>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="radio" name="cond" class="accent-accent"> По бартеру</label>
-                        <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="radio" name="cond" class="accent-accent"> Аренда</label>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Стоимость, ₸</div>
-                        <div class="flex gap-2">
-                            <input type="text" placeholder="От" class="w-full p-2.5 border border-border rounded-lg text-sm outline-none focus:border-accent">
-                            <input type="text" placeholder="До" class="w-full p-2.5 border border-border rounded-lg text-sm outline-none focus:border-accent">
-                        </div>
-                    </div>
-                    <button class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm">Применить фильтры</button>
-                </div>
-            </aside>
-            
-            <div class="xl:col-span-9">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48 bg-gray-50">
-                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Аренда</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Sony A7 IV</h3>
-                            <div class="text-xs text-gray-500">Камера · Алматы</div>
-                            <div class="mt-2 font-semibold text-accent">от 15 000 ₸ / день</div>
-                            <div class="text-xs text-gray-500">Минимум 1 день</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Sony A7 IV', 'tech')">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48 bg-gray-50">
-                            <img src="https://images.unsplash.com/photo-1598300187884-8d545a9d0f5a?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-purple-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">По бартеру</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Aputure 300D II</h3>
-                            <div class="text-xs text-gray-500">Постоянный свет · Алматы</div>
-                            <div class="mt-2 font-semibold text-emerald-600">Бесплатно</div>
-                            <div class="text-xs text-gray-500">1 Stories с отметкой</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Aputure 300D II', 'tech')">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48 bg-gray-50">
-                            <img src="https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Аренда</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">DJI RS 3 Pro</h3>
-                            <div class="text-xs text-gray-500">Стабилизатор · Алматы</div>
-                            <div class="mt-2 font-semibold text-accent">от 10 000 ₸ / день</div>
-                            <div class="text-xs text-gray-500">Минимум 1 день</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48 bg-gray-50">
-                            <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Аренда</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">DJI Mavic 3</h3>
-                            <div class="text-xs text-gray-500">Дрон · Алматы</div>
-                            <div class="mt-2 font-semibold text-accent">от 20 000 ₸ / день</div>
-                            <div class="text-xs text-gray-500">Минимум 1 день</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48 bg-gray-50">
-                            <img src="https://images.unsplash.com/photo-1598653227534-8e4e4a2b5c5a?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">За отметку</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Rode Wireless GO II</h3>
-                            <div class="text-xs text-gray-500">Звук · Алматы</div>
-                            <div class="mt-2 font-semibold text-emerald-600">Бесплатно</div>
-                            <div class="text-xs text-gray-500">1 Reels + 3 Stories</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48 bg-gray-50">
-                            <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Аренда</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Фон и стойки (хромакей)</h3>
-                            <div class="text-xs text-gray-500">Фоны и декор · Алматы</div>
-                            <div class="mt-2 font-semibold text-accent">от 5 000 ₸ / день</div>
-                            <div class="text-xs text-gray-500">Минимум 1 день</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========== SECTION: РЕКВИЗИТ ========== -->
-    <div id="section-rekvizit" class="section-content av">
-        <div class="av-bar">
-            <div class="av-row"><label class="av-search"><i class="fa-solid fa-magnifying-glass"></i><input id="rekvizit-q" type="search" placeholder="Поиск реквизита, стиля, бренда или описания" aria-label="Поиск"></label><label class="av-selw w-city"><i class="fa-solid fa-location-dot"></i><select id="rekvizit-city" class="av-sel" aria-label="Город"><option>Алматы</option><option>Астана</option><option>Шымкент</option></select></label><select id="rekvizit-cat" class="av-sel" aria-label="Категория"><option value="">Все категории</option></select><button type="button" class="av-add" onclick="openAdd('rekvizit')"><i class="fa-solid fa-plus"></i> Добавить реквизит</button></div>
-            <div class="av-row"><div class="av-chips" id="rekvizit-chips"><button type="button" class="av-chip on" data-v="">Все</button><button type="button" class="av-chip" data-v="В аренду">В аренду</button><button type="button" class="av-chip" data-v="Бесплатно">Бесплатно</button><button type="button" class="av-chip" data-v="По бартеру">По бартеру</button></div><span class="av-lab sp" id="rekvizit-count"></span></div>
-        </div>
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
-            <aside class="xl:col-span-3">
-                <div class="card p-5 sticky top-20">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="font-bold text-sm">Фильтры</h3>
-                        <button class="text-xs text-accent font-medium">Сбросить всё</button>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Стиль</div>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Минимализм</label>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Классика</label>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Винтаж</label>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Лофт</label>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Бохо</label>
-                        <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> Другое</label>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Материал</div>
-                        <select class="w-full p-2.5 border border-border rounded-lg text-sm outline-none focus:border-accent">
-                            <option>Выберите материал</option>
-                            <option>Дерево</option>
-                            <option>Металл</option>
-                            <option>Ткань</option>
-                            <option>Пластик</option>
-                            <option>Стекло</option>
-                        </select>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Цена, ₸</div>
-                        <div class="flex gap-2">
-                            <input type="text" placeholder="От" class="w-full p-2.5 border border-border rounded-lg text-sm">
-                            <input type="text" placeholder="До" class="w-full p-2.5 border border-border rounded-lg text-sm">
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Условия</div>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> В аренду</label>
-                        <label class="flex items-center gap-2.5 text-sm mb-2 cursor-pointer"><input type="checkbox" class="checkbox-custom"> Бесплатно</label>
-                        <label class="flex items-center gap-2.5 text-sm cursor-pointer"><input type="checkbox" class="checkbox-custom"> По бартеру</label>
-                    </div>
-                    <div class="mb-5">
-                        <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Цвет</div>
-                        <div class="flex flex-wrap gap-2">
-                            <button class="w-6 h-6 rounded-full bg-white border-2 border-gray-300"></button>
-                            <button class="w-6 h-6 rounded-full bg-gray-400"></button>
-                            <button class="w-6 h-6 rounded-full bg-black"></button>
-                            <button class="w-6 h-6 rounded-full bg-pink-400"></button>
-                            <button class="w-6 h-6 rounded-full bg-red-500"></button>
-                            <button class="w-6 h-6 rounded-full bg-yellow-400"></button>
-                            <button class="w-6 h-6 rounded-full bg-green-500"></button>
-                            <button class="w-6 h-6 rounded-full bg-blue-500"></button>
-                            <button class="w-6 h-6 rounded-full bg-purple-500"></button>
-                            <button class="w-6 h-6 rounded-full bg-amber-700"></button>
-                        </div>
-                    </div>
-                    <button class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm">Применить фильтры</button>
-                </div>
-            </aside>
-            
-            <div class="xl:col-span-9">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48">
-                            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">В аренду</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Стул Eames</h3>
-                            <div class="text-xs text-gray-500">Мебель · Алматы</div>
-                            <div class="mt-2 font-semibold text-accent">от 5 000 ₸ / день</div>
-                            <div class="text-xs text-gray-500">Минимум 1 день</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition" onclick="addToPlan('Стул Eames', 'prop')">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48">
-                            <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">В аренду</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Неоновая вывеска «Good Vibes»</h3>
-                            <div class="text-xs text-gray-500">Декор · Алматы</div>
-                            <div class="mt-2 font-semibold text-accent">от 7 000 ₸ / день</div>
-                            <div class="text-xs text-gray-500">Минимум 1 день</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48">
-                            <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-purple-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">По бартеру</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Зеркало в полный рост</h3>
-                            <div class="text-xs text-gray-500">Интерьерный реквизит · Алматы</div>
-                            <div class="mt-2 font-semibold text-purple-600">По бартеру</div>
-                            <div class="text-xs text-gray-500">Рассмотрю ваши предложения</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48">
-                            <img src="https://images.unsplash.com/photo-1485955900006-10f4d324a981?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Бесплатно</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Ваза с сухоцветами</h3>
-                            <div class="text-xs text-gray-500">Декор · Алматы</div>
-                            <div class="mt-2 font-semibold text-emerald-600">Бесплатно</div>
-                            <div class="text-xs text-gray-500">1 неделя с отметкой</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48">
-                            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">В аренду</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Ретро телефон</h3>
-                            <div class="text-xs text-gray-500">Декор · Алматы</div>
-                            <div class="mt-2 font-semibold text-accent">от 3 000 ₸ / день</div>
-                            <div class="text-xs text-gray-500">Минимум 1 день</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
-                        </div>
-                    </div>
-                    
-                    <div class="card overflow-hidden group">
-                        <div class="relative h-48">
-                            <img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&h=400&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="">
-                            <span class="absolute top-3 left-3 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full">В аренду</span>
-                            <button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center heart-btn" onclick="this.classList.toggle('liked')"><i class="fa-regular fa-heart text-sm"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-base">Одежная стойка</h3>
-                            <div class="text-xs text-gray-500">Мебель · Алматы</div>
-                            <div class="mt-2 font-semibold text-accent">от 4 000 ₸ / день</div>
-                            <div class="text-xs text-gray-500">Минимум 1 день</div>
-                            <button class="w-full mt-3 py-2 rounded-xl border border-accent text-accent text-sm font-semibold hover:bg-accent hover:text-white transition">Подробнее →</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </main>
 
 <!-- FOOTER -->
@@ -1618,18 +1143,6 @@ main h1{font-size:28px;line-height:1.15}
             title: 'Афиша',
             subtitle: 'Концерты, фестивали, выставки и другие события для создания контента'
         },
-        mesta: {
-            title: 'Места',
-            subtitle: 'Кафе, студии, отели и другие локации для создания контента'
-        },
-        tehnika: {
-            title: 'Техника',
-            subtitle: 'Камеры, свет, звук и другое оборудование для создания контента'
-        },
-        rekvizit: {
-            title: 'Реквизит',
-            subtitle: 'Предметы и декор для съёмок и контента'
-        },
         kalendar: {
             title: 'Контент-календарь',
             subtitle: 'Праздники, памятные даты и идеи для публикаций'
@@ -1741,7 +1254,7 @@ main h1{font-size:28px;line-height:1.15}
 <script>
 function toggleCountryMenu(e){e.stopPropagation();document.getElementById('country-menu').classList.toggle('hidden');var i=document.getElementById('country-search');if(i){i.value='';filterCountries('');i.focus();}}
 function filterCountries(q){q=q.toLowerCase();document.querySelectorAll('.country-item').forEach(function(b){b.style.display=b.dataset.c.toLowerCase().indexOf(q)>-1?'':'none';});}
-function pickCountry(n){document.getElementById('geo-label').textContent=(n==='Весь мир')?'Мир':n;document.querySelectorAll('.country-item i').forEach(function(i){i.classList.add('invisible');});var b=document.querySelector('.country-item[data-c="'+n+'"] i');if(b)b.classList.remove('invisible');document.getElementById('country-menu').classList.add('hidden');}
+function pickCountry(n){document.getElementById('geo-label').textContent=n;document.querySelectorAll('.country-item i').forEach(function(i){i.classList.add('invisible');});var b=document.querySelector('.country-item[data-c="'+n+'"] i');if(b)b.classList.remove('invisible');document.getElementById('country-menu').classList.add('hidden');}
 document.addEventListener('click',function(e){var w=document.getElementById('geo-wrap');if(w&&!w.contains(e.target))document.getElementById('country-menu').classList.add('hidden');});
 </script>
 
@@ -1918,8 +1431,8 @@ function build(name,type){
  if(CAT[nm]){var c=CAT[nm];return {key:c.k+':'+nm,k:c.k,name:nm,meta:c.m,img:ph(c.i),o:c.o}}
  if(k==='event'&&(ev=findEv(nm)))return {key:'event:'+nm,k:'event',name:nm,meta:ev.d+', '+ev.time+' · '+ev.place,img:ev.url||ph(ev.img),o:evOwner(nm)};
  if((k==='event'||k==='day')&&(cl=findCal(nm))){
-  if(cl.e[0]==='Событие')return {key:'event:'+nm,k:'event',name:nm,meta:cl.d+' сентября · '+cl.e[3],g:cl.g,o:evOwner(nm)};
-  return {key:'day:'+cl.d+':'+nm,k:'day',name:nm,meta:cl.d+' сентября · '+cl.e[0],g:cl.g}}
+  if(cl.e[0]==='Событие')return {key:'event:'+nm,k:'event',name:nm,meta:cl.d+' '+window.__CAL.mg()+' · '+cl.e[3],g:cl.g,o:evOwner(nm)};
+  return {key:'day:'+cl.d+':'+nm,k:'day',name:nm,meta:cl.d+' '+window.__CAL.mg()+' · '+cl.e[0],g:cl.g}}
  var it={key:k+':'+nm,k:k,name:nm,meta:''};if(KIND[k].send)it.o=genOwner(nm);else it.g=['from-slate-400 to-slate-700','fa-star'];return it}
 window.openContacts=function(name){
  var o=OW[evOwner(name)];if(!o)return;
@@ -1939,11 +1452,11 @@ window.addToPlan=function(name,type){
 /* из окна дня календаря: одна дата/событие или весь день целиком */
 window.addCalItem=function(){
  var C=window.__CAL,e=window._cur;if(!C||!e)return;var d=C.cur();
- if(e.cat==='Событие')push({key:'event:'+e.t,k:'event',name:e.t,meta:d+' сентября · '+e.sh+' · '+e.pl.split(',')[0],g:e.g,o:evOwner(e.t)});
- else push({key:'day:'+d+':'+e.t,k:'day',name:e.t,meta:d+' сентября · '+e.cat,g:e.g})};
+ if(e.cat==='Событие')push({key:'event:'+e.t,k:'event',name:e.t,meta:d+' '+C.mg()+' · '+e.sh+' · '+e.pl.split(',')[0],g:e.g,o:evOwner(e.t)});
+ else push({key:'day:'+d+':'+e.t,k:'day',name:e.t,meta:d+' '+C.mg()+' · '+e.cat,g:e.g})};
 window.addWholeDay=function(){
  var C=window.__CAL;if(!C)return;var d=C.cur(),L=C.D[d]||[];if(!L.length)return;
- push({key:'day:'+d+':all',k:'day',name:d+' сентября — весь день',meta:plur(L.length,['инфоповод','инфоповода','инфоповодов'])+': '+L.slice(0,2).map(function(x){return x[1]}).join(', ')+(L.length>2?' и др.':''),g:C.G[L[0][4]]})};
+ push({key:'day:'+d+':all',k:'day',name:d+' '+C.mg()+' — весь день',meta:plur(L.length,['инфоповод','инфоповода','инфоповодов'])+': '+L.slice(0,2).map(function(x){return x[1]}).join(', ')+(L.length>2?' и др.':''),g:C.G[L[0][4]]})};
 
 /* ---------- клики по панели ---------- */
 document.addEventListener('click',function(e){
@@ -2065,7 +1578,7 @@ renderPanel();
 </div>
 <script>
 (function(){
-var C={'Праздник':['bg-orange-100 text-orange-700','ПРАЗДНИК'],'Международная дата':['bg-pink-100 text-pink-700','МЕЖДУНАРОДНАЯ ДАТА'],'Событие':['bg-sky-100 text-sky-700','СОБЫТИЕ']};
+var C={'Праздник':['bg-orange-100 text-orange-700','ПРАЗДНИК'],'Международная дата':['bg-pink-100 text-pink-700','МЕЖДУНАРОДНАЯ ДАТА'],'Событие':['bg-sky-100 text-sky-700','СОБЫТИЕ'],'Памятная дата':['bg-slate-100 text-slate-700','ПАМЯТНАЯ ДАТА'],'Перенос выходного':['bg-gray-100 text-gray-700','ПЕРЕНОС ВЫХОДНОГО']};
 var G={dove:['from-sky-300 to-blue-500','fa-dove'],clean:['from-emerald-400 to-lime-600','fa-recycle'],beer:['from-amber-300 to-orange-500','fa-beer-mug-empty'],kids:['from-sky-300 to-yellow-400','fa-children'],race:['from-red-500 to-slate-700','fa-flag-checkered'],city:['from-sky-400 to-indigo-600','fa-city'],coffee:['from-amber-700 to-stone-800','fa-mug-hot'],heart:['from-rose-400 to-red-600','fa-heart'],book:['from-indigo-400 to-blue-600','fa-book-open'],beauty:['from-pink-300 to-fuchsia-500','fa-wand-magic-sparkles'],code:['from-violet-400 to-indigo-700','fa-code'],shop:['from-orange-300 to-pink-500','fa-bag-shopping'],leaf:['from-orange-400 to-red-600','fa-leaf'],hands:['from-violet-300 to-purple-600','fa-hands'],plane:['from-teal-400 to-sky-600','fa-plane'],music:['from-fuchsia-500 to-purple-800','fa-music'],cam:['from-slate-400 to-slate-700','fa-camera'],sea:['from-cyan-400 to-blue-700','fa-water'],film:['from-red-400 to-rose-800','fa-film'],ozone:['from-sky-300 to-teal-500','fa-earth-europe'],lang:['from-lime-400 to-emerald-600','fa-language'],deaf:['from-violet-300 to-purple-600','fa-ear-deaf'],star:['from-amber-300 to-yellow-500','fa-star']};
 var D={
 3:[['Праздник','День знаний','Казахстан','Начало нового учебного года','book','Первое сентября отмечают как начало учебного года: линейки, цветы и первые звонки. Традиционный повод для тёплых историй о школе, учителях и детях.',['Праздники','Школа']],
@@ -2098,24 +1611,28 @@ var D={
     ['Международная дата','Международный день переводчика','Мир','Профессиональный праздник','lang','День переводчиков отмечают в день памяти святого Иеронима. Повод рассказать о профессии.',['Профессии','Образование']],
     ['Международная дата','Всемирный день сердца','Мир','Забота о здоровье сердца','heart','Всемирная кампания о профилактике сердечно-сосудистых заболеваний. Подходит для контента о здоровье и спорте.',['Здоровье','Спорт']]]
 };
-var cur=null,flt='Все',sel=0;window.__CAL={D:D,G:G,cur:function(){return cur}};
+var MG=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],CY=2025,CM=8;
+var D0=D,cur=null,flt='Все',sel=0;
+var XG={fir:['from-emerald-500 to-teal-700','fa-tree'],church:['from-amber-300 to-orange-500','fa-church'],gift:['from-pink-400 to-rose-600','fa-gift'],sun:['from-yellow-300 to-orange-500','fa-sun'],handshake:['from-sky-400 to-indigo-600','fa-handshake'],shield:['from-slate-500 to-slate-800','fa-shield-halved'],medal:['from-red-500 to-rose-800','fa-medal'],capital:['from-sky-400 to-indigo-600','fa-building-columns'],scroll:['from-indigo-400 to-blue-700','fa-scroll'],flag:['from-sky-300 to-cyan-600','fa-flag'],mosque:['from-emerald-400 to-teal-700','fa-mosque'],ribbon:['from-slate-400 to-slate-700','fa-ribbon'],rocket:['from-indigo-400 to-violet-700','fa-rocket'],coins:['from-amber-300 to-yellow-600','fa-coins'],president:['from-blue-500 to-indigo-800','fa-user-tie'],news:['from-slate-400 to-sky-700','fa-newspaper'],badge:['from-blue-500 to-blue-900','fa-user-shield'],medic:['from-red-400 to-rose-600','fa-user-doctor'],youth:['from-fuchsia-400 to-purple-600','fa-people-group'],dombra:['from-amber-500 to-orange-700','fa-guitar'],pick:['from-slate-500 to-stone-700','fa-hammer'],teacher:['from-indigo-400 to-blue-600','fa-chalkboard-user'],cal:['from-gray-400 to-gray-600','fa-calendar-day']};
+for(var xk in XG)G[xk]=XG[xk];
+window.__CAL={get D(){return D},D0:D0,G:G,cur:function(){return cur},mg:function(){return MG[CM]},set:function(y,m,nd){CY=y;CM=m;D=nd}};
 function pl(n){var m=n%10,h=n%100;return n+(h>10&&h<15?' событий':m==1?' событие':m>1&&m<5?' события':' событий');}
-function evs(d){return D[d].map(function(e){var x={cat:e[0],t:e[1],pl:e[2],sh:e[3],g:G[e[4]],d:e[5],tags:e[6]};x.ideas=e[7]||['Снимите Reels по теме «'+e[1]+'» — коротко и с цепляющим началом.','Расскажите историю или интересный факт о событии в Stories.','Сделайте подборку-пост и попросите подписчиков поделиться своим опытом.'];return x;});}
+function evs(d){return D[d].map(function(e){var x={cat:e[0],t:e[1],pl:e[2],sh:e[3],g:G[e[4]],d:e[5],tags:e[6],sfx:e[8],src:e[9]};x.ideas=e[7]||['Снимите Reels по теме «'+e[1]+'» — коротко и с цепляющим началом.','Расскажите историю или интересный факт о событии в Stories.','Сделайте подборку-пост и попросите подписчиков поделиться своим опытом.'];return x;});}
 document.querySelectorAll('.calendar-day[data-day]').forEach(function(c){var d=+c.dataset.day;if(!D[d])return;var s=c.children[2];if(s)s.textContent=pl(D[d].length);});
-function render(){var L=evs(cur),cats=['Все','Праздник','Международная дата','Событие'],names={'Все':'Все','Праздник':'Праздники','Международная дата':'Международные даты','Событие':'События'};
- document.getElementById('dm-title').textContent=cur+' сентября 2025';
+function render(){var L=evs(cur),cats=['Все','Праздник','Памятная дата','Перенос выходного','Международная дата','Событие'],names={'Все':'Все','Праздник':'Праздники','Памятная дата':'Памятные даты','Перенос выходного':'Переносы','Международная дата':'Международные даты','Событие':'События'};
+ document.getElementById('dm-title').textContent=cur+' '+MG[CM]+' '+CY;
  document.getElementById('dm-sub').textContent=pl(L.length)+' и инфоповодов по всему миру'.replace('событий и ','');
  document.getElementById('dm-sub').textContent=L.length+' '+(L.length%10==1&&L.length%100!=11?'событие':(L.length%10>1&&L.length%10<5&&(L.length%100<10||L.length%100>14))?'события':'событий')+' и инфоповодов — Мир и Казахстан';
  document.getElementById('dm-tabs').innerHTML=cats.map(function(c){var n=c=='Все'?L.length:L.filter(function(e){return e.cat==c;}).length;if(!n)return '';return '<button onclick="dayFilter(\''+c+'\')" class="px-4 py-1.5 rounded-full text-xs font-semibold border '+(flt==c?'bg-accent text-white border-accent':'bg-white border-border text-gray-700 hover:border-accent/40')+'">'+names[c]+' <span class="ml-1 px-1.5 rounded-full '+(flt==c?'bg-white/25':'bg-pink-50 text-accent')+'">'+n+'</span></button>';}).join('');
  var V=L.filter(function(e){return flt=='Все'||e.cat==flt;});if(sel>=V.length)sel=0;
  document.getElementById('dm-list').innerHTML=V.map(function(e,i){return '<button onclick="daySel('+i+')" class="w-full flex items-center gap-3 p-2.5 rounded-2xl text-left transition '+(i==sel?'bg-pink-50':'hover:bg-gray-50')+'"><div class="w-14 h-14 rounded-xl bg-gradient-to-br '+e.g[0]+' text-white flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid '+e.g[1]+'"></i></div><div class="flex-1 min-w-0"><span class="inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full '+C[e.cat][0]+'">'+e.cat+'</span><div class="font-bold text-sm leading-tight mt-1">'+e.t+'</div><div class="text-xs text-gray-500 mt-0.5"><i class="fa-solid fa-location-dot text-[10px] text-accent mr-1"></i>'+e.pl+'</div><div class="text-[11px] text-gray-400 mt-0.5 truncate">'+e.sh+'</div></div><i class="fa-solid fa-chevron-right text-xs text-gray-400"></i></button>';}).join('');
  var e=V[sel];window._cur=e;
- document.getElementById('dm-detail').innerHTML='<div class="h-44 md:h-52 rounded-2xl bg-gradient-to-br '+e.g[0]+' flex items-center justify-center text-white text-7xl"><i class="fa-solid '+e.g[1]+'"></i></div><span class="inline-block mt-4 text-[10px] font-bold px-2.5 py-1 rounded-md '+C[e.cat][0]+'">'+C[e.cat][1]+' · '+e.pl.split(',')[0].toUpperCase()+'</span><h3 class="text-2xl font-black mt-2 leading-tight">'+e.t+'</h3><div class="text-sm text-gray-500 mt-1.5"><i class="fa-regular fa-calendar mr-1.5"></i>'+cur+' сентября · ежегодно</div><h4 class="font-extrabold mt-5 mb-1.5">О событии</h4><p class="text-sm text-gray-600 leading-relaxed">'+e.d+'</p><h4 class="font-extrabold mt-5 mb-2">Идеи для контента</h4><div class="space-y-2.5">'+e.ideas.map(function(x,i){return '<div class="flex gap-3 items-start text-sm text-gray-600"><span class="w-6 h-6 rounded-full bg-pink-50 text-accent text-xs font-bold flex items-center justify-center flex-shrink-0">'+(i+1)+'</span><span>'+x+'</span></div>';}).join('')+'</div><h4 class="font-extrabold mt-5 mb-2 text-sm">Теги</h4><div class="flex flex-wrap gap-2">'+e.tags.map(function(t){return '<span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-600">'+t+'</span>';}).join('')+'</div><div class="flex flex-wrap items-center gap-3 mt-6 pt-4 border-t border-border"><span class="text-[11px] text-gray-400 flex-1 min-w-[140px]"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Источник: международный календарь дат</span><button onclick="addCalItem()" class="px-5 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accent-hover"><i class="fa-regular fa-calendar-plus mr-1.5"></i>'+(e.cat==='Событие'?'Добавить событие в подборку':'Добавить дату в подборку')+'</button></div>';}
+ document.getElementById('dm-detail').innerHTML='<div class="h-44 md:h-52 rounded-2xl bg-gradient-to-br '+e.g[0]+' flex items-center justify-center text-white text-7xl"><i class="fa-solid '+e.g[1]+'"></i></div><span class="inline-block mt-4 text-[10px] font-bold px-2.5 py-1 rounded-md '+C[e.cat][0]+'">'+C[e.cat][1]+' · '+e.pl.split(',')[0].toUpperCase()+'</span><h3 class="text-2xl font-black mt-2 leading-tight">'+e.t+'</h3><div class="text-sm text-gray-500 mt-1.5"><i class="fa-regular fa-calendar mr-1.5"></i>'+cur+' '+MG[CM]+' · '+(e.sfx||'ежегодно')+'</div><h4 class="font-extrabold mt-5 mb-1.5">О событии</h4><p class="text-sm text-gray-600 leading-relaxed">'+e.d+'</p><h4 class="font-extrabold mt-5 mb-2">Идеи для контента</h4><div class="space-y-2.5">'+e.ideas.map(function(x,i){return '<div class="flex gap-3 items-start text-sm text-gray-600"><span class="w-6 h-6 rounded-full bg-pink-50 text-accent text-xs font-bold flex items-center justify-center flex-shrink-0">'+(i+1)+'</span><span>'+x+'</span></div>';}).join('')+'</div><h4 class="font-extrabold mt-5 mb-2 text-sm">Теги</h4><div class="flex flex-wrap gap-2">'+e.tags.map(function(t){return '<span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-600">'+t+'</span>';}).join('')+'</div><div class="flex flex-wrap items-center gap-3 mt-6 pt-4 border-t border-border"><span class="text-[11px] text-gray-400 flex-1 min-w-[140px]"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>Источник: '+(e.src||'международный календарь дат')+'</span><button onclick="addCalItem()" class="px-5 py-2.5 rounded-xl bg-accent text-white text-sm font-semibold hover:bg-accent-hover"><i class="fa-regular fa-calendar-plus mr-1.5"></i>'+(e.cat==='Событие'?'Добавить событие в подборку':'Добавить дату в подборку')+'</button></div>';}
 window.openDay=function(d){if(!D[d])return;cur=d;flt='Все';sel=0;render();document.getElementById('day-modal').classList.remove('hidden');document.body.style.overflow='hidden';};
 window.closeDay=function(){document.getElementById('day-modal').classList.add('hidden');document.body.style.overflow='';};
 window.dayFilter=function(c){flt=c;sel=0;render();};
 window.daySel=function(i){sel=i;render();var l=document.getElementById('dm-detail');l.scrollTop=0;};
-window.copyEv=function(b){var e=window._cur,t=e.t+' — '+cur+' сентября\n'+e.d+'\nИдеи:\n'+e.ideas.map(function(x,i){return (i+1)+'. '+x;}).join('\n');try{navigator.clipboard.writeText(t);}catch(x){}b.innerHTML='<i class="fa-solid fa-check mr-1.5"></i>Скопировано';setTimeout(function(){b.innerHTML='<i class="fa-regular fa-copy mr-1.5"></i>Скопировать';},1500);};
+window.copyEv=function(b){var e=window._cur,t=e.t+' — '+cur+' '+MG[CM]+'\n'+e.d+'\nИдеи:\n'+e.ideas.map(function(x,i){return (i+1)+'. '+x;}).join('\n');try{navigator.clipboard.writeText(t);}catch(x){}b.innerHTML='<i class="fa-solid fa-check mr-1.5"></i>Скопировано';setTimeout(function(){b.innerHTML='<i class="fa-regular fa-copy mr-1.5"></i>Скопировать';},1500);};
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDay();});
 })();
 </script>
@@ -2209,13 +1726,54 @@ EV.forEach(function(e){if(!e.more||!e.more.length)e.more=MORE[e.id]||[]});
 var cs=[];EV.forEach(function(e){if(cs.indexOf(e.tags[0])<0)cs.push(e.tags[0])});
 var SUBS=window.AFISHA_SUBS={'Фестиваль':['Еда и напитки','Музыка','Городской','Культурный'],'Концерт':['Поп','Рок','Хип-хоп','Классика','Электронная'],'Выставка':['Искусство','Фото','Диджитал','Дизайн'],'Мода':['Показ','Шоурум','Мастер-класс','Pop-up'],'Кино':['Премьера','Открытый показ','Кинофестиваль'],'Маркет':['Локальные бренды','Винтаж','Еда','Хендмейд']};
 var SUBOF={1:'Еда и напитки',2:'Показ',3:'Поп',4:'Диджитал',5:'Открытый показ',6:'Локальные бренды'};EV.forEach(function(e){e.subcat=SUBOF[e.id]||''});
-(function(){var fc=$('f-cat');
- function esc(x){return String(x).replace(/"/g,'&quot;')}
- fc.innerHTML='<option value="">Все категории</option>'+cs.map(function(c){var ss=SUBS[c]||[];return ss.length?'<optgroup label="'+esc(c)+'"><option value="'+esc(c)+'" data-s="Все: '+esc(c)+'">Все: '+c+'</option>'+ss.map(function(x){return '<option value="'+esc(c)+'|'+esc(x)+'" data-s="'+esc(x)+'" data-f="'+esc(c)+' · '+esc(x)+'">'+x+'</option>'}).join('')+'</optgroup>':'<option value="'+esc(c)+'">'+c+'</option>'}).join('');
- function shortAll(){[].forEach.call(fc.options,function(o){if(o.dataset.s)o.textContent=o.dataset.s})}
- function fullSel(){shortAll();var o=fc.options[fc.selectedIndex];if(o&&o.dataset.f)o.textContent=o.dataset.f;else if(o&&o.value&&o.dataset.s)o.textContent=o.value}
- fc.addEventListener('mousedown',shortAll);fc.addEventListener('focus',shortAll);fc.addEventListener('change',fullSel);fc.addEventListener('blur',fullSel);
+(function(){
+ function esc(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+ function item(v,t,sub,lab){return '<button type="button" role="option" class="af-ci'+(sub?' sub':'')+(v===''?' on':'')+'" data-v="'+esc(v)+'" data-l="'+esc(lab)+'" onclick="afPickCat(this)"><span class="t">'+esc(t)+'</span><i class="fa-solid fa-check"></i></button>'}
+ var h=[item('','Все категории',0,'Все категории')];
+ cs.forEach(function(c){h.push(item(c,c,0,c));(SUBS[c]||[]).forEach(function(x){h.push(item(c+'|'+x,x,1,c+' · '+x))})});
+ $('af-cat-list').innerHTML=h.join('');
 })();
+/* выпадающие списки Афиши: город (как в календаре) и категории */
+function afCloseDD(){['city','cat','date'].forEach(function(k){var m=$('af-'+k+'-menu');if(m)m.classList.add('hidden');var b=$('af-'+k+'-btn');if(b)b.setAttribute('aria-expanded','false')})}
+window.afDD=function(k,e){e.stopPropagation();var m=$('af-'+k+'-menu'),was=!m.classList.contains('hidden');afCloseDD();if(was)return;m.classList.remove('hidden');$('af-'+k+'-btn').setAttribute('aria-expanded','true');if(k==='date')afCalRender();if(k==='city'){var i=$('af-city-search');i.value='';afFilterCities('');i.focus()}};
+window.afFilterCities=function(q){q=q.toLowerCase();[].forEach.call(document.querySelectorAll('.af-city-item'),function(b){b.style.display=b.dataset.ci.toLowerCase().indexOf(q)>-1?'':'none'})};
+window.afSetCity=function(n){$('f-city').value=n;$('af-city-label').textContent=n;[].forEach.call(document.querySelectorAll('.af-city-item'),function(b){b.querySelector('i').classList.toggle('invisible',b.dataset.ci!==n)})};
+window.afPickCity=function(n){afSetCity(n);afCloseDD();window.applyEv()};
+window.afSetCat=function(v){var f=null;[].forEach.call(document.querySelectorAll('.af-ci'),function(b){var on=b.dataset.v===v;b.classList.toggle('on',on);if(on)f=b});$('f-cat').value=v;$('af-cat-label').textContent=f?f.dataset.l:'Все категории'};
+window.afPickCat=function(b){afSetCat(b.dataset.v);afCloseDD();window.applyEv()};
+document.addEventListener('click',function(e){if(!e.target.closest('.av-dd'))afCloseDD()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')afCloseDD()});
+/* сортировка: ширина по тексту */
+window.afFitSort=function(){var s=$('f-sort'),w=s&&s.closest('.w-sort');if(!w)return;var cs=getComputedStyle(s),t=document.createElement('span');t.style.cssText='position:absolute;left:-9999px;top:0;visibility:hidden;white-space:nowrap;font-weight:600;font-size:14px;font-family:'+cs.fontFamily;document.body.appendChild(t);var px=0;[].forEach.call(s.options,function(o){t.textContent=o.text;px=Math.max(px,Math.ceil(t.getBoundingClientRect().width))});document.body.removeChild(t);if(px)w.style.setProperty('--sw',(px+42+36)+'px')};
+$('f-sort').addEventListener('change',afFitSort);window.addEventListener('load',afFitSort);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(afFitSort);afFitSort();
+/* календарь выбора даты */
+var AFT={y:2025,m:8,d:20},AFC={y:2025,m:8},
+ AFMN=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+ AFGEN=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],
+ AFQ={today:'Сегодня',tomorrow:'Завтра',weekend:'Выходные',week:'Эта неделя'};
+function afEvKey(e){var m=/^(\d\d)\.(\d\d)\.(\d{4})$/.exec(e.date||'');return m?{y:+m[3],m:+m[2]-1,d:+m[1]}:{y:2025,m:8,d:e.n}}
+function afDM(v,y,m,d){if(!v)return false;
+ if(v.indexOf('d:')===0)return v==='d:'+y+'-'+(m+1)+'-'+d?'on':false;
+ if(y!==AFT.y||m!==AFT.m)return false;
+ if(v==='today')return d===20?'on':false;if(v==='tomorrow')return d===21?'on':false;
+ if(v==='weekend')return [20,21,27,28].indexOf(d)>-1?'rng':false;
+ if(v==='week')return d>=20&&d<=26?'rng':false;return false}
+window.afDateOk=function(e){var k=afEvKey(e);return !!afDM(st.date,k.y,k.m,k.d)};
+function afDLabel(v){if(!v)return 'Любая дата';if(AFQ[v])return AFQ[v];var p=v.slice(2).split('-');return +p[2]+' '+AFGEN[+p[1]-1]+(+p[0]!==2025?' '+p[0]:'')}
+function afCalRender(){
+ var y=AFC.y,m=AFC.m,off=(new Date(y,m,1).getDay()+6)%7,dim=new Date(y,m+1,0).getDate(),has={},h='',i;
+ EV.forEach(function(e){var k=afEvKey(e);if(k.y===y&&k.m===m)has[k.d]=1});
+ for(i=0;i<off;i++)h+='<span></span>';
+ for(i=1;i<=dim;i++){var st2=afDM(st.date,y,m,i),c='af-d'+(st2?' '+st2:'')+(has[i]?' ev':'')+(y===AFT.y&&m===AFT.m&&i===AFT.d?' td':'');
+  h+='<button type="button" class="'+c+'" onclick="afPickDate(\'d:'+y+'-'+(m+1)+'-'+i+'\')">'+i+'</button>'}
+ $('af-days').innerHTML=h;$('af-cal-title').textContent=AFMN[m]+' '+y;
+ [].forEach.call(document.querySelectorAll('.af-q'),function(b){b.classList.toggle('on',b.dataset.v===st.date)});
+ $('af-qr').style.display=st.date?'':'none'}
+window.afSetDate=function(v){st.date=v;$('af-date-label').textContent=afDLabel(v);
+ if(v.indexOf('d:')===0){var p=v.slice(2).split('-');AFC.y=+p[0];AFC.m=+p[1]-1}else{AFC.y=AFT.y;AFC.m=AFT.m}afCalRender()};
+window.afPickDate=function(v){if(v&&v===st.date)v='';afSetDate(v);afCloseDD();window.applyEv()};
+window.afCalNav=function(n){AFC.m+=n;if(AFC.m<0){AFC.m=11;AFC.y--}if(AFC.m>11){AFC.m=0;AFC.y++}afCalRender()};
+afCalRender();
 function chips(id,k){$(id).addEventListener('click',function(ev){var b=ev.target.closest('.av-chip');if(!b)return;[].forEach.call($(id).querySelectorAll('.av-chip'),function(x){x.classList.remove('on')});b.classList.add('on');st[k]=b.dataset.v;window.applyEv()})}
 chips('f-date','date');chips('f-price','price');
 function checked(g){return [].map.call(document.querySelectorAll('#f-side [data-g="'+g+'"]:checked'),function(x){return x.value})}
@@ -2226,12 +1784,11 @@ window.applyEv=function(){
   if(fm.length&&fm.indexOf(e.fmt)<0&&e.fmt!=='hyb')return false;
   if(ag.length&&ag.indexOf(e.age)<0)return false;if(sc.length&&!shk(e).some(function(k){return sc.indexOf(k)>=0}))return false;if(pr&&!e.pro)return false;
   if(st.price==='free'&&e.paid)return false;if(st.price==='paid'&&!e.paid)return false;
-  if(st.date==='today'&&e.n!==20)return false;if(st.date==='tomorrow'&&e.n!==21)return false;
-  if(st.date==='weekend'&&[20,21,27,28].indexOf(e.n)<0)return false;if(st.date==='week'&&(e.n<20||e.n>26))return false;return true});
+  if(st.date&&!window.afDateOk(e))return false;return true});
  if(sort==='date')L.sort(function(a,b){return a.n-b.n});if(sort==='free')L.sort(function(a,b){return a.paid-b.paid});
  var tt=$('ev-total');if(tt)tt.textContent=L.length;
   $('ev-grid').innerHTML=L.length?L.map(card).join(''):'<div class="av-empty"><b>Ничего не найдено</b><p>Измените фильтры или сбросьте их.</p><button type="button" class="av-more" style="padding:0 24px" onclick="resetEv()">Сбросить фильтры</button></div>'};
-window.resetEv=function(){[].forEach.call(document.querySelectorAll('#f-side input'),function(x){x.checked=false});['f-date','f-price'].forEach(function(id){[].forEach.call($(id).querySelectorAll('.av-chip'),function(x,i){x.classList.toggle('on',i===0)})});st={date:'',price:''};$('f-city').selectedIndex=0;$('f-cat').selectedIndex=0;$('f-sort').selectedIndex=0;applyEv()};
+window.resetEv=function(){[].forEach.call(document.querySelectorAll('#f-side input'),function(x){x.checked=false});['f-date','f-price'].forEach(function(id){[].forEach.call($(id).querySelectorAll('.av-chip'),function(x,i){x.classList.toggle('on',i===0)})});st={date:'',price:''};afSetCity('Алматы');afSetCat('');afSetDate('');$('f-sort').selectedIndex=0;afFitSort();applyEv()};
 (function(){var sel=$('f-date-sel'),box=$('f-date');if(!sel||!box)return;
  box.addEventListener('click',function(ev){var b=ev.target.closest('.av-chip');if(!b)return;
   if(b.classList.contains('on')){ev.stopPropagation();b.classList.remove('on');st.date='';sel.value='';window.applyEv();return}
@@ -2555,5 +2112,304 @@ switchSection('afisha');window.scrollTo(0,0);
 <div class="av-fh" style="padding:32px 32px 0"><h2 id="oc-t" style="font-size:26px">Контакты организатора</h2><p style="margin:8px 0 0;font-size:14px;color:#6B6570;padding-right:56px;line-height:1.5">Свяжитесь напрямую: уточните условия съёмки, аккредитацию или предложите сотрудничество.</p></div>
 <div id="oc-body" style="padding:20px 32px 32px"></div></div></div>
 <style>#oc-ov.open{display:flex;align-items:center;justify-content:center;padding:16px}#oc-ov .av-md{width:100%;min-height:0}#oc-ov .rq-r{gap:14px;padding:18px}#oc-ov .rq-ct{min-height:36px;font-size:13px}</style>
+
+<style>
+/* ===== Афиша: выпадающие списки города и категорий, сортировка по ширине текста, слайдер баннеров ===== */
+.av-dd .av-ddbtn{display:block;width:100%;text-align:left;font-family:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#section-afisha .av-bar .av-dd .av-ddbtn{width:100%;max-width:none;min-width:0;flex:none;margin:0;padding-left:42px;padding-right:34px;background-position:right 14px center}
+.av-dd .av-ddbtn:hover,.av-dd .av-ddbtn[aria-expanded="true"]{border-color:var(--ac)}
+.av-dd .af-ci{width:100%;display:flex;align-items:center;gap:10px;padding:8px 12px;border:0;background:transparent;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;color:#1A1A1A;text-align:left;cursor:pointer}
+.av-dd .af-ci:hover{background:var(--acl)}
+.av-dd .af-ci .t{flex:1;min-width:0}
+.av-dd .af-ci i{color:var(--ac);font-size:12px;visibility:hidden}
+.av-dd .af-ci.on{color:var(--ac)}.av-dd .af-ci.on i{visibility:visible}
+.av-dd .af-ci.sub{padding-left:30px;font-weight:500;color:#4B4550;position:relative}
+.av-dd .af-ci.sub::before{content:"";position:absolute;left:16px;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;background:#D9CDD3}
+.av-dd .af-ci.sub.on{color:var(--ac);font-weight:700}.av-dd .af-ci.sub.on::before{background:var(--ac)}
+#af-city-menu .af-city-item[style*="none"]{display:none}
+#af-city-menu .af-city-item i.invisible{visibility:hidden}
+#section-afisha .av-bar .w-sort,#section-afisha .av-bar .av-prw{order:0}
+#section-afisha .av-bar .w-city{order:1}#section-afisha .av-bar .w-cat{order:2}#section-afisha .av-bar .w-date{order:3}
+#section-afisha .av-bar .w-sort{order:4}#section-afisha .av-bar .av-prw{order:5}
+@media(min-width:1001px){
+ #section-afisha .av-bar.av-bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+ #section-afisha .av-bar.av-bar .w-city,#section-afisha .av-bar.av-bar .w-cat,#section-afisha .av-bar.av-bar .w-date{grid-column:auto;grid-row:auto;flex:1 1 150px;min-width:140px;max-width:190px;margin:0}
+ #section-afisha .av-bar.av-bar .w-sort{grid-column:auto;grid-row:auto;flex:none;width:var(--sw,auto);min-width:0;max-width:none;margin:0}
+ #section-afisha .av-bar.av-bar .av-prw{grid-column:auto;grid-row:auto;justify-self:auto;flex:none;width:auto;margin:0 0 0 auto;display:flex;align-items:center;gap:8px}
+ #section-afisha .av-bar.av-bar .av-prw .av-chips{flex:none}
+}
+/* Афиша: стоимость и сортировка справа, рядом друг с другом */
+@media(min-width:1001px){
+ #section-afisha .av-bar.av-bar .av-prw{order:4;margin:0 0 0 auto}
+ #section-afisha .av-bar.av-bar .w-sort{order:5;margin:0}
+}
+/* слайдер баннеров продвижения */
+#av-ban .av-ban-track{display:grid;min-width:0}
+#av-ban .av-ban-track>.av-ban-card.is-wide{grid-column:1;grid-row:1;opacity:0;visibility:hidden;transform:translate3d(0,6px,0);will-change:opacity,transform;transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1),visibility 0s linear .7s}
+#av-ban .av-ban-track>.av-ban-card.is-wide.on{opacity:1;visibility:visible;transform:none;transition:opacity .7s cubic-bezier(.4,0,.2,1) .15s,transform .7s cubic-bezier(.4,0,.2,1) .15s,visibility 0s}
+@media(min-width:1280px){#av-ban .av-ban-grid>.av-ban-track{grid-column:span 9}}
+#av-ban .av-ban-r{display:flex;align-items:center;gap:14px}
+#av-ban .av-ban-dots{display:flex;align-items:center;gap:6px}
+#av-ban .av-ban-dots button{position:relative;overflow:hidden;width:8px;height:8px;padding:0;border:0;border-radius:99px;background:#D9CDD3;cursor:pointer;transition:width .5s cubic-bezier(.4,0,.2,1),background-color .3s ease}
+#av-ban .av-ban-dots button:hover{background:#B9A3AE}
+#av-ban .av-ban-dots button.on{width:48px;background:#E6DCE1}
+#av-ban .av-ban-dots button.on::after{content:"";position:absolute;inset:0;border-radius:99px;background:var(--ac);transform:translate3d(-100%,0,0);backface-visibility:hidden;will-change:transform;animation:avDotFill var(--ban-dur,9.5s) linear .5s both}
+#av-ban.is-paused .av-ban-dots button.on::after{animation-play-state:paused}
+@keyframes avDotFill{from{transform:translate3d(-100%,0,0)}to{transform:translate3d(0,0,0)}}
+@media(prefers-reduced-motion:reduce){#av-ban .av-ban-track>.av-ban-card.is-wide,#av-ban .av-ban-track>.av-ban-card.is-wide.on{transition:none;transform:none}#av-ban .av-ban-dots button.on::after{animation:none;transform:none}}
+</style>
+<script>
+(function(){
+ var b=document.getElementById('av-ban');if(!b)return;
+ var sl=[].slice.call(b.querySelectorAll('.av-ban-track>.av-ban-card')),ds=[].slice.call(b.querySelectorAll('.av-ban-dots button')),i=0,t=null,hold=false,hov=false,foc=false,DUR=10000,rem=DUR,t0=0;
+ b.style.setProperty('--ban-dur',(DUR-500)/1000+'s');
+ function arm(ms){clearTimeout(t);rem=ms;t0=Date.now();t=setTimeout(function(){show(i+1)},ms)}
+ function show(n){i=(n+sl.length)%sl.length;sl.forEach(function(x,k){x.classList.toggle('on',k===i);x.setAttribute('aria-hidden',k===i?'false':'true')});ds.forEach(function(x,k){x.classList.remove('on');x.setAttribute('aria-selected',k===i?'true':'false')});
+  void b.offsetWidth;if(ds[i])ds[i].classList.add('on');rem=DUR;if(hold){clearTimeout(t)}else{arm(DUR)}}
+ function sync(){var h=hov||foc||document.hidden;if(h&&!hold){hold=true;clearTimeout(t);rem=Math.max(0,rem-(Date.now()-t0));b.classList.add('is-paused')}else if(!h&&hold){hold=false;b.classList.remove('is-paused');arm(rem)}}
+ window.afBan=function(n){show(n)};
+ b.addEventListener('mouseenter',function(){hov=true;sync()});b.addEventListener('mouseleave',function(){hov=false;sync()});
+ b.addEventListener('focusin',function(){foc=true;sync()});b.addEventListener('focusout',function(){foc=false;sync()});
+ document.addEventListener('visibilitychange',sync);
+ show(0);
+})();
+</script>
+
+<style>
+/* календарь выбора даты в Афише */
+.af-pop{position:absolute;left:0;top:calc(100% + 8px);width:316px;max-width:calc(100vw - 32px);background:#fff;border:1px solid var(--bd);border-radius:16px;box-shadow:0 20px 40px -16px rgba(26,26,26,.28);padding:16px;z-index:30;display:block}
+.af-pop.hidden{display:none}
+.af-cal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.af-cal-h b{font-size:14px;font-weight:800;color:#1A1A1A}
+.af-nav{width:32px;height:32px;border:1px solid var(--bd);border-radius:10px;background:#fff;color:var(--ac);font-size:11px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s}
+.af-nav:hover{background:var(--acl);border-color:var(--ac)}
+.af-wd,.af-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.af-wd span{height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#9A949E;text-transform:uppercase}
+.af-d{position:relative;height:36px;border:0;border-radius:10px;background:transparent;font-family:inherit;font-size:13px;font-weight:600;color:#1A1A1A;cursor:pointer;transition:background .15s}
+.af-d:hover{background:var(--acl)}
+.af-d.ev::after{content:"";position:absolute;left:50%;bottom:4px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--ac)}
+.af-d.td{box-shadow:inset 0 0 0 1.5px var(--ac)}
+.af-d.rng{background:var(--acl);color:var(--ac)}
+.af-d.on{background:var(--ac);color:#fff;box-shadow:0 4px 12px -4px var(--ac)}
+.af-d.on.ev::after{background:#fff}
+.af-quick{margin-top:12px;padding-top:12px;border-top:1px solid var(--bd)}
+.af-qt{font-size:11px;font-weight:700;color:#8A8490;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.af-qg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.af-q{height:34px;border:1px solid var(--bd);border-radius:99px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#4B4550;cursor:pointer;transition:all .15s}
+.af-q:hover{border-color:var(--ac);color:var(--ac)}
+.af-q.on{background:var(--ac);border-color:var(--ac);color:#fff;box-shadow:0 4px 12px -4px var(--ac)}
+.af-qr{display:block;margin:10px auto 0;border:0;background:none;font-family:inherit;font-size:12px;font-weight:600;color:var(--ac);cursor:pointer}
+.af-qr:hover{text-decoration:underline}
+</style>
+<style>
+/* Календарь: панель выбора над календарём (в стиле Афиши) */
+#section-kalendar .kal-ctl{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+#section-kalendar .kal-ctl .kal-w{flex:1 1 0;min-width:0}
+#section-kalendar .kal-ctl .kal-wm{flex:1.35 1 0}
+#section-kalendar .kal-ctl .av-ddbtn{width:100%;padding-left:42px;padding-right:32px;background-position:right 14px center}
+#section-kalendar .kal-nav{display:flex;gap:8px;flex:none}
+#section-kalendar .kal-nv{width:44px;height:44px;border:1px solid var(--bd);border-radius:12px;background:#fff;color:var(--ac);font-size:12px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}
+#section-kalendar .kal-nv:hover{background:var(--acl);border-color:var(--ac)}
+.kal-mg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.kal-m{height:40px;border:1px solid var(--bd);border-radius:10px;background:#fff;font-family:inherit;font-size:13px;font-weight:600;color:#1A1A1A;cursor:pointer;transition:background .15s,border-color .15s}
+.kal-m:hover{background:var(--acl);border-color:var(--ac)}
+.kal-m.on{background:var(--ac);border-color:var(--ac);color:#fff}
+@media(max-width:640px){#section-kalendar .kal-ctl{flex-wrap:wrap}#section-kalendar .kal-ctl .kal-w{flex:1 1 calc(50% - 6px)}#section-kalendar .kal-ctl .kal-wm{flex:1 1 calc(100% - 108px)}}
+</style>
+<style>
+/* Календарь: государственные праздники РК */
+#section-kalendar .calendar-day.kz-h{background:#f9a8d4;border-color:#f472b6}
+#section-kalendar .calendar-day.kz-h>span:first-child{color:#7A1640}
+</style>
+<script>
+/* ===== Праздники Казахстана на все месяцы и годы =====
+   FX  — праздники и памятные даты с фиксированной датой: [месяц, день, категория, название, место, кратко, иконка, описание, теги, идеи, флаг]
+         флаг 'h' = государственный праздник (нерабочий день)
+   NW  — «плавающие» даты (n-е воскресенье месяца): [месяц, день недели, n (-1 = последнее), категория, название, место, кратко, иконка, описание, теги, идеи]
+   KUR — первый день Курбан айта по годам (меняется по лунному календарю)
+   Переносы: если государственный праздник выпал на сб/вс, выходной переносится на ближайший рабочий день (Трудовой кодекс РК). */
+(function(){
+ var MG=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+ var SRC='законодательство РК о праздниках, egov.kz';
+ var FX=[
+ [1,1,'Праздник','Новый год','Казахстан','Государственный праздник, выходной','fir','Новый год в Казахстане отмечают 1 и 2 января: это государственный праздник и нерабочие дни. Главные символы — ёлка, подарки, семейный стол, фейерверки и новогоднее обращение Президента.',['Праздники','Семья'],['Снимите Reels о том, как ваша семья готовится к празднику: ёлка, стол, подарки.','Сделайте подборку идей новогодних образов или подарков и добавьте опрос в Stories.','Подведите итоги года и поделитесь планами — личный пост хорошо вовлекает аудиторию.'],'h'],
+ [1,2,'Праздник','Новый год — второй день','Казахстан','Второй нерабочий день','fir','Второй день новогодних каникул — государственный выходной. Время семейных встреч, поездок на горнолыжные курорты и новогодних мероприятий.',['Праздники','Отдых'],['Покажите, как проводите вторые новогодние выходные: каток, горы, гости.','Сделайте подборку идей отдыха на каникулы по Казахстану.','Запустите вопрос-ответ в Stories: какие новогодние традиции есть у подписчиков.'],'h'],
+ [1,7,'Праздник','Рождество Христово','Казахстан','Государственный праздник, выходной','church','7 января православные христиане отмечают Рождество Христово. В Казахстане это государственный праздник и нерабочий день: семьи собираются за праздничным столом, посещают храмы и поздравляют друг друга.',['Праздники','Традиции'],['Расскажите о рождественских традициях и блюдах в вашей семье.','Снимите атмосферный ролик: огни вечернего города, праздничный ужин.','Поздравьте подписчиков тёплым постом о доброте и семье.'],'h'],
+ [2,15,'Памятная дата','День памяти воинов-интернационалистов','Казахстан','Память о выводе войск из Афганистана','ribbon','15 февраля 1989 года завершился вывод советских войск из Афганистана. В Казахстане эту дату отмечают как день памяти воинов-интернационалистов: проходят возложения цветов и встречи с ветеранами.',['Память','Общество'],['Расскажите историю ветерана из вашего города — уважительно и без сенсационности.','Подготовьте информационный пост о дате и мемориалах рядом с вами.','Поддержите акции помощи ветеранам и семьям погибших.']],
+ [3,1,'Праздник','День благодарности','Казахстан','Алғыс айту күні','heart','День благодарности (Алғыс айту күні) отмечают 1 марта: люди благодарят близких, коллег и всех, кто помог им в течение года. Праздник учреждён по инициативе Ассамблеи народа Казахстана.',['Праздники','Общество'],['Запишите видео «Спасибо» близким и друзьям — формат хорошо цепляет в Reels.','Поблагодарите подписчиков и партнёров публично в Stories.','Устройте челлендж: каждый называет человека, которому благодарен.']],
+ [3,8,'Праздник','Международный женский день','Казахстан','Государственный праздник, выходной','gift','8 Марта — государственный праздник и нерабочий день. Женщинам дарят цветы и подарки, проходят концерты, акции брендов и праздничные распродажи.',['Праздники','Подарки'],['Сделайте подборку идей подарков для мам, жён и подруг в разных бюджетах.','Расскажите в Stories о женщинах Казахстана, которые вас вдохновляют.','Покажите праздничный образ или подготовку к вечеру: макияж, наряд, сервировка.'],'h'],
+ [3,21,'Праздник','Наурыз мейрамы','Казахстан','Государственный праздник, выходной','sun','Наурыз — праздник весеннего равноденствия и начала нового года по восточному календарю. В Казахстане его отмечают 21–23 марта: ставят юрты, проводят гуляния, национальные игры и концерты, готовят наурыз-коже из семи компонентов.',['Традиции','Казахстан'],['Покажите, как готовится наурыз-коже: семь ингредиентов и их символика.','Снимите ролик с гуляний: юрты, национальные игры, айтыс.','Покажите национальный образ дня и расскажите о традициях Наурыза.'],'h'],
+ [3,22,'Праздник','Наурыз мейрамы — второй день','Казахстан','Государственный праздник, выходной','sun','Второй день Наурыза — время ходить в гости, угощать соседей и мириться с обидами. Во дворах и парках продолжаются гуляния и ярмарки.',['Традиции','Казахстан'],['Снимите «день в гостях»: дастархан, угощения, семейные традиции.','Сделайте подборку мест, где проходят гуляния в вашем городе.','Расскажите о приметах и обычаях Наурыза, которые знает ваша семья.'],'h'],
+ [3,23,'Праздник','Наурыз мейрамы — третий день','Казахстан','Государственный праздник, выходной','sun','Третий день Наурыза — завершение праздничных выходных. Продолжаются концерты, фестивали национальной культуры и семейные встречи.',['Традиции','Казахстан'],['Подведите итоги праздника: лучшие кадры и моменты.','Сделайте обзор мест для семейного отдыха на выходные.','Поделитесь национальным рецептом, который стал хитом на вашем столе.'],'h'],
+ [4,12,'Международная дата','День космонавтики','Казахстан, мир','Байконур — космические ворота страны','rocket','12 апреля отмечают День космонавтики. Для Казахстана это особая дата: именно с космодрома Байконур в 1961 году стартовал первый космонавт Земли Юрий Гагарин.',['Наука','История'],['Расскажите о Байконуре и космических запусках, связанных с Казахстаном.','Сделайте образовательный ролик о том, как устроен космодром.','Подготовьте подборку фактов о космосе для детей и школьников.']],
+ [5,1,'Праздник','День единства народа Казахстана','Казахстан','Государственный праздник, выходной','handshake','1 мая — государственный праздник, посвящённый дружбе и согласию представителей разных этносов, живущих в стране. Проходят концерты, фестивали национальных культур и городские гуляния.',['Общество','Традиции'],['Покажите кухню или костюмы разных народов, которые живут в вашем городе.','Снимите интервью с людьми разных национальностей о том, что для них значит единство.','Сделайте подборку фестивалей и гуляний на майские выходные.'],'h'],
+ [5,5,'Праздник','День языков народа Казахстана','Казахстан','Многоязычие и культура','lang','5 мая в Казахстане отмечают День языков народа Казахстана. Дата напоминает о богатстве языковой и культурной среды страны и о поддержке государственного языка.',['Образование','Культура'],['Сделайте мини-урок: 5 полезных казахских слов и фраз.','Расскажите, на каких языках говорит ваша семья и друзья.','Поделитесь подборкой книг и сервисов для изучения языков.']],
+ [5,7,'Праздник','День защитника Отечества','Казахстан','Государственный праздник, выходной','shield','7 мая — праздник военнослужащих и всех, кто защищает страну. Вооружённые силы Казахстана были образованы 7 мая 1992 года. В этот день проходят торжественные мероприятия и поздравления.',['Праздники','Общество'],['Поздравьте тех, кто служит или служил, — коротким и искренним видео.','Расскажите историю защитника из вашей семьи.','Сделайте пост с идеями подарков для мужчин к празднику.'],'h'],
+ [5,9,'Праздник','День Победы','Казахстан','Государственный праздник, выходной','medal','9 мая — государственный праздник в память о победе в Великой Отечественной войне 1941–1945 годов. В этот день возлагают цветы к мемориалам, поздравляют ветеранов и проходят памятные акции.',['Память','Праздники'],['Поделитесь историей родных, переживших войну, уважительным и тёплым тоном.','Снимите репортаж с памятных мероприятий в вашем городе.','Напомните подписчикам о возможности помочь ветеранам.'],'h'],
+ [5,31,'Памятная дата','День памяти жертв политических репрессий и голода','Казахстан','Памятная дата','ribbon','31 мая в Казахстане чтят память жертв политических репрессий и голода. В этот день проходят возложения цветов к мемориалам и тематические выставки.',['Память','История'],['Расскажите о мемориалах и музеях, которые можно посетить.','Подготовьте сдержанный информационный пост о дате.','Поделитесь рекомендациями книг и фильмов по теме истории страны.']],
+ [6,1,'Международная дата','Международный день защиты детей','Казахстан, мир','Не выходной, но широко отмечается','kids','1 июня отмечают Международный день защиты детей. В Казахстане это не выходной, но в этот день проходят праздники во дворах и парках, акции и благотворительные мероприятия.',['Семья','Дети'],['Сделайте подборку идей, как провести день с детьми дома и на улице.','Покажите мероприятия для детей в вашем городе.','Поддержите благотворительную акцию для детей и расскажите о ней подписчикам.']],
+ [6,4,'Праздник','День государственных символов','Казахстан','Флаг, герб и гимн','flag','4 июня в Казахстане отмечают День государственных символов — флага, герба и гимна. Проходят образовательные и патриотические мероприятия.',['Общество','Культура'],['Расскажите, что символизируют цвета и элементы флага и герба.','Сделайте образовательный пост для детей и школьников.','Поделитесь историей создания гимна Казахстана.']],
+ [6,23,'Праздник','День полиции','Казахстан','Профессиональный праздник','badge','23 июня в Казахстане отмечают День полиции — профессиональный праздник сотрудников органов внутренних дел.',['Профессии','Общество'],['Поблагодарите сотрудников полиции и расскажите о профессии.','Подготовьте полезный пост о безопасности для подписчиков.','Сделайте интервью с сотрудником, который работает в вашем районе.']],
+ [6,28,'Праздник','День работников СМИ','Казахстан','Праздник журналистов и блогеров','news','28 июня — профессиональный праздник работников средств массовой информации. Отличный повод для авторов, журналистов и блогеров поделиться историей своей профессии.',['Профессии','Медиа'],['Расскажите, как создаётся ваш контент: от идеи до публикации.','Поблагодарите коллег по цеху и издания, которые вас вдохновляют.','Сделайте подборку полезных каналов и авторов Казахстана.']],
+ [7,6,'Праздник','День столицы','Казахстан','Государственный праздник, выходной','capital','6 июля — государственный праздник, День столицы Казахстана. Главные гуляния, концерты и фейерверки проходят в Астане, праздничные мероприятия идут по всей стране.',['Праздники','Город'],['Снимите репортаж с праздничной программы: концерты, салют, гуляния.','Сделайте подборку мест в Астане, которые стоит увидеть за выходные.','Расскажите историю переезда столицы и покажите любимые уголки города.'],'h'],
+ [8,30,'Праздник','День Конституции РК','Казахстан','Государственный праздник, выходной','scroll','30 августа в Казахстане отмечают День Конституции: действующая Конституция была принята на республиканском референдуме 30 августа 1995 года. Проходят торжественные собрания и памятные мероприятия.',['Общество','Право'],['Сделайте простое объяснение: какие права гарантирует Конституция.','Подготовьте квиз для подписчиков о главном законе страны.','Расскажите, как отмечают день в вашем городе.'],'h'],
+ [9,1,'Праздник','День знаний','Казахстан','Начало учебного года','book','1 сентября в Казахстане начинается новый учебный год: линейки, цветы и первые звонки. Традиционный повод для тёплых историй о школе, учителях и детях.',['Школа','Семья']],
+ [10,25,'Праздник','День Республики','Казахстан','Государственный праздник, выходной','flag','25 октября — государственный праздник, День Республики. Дата связана с принятием 25 октября 1990 года Декларации о государственном суверенитете Казахстана. В городах проходят концерты и праздничные программы.',['Праздники','История'],['Расскажите о ключевых событиях в истории суверенитета страны простым языком.','Покажите праздничные мероприятия и иллюминацию города.','Сделайте подборку идей, как провести длинные выходные.'],'h'],
+ [11,15,'Праздник','День национальной валюты — тенге','Казахстан','Тенге введён в обращение в 1993 году','coins','15 ноября Казахстан отмечает День национальной валюты: тенге был введён в обращение в 1993 году. Повод поговорить о финансах, истории денег и дизайне банкнот.',['Финансы','История'],['Расскажите историю тенге и покажите, как менялись банкноты.','Сделайте пост с простыми советами по личным финансам.','Подготовьте квиз про деньги и символы на банкнотах.']],
+ [12,1,'Памятная дата','День Первого Президента','Казахстан','Памятная дата, не выходной день','president','1 декабря в Казахстане отмечают День Первого Президента — памятную дату, которая сегодня не является выходным днём. В этот день проходят тематические и образовательные мероприятия.',['Общество','История'],['Подготовьте информационный пост о дате и её значении.','Расскажите о музеях и выставках, посвящённых новейшей истории страны.','Сделайте подборку документальных материалов по теме.']],
+ [12,16,'Праздник','День Независимости','Казахстан','Государственный праздник, выходной','flag','16 декабря — главный государственный праздник страны. В этот день в 1991 году был принят Конституционный закон о государственной независимости Республики Казахстан. Проходят торжественные церемонии, концерты и иллюминация.',['Праздники','История'],['Снимите вечерний город в праздничной иллюминации.','Расскажите, что для вас значит независимость и как вы празднуете.','Сделайте подборку мероприятий и мест в вашем городе.'],'h'],
+ [12,31,'Праздник','Новогодняя ночь','Казахстан','Главная ночь года','fir','31 декабря — самая ожидаемая ночь года. Не выходной день, но время, когда вся страна готовит стол, ёлку и подарки. Пик спроса на контент о подарках, образах и рецептах.',['Праздники','Семья'],['Покажите сервировку и меню новогоднего стола.','Сделайте обратный отсчёт в Stories и подведите итоги года.','Подготовьте лёгкий ролик с поздравлением для подписчиков.']]
+ ];
+ var NW=[
+ [6,0,3,'Праздник','День медицинского работника','Казахстан','Профессиональный праздник','medic','День медицинского работника отмечают в третье воскресенье июня. Повод сказать спасибо врачам, медсёстрам и всем, кто работает в сфере здравоохранения.',['Профессии','Здоровье'],['Поблагодарите медиков короткой историей или видео.','Расскажите о работе врача изнутри: интервью или день из жизни.','Поделитесь полезными советами по здоровью от специалистов.']],
+ [6,0,-1,'Праздник','День молодёжи','Казахстан','Последнее воскресенье июня','youth','День молодёжи отмечают в последнее воскресенье июня. В городах проходят фестивали, форумы, концерты и спортивные мероприятия для молодых людей.',['Молодёжь','Фестивали'],['Расскажите о молодёжных проектах и инициативах вашего города.','Снимите репортаж с мероприятия ко Дню молодёжи.','Поделитесь историей молодого человека, который делает интересное дело.']],
+ [7,0,1,'Праздник','День домбры','Казахстан','Первое воскресенье июля','dombra','День домбры отмечают в первое воскресенье июля. Домбра — один из главных символов казахской музыкальной культуры. В этот день проходят концерты и флешмобы с её звучанием.',['Культура','Музыка'],['Снимите видео с живой игрой на домбре и расскажите об инструменте.','Сделайте образовательный ролик об истории домбры и кюях.','Поддержите флешмоб: покажите, как звучит домбра в вашем городе.']],
+ [8,0,-1,'Праздник','День шахтёра','Казахстан','Последнее воскресенье августа','pick','День шахтёра отмечают в последнее воскресенье августа. Профессиональный праздник для работников горнодобывающей отрасли — важной части экономики страны.',['Профессии','Промышленность'],['Расскажите о профессии шахтёра и реальных условиях труда.','Поблагодарите работников отрасли в тематическом посте.','Покажите, как устроен город или посёлок вокруг предприятия.']],
+ [10,0,1,'Праздник','День учителя','Казахстан','Первое воскресенье октября','teacher','День учителя отмечают в первое воскресенье октября. Повод поблагодарить педагогов, вспомнить любимых учителей и рассказать об уважении к профессии.',['Образование','Профессии'],['Вспомните своего любимого учителя и расскажите, чему он научил.','Предложите подписчикам записать слова благодарности учителям.','Сделайте подборку идей, как поздравить педагога.']]
+ ];
+ var KUR={2025:[6,6],2026:[5,27],2027:[5,16]};
+ var KB=['Праздник','Курбан айт','Казахстан','Государственный праздник, выходной','mosque','Курбан айт — один из главных мусульманских праздников, праздник жертвоприношения. В Казахстане это государственный праздник и нерабочий день; дата меняется каждый год по лунному календарю. Принято собираться семьёй, угощать родных и соседей и помогать нуждающимся.',['Традиции','Религия'],['Покажите, как готовитесь к празднику: дастархан, угощения, поздравления.','Расскажите о традиции делиться угощением с соседями и нуждающимися.','Сделайте добрый пост с идеями помощи тем, кому она нужна.'],'ежегодно, дата меняется по лунному календарю'];
+
+ function dow(y,m,d){return new Date(y,m,d).getDay()}
+ function nth(y,m,wd,n){if(n>0){var f=dow(y,m,1);return 1+((wd-f+7)%7)+(n-1)*7}var l=new Date(y,m+1,0);return l.getDate()-((l.getDay()-wd+7)%7)}
+ function pl(n){var a=n%10,b=n%100;return n+(b>10&&b<15?' событий':a==1?' событие':a>1&&a<5?' события':' событий')}
+ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+
+ /* государственные праздники года */
+ function stateList(y){
+  var L=[];
+  FX.forEach(function(h){if(h[10]==='h')L.push({m:h[0]-1,d:h[1],name:h[3],ref:h})});
+  var k=KUR[y];if(k)L.push({m:k[0]-1,d:k[1],name:'Курбан айт',ref:null});
+  L.sort(function(a,b){return new Date(y,a.m,a.d)-new Date(y,b.m,b.d)});
+  return L}
+ /* переносы: праздник на сб/вс → ближайший рабочий день */
+ function transfers(y){
+  var L=stateList(y),taken={},T=[];
+  L.forEach(function(h){taken[h.m+'-'+h.d]=1});
+  L.forEach(function(h){
+   var w=dow(y,h.m,h.d);if(w!==0&&w!==6)return;
+   var t=new Date(y,h.m,h.d);
+   do{t.setDate(t.getDate()+1)}while(t.getDay()===0||t.getDay()===6||taken[t.getMonth()+'-'+t.getDate()]);
+   taken[t.getMonth()+'-'+t.getDate()]=1;
+   T.push({y:t.getFullYear(),m:t.getMonth(),d:t.getDate(),from:h,wd:w})});
+  return T}
+ function mkTransfer(t){
+  var fn=t.from.name,fd=t.from.d+' '+MG[t.from.m],wn=t.wd===6?'субботу':'воскресенье';
+  return ['Перенос выходного','Перенос выходного: '+fn,'Казахстан','Выходной перенесён с '+fd,'cal',
+   'Государственный праздник «'+fn+'» ('+fd+') в этом году выпал на '+wn+', поэтому по Трудовому кодексу РК выходной день переносится на ближайший рабочий день — '+t.d+' '+MG[t.m]+'. Учитывайте это при планировании публикаций, съёмок и рекламных размещений: ритм аудитории в длинные выходные меняется.',
+   ['Выходные','Планирование'],
+   ['Запланируйте контент на длинные выходные заранее: подборки мест, афиша, идеи отдыха.','Сделайте пост «Как провести длинные выходные» с маршрутами и бюджетом.','Предупредите подписчиков и партнёров о сдвиге графика публикаций и рекламы.'],
+   'в этом году',SRC,'Перенос: '+fd]}
+
+ /* данные месяца: D — события по дням, F — признак дня ('h' праздник, 't' перенос) */
+ function build(y,m,only){
+  var D={},F={};
+  function add(d,e,f){(D[d]=D[d]||[]).push(e);if(f&&!F[d]||f==='h')F[d]=f}
+  if(!only){
+   FX.forEach(function(h){if(h[0]-1!==m||h[10]!=='h')return;
+    add(h[1],[h[2],h[3],h[4],h[5],h[6],h[7],h[8],h[9],'ежегодно',SRC],'h')});
+   var k=KUR[y];
+   if(k&&k[0]-1===m)add(k[1],[KB[0],KB[1],KB[2],KB[3],KB[4],KB[5],KB[6],KB[7],y>=2027?'ориентировочная дата, уточняется':KB[8],SRC],'h')}
+  transfers(y).forEach(function(t){if(t.y===y&&t.m===m)add(t.d,mkTransfer(t),'t')});
+  if(!only){
+   FX.forEach(function(h){if(h[0]-1!==m||h[10]==='h')return;
+    add(h[1],[h[2],h[3],h[4],h[5],h[6],h[7],h[8],h[9],'ежегодно'],'')});
+   NW.forEach(function(w){if(w[0]-1!==m)return;
+    add(nth(y,m,w[1],w[2]),[w[3],w[4],w[5],w[6],w[7],w[8],w[9],w[10],'плавающая дата, ежегодно'],'')})}
+  return {D:D,F:F}}
+
+ /* ячейка календаря */
+ var CH={'Праздник':['bg-rose-100 text-rose-700','bg-rose-500'],'Памятная дата':['bg-slate-100 text-slate-700','bg-slate-500'],'Международная дата':['bg-sky-100 text-sky-800','bg-sky-500'],'Событие':['bg-sky-100 text-sky-800','bg-sky-500'],'Перенос выходного':['bg-white/90 text-rose-800','bg-rose-400']};
+ function cell(d,we,L,fl){
+  var has=!!(L&&L.length),cls='calendar-day flex flex-col items-start rounded-xl border transition';
+  if(fl==='h')cls+=' kz-h';else if(fl==='t')cls+=' hatch';else cls+=we?' bg-pink-50 border-pink-100':' bg-white border-gray-100';
+  if(has)cls+=' cursor-pointer hover:shadow-md';
+  var o='<div '+(has?'data-day="'+d+'" onclick="openDay('+d+')" ':'')+'class="'+cls+'"><span class="text-[13px] font-semibold '+(we||fl?'text-accent':'text-gray-800')+'">'+d+'</span>';
+  if(has){var e=L[0],c=CH[e[0]]||CH['Праздник'];
+   if(fl==='h'&&e[0]==='Праздник')c=['bg-white/90 text-rose-700','bg-rose-500'];
+   var t=esc(e[10]||e[1]),n=pl(L.length);
+   o+='<span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg '+c[0]+'" title="'+t+'"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 '+c[1]+'"></i><span>'+t+'</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500" title="'+n+'">'+n+'</span>'}
+  return o+'</div>'}
+
+ window.__KZ={build:build,cell:cell};
+
+ /* Сентябрь 2025 уже заполнен вручную — добавляем только перенос с 30 августа на 1 сентября */
+ (function(){
+  var C=window.__CAL;if(!C||!C.D0)return;
+  var B=build(2025,8,true);if(!B.D[1])return;
+  var grid=document.querySelectorAll('#section-kalendar .card .grid-cols-7')[1];
+  var c1=grid&&grid.querySelector('.calendar-day');if(!c1||c1.dataset.day)return;
+  C.D0[1]=B.D[1];
+  var w=document.createElement('div');w.innerHTML=cell(1,false,B.D[1],'t');
+  c1.parentNode.replaceChild(w.firstChild,c1)})();
+})();
+</script>
+<script>
+/* Календарь: выбор месяца и переключение стрелками */
+(function(){
+ function $(i){return document.getElementById(i)}
+ var MN=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+ var y=2025,m=8,py=2025;
+ var grids=document.querySelectorAll('#section-kalendar .card .grid-cols-7'),grid=grids[1];
+ if(!grid||!$('kal-month-menu'))return;
+ [].forEach.call(grid.querySelectorAll('.calendar-day[data-day]'),function(c){var a=c.children[1],b=c.children[2];if(a)a.title=a.textContent.trim();if(b)b.title=b.textContent.trim()});
+ var orig=grid.innerHTML;
+ function closeM(){var mn=$('kal-month-menu');if(mn)mn.classList.add('hidden');var b=$('kal-month-btn');if(b)b.setAttribute('aria-expanded','false')}
+ function pickerRender(){$('kal-year').textContent=py;
+  $('kal-mg').innerHTML=MN.map(function(n,i){return '<button type="button" class="kal-m'+(py===y&&i===m?' on':'')+'" onclick="kalPick('+i+')">'+n.slice(0,3)+'</button>'}).join('')}
+ function render(){var t=MN[m]+' '+y;$('kal-month-label').textContent=t;var h=$('kal-title');if(h)h.textContent=t;
+  var CL=window.__CAL,KZ=window.__KZ;
+  if(y===2025&&m===8){if(CL)CL.set(y,m,CL.D0);grid.innerHTML=orig;return}
+  var B=KZ?KZ.build(y,m):{D:{},F:{}};if(CL)CL.set(y,m,B.D);
+  var first=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate(),o='',i,d;
+  for(i=0;i<first;i++)o+='<div></div>';
+  for(d=1;d<=n;d++){var we=(first+d-1)%7>=5;
+   o+=KZ?KZ.cell(d,we,B.D[d],B.F[d]):'<div class="calendar-day flex flex-col items-start rounded-xl border '+(we?'bg-pink-50 border-pink-100':'bg-white border-gray-100')+' transition"><span class="text-[13px] font-semibold '+(we?'text-accent':'text-gray-800')+'">'+d+'</span></div>'}
+  grid.innerHTML=o}
+ window.kalStep=function(k){m+=k;if(m<0){m=11;y--}if(m>11){m=0;y++}py=y;render();pickerRender()};
+ window.kalYear=function(k){py+=k;pickerRender()};
+ window.kalPick=function(i){y=py;m=i;render();closeM()};
+ window.kalMonthToggle=function(e){e.stopPropagation();var mn=$('kal-month-menu'),was=!mn.classList.contains('hidden');
+  ['country-menu','city-menu'].forEach(function(id){var x=$(id);if(x)x.classList.add('hidden')});
+  if(was){closeM();return}
+  py=y;pickerRender();mn.classList.remove('hidden');$('kal-month-btn').setAttribute('aria-expanded','true')};
+ ['toggleCountryMenu','toggleCityMenu'].forEach(function(n){var f=window[n];if(typeof f==='function')window[n]=function(){closeM();return f.apply(this,arguments)}});
+ document.addEventListener('click',function(e){if(!e.target.closest('#kal-month-wrap'))closeM()});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeM()});
+ pickerRender();
+})();
+</script>
+<style>
+/* Календарь: аккуратная сетка, ровные блоки, красивая лента */
+#section-kalendar>.grid{gap:24px;align-items:stretch}
+#section-kalendar>.grid>aside{display:flex;min-width:0}
+#section-kalendar>.grid>aside>.card{flex:1;display:flex;flex-direction:column;padding:24px;border-radius:20px}
+#section-kalendar>.grid>aside>.card>button.w-full{margin-bottom:16px}
+#section-kalendar>.grid>aside>.card>.space-y-3,#section-kalendar>.grid>aside>.card>.space-y-5{flex:1;display:flex;flex-direction:column;justify-content:space-between}
+#section-kalendar>.grid>div{min-width:0;display:flex;flex-direction:column}
+#section-kalendar>.grid>div>.card{flex:1;padding:20px;border-radius:20px}
+#section-kalendar .kal-ctl{margin-bottom:16px}
+/* карточка календаря */
+#section-kalendar>.grid>div>.card>div:first-child{margin-bottom:20px}
+#section-kalendar #kal-title{font-size:24px;letter-spacing:-.01em}
+#section-kalendar .card .grid-cols-7>.text-center{font-size:12px;letter-spacing:.07em;text-transform:uppercase;padding:6px 0}
+#section-kalendar .calendar-day{border-radius:14px;transition:border-color .2s,box-shadow .2s,transform .2s,background .2s}
+#section-kalendar .calendar-day[data-day]:hover{border-color:var(--ac);box-shadow:0 12px 24px -16px var(--ac);transform:translateY(-1px)}
+</style>
+<style>
+/* Календарь: жёстко зафиксированная сетка — 6 строк одинаковой высоты, единый вид подписей */
+#section-kalendar{--kh:92px}
+#section-kalendar .card .grid-cols-7:not(.mb-2){grid-template-rows:repeat(6,var(--kh));grid-auto-rows:var(--kh)}
+#section-kalendar .calendar-day{height:var(--kh);min-height:0;max-height:var(--kh);overflow:hidden;box-sizing:border-box}
+#section-kalendar .calendar-day>span:first-child{flex:none;box-sizing:border-box;height:24px;min-width:24px;padding:0 3px;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+@media(min-width:721px){
+ #section-kalendar .calendar-day{padding:5px}
+ #section-kalendar .calendar-day>span:nth-child(2){flex:none;display:flex;align-items:center;box-sizing:border-box;width:100%;height:20px;margin-top:5px;padding:0 6px;font-size:10px;line-height:20px;overflow:hidden}
+ #section-kalendar .calendar-day>span:nth-child(2)>i{display:none}
+ #section-kalendar .calendar-day>span:nth-child(2)>span{display:block;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal;hyphens:none;line-height:20px}
+ #section-kalendar .calendar-day>span:nth-child(3){flex:none;display:block;box-sizing:border-box;max-width:100%;height:18px;margin-top:4px;padding:0 6px;font-size:10px;line-height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
+@media(max-width:720px){#section-kalendar{--kh:52px}}
+</style>
 </body>
 </html>

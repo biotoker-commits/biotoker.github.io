@@ -2413,7 +2413,6 @@ switchSection('afisha');window.scrollTo(0,0);
 </style>
 <style>
 /* ===== Контент-календарь: мобильная версия ===== */
-#section-kalendar .kal-agenda{display:none}
 @media(max-width:720px){
  #section-kalendar{--kh:56px}
  #section-kalendar>.grid{gap:14px}
@@ -2432,9 +2431,7 @@ switchSection('afisha');window.scrollTo(0,0);
  #section-kalendar .calendar-day>span:nth-child(3){display:none!important}
  #section-kalendar .calendar-day[data-day]:hover{transform:none}
  #section-kalendar .kal-ctl .av-ddbtn,#section-kalendar .kal-nv{min-height:44px}
- /* список событий месяца */
- #section-kalendar .kal-agenda{display:block;margin-top:16px;padding-top:14px;border-top:1px solid #EDE6E9}
- /* окно дня — шторка на весь экран */
+  /* окно дня — шторка на весь экран */
  #day-modal{padding:0!important;align-items:flex-end!important}
  #day-modal>div{max-width:100%!important;max-height:94vh!important;height:94vh;border-radius:24px 24px 0 0!important}
  #day-modal #dm-title{font-size:20px}
@@ -2446,52 +2443,21 @@ switchSection('afisha');window.scrollTo(0,0);
  #day-modal #dm-detail h3{font-size:20px}
  #day-modal #dm-detail .border-t>button{width:100%}
 }
-.kal-agenda .ka-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
-.kal-agenda .ka-h b{font-size:15px;font-weight:800}
-.kal-agenda .ka-h span{font-size:12px;color:#6B6570}
-.kal-agenda .ka-row{display:flex;gap:12px;width:100%;text-align:left;padding:10px 4px;border:0;border-bottom:1px solid #F3EEF1;background:none;font-family:inherit;cursor:pointer}
-.kal-agenda .ka-row:last-child{border-bottom:0}
-.kal-agenda .ka-d{flex:none;width:40px;text-align:center}
-.kal-agenda .ka-d b{display:block;font-size:20px;font-weight:900;line-height:1;color:#9C1C4F}
-.kal-agenda .ka-d span{display:block;margin-top:3px;font-size:10px;font-weight:600;text-transform:uppercase;color:#9CA3AF}
-.kal-agenda .ka-ev{flex:1;min-width:0}
-.kal-agenda .ka-t{display:flex;align-items:flex-start;gap:7px;font-size:13px;font-weight:700;line-height:1.25;color:#1A1A1A;margin-bottom:4px}
-.kal-agenda .ka-t:last-of-type{margin-bottom:0}
-.kal-agenda .ka-dot{flex:none;width:8px;height:8px;border-radius:50%;margin-top:4px}
-.kal-agenda .ka-b{display:inline-block;margin-top:5px;margin-right:4px;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700}
-.kal-agenda .ka-more{font-size:11px;color:#6B6570;margin-top:2px}
-.kal-agenda .ka-empty{font-size:13px;color:#6B6570;padding:8px 0}
 </style>
 <script>
 (function(){
- var grid=document.querySelectorAll('#section-kalendar .card .grid-cols-7')[1];
- if(!grid)return;
- var card=grid.closest('.card'),legend=card.querySelector('.flex-wrap.items-center');
- var box=document.createElement('div');box.className='kal-agenda';
- if(legend)legend.insertAdjacentElement('afterend',box);else card.appendChild(box);
- var WD=['вс','пн','вт','ср','чт','пт','сб'],MGEN=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
- var DOT={'Праздник':'#f43f5e','Памятная дата':'#64748b','Международная дата':'#0ea5e9','Событие':'#8b5cf6','Перенос выходного':'#f59e0b'};
- function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
- function plural(n){var a=n%10,b=n%100;return n+(b>10&&b<15?' событий':a==1?' событие':a>1&&a<5?' события':' событий')}
- function render(){
-  var C=window.__CAL;if(!C)return;
-  var D=C.D,ym=C.ym?C.ym():[2025,8],days=Object.keys(D).map(Number).sort(function(a,b){return a-b}),tot=0,h='';
-  days.forEach(function(d){
-   var L=D[d];tot+=L.length;
-   var off=L.some(function(e){return e[0]==='Праздник'&&e[9]}),tr=L.some(function(e){return e[0]==='Перенос выходного'});
-   h+='<button type="button" class="ka-row" onclick="openDay('+d+')"><div class="ka-d"><b>'+d+'</b><span>'+WD[new Date(ym[0],ym[1],d).getDay()]+'</span></div><div class="ka-ev">'
-    +L.slice(0,3).map(function(e){return '<div class="ka-t"><i class="ka-dot" style="background:'+(DOT[e[0]]||'#8b5cf6')+'"></i><span>'+esc(e[1])+'</span></div>'}).join('')
-    +(L.length>3?'<div class="ka-more">и ещё '+(L.length-3)+'</div>':'')
-    +(off?'<span class="ka-b" style="background:#fbcfe8;color:#7A1640">Выходной</span>':'')
-    +(tr?'<span class="ka-b" style="background:#FEF3C7;color:#92400E">Перенос выходного</span>':'')
-    +'</div></button>'});
-  box.innerHTML='<div class="ka-h"><b>События месяца</b><span>'+(tot?plural(tot):'')+'</span></div>'+(h||'<div class="ka-empty">На этот месяц событий пока нет.</div>')}
- new MutationObserver(function(){render()}).observe(grid,{childList:true});
- render();
- /* на телефоне при выборе события в окне дня прокручиваем к описанию */
  var ds=window.daySel;
  if(typeof ds==='function')window.daySel=function(i){ds(i);if(window.innerWidth<768){var d=document.getElementById('dm-detail');if(d)d.scrollIntoView({behavior:'smooth',block:'start'})}};
 })();
 </script>
+<style>
+/* Календарь: сворачиваемые фильтры на планшетах и телефонах */
+@media(max-width:1279px){
+ #section-kalendar>.grid>aside.av-fcollapse{display:block}
+ #section-kalendar>.grid>aside.av-fcollapse>.card{display:none;padding:18px}
+ #section-kalendar>.grid>aside.av-fcollapse.open>.card{display:block;margin-top:12px}
+ #section-kalendar>.grid>aside.av-fcollapse .av-ftoggle{margin:0}
+}
+</style>
 </body>
 </html>

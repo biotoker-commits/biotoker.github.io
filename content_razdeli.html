@@ -1615,7 +1615,7 @@ var MG=['января','февраля','марта','апреля','мая','и
 var D0=D,cur=null,flt='Все',sel=0;
 var XG={fir:['from-emerald-500 to-teal-700','fa-tree'],church:['from-amber-300 to-orange-500','fa-church'],gift:['from-pink-400 to-rose-600','fa-gift'],sun:['from-yellow-300 to-orange-500','fa-sun'],handshake:['from-sky-400 to-indigo-600','fa-handshake'],shield:['from-slate-500 to-slate-800','fa-shield-halved'],medal:['from-red-500 to-rose-800','fa-medal'],capital:['from-sky-400 to-indigo-600','fa-building-columns'],scroll:['from-indigo-400 to-blue-700','fa-scroll'],flag:['from-sky-300 to-cyan-600','fa-flag'],mosque:['from-emerald-400 to-teal-700','fa-mosque'],ribbon:['from-slate-400 to-slate-700','fa-ribbon'],rocket:['from-indigo-400 to-violet-700','fa-rocket'],coins:['from-amber-300 to-yellow-600','fa-coins'],president:['from-blue-500 to-indigo-800','fa-user-tie'],news:['from-slate-400 to-sky-700','fa-newspaper'],badge:['from-blue-500 to-blue-900','fa-user-shield'],medic:['from-red-400 to-rose-600','fa-user-doctor'],youth:['from-fuchsia-400 to-purple-600','fa-people-group'],dombra:['from-amber-500 to-orange-700','fa-guitar'],pick:['from-slate-500 to-stone-700','fa-hammer'],teacher:['from-indigo-400 to-blue-600','fa-chalkboard-user'],cal:['from-gray-400 to-gray-600','fa-calendar-day']};
 for(var xk in XG)G[xk]=XG[xk];
-window.__CAL={get D(){return D},D0:D0,G:G,cur:function(){return cur},mg:function(){return MG[CM]},set:function(y,m,nd){CY=y;CM=m;D=nd}};
+window.__CAL={get D(){return D},D0:D0,G:G,cur:function(){return cur},mg:function(){return MG[CM]},ym:function(){return [CY,CM]},set:function(y,m,nd){CY=y;CM=m;D=nd}};
 function pl(n){var m=n%10,h=n%100;return n+(h>10&&h<15?' событий':m==1?' событие':m>1&&m<5?' события':' событий');}
 function evs(d){return D[d].map(function(e){var x={cat:e[0],t:e[1],pl:e[2],sh:e[3],g:G[e[4]],d:e[5],tags:e[6],sfx:e[8],src:e[9]};x.ideas=e[7]||['Снимите Reels по теме «'+e[1]+'» — коротко и с цепляющим началом.','Расскажите историю или интересный факт о событии в Stories.','Сделайте подборку-пост и попросите подписчиков поделиться своим опытом.'];return x;});}
 document.querySelectorAll('.calendar-day[data-day]').forEach(function(c){var d=+c.dataset.day;if(!D[d])return;var s=c.children[2];if(s)s.textContent=pl(D[d].length);});
@@ -2411,5 +2411,87 @@ switchSection('afisha');window.scrollTo(0,0);
 }
 @media(max-width:720px){#section-kalendar{--kh:52px}}
 </style>
+<style>
+/* ===== Контент-календарь: мобильная версия ===== */
+#section-kalendar .kal-agenda{display:none}
+@media(max-width:720px){
+ #section-kalendar{--kh:56px}
+ #section-kalendar>.grid{gap:14px}
+ #section-kalendar>.grid>div>.card{padding:12px;border-radius:16px}
+ #section-kalendar>.grid>aside>.card{padding:16px;border-radius:16px}
+ #section-kalendar aside .sticky{position:static}
+ #section-kalendar #kal-title{font-size:20px}
+ #section-kalendar .card .grid-cols-7{gap:3px}
+ #section-kalendar .card .grid-cols-7>.text-center{font-size:10px;letter-spacing:.02em;padding:4px 0}
+ /* ячейка: число + цветная точка вместо подписей */
+ #section-kalendar .calendar-day{padding:4px 2px;align-items:center;border-radius:10px}
+ #section-kalendar .calendar-day>span:first-child{height:24px;min-width:24px;font-size:13px}
+ #section-kalendar .calendar-day>span:nth-child(2){display:flex!important;justify-content:center;width:auto!important;height:8px!important;margin:3px 0 0!important;padding:0!important;background:transparent!important;font-size:0!important;line-height:0!important;border-radius:0}
+ #section-kalendar .calendar-day>span:nth-child(2)>i{display:block!important;width:8px!important;height:8px!important;margin:0!important}
+ #section-kalendar .calendar-day>span:nth-child(2)>span{display:none!important}
+ #section-kalendar .calendar-day>span:nth-child(3){display:none!important}
+ #section-kalendar .calendar-day[data-day]:hover{transform:none}
+ #section-kalendar .kal-ctl .av-ddbtn,#section-kalendar .kal-nv{min-height:44px}
+ /* список событий месяца */
+ #section-kalendar .kal-agenda{display:block;margin-top:16px;padding-top:14px;border-top:1px solid #EDE6E9}
+ /* окно дня — шторка на весь экран */
+ #day-modal{padding:0!important;align-items:flex-end!important}
+ #day-modal>div{max-width:100%!important;max-height:94vh!important;height:94vh;border-radius:24px 24px 0 0!important}
+ #day-modal #dm-title{font-size:20px}
+ #day-modal .px-6{padding-left:16px!important;padding-right:16px!important}
+ #day-modal #dm-tabs{flex-wrap:nowrap;overflow-x:auto;gap:6px;-webkit-overflow-scrolling:touch}
+ #day-modal #dm-tabs>button{flex:none;white-space:nowrap}
+ #day-modal #dm-detail{padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+ #day-modal #dm-detail>div:first-child{height:108px!important;font-size:42px!important}
+ #day-modal #dm-detail h3{font-size:20px}
+ #day-modal #dm-detail .border-t>button{width:100%}
+}
+.kal-agenda .ka-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
+.kal-agenda .ka-h b{font-size:15px;font-weight:800}
+.kal-agenda .ka-h span{font-size:12px;color:#6B6570}
+.kal-agenda .ka-row{display:flex;gap:12px;width:100%;text-align:left;padding:10px 4px;border:0;border-bottom:1px solid #F3EEF1;background:none;font-family:inherit;cursor:pointer}
+.kal-agenda .ka-row:last-child{border-bottom:0}
+.kal-agenda .ka-d{flex:none;width:40px;text-align:center}
+.kal-agenda .ka-d b{display:block;font-size:20px;font-weight:900;line-height:1;color:#9C1C4F}
+.kal-agenda .ka-d span{display:block;margin-top:3px;font-size:10px;font-weight:600;text-transform:uppercase;color:#9CA3AF}
+.kal-agenda .ka-ev{flex:1;min-width:0}
+.kal-agenda .ka-t{display:flex;align-items:flex-start;gap:7px;font-size:13px;font-weight:700;line-height:1.25;color:#1A1A1A;margin-bottom:4px}
+.kal-agenda .ka-t:last-of-type{margin-bottom:0}
+.kal-agenda .ka-dot{flex:none;width:8px;height:8px;border-radius:50%;margin-top:4px}
+.kal-agenda .ka-b{display:inline-block;margin-top:5px;margin-right:4px;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700}
+.kal-agenda .ka-more{font-size:11px;color:#6B6570;margin-top:2px}
+.kal-agenda .ka-empty{font-size:13px;color:#6B6570;padding:8px 0}
+</style>
+<script>
+(function(){
+ var grid=document.querySelectorAll('#section-kalendar .card .grid-cols-7')[1];
+ if(!grid)return;
+ var card=grid.closest('.card'),legend=card.querySelector('.flex-wrap.items-center');
+ var box=document.createElement('div');box.className='kal-agenda';
+ if(legend)legend.insertAdjacentElement('afterend',box);else card.appendChild(box);
+ var WD=['вс','пн','вт','ср','чт','пт','сб'],MGEN=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+ var DOT={'Праздник':'#f43f5e','Памятная дата':'#64748b','Международная дата':'#0ea5e9','Событие':'#8b5cf6','Перенос выходного':'#f59e0b'};
+ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+ function plural(n){var a=n%10,b=n%100;return n+(b>10&&b<15?' событий':a==1?' событие':a>1&&a<5?' события':' событий')}
+ function render(){
+  var C=window.__CAL;if(!C)return;
+  var D=C.D,ym=C.ym?C.ym():[2025,8],days=Object.keys(D).map(Number).sort(function(a,b){return a-b}),tot=0,h='';
+  days.forEach(function(d){
+   var L=D[d];tot+=L.length;
+   var off=L.some(function(e){return e[0]==='Праздник'&&e[9]}),tr=L.some(function(e){return e[0]==='Перенос выходного'});
+   h+='<button type="button" class="ka-row" onclick="openDay('+d+')"><div class="ka-d"><b>'+d+'</b><span>'+WD[new Date(ym[0],ym[1],d).getDay()]+'</span></div><div class="ka-ev">'
+    +L.slice(0,3).map(function(e){return '<div class="ka-t"><i class="ka-dot" style="background:'+(DOT[e[0]]||'#8b5cf6')+'"></i><span>'+esc(e[1])+'</span></div>'}).join('')
+    +(L.length>3?'<div class="ka-more">и ещё '+(L.length-3)+'</div>':'')
+    +(off?'<span class="ka-b" style="background:#fbcfe8;color:#7A1640">Выходной</span>':'')
+    +(tr?'<span class="ka-b" style="background:#FEF3C7;color:#92400E">Перенос выходного</span>':'')
+    +'</div></button>'});
+  box.innerHTML='<div class="ka-h"><b>События месяца</b><span>'+(tot?plural(tot):'')+'</span></div>'+(h||'<div class="ka-empty">На этот месяц событий пока нет.</div>')}
+ new MutationObserver(function(){render()}).observe(grid,{childList:true});
+ render();
+ /* на телефоне при выборе события в окне дня прокручиваем к описанию */
+ var ds=window.daySel;
+ if(typeof ds==='function')window.daySel=function(i){ds(i);if(window.innerWidth<768){var d=document.getElementById('dm-detail');if(d)d.scrollIntoView({behavior:'smooth',block:'start'})}};
+})();
+</script>
 </body>
 </html>

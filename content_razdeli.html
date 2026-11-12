@@ -884,9 +884,21 @@ main h1{font-size:28px;line-height:1.15}
                     <div class="text-[11px] font-semibold text-gray-500 uppercase tracking-wider mb-3">Тематика инфоповодов</div>
                     <div class="space-y-3 mb-5"><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom" checked> Все темы</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Государственные праздники</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Официальные выходные и переносы</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Праздники и традиции</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Международные и памятные даты</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Профессиональные праздники</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Общество и экология</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Бизнес и технологии</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Наука и образование</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Здоровье и спорт</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Еда и напитки</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Мода и красота</label><label class="flex items-center gap-3 text-[13px] cursor-pointer hover:text-accent"><input type="checkbox" class="checkbox-custom"> Другое</label></div>
                     <button class="w-full py-3 rounded-xl bg-accent text-white font-semibold text-sm hover:bg-accent-hover transition">Применить фильтры</button>
-                    <div class="mt-4 p-3 rounded-xl bg-pink-50 text-[11px] text-gray-500 leading-relaxed flex gap-2.5">
-                        <i class="fa-solid fa-circle-info text-accent mt-0.5"></i>
-                        <div><b class="text-accent block mb-0.5">В календаре указаны:</b>государственные праздники, официальные выходные и переносы, памятные даты и тематические инфоповоды для создания контента.</div>
+                    <div class="kal-info" id="kal-sum">
+                        <div class="kal-sum-h">
+                            <span class="kal-info-ic"><i class="fa-solid fa-chart-simple"></i></span>
+                            <div><b id="ks-title">Сентябрь 2025 в цифрах</b></div>
+                        </div>
+                        <div class="kal-sum-g">
+                            <div><b id="ks-days">0</b><span>дней с датами</span></div>
+                            <div><b id="ks-ev">0</b><span>событий</span></div>
+                            <div><b id="ks-we">0</b><span>выходных</span></div>
+                        </div>
+                        <button type="button" class="kal-sum-top" id="ks-top">
+                            <span class="kal-sum-fl"><i class="fa-solid fa-fire"></i></span>
+                            <span class="kal-sum-t"><small>Самый насыщенный</small><b id="ks-topt">—</b></span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
             </aside>
@@ -906,7 +918,7 @@ main h1{font-size:28px;line-height:1.15}
                     <div class="grid grid-cols-7 gap-1.5"><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">1</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">2</span></div><div data-day="3" onclick="openDay(3)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">3</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-rose-100 text-rose-700"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-rose-500"></i><span>День знаний</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">2 события</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">4</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">5</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">6</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">7</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">8</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">9</span></div><div data-day="10" onclick="openDay(10)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">10</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-emerald-100 text-emerald-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-emerald-500"></i><span>День красоты</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">3 события</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">11</span></div><div data-day="12" onclick="openDay(12)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">12</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-violet-100 text-violet-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-violet-500"></i><span>День программиста</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">2 события</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">13</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">14</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">15</span></div><div data-day="16" onclick="openDay(16)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">16</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-sky-100 text-sky-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-sky-500"></i><span>День чистоты</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">2 события</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">17</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">18</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">19</span></div><div data-day="20" onclick="openDay(20)" class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 cursor-pointer hover:shadow-md transition"><span class="inline-flex w-6 h-6 rounded-full bg-accent text-white items-center justify-center text-[13px] font-bold">20</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-rose-100 text-rose-700"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-rose-500"></i><span>Международный день мира</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">5 событий</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">21</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">22</span></div><div data-day="23" onclick="openDay(23)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">23</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-violet-100 text-violet-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-violet-500"></i><span>День жестовых языков</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">3 события</span></div><div data-day="24" onclick="openDay(24)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">24</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-sky-100 text-sky-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-sky-500"></i><span>Всемирный день туризма</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">4 события</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">25</span></div><div data-day="26" onclick="openDay(26)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">26</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-emerald-100 text-emerald-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-emerald-500"></i><span>День моря</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">2 события</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">27</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-pink-50 border-pink-100 transition"><span class="text-[13px] font-semibold text-accent">28</span></div><div class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 transition"><span class="text-[13px] font-semibold text-gray-800">29</span></div><div data-day="30" onclick="openDay(30)" class="calendar-day flex flex-col items-start rounded-xl border bg-white border-gray-100 cursor-pointer hover:shadow-md transition"><span class="text-[13px] font-semibold text-gray-800">30</span><span class="mt-1.5 flex w-full items-start gap-1 text-[10px] leading-tight font-semibold px-1.5 py-1 rounded-lg bg-yellow-100 text-yellow-800"><i class="w-1.5 h-1.5 mt-[3px] rounded-full flex-shrink-0 bg-yellow-500"></i><span>День кофе</span></span><span class="mt-1 inline-block text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">3 события</span></div><div class="calendar-day rounded-xl border bg-white border-gray-100"><span class="text-[13px] text-gray-300">1</span></div><div class="calendar-day rounded-xl border bg-white border-gray-100"><span class="text-[13px] text-gray-300">2</span></div><div class="calendar-day rounded-xl border bg-white border-gray-100"><span class="text-[13px] text-gray-300">3</span></div><div class="calendar-day rounded-xl border bg-pink-50/60 border-pink-100"><span class="text-[13px] text-gray-300">4</span></div><div class="calendar-day rounded-xl border bg-pink-50/60 border-pink-100"><span class="text-[13px] text-gray-300">5</span></div></div>
                     <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-5 text-[11px] text-gray-500">
                         <span class="flex items-center gap-1.5"><i class="w-3.5 h-3.5 rounded bg-pink-300"></i> Государственный праздник</span>
-                        <span class="flex items-center gap-1.5"><i class="w-3.5 h-3.5 rounded bg-pink-100"></i> Выходной день</span>
+                        <span class="flex items-center gap-1.5"><i class="w-3.5 h-3.5 rounded bg-pink-100" style="background:#FADCE8;border:1px solid #EFB5CC"></i> Выходной день</span>
                         <span class="flex items-center gap-1.5"><i class="w-3.5 h-3.5 rounded hatch"></i> Перенос выходного</span>
                         <span class="flex items-center gap-1.5"><i class="w-3.5 h-3.5 rounded bg-violet-200"></i> Инфоповод</span>
                         <button class="flex items-center gap-1.5 ml-auto hover:text-accent"><i class="fa-regular fa-circle-question"></i> Показать легенду</button>
@@ -919,6 +931,11 @@ main h1{font-size:28px;line-height:1.15}
                     <h3 class="font-extrabold text-base mb-5">Ближайшие инфоповоды</h3>
                     <div class="space-y-5"><div class="flex gap-3 items-start group cursor-pointer" onclick="addToPlan('Международный день мира', 'day')"><div class="w-10 text-center flex-shrink-0 pt-1"><div class="text-xl font-black text-accent leading-none">20</div><div class="text-[10px] uppercase text-gray-400 font-semibold mt-1">сен</div></div><div class="w-[48px] h-[48px] rounded-xl bg-gradient-to-br from-sky-300 to-blue-500 flex items-center justify-center text-white text-lg flex-shrink-0"><i class="fa-solid fa-dove"></i></div><div class="flex-1 min-w-0"><div class="font-bold text-[13px] leading-tight group-hover:text-accent transition">Международный день мира</div><div class="text-xs text-gray-500 mt-0.5">Весь день · Мир</div><div class="flex flex-wrap gap-1.5 mt-2"><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Общество</span><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Мир</span></div></div></div><div class="flex gap-3 items-start group cursor-pointer" onclick="addToPlan('День благодарности', 'day')"><div class="w-10 text-center flex-shrink-0 pt-1"><div class="text-xl font-black text-accent leading-none">21</div><div class="text-[10px] uppercase text-gray-400 font-semibold mt-1">сен</div></div><div class="w-[48px] h-[48px] rounded-xl bg-gradient-to-br from-rose-300 to-orange-400 flex items-center justify-center text-white text-lg flex-shrink-0"><i class="fa-solid fa-heart"></i></div><div class="flex-1 min-w-0"><div class="font-bold text-[13px] leading-tight group-hover:text-accent transition">День благодарности</div><div class="text-xs text-gray-500 mt-0.5">Весь день · Мир</div><div class="flex flex-wrap gap-1.5 mt-2"><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Праздники</span><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Общество</span></div></div></div><div class="flex gap-3 items-start group cursor-pointer" onclick="addToPlan('День осеннего равноденствия', 'day')"><div class="w-10 text-center flex-shrink-0 pt-1"><div class="text-xl font-black text-accent leading-none">23</div><div class="text-[10px] uppercase text-gray-400 font-semibold mt-1">сен</div></div><div class="w-[48px] h-[48px] rounded-xl bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center text-white text-lg flex-shrink-0"><i class="fa-solid fa-leaf"></i></div><div class="flex-1 min-w-0"><div class="font-bold text-[13px] leading-tight group-hover:text-accent transition">День осеннего равноденствия</div><div class="text-xs text-gray-500 mt-0.5">Весь день · Мир</div><div class="flex flex-wrap gap-1.5 mt-2"><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Природа</span><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Наука</span></div></div></div><div class="flex gap-3 items-start group cursor-pointer" onclick="addToPlan('Всемирный день туризма', 'day')"><div class="w-10 text-center flex-shrink-0 pt-1"><div class="text-xl font-black text-accent leading-none">24</div><div class="text-[10px] uppercase text-gray-400 font-semibold mt-1">сен</div></div><div class="w-[48px] h-[48px] rounded-xl bg-gradient-to-br from-teal-400 to-sky-600 flex items-center justify-center text-white text-lg flex-shrink-0"><i class="fa-solid fa-plane"></i></div><div class="flex-1 min-w-0"><div class="font-bold text-[13px] leading-tight group-hover:text-accent transition">Всемирный день туризма</div><div class="text-xs text-gray-500 mt-0.5">Весь день · Мир</div><div class="flex flex-wrap gap-1.5 mt-2"><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Путешествия</span><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Образование</span></div></div></div><div class="flex gap-3 items-start group cursor-pointer" onclick="addToPlan('День рождения Google', 'day')"><div class="w-10 text-center flex-shrink-0 pt-1"><div class="text-xl font-black text-accent leading-none">26</div><div class="text-[10px] uppercase text-gray-400 font-semibold mt-1">сен</div></div><div class="w-[48px] h-[48px] rounded-xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center text-white text-lg flex-shrink-0"><i class="fa-brands fa-google"></i></div><div class="flex-1 min-w-0"><div class="font-bold text-[13px] leading-tight group-hover:text-accent transition">День рождения Google</div><div class="text-xs text-gray-500 mt-0.5">Весь день · Мир</div><div class="flex flex-wrap gap-1.5 mt-2"><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Технологии</span><span class="text-[11px] px-3 py-1 rounded-full bg-gray-100 text-gray-500">Бизнес</span></div></div></div></div>
                     <button class="w-full mt-6 text-sm font-bold text-accent hover:underline text-right">Смотреть все →</button>
+                </div>
+                <div class="kal-cta">
+                    <div class="kal-cta-ic"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="kal-cta-tx"><b>Соберите контент-план</b><span>Добавляйте даты и события в подборку и планируйте публикации заранее.</span></div>
+                    <button type="button" class="kal-cta-b" onclick="openContentPlan()">Открыть подборку <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </aside>
         </div>
@@ -1048,8 +1065,8 @@ main h1{font-size:28px;line-height:1.15}
 <!-- ========== BOTTOM FLOATING BAR ========== -->
 <div id="bottom-bar" class="bottom-bar fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#9C1C4F]/10 shadow-2xl">
     <div class="max-w-[1440px] mx-auto px-4 py-3 flex items-center gap-4">
-        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200" onclick="toggleBottomBar()">
-            <i class="fa-solid fa-chevron-up text-xs"></i>
+        <button class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200" onclick="toggleBottomBar()" aria-label="Свернуть панель подборки">
+            <i class="fa-solid fa-chevron-down text-xs"></i>
         </button>
         <div class="flex -space-x-2">
             <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=40&h=40&fit=crop" class="w-9 h-9 rounded-full border-2 border-white object-cover" alt="">
@@ -1066,13 +1083,15 @@ main h1{font-size:28px;line-height:1.15}
     </div>
 </div>
 
+<button type="button" id="bottom-bar-tab" class="bb-tab" onclick="toggleBottomBar()" aria-label="Показать панель подборки"><i class="fa-regular fa-bookmark"></i><span>Моя подборка</span><b id="bb-tab-n" hidden></b><i class="fa-solid fa-chevron-up" style="font-size:11px"></i></button>
+
 <!-- ========== МОЯ ПОДБОРКА (ПАНЕЛЬ) ========== -->
 <div id="content-plan" class="sidebar-panel closed fixed top-0 right-0 h-full w-full max-w-[480px] bg-white shadow-2xl z-50 flex flex-col" role="dialog" aria-label="Моя подборка">
     <div class="p-5 pb-4 border-b border-border">
         <div class="flex items-start justify-between gap-3">
             <div>
                 <h2 class="font-bold text-lg">Моя подборка<span id="plan-count-side" hidden></span></h2>
-                <p class="text-xs text-gray-500 mt-0.5 leading-snug">События, дни из календаря, места, техника и реквизит. Заявки уходят владельцам, а дни остаются идеями для контента.</p>
+                <p class="text-xs text-gray-500 mt-0.5 leading-snug">События, дни из календаря, места, техника и реквизит. Для позиций с владельцем доступны контакты, а дни остаются идеями для контента.</p>
             </div>
             <button type="button" onclick="closeContentPlan()" class="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center flex-shrink-0" aria-label="Закрыть">
                 <i class="fa-solid fa-xmark text-lg"></i>
@@ -1086,7 +1105,7 @@ main h1{font-size:28px;line-height:1.15}
     <div class="p-5 border-t border-border space-y-3">
         <div id="plan-ready" class="space-y-1.5"></div>
         <button type="button" id="pl-send" onclick="openRequest()" class="w-full py-3.5 rounded-xl bg-accent text-white font-bold text-sm hover:bg-accent-hover transition disabled:opacity-40 disabled:cursor-not-allowed">
-            Перейти к отправке заявок →
+            Просмотреть контакты
         </button>
         <div class="flex gap-2">
             <button type="button" data-act="share" class="flex-1 py-3 rounded-xl border border-border text-sm font-medium hover:bg-gray-50 transition flex items-center justify-center gap-2">
@@ -1102,36 +1121,13 @@ main h1{font-size:28px;line-height:1.15}
     </div>
 </div>
 
-<!-- ========== МОЯ ПОДБОРКА: ФОРМА ОТПРАВКИ ЗАЯВОК ========== -->
-<div id="rq-ov" class="av-ov" onclick="if(event.target===this)closeRequest()" role="dialog" aria-modal="true" aria-labelledby="rq-t"><div class="av-md" style="max-width:1080px">
+<!-- ========== МОЯ ПОДБОРКА: КОНТАКТЫ ========== -->
+<div id="rq-ov" class="av-ov" onclick="if(event.target===this)closeRequest()" role="dialog" aria-modal="true" aria-labelledby="rq-t"><div class="av-md" style="max-width:920px">
 <button type="button" class="av-x" onclick="closeRequest()" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
-<div class="av-fh"><h2 id="rq-t">Отправить заявки</h2><p style="margin:10px 0 0;font-size:14px;color:#6B6570;padding-right:56px;line-height:1.55">Заявка уходит напрямую организаторам, владельцам мест и арендодателям. Они получат ваши контакты и ответят вам сами.</p></div>
-<div id="rq-form" class="rq-grid">
-  <div class="av-fs">
-    <h4>Ваши данные</h4><p class="hint">Их увидят получатели — так они быстро с вами свяжутся.</p>
-    <div class="av-f"><label for="rq-name">Имя и фамилия *</label><input class="inp" id="rq-name" autocomplete="name" placeholder="Например, Алия Серикова"></div>
-    <div class="av-f"><span class="lb">Вы</span><div class="av-seg" id="rq-who"><label><input type="radio" name="rqwho" value="Блогер" checked><span>Блогер</span></label><label><input type="radio" name="rqwho" value="Агентство"><span>Агентство</span></label><label><input type="radio" name="rqwho" value="Бренд / заказчик"><span>Бренд</span></label></div></div>
-    <div class="g2"><div class="av-f"><label for="rq-ph">Телефон / WhatsApp *</label><input class="inp" id="rq-ph" type="tel" autocomplete="tel" placeholder="+7 701 123 45 67"></div><div class="av-f"><label for="rq-em">Email</label><input class="inp" id="rq-em" type="email" autocomplete="email" placeholder="you@mail.kz"></div></div>
-    <div class="g2"><div class="av-f"><label for="rq-ig">Instagram</label><input class="inp" id="rq-ig" placeholder="@username"></div><div class="av-f"><label for="rq-tg">Telegram</label><input class="inp" id="rq-tg" placeholder="@username"></div></div>
-    <div class="av-f"><label for="rq-about">О себе</label><textarea class="inp" id="rq-about" rows="3" maxlength="400" placeholder="Ниша, аудитория, охваты, ссылки на лучшие работы"></textarea></div>
-    <div class="g2"><div class="av-f"><label for="rq-d1">Съёмка с</label><input type="date" class="inp" id="rq-d1"></div><div class="av-f"><label for="rq-d2">по</label><input type="date" class="inp" id="rq-d2"></div></div>
-    <div class="av-f"><label for="rq-msg">Сообщение для всех</label><textarea class="inp" id="rq-msg" rows="4" maxlength="600"></textarea></div>
-    <div>
-      <label class="av-chk"><input type="checkbox" class="checkbox-custom" id="rq-rem" checked> Запомнить мои данные на этом устройстве</label>
-      <label class="av-chk" id="rq-cons-l"><input type="checkbox" class="checkbox-custom" id="rq-cons"> Разрешаю передать мои контакты выбранным получателям *</label>
-    </div>
-  </div>
-  <div class="av-fs">
-    <h4>Кому уйдёт заявка</h4><p class="hint">Получатели собраны из вашей подборки. Одному владельцу — одна заявка со всеми его позициями. Можно отправить всем сразу или каждому отдельно.</p>
-    <div class="rq-tools"><span id="rq-cnt"></span><button type="button" class="rq-lk" id="rq-all"></button></div>
-    <div id="rq-list" class="rq-list"></div>
-    <div class="av-info2" id="rq-days" hidden></div>
-  </div>
-</div>
-<div id="rq-done" class="rq-done av-h"></div>
+<div class="av-fh"><h2 id="rq-t">Контакты</h2><p style="margin:10px 0 0;font-size:14px;color:#6B6570;padding-right:56px;line-height:1.55">Контакты организаторов, владельцев мест и арендодателей по выбранным позициям. Свяжитесь напрямую, чтобы уточнить условия и свободные даты.</p></div>
+<div id="rq-list" class="ct-wrap"></div>
 <div class="av-bar2"><div id="rq-sum" style="font-size:13px;color:#6B6570"></div>
-  <div class="r"><button type="button" class="av-ghost" id="rq-cancel" onclick="closeRequest()">Назад</button>
-  <button type="button" class="av-pri" id="rq-go" onclick="sendAllReq()">Отправить всем сразу</button></div></div>
+  <div class="r"><button type="button" class="av-ghost" id="rq-cancel" onclick="closeRequest()">Закрыть</button></div></div>
 </div></div>
 
 <!-- Overlay for sidebar -->
@@ -1222,7 +1218,11 @@ main h1{font-size:28px;line-height:1.15}
     // addToPlan() и логика подборки — в блоке «МОЯ ПОДБОРКА» ниже
 
     function toggleBottomBar() {
-        // Could collapse further if needed
+        var b = document.getElementById('bottom-bar'), t = document.getElementById('bottom-bar-tab');
+        if (!b) return;
+        var min = b.classList.toggle('bb-min');
+        if (t) t.classList.toggle('show', min);
+        b.setAttribute('aria-hidden', min ? 'true' : 'false');
     }
 
     function closeMobile() {
@@ -1392,14 +1392,14 @@ function itemHTML(it){
  return '<div class="flex gap-3 p-3 rounded-xl border border-border hover:border-accent/30 transition">'+th
   +'<div class="flex-1 min-w-0"><div class="font-semibold text-sm leading-snug">'+esc(it.name)+'</div>'
   +'<div class="flex flex-wrap gap-1.5 mt-1"><span class="text-[10px] px-2 py-0.5 rounded-full '+K.b+'">'+K.one+'</span>'
-  +(sent?'<span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700"><i class="fa-solid fa-check mr-1"></i>Заявка отправлена</span>':'')+'</div>'
+  +'</div>'
   +(it.meta?'<div class="text-xs text-gray-500 mt-1">'+esc(it.meta)+'</div>':'')
   +(o&&K.send?'<div class="text-[11px] text-gray-500 mt-1.5"><i class="fa-regular fa-user mr-1"></i>'+K.role+': '+esc(o.n)+'</div>':'')
   +'</div><button type="button" data-rm="'+esc(it.key)+'" class="self-start w-7 h-7 rounded-full text-gray-300 hover:text-red-500 hover:bg-red-50 transition flex items-center justify-center flex-shrink-0" aria-label="Убрать из подборки"><i class="fa-solid fa-xmark"></i></button></div>';
 }
 function renderPanel(){
  var c={all:PLAN.length},r=recs();ORDER.forEach(function(k){c[k]=0});PLAN.forEach(function(i){c[i.k]++});
-  $('plan-count-side').textContent=c.all;
+  $('plan-count-side').textContent=c.all;var bt=$('bb-tab-n');if(bt){bt.textContent=c.all;bt.hidden=!c.all}
  var bar=$('plan-count');if(bar)bar.textContent=c.all?plur(c.all,['позиция','позиции','позиций']):'пока пусто';
  $('pl-tabs').innerHTML=[['all','Все']].concat(ORDER.map(function(k){return [k,KIND[k].tab]})).map(function(t){return '<button type="button" data-tab="'+t[0]+'" class="pl-tab'+(tab===t[0]?' on':'')+'">'+t[1]+(c[t[0]]?' <b>'+c[t[0]]+'</b>':'')+'</button>'}).join('');
  var h='';
@@ -1410,11 +1410,11 @@ function renderPanel(){
  if(PLAN.length)h+='<button type="button" data-act="more" class="w-full py-3 rounded-xl border-2 border-dashed border-gray-200 text-sm text-gray-500 font-medium hover:border-accent hover:text-accent transition flex items-center justify-center gap-2"><i class="fa-solid fa-plus"></i> Добавить ещё позиции</button>';
  $('plan-items').innerHTML=h;
  var req=PLAN.filter(function(i){return KIND[i.k].send}).length,s='';
- if(req)s+='<div class="flex items-center gap-2 text-sm text-emerald-600 font-medium"><i class="fa-solid fa-circle-check"></i><span>К отправке: '+plur(req,['позиция','позиции','позиций'])+' · '+plur(r.length,['получатель','получателя','получателей'])+'</span></div>';
- else if(PLAN.length)s+='<div class="text-xs text-gray-500">Добавьте событие, место, технику или реквизит — тогда можно отправить заявки.</div>';
- if(c.day)s+='<div class="text-xs text-gray-500 flex gap-2"><i class="fa-regular fa-lightbulb mt-0.5"></i><span>'+plur(c.day,['день','дня','дней'])+' из календаря — идеи для контента, заявки по ним не отправляются.</span></div>';
+ if(req)s+='<div class="flex items-center gap-2 text-sm text-emerald-600 font-medium"><i class="fa-solid fa-circle-check"></i><span>Контакты по '+plur(req,['позиция','позиции','позиций'])+' · '+plur(r.length,['контакт','контакта','контактов'])+'</span></div>';
+ else if(PLAN.length)s+='<div class="text-xs text-gray-500">Добавьте событие, место, технику или реквизит — тогда появятся контакты.</div>';
+ if(c.day)s+='<div class="text-xs text-gray-500 flex gap-2"><i class="fa-regular fa-lightbulb mt-0.5"></i><span>'+plur(c.day,['день','дня','дней'])+' из календаря — идеи для контента, контактов у них нет.</span></div>';
  $('plan-ready').innerHTML=s;
- var b=$('pl-send');b.disabled=!req;b.innerHTML='Перейти к отправке заявок →';
+ var b=$('pl-send');b.disabled=!req;b.innerHTML='Просмотреть контакты';
 }
 function refresh(){renderPanel();if($('rq-ov').classList.contains('open')){if(!recs().length)closeRequest();else renderReq()}}
 
@@ -1469,88 +1469,40 @@ document.addEventListener('click',function(e){
  if(a==='clear'){if(PLAN.length&&confirm('Очистить подборку?')){PLAN=[];refresh()}}
 });
 
-/* ---------- форма заявок ---------- */
-var LS='creators_plan_sender',DEF='Здравствуйте! Нашёл(ла) вас на Creators.kz. Хочу обсудить сотрудничество и съёмку: условия, свободные даты и формат. Буду рад(а) ответу.';
-function v(id){return ($(id).value||'').trim()}
-function loadSender(){var d={};try{d=JSON.parse(localStorage.getItem(LS)||'{}')}catch(e){}
- ['name','ph','em','ig','tg','about'].forEach(function(k){if(d[k])$('rq-'+k).value=d[k]});
- if(d.who){var r=document.querySelector('input[name=rqwho][value="'+d.who+'"]');if(r)r.checked=true}
- $('rq-msg').value=d.msg||DEF}
-function saveSender(){if(!$('rq-rem').checked){try{localStorage.removeItem(LS)}catch(e){}return}
- var S=sender();try{localStorage.setItem(LS,JSON.stringify({name:S.name,who:S.who,ph:S.phone,em:S.email,ig:S.ig,tg:S.tg,about:S.about,msg:S.msg}))}catch(e){}}
-function sender(){var w=document.querySelector('input[name=rqwho]:checked');
- return {name:v('rq-name'),who:w?w.value:'',phone:v('rq-ph'),email:v('rq-em'),ig:v('rq-ig'),tg:v('rq-tg'),about:v('rq-about'),shootFrom:v('rq-d1'),shootTo:v('rq-d2'),msg:v('rq-msg')}}
-function check(){
- var bad=[];function mark(id,b){var e=$(id);e.classList.toggle('err',b);if(b)bad.push(e)}
- mark('rq-name',!v('rq-name'));
- mark('rq-ph',v('rq-ph').replace(/\D/g,'').length<10);
- mark('rq-em',!!v('rq-em')&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('rq-em')));
- mark('rq-d2',!!v('rq-d1')&&!!v('rq-d2')&&v('rq-d2')<v('rq-d1'));
- var nc=!$('rq-cons').checked;$('rq-cons-l').classList.toggle('rq-bad',nc);if(nc)bad.push($('rq-cons-l'));
- if(bad.length){bad[0].scrollIntoView({block:'center',behavior:'smooth'});toast(nc&&bad.length===1?'Подтвердите передачу контактов':'Проверьте выделенные поля')}
- return !bad.length}
-function recHTML(x){
- var o=x.o,s=st(x.id),K=KIND[x.k],sent=SENT[x.id],wa=o.ph.replace(/\D/g,'');
+/* ---------- контакты по подборке ---------- */
+var ROLE_PL={event:'Организаторы',place:'Владельцы мест',tech:'Арендодатели техники',prop:'Продавцы и арендодатели реквизита'};
+function ctHTML(x){
+ var o=x.o,K=KIND[x.k],wa=o.ph.replace(/\D/g,'');
  var ini=o.n.replace(/[«»"]/g,'').split(/\s+/).filter(Boolean).slice(0,2).map(function(w){return w[0]}).join('').toUpperCase();
  var items=x.items.map(function(i){return '<span class="rq-chip"><i class="fa-solid '+KIND[i.k].ic+'"></i>'+esc(i.name)+'</span>'}).join('');
  var ct='<a class="rq-ct" href="tel:'+esc(o.ph.replace(/[^\d+]/g,''))+'"><i class="fa-solid fa-phone"></i>'+esc(o.ph)+'</a>'
   +'<a class="rq-ct" href="https://wa.me/'+wa+'" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>WhatsApp</a>'
   +'<a class="rq-ct" href="mailto:'+esc(o.em)+'"><i class="fa-regular fa-envelope"></i>'+esc(o.em)+'</a>'
   +(o.ig?'<a class="rq-ct" href="https://instagram.com/'+esc(o.ig)+'" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>@'+esc(o.ig)+'</a>':'');
- return '<div class="rq-r'+(sent?' sent':!s.on?' off':'')+'">'
-  +'<div class="rq-rh">'+(sent?'<span class="rq-ok"><i class="fa-solid fa-check"></i></span>':'<input type="checkbox" class="checkbox-custom" data-on="'+esc(x.id)+'"'+(s.on?' checked':'')+' aria-label="Отправить: '+esc(o.n)+'">')
-  +'<div class="rq-av">'+esc(ini)+'</div><div style="min-width:0;flex:1"><div class="rq-n">'+esc(o.n)+'</div><div class="rq-s">'+K.role+' · '+esc(o.p)+'</div></div>'+(sent?'<span class="rq-st">Отправлено в '+esc(sent)+'</span>':'')+'</div>'
-  +'<div class="rq-it">'+items+'</div><div class="rq-cts">'+ct+'</div>'
-  +(sent?'':'<div class="rq-ac"><button type="button" class="rq-lk" data-note="'+esc(x.id)+'"><i class="fa-regular fa-pen-to-square"></i> '+(s.open?'Убрать своё сообщение':'Своё сообщение только ему')+'</button>'
-   +'<button type="button" class="rq-lk" data-copy="'+esc(x.id)+'"><i class="fa-regular fa-copy"></i> Скопировать контакты</button>'
-   +'<button type="button" class="av-b rq-one" data-one="'+esc(x.id)+'"'+(s.busy?' disabled':'')+'>'+(s.busy?'Отправляем…':'Отправить только ему')+'</button></div>'
-   +(s.open?'<textarea class="inp rq-nt" data-nt="'+esc(x.id)+'" rows="3" maxlength="600" placeholder="Это сообщение уйдёт только этому получателю вместо общего">'+esc(s.note)+'</textarea>':''))
-  +'</div>'}
+ return '<div class="rq-r ct-card">'
+  +'<div class="rq-rh"><div class="rq-av">'+esc(ini)+'</div><div style="min-width:0;flex:1"><div class="rq-n">'+esc(o.n)+'</div><div class="rq-s">'+K.role+' · '+esc(o.p)+'</div></div></div>'
+  +'<div><div class="ct-lab">В вашей подборке</div><div class="rq-it">'+items+'</div></div>'
+  +'<div class="rq-cts">'+ct+'</div>'
+  +'<button type="button" class="ct-copy" data-copy="'+esc(x.id)+'"><i class="fa-regular fa-copy"></i> Скопировать контакты</button></div>'}
 function renderReq(){
- var R=recs(),left=R.filter(function(x){return !SENT[x.id]}),on=left.filter(function(x){return st(x.id).on}),days=PLAN.filter(function(i){return i.k==='day'}).length;
- $('rq-list').innerHTML=R.map(recHTML).join('');
- $('rq-cnt').textContent='Выбрано '+on.length+' из '+left.length+(R.length>left.length?' · уже отправлено '+(R.length-left.length):'');
- $('rq-all').textContent=left.length&&on.length===left.length?'Снять выбор':'Выбрать всех';$('rq-all').style.display=left.length?'':'none';
- var d=$('rq-days');d.hidden=!days;if(days)d.innerHTML='<b>Дни из календаря ('+days+') не отправляются.</b> Это идеи для контента — у них нет владельца, поэтому они остаются в подборке.';
- var go=$('rq-go');go.disabled=!on.length;go.style.opacity=on.length?'':'.45';go.innerHTML='<span>'+(on.length>1?'Отправить всем<span class="rq-lg"> сразу</span> · '+on.length:'Отправить заявку')+'</span> <i class="fa-solid fa-arrow-right" style="font-size:12px"></i>';
- $('rq-sum').textContent=on.length?'Получат ваши контакты: '+plur(on.length,['владелец','владельца','владельцев']):'Выберите хотя бы одного получателя'}
-function payload(x){var S=sender(),s=st(x.id);return {from:S,to:{id:x.id,name:x.o.n,role:KIND[x.k].role,person:x.o.p,phone:x.o.ph,email:x.o.em,instagram:x.o.ig},items:x.items.map(function(i){return {kind:i.k,name:i.name,meta:i.meta}}),message:(s.note||'').trim()||S.msg}}
-function dispatch(x){var s=st(x.id);s.busy=true;
- return Promise.resolve().then(function(){return window.sendPlanRequest(payload(x))}).then(function(r){s.busy=false;if(r&&r.ok===false)return false;SENT[x.id]=now()||'—';return true},function(){s.busy=false;return false})}
-window.sendPlanRequest=window.sendPlanRequest||function(p){try{console.log('[Моя подборка] заявка',p)}catch(e){}return new Promise(function(r){setTimeout(function(){r({ok:true})},700)})};
-function afterSend(okN,failN){saveSender();renderPanel();renderReq();
- if(failN)toast('Не удалось отправить: '+failN+'. Попробуйте ещё раз');
- else if(!recs().some(function(x){return !SENT[x.id]}))showDone();
- else toast('Отправлено: '+okN)}
-window.sendAllReq=function(){
- if(!check())return;var T=recs().filter(function(x){return !SENT[x.id]&&st(x.id).on});if(!T.length){toast('Выберите получателей');return}
- T.forEach(function(x){st(x.id).busy=true});renderReq();$('rq-go').disabled=true;
- Promise.all(T.map(dispatch)).then(function(rs){var ok=rs.filter(Boolean).length;afterSend(ok,rs.length-ok)})};
-function sendOne(id){
- if(!check())return;var x=recs().filter(function(r){return r.id===id})[0];if(!x||SENT[id])return;
- st(id).busy=true;renderReq();dispatch(x).then(function(ok){afterSend(ok?1:0,ok?0:1)})}
-function showDone(){
- var S=sender(),R=recs();
- $('rq-done').innerHTML='<div class="rq-big"><i class="fa-solid fa-check"></i></div><h3>Заявки отправлены</h3><p>Получатели увидели ваши контакты и ответят напрямую: на '+esc(S.phone)+(S.email?' или '+esc(S.email):'')+'.</p><div class="rq-dl">'
-  +R.map(function(x){return '<div><i class="fa-solid fa-circle-check" style="color:#059669"></i><b>'+esc(x.o.n)+'<small style="display:block;font-weight:500;color:#6B6570;font-size:12px">'+x.items.map(function(i){return esc(i.name)}).join(', ')+'</small></b><span>'+esc(SENT[x.id]||'')+'</span></div>'}).join('')+'</div>';
- $('rq-form').classList.add('av-h');$('rq-done').classList.remove('av-h');
- $('rq-go').style.display='none';$('rq-sum').textContent='';$('rq-cancel').textContent='Закрыть';$('rq-ov').scrollTop=0}
+ var R=recs(),h='',nItems=0,days=PLAN.filter(function(i){return i.k==='day'}).length;
+ ORDER.filter(function(k){return KIND[k].send}).forEach(function(k){
+  var G=R.filter(function(x){return x.k===k});if(!G.length)return;
+  G.forEach(function(x){nItems+=x.items.length});
+  h+='<section class="ct-sec"><div class="ct-h"><span class="ct-ic '+KIND[k].b+'"><i class="fa-solid '+KIND[k].ic+'"></i></span>'
+   +'<div><b>'+KIND[k].tab+'</b><small>'+ROLE_PL[k]+'</small></div><span class="ct-n">'+G.length+'</span></div>'
+   +'<div class="ct-grid">'+G.map(ctHTML).join('')+'</div></section>'});
+ if(days)h+='<div class="ct-note"><i class="fa-regular fa-lightbulb"></i><span>Дни из календаря ('+days+') — идеи для контента, у них нет контактов.</span></div>';
+ $('rq-list').innerHTML=h;
+ $('rq-sum').textContent=plur(R.length,['контакт','контакта','контактов'])+' · '+plur(nItems,['позиция','позиции','позиций'])}
 window.openRequest=function(){
- var R=recs();if(!R.length){toast('Добавьте событие, место, технику или реквизит');return}
- if(!reqBuilt){loadSender();reqBuilt=true}
- $('rq-form').classList.remove('av-h');$('rq-done').classList.add('av-h');$('rq-go').style.display='';$('rq-cancel').textContent='Назад';
- renderReq();
- if(!R.some(function(x){return !SENT[x.id]}))showDone();
- $('rq-ov').classList.add('open');$('rq-ov').scrollTop=0;document.body.style.overflow='hidden'};
+ var R=recs();if(!R.length){toast('Добавьте событие, место, технику или реквизит — тогда появятся контакты');return}
+ renderReq();$('rq-ov').classList.add('open');$('rq-ov').scrollTop=0;document.body.style.overflow='hidden'};
 window.closeRequest=function(){$('rq-ov').classList.remove('open');document.body.style.overflow=$('content-plan').classList.contains('closed')?'':'hidden'};
 $('rq-ov').addEventListener('click',function(e){
- var t=e.target.closest('[data-one],[data-note],[data-copy],#rq-all');if(!t)return;
- if(t.dataset.one){sendOne(t.dataset.one);return}
- if(t.dataset.note){var s=st(t.dataset.note);s.open=!s.open;if(!s.open)s.note='';renderReq();return}
- if(t.dataset.copy){var x=recs().filter(function(r){return r.id===t.dataset.copy})[0];if(x){var o=x.o,tx=o.n+' ('+o.p+')\n'+o.ph+'\n'+o.em+(o.ig?'\n@'+o.ig:'');try{navigator.clipboard.writeText(tx)}catch(z){}toast('Контакты скопированы')}return}
- if(t.id==='rq-all'){var L=recs().filter(function(r){return !SENT[r.id]}),all=L.every(function(r){return st(r.id).on});L.forEach(function(r){st(r.id).on=!all});renderReq()}});
-$('rq-ov').addEventListener('change',function(e){var id=e.target.dataset&&e.target.dataset.on;if(id){st(id).on=e.target.checked;renderReq()}if(e.target.id==='rq-cons'&&e.target.checked)$('rq-cons-l').classList.remove('rq-bad')});
-$('rq-ov').addEventListener('input',function(e){var id=e.target.dataset&&e.target.dataset.nt;if(id)st(id).note=e.target.value});
+ var t=e.target.closest('[data-copy]');if(!t)return;
+ var x=recs().filter(function(r){return r.id===t.dataset.copy})[0];
+ if(x){var o=x.o,tx=o.n+' ('+o.p+')\n'+o.ph+'\n'+o.em+(o.ig?'\n@'+o.ig:'');try{navigator.clipboard.writeText(tx)}catch(z){}toast('Контакты скопированы')}});
 document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;
  if($('rq-ov').classList.contains('open'))closeRequest();
  else if(!$('content-plan').classList.contains('closed')&&!document.querySelector('.av-ov.open')&&$('day-modal').classList.contains('hidden'))closeContentPlan()});
@@ -2458,6 +2410,133 @@ switchSection('afisha');window.scrollTo(0,0);
  #section-kalendar>.grid>aside.av-fcollapse.open>.card{display:block;margin-top:12px}
  #section-kalendar>.grid>aside.av-fcollapse .av-ftoggle{margin:0}
 }
+</style>
+<style>
+/* Контент-календарь: ровные колонки без пустот.
+   Календарь растягивает строки под высоту ряда, в боковых колонках последняя карточка
+   забирает остаток высоты — нижние края всех трёх колонок совпадают. */
+#section-kalendar .kal-cta{display:grid;grid-template-columns:40px 1fr;gap:10px 14px;align-content:center;
+ position:relative;overflow:hidden;border-radius:20px;padding:20px 22px;color:#fff;
+ background:linear-gradient(135deg,#9C1C4F 0%,#C23A6E 100%)}
+#section-kalendar .kal-cta::before,#section-kalendar .kal-cta::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.1);pointer-events:none}
+#section-kalendar .kal-cta::before{width:150px;height:150px;right:-50px;top:-70px}
+#section-kalendar .kal-cta::after{width:90px;height:90px;right:60px;bottom:-55px}
+#section-kalendar .kal-cta>*{position:relative;z-index:1}
+#section-kalendar .kal-cta-ic{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:17px}
+#section-kalendar .kal-cta-tx{display:flex;flex-direction:column;gap:3px;font-size:12px;line-height:1.45;color:rgba(255,255,255,.88)}
+#section-kalendar .kal-cta-tx b{font-size:15px;font-weight:800;color:#fff;line-height:1.25}
+#section-kalendar .kal-cta-b{grid-column:1/-1;justify-self:start;background:#fff;color:#9C1C4F;font-weight:700;font-size:13px;padding:9px 16px;border-radius:12px;display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;transition:transform .15s,box-shadow .15s}
+#section-kalendar .kal-cta-b:hover{transform:translateY(-1px);box-shadow:0 8px 18px -8px rgba(0,0,0,.35)}
+/* Контраст сетки календаря: тонированная подложка, заметные рамки, выходные насыщеннее */
+#section-kalendar .card .grid-cols-7:not(.mb-2){background:#F6EBF1;padding:8px;border-radius:18px;border:1px solid #EBD3DE}
+#section-kalendar .card .grid-cols-7:not(.mb-2) .calendar-day.bg-white{background:#fff;border-color:#E3CAD7;box-shadow:0 1px 2px rgba(156,28,79,.06)}
+#section-kalendar .card .grid-cols-7:not(.mb-2) .calendar-day.bg-pink-50{background:#FADCE8;border-color:#EFB5CC}
+#section-kalendar .card .grid-cols-7:not(.mb-2) .calendar-day[data-day]{border-color:#D8B0C4}
+#section-kalendar .card .grid-cols-7:not(.mb-2) .calendar-day:not(.flex){background:rgba(255,255,255,.45);border-color:#EBD3DE;box-shadow:none}
+#section-kalendar .card .grid-cols-7:not(.mb-2) .calendar-day:not(.flex).bg-pink-50\/60{background:rgba(250,220,232,.45)}
+@media(max-width:720px){#section-kalendar .card .grid-cols-7:not(.mb-2){padding:5px;border-radius:14px}}
+/* Сводка месяца */
+#section-kalendar .kal-info{display:flex;flex-direction:column;gap:16px;margin-top:20px;padding:18px;border-radius:18px;
+ background:linear-gradient(160deg,#FDF1F6 0%,#F8E2ED 100%);border:1px solid rgba(156,28,79,.12)}
+#section-kalendar .kal-sum-h{display:flex;align-items:center;gap:12px}
+#section-kalendar .kal-sum-h b{display:block;font-size:14px;font-weight:800;color:#1A1A1A;line-height:1.25}
+#section-kalendar .kal-sum-h small{display:block;font-size:11px;color:#8A7580;margin-top:2px}
+#section-kalendar .kal-info-ic{width:34px;height:34px;border-radius:11px;background:#9C1C4F;color:#fff;font-size:14px;display:inline-flex;align-items:center;justify-content:center;flex:none;box-shadow:0 8px 14px -8px rgba(156,28,79,.7)}
+#section-kalendar .kal-sum-g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+#section-kalendar .kal-sum-g>div{background:#fff;border:1px solid rgba(156,28,79,.1);border-radius:14px;padding:12px 6px 10px;text-align:center;min-width:0}
+#section-kalendar .kal-sum-g b{display:block;font-size:24px;font-weight:900;line-height:1;color:#9C1C4F;letter-spacing:-.02em}
+#section-kalendar .kal-sum-g span{display:block;margin-top:6px;font-size:10px;line-height:1.25;color:#6B6570}
+#section-kalendar .kal-sum-top{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border:1px solid rgba(156,28,79,.1);border-radius:14px;padding:10px 14px 10px 10px;cursor:pointer;color:#9C1C4F;transition:border-color .15s,box-shadow .15s,transform .15s}
+#section-kalendar .kal-sum-top:hover{border-color:#9C1C4F;box-shadow:0 10px 20px -14px #9C1C4F;transform:translateY(-1px)}
+#section-kalendar .kal-sum-top:disabled{opacity:.55;cursor:default;transform:none;box-shadow:none;border-color:rgba(156,28,79,.1)}
+#section-kalendar .kal-sum-fl{width:36px;height:36px;border-radius:11px;flex:none;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:15px;background:linear-gradient(135deg,#FB923C,#E11D48)}
+#section-kalendar .kal-sum-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+#section-kalendar .kal-sum-t small{font-size:10.5px;color:#8A7580}
+#section-kalendar .kal-sum-t b{font-size:13px;font-weight:800;color:#1A1A1A;line-height:1.25}
+/* компактнее */
+#section-kalendar .kal-info{gap:12px;padding:16px}
+#section-kalendar .kal-sum-g>div{padding:10px 4px 9px}
+#section-kalendar .kal-sum-g b{font-size:22px}
+#section-kalendar .kal-sum-top{padding:8px 12px 8px 8px}
+#section-kalendar .kal-sum-t b{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#section-kalendar>.grid>aside>.card>.space-y-3>:not([hidden])~:not([hidden]){margin-top:8px}
+@media(max-width:1279px){#section-kalendar .kal-cta{margin-top:16px;border-radius:16px}}
+@media(min-width:1280px){
+ /* боковые колонки: две карточки в столбик */
+ #section-kalendar>.grid>aside{align-self:stretch;flex-direction:column;gap:24px}
+ #section-kalendar>.grid>aside>.card{flex:none;min-width:0}
+ #section-kalendar>.grid>aside>.kal-cta{flex:1 1 auto}
+ /* левая колонка: розовая подсказка забирает остаток */
+ #section-kalendar>.grid>aside:first-child>.card{flex:1 1 auto}
+ #section-kalendar>.grid>aside:first-child>.card>.kal-info{flex:1 1 auto;margin-top:20px;justify-content:space-between}
+ /* списки: спокойный равномерный ритм */
+ #section-kalendar>.grid>aside>.card>.space-y-3,#section-kalendar>.grid>aside>.card>.space-y-5{flex:none;justify-content:flex-start;gap:0}
+ #section-kalendar>.grid>aside>.card>.space-y-3{margin-bottom:20px}
+ #section-kalendar>.grid>aside>.card>.space-y-5>*{flex:none}
+ #section-kalendar>.grid>aside>.card>.space-y-5>:not([hidden])~:not([hidden]){margin-top:14px}
+ #section-kalendar>.grid>aside>.card>button.w-full.mt-6{margin-top:14px;margin-bottom:0}
+ /* карточка календаря: строки по числу недель, растягиваются на всю высоту */
+ #section-kalendar>.grid>div>.card{display:flex;flex-direction:column}
+ #section-kalendar>.grid>div>.card>.grid-cols-7:not(.mb-2){flex:1 1 auto;grid-template-rows:none;grid-auto-rows:minmax(var(--kh),1fr)}
+ #section-kalendar .card .grid-cols-7:not(.mb-2) .calendar-day{height:auto!important;max-height:none!important;min-height:var(--kh)}
+ #section-kalendar>.grid>div>.card>.flex-wrap{flex:none;margin-top:20px;padding-top:16px;border-top:1px solid rgba(156,28,79,.08)}
+}
+</style>
+<script>
+/* Сводка месяца: считает данные из сетки календаря и обновляется при смене месяца */
+(function(){
+ var G=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],
+     N=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+ function $(i){return document.getElementById(i)}
+ var grid=document.querySelectorAll('#section-kalendar .card .grid-cols-7')[1];
+ if(!grid||!$('kal-sum'))return;
+ function pl(n,a){var m=n%10,h=n%100;return a[h>10&&h<20?2:m===1?0:m>1&&m<5?1:2]}
+ function upd(){
+  var cells=[].slice.call(grid.querySelectorAll('.calendar-day.flex')),days=0,ev=0,we=0,top=null;
+  cells.forEach(function(c){
+   if(c.classList.contains('bg-pink-50')||c.classList.contains('kz-h'))we++;
+   if(c.dataset.day){var cnt=parseInt((c.children[2]||{}).textContent,10)||1;days++;ev+=cnt;if(!top||cnt>top.n)top={d:+c.dataset.day,n:cnt}}
+  });
+  var t=($('kal-title')||{}).textContent||'',mi=N.indexOf(t.split(' ')[0]);
+  $('ks-title').textContent=(t||'Месяц')+' в цифрах';
+  $('ks-days').textContent=days;$('ks-ev').textContent=ev;$('ks-we').textContent=we;
+  var b=$('ks-top');
+  if(top){$('ks-topt').textContent=top.d+' '+(G[mi]||'')+' · '+top.n+' '+pl(top.n,['событие','события','событий']);b.disabled=false;b.onclick=function(){if(typeof openDay==='function')openDay(top.d)}}
+  else{$('ks-topt').textContent='В этом месяце событий нет';b.disabled=true;b.onclick=null}
+ }
+ upd();
+ new MutationObserver(function(){upd()}).observe(grid,{childList:true});
+ var h=$('kal-title');if(h)new MutationObserver(function(){upd()}).observe(h,{childList:true,characterData:true,subtree:true});
+})();
+</script>
+<style>
+/* Афиша, мобильная версия: только один блок продвижения — «Организуете мероприятие?» */
+@media(max-width:720px){
+ #av-ban .av-ban-track,#av-ban .av-ban-dots{display:none!important}
+}
+/* Нижняя панель подборки: сворачивание */
+.bottom-bar.bb-min{transform:translateY(120%);opacity:0;pointer-events:none}
+.bb-tab{position:fixed;right:16px;bottom:16px;z-index:40;display:none;align-items:center;gap:8px;height:44px;padding:0 16px;border:0;border-radius:999px;background:#9C1C4F;color:#fff;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 12px 28px -10px rgba(156,28,79,.7)}
+.bb-tab.show{display:inline-flex}
+.bb-tab:hover{background:#7A1640}
+.bb-tab b{min-width:22px;height:22px;padding:0 6px;border-radius:99px;background:#fff;color:#9C1C4F;font-size:12px;display:inline-flex;align-items:center;justify-content:center}
+.bb-tab b[hidden]{display:none}
+/* Окно «Контакты» */
+.ct-wrap{display:grid;gap:30px;padding:24px 40px 28px}
+.ct-h{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.ct-ic{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none}
+.ct-h b{display:block;font-size:18px;font-weight:800;color:#1A1A1A;line-height:1.2}
+.ct-h small{display:block;margin-top:2px;font-size:12.5px;color:#6B6570}
+.ct-n{margin-left:auto;min-width:28px;height:28px;padding:0 10px;border-radius:99px;background:#F3E4EA;color:#9C1C4F;font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+.ct-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
+.ct-card{gap:14px;padding:18px;align-content:start}
+.ct-card:hover{border-color:rgba(156,28,79,.35);box-shadow:0 14px 28px -20px rgba(156,28,79,.5)}
+.ct-lab{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#9A93A0;margin-bottom:6px}
+.ct-copy{justify-self:start;display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:0;font-size:12.5px;font-weight:600;color:#6B6570;cursor:pointer;font-family:inherit}
+.ct-copy:hover{color:#9C1C4F}
+.ct-note{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:#F8F7F5;color:#6B6570;font-size:13px}
+.ct-note i{color:#9C1C4F}
+@media(max-width:760px){.ct-wrap{padding:18px 16px 22px;gap:24px}}
 </style>
 </body>
 </html>

@@ -1117,9 +1117,9 @@ main h1{font-size:28px;line-height:1.15}
 </div>
 
 <!-- ========== МОЯ ПОДБОРКА: КОНТАКТЫ ========== -->
-<div id="rq-ov" class="av-ov" onclick="if(event.target===this)closeRequest()" role="dialog" aria-modal="true" aria-labelledby="rq-t"><div class="av-md" style="max-width:920px">
+<div id="rq-ov" class="av-ov" onclick="if(event.target===this)closeRequest()" role="dialog" aria-modal="true" aria-labelledby="rq-t"><div class="av-md" style="max-width:640px">
 <button type="button" class="av-x" onclick="closeRequest()" aria-label="Закрыть"><i class="fa-solid fa-xmark"></i></button>
-<div class="av-fh"><h2 id="rq-t">Контакты</h2><p style="margin:10px 0 0;font-size:14px;color:#6B6570;padding-right:56px;line-height:1.55">Контакты организаторов, владельцев мест и арендодателей по выбранным позициям. Свяжитесь напрямую, чтобы уточнить условия и свободные даты.</p></div>
+<div class="av-fh"><h2 id="rq-t">Контакты</h2><p class="ct-sub">Организаторы, владельцы мест и арендодатели по выбранным позициям. Свяжитесь напрямую, чтобы уточнить условия и даты.</p></div>
 <div id="rq-list" class="ct-wrap"></div>
 <div class="av-bar2"><div id="rq-sum" style="font-size:13px;color:#6B6570"></div>
   <div class="r"><button type="button" class="av-ghost" id="rq-cancel" onclick="closeRequest()">Закрыть</button></div></div>
@@ -1409,9 +1409,9 @@ function renderPanel(){
  else if(PLAN.length)s+='<div class="text-xs text-gray-500">Добавьте событие, место, технику или реквизит — тогда появятся контакты.</div>';
  if(c.day)s+='<div class="text-xs text-gray-500 flex gap-2"><i class="fa-regular fa-lightbulb mt-0.5"></i><span>'+plur(c.day,['день','дня','дней'])+' из календаря — идеи для контента, контактов у них нет.</span></div>';
  $('plan-ready').innerHTML=s;
- var b=$('pl-send');b.disabled=!req;b.innerHTML='Просмотреть контакты';
+ var b=$('pl-send');b.disabled=!PLAN.length;b.innerHTML='Просмотреть контакты';
 }
-function refresh(){renderPanel();if($('rq-ov').classList.contains('open')){if(!recs().length)closeRequest();else renderReq()}}
+function refresh(){renderPanel();if($('rq-ov').classList.contains('open')){if(!recs().length&&!PLAN.some(function(i){return i.k==='day'}))closeRequest();else renderReq()}}
 
 /* ---------- добавление ---------- */
 function push(it){
@@ -1475,10 +1475,10 @@ function ctHTML(x){
   +'<a class="rq-ct" href="mailto:'+esc(o.em)+'"><i class="fa-regular fa-envelope"></i>'+esc(o.em)+'</a>'
   +(o.ig?'<a class="rq-ct" href="https://instagram.com/'+esc(o.ig)+'" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i>@'+esc(o.ig)+'</a>':'');
  return '<div class="rq-r ct-card">'
-  +'<div class="rq-rh"><div class="rq-av">'+esc(ini)+'</div><div style="min-width:0;flex:1"><div class="rq-n">'+esc(o.n)+'</div><div class="rq-s">'+K.role+' · '+esc(o.p)+'</div></div></div>'
-  +'<div><div class="ct-lab">В вашей подборке</div><div class="rq-it">'+items+'</div></div>'
-  +'<div class="rq-cts">'+ct+'</div>'
-  +'<button type="button" class="ct-copy" data-copy="'+esc(x.id)+'"><i class="fa-regular fa-copy"></i> Скопировать контакты</button></div>'}
+  +'<div class="rq-rh"><div class="rq-av">'+esc(ini)+'</div><div style="min-width:0;flex:1"><div class="rq-n">'+esc(o.n)+'</div><div class="rq-s">'+K.role+' · '+esc(o.p)+'</div></div>'
+  +'<button type="button" class="ct-copy" data-copy="'+esc(x.id)+'" title="Скопировать контакты" aria-label="Скопировать контакты"><i class="fa-regular fa-copy"></i></button></div>'
+  +'<div class="rq-it">'+items+'</div>'
+  +'<div class="rq-cts">'+ct+'</div></div>'}
 function renderReq(){
  var R=recs(),h='',nItems=0,days=PLAN.filter(function(i){return i.k==='day'}).length;
  ORDER.filter(function(k){return KIND[k].send}).forEach(function(k){
@@ -1487,11 +1487,17 @@ function renderReq(){
   h+='<section class="ct-sec"><div class="ct-h"><span class="ct-ic '+KIND[k].b+'"><i class="fa-solid '+KIND[k].ic+'"></i></span>'
    +'<div><b>'+KIND[k].tab+'</b><small>'+ROLE_PL[k]+'</small></div><span class="ct-n">'+G.length+'</span></div>'
    +'<div class="ct-grid">'+G.map(ctHTML).join('')+'</div></section>'});
- if(days)h+='<div class="ct-note"><i class="fa-regular fa-lightbulb"></i><span>Дни из календаря ('+days+') — идеи для контента, у них нет контактов.</span></div>';
+ var D=PLAN.filter(function(i){return i.k==='day'});
+ if(D.length)h+='<section class="ct-sec"><div class="ct-h"><span class="ct-ic '+KIND.day.b+'"><i class="fa-solid '+KIND.day.ic+'"></i></span>'
+  +'<div><b>'+KIND.day.tab+'</b><small>Идеи для контента, контактов нет</small></div><span class="ct-n">'+D.length+'</span></div>'
+  +'<div class="ct-grid">'+D.map(function(d){var g=d.g||['from-slate-400 to-slate-700','fa-star'];
+    return '<div class="rq-r ct-card ct-day"><div class="ct-dic bg-gradient-to-br '+esc(g[0])+'"><i class="fa-solid '+esc(g[1])+'"></i></div>'
+     +'<div style="min-width:0;flex:1"><div class="rq-n">'+esc(d.name)+'</div>'+(d.meta?'<div class="rq-s">'+esc(d.meta)+'</div>':'')+'</div>'
+     +'<span class="ct-nc">Без контактов</span></div>'}).join('')+'</div></section>';
  $('rq-list').innerHTML=h;
- $('rq-sum').textContent=plur(R.length,['контакт','контакта','контактов'])+' · '+plur(nItems,['позиция','позиции','позиций'])}
+ $('rq-sum').textContent=(R.length?plur(R.length,['контакт','контакта','контактов'])+' · '+plur(nItems,['позиция','позиции','позиций']):'')+(days?(R.length?' · ':'')+plur(days,['дата календаря','даты календаря','дат календаря']):'')}
 window.openRequest=function(){
- var R=recs();if(!R.length){toast('Добавьте событие, место, технику или реквизит — тогда появятся контакты');return}
+ var R=recs();if(!R.length&&!PLAN.some(function(i){return i.k==='day'})){toast('Добавьте событие, место, технику или реквизит — тогда появятся контакты');return}
  renderReq();$('rq-ov').classList.add('open');$('rq-ov').scrollTop=0;document.body.style.overflow='hidden'};
 window.closeRequest=function(){$('rq-ov').classList.remove('open');document.body.style.overflow=$('content-plan').classList.contains('closed')?'':'hidden'};
 $('rq-ov').addEventListener('click',function(e){
@@ -2525,21 +2531,38 @@ switchSection('afisha');window.scrollTo(0,0);
 .bb-tab b{min-width:22px;height:22px;padding:0 6px;border-radius:99px;background:#fff;color:#9C1C4F;font-size:12px;display:inline-flex;align-items:center;justify-content:center}
 .bb-tab b[hidden]{display:none}
 /* Окно «Контакты» */
-.ct-wrap{display:grid;gap:30px;padding:24px 40px 28px}
-.ct-h{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.ct-ic{width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none}
-.ct-h b{display:block;font-size:18px;font-weight:800;color:#1A1A1A;line-height:1.2}
-.ct-h small{display:block;margin-top:2px;font-size:12.5px;color:#6B6570}
-.ct-n{margin-left:auto;min-width:28px;height:28px;padding:0 10px;border-radius:99px;background:#F3E4EA;color:#9C1C4F;font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
-.ct-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
-.ct-card{gap:14px;padding:18px;align-content:start}
-.ct-card:hover{border-color:rgba(156,28,79,.35);box-shadow:0 14px 28px -20px rgba(156,28,79,.5)}
-.ct-lab{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#9A93A0;margin-bottom:6px}
-.ct-copy{justify-self:start;display:inline-flex;align-items:center;gap:6px;background:none;border:0;padding:0;font-size:12.5px;font-weight:600;color:#6B6570;cursor:pointer;font-family:inherit}
-.ct-copy:hover{color:#9C1C4F}
-.ct-note{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:14px;background:#F8F7F5;color:#6B6570;font-size:13px}
+#rq-ov{display:none;padding:24px 16px}
+#rq-ov.open{display:flex;align-items:flex-start;justify-content:center}
+#rq-ov .av-md{width:100%;margin:auto;border-radius:22px}
+#rq-ov .av-x{top:14px;right:14px;width:36px;height:36px;font-size:14px}
+#rq-ov .av-fh{padding:26px 28px 0}
+#rq-ov .av-fh h2{font-size:24px;padding-right:44px}
+.ct-sub{margin:6px 0 0;font-size:13px;color:#6B6570;padding-right:44px;line-height:1.5}
+.ct-wrap{display:grid;gap:18px;padding:16px 28px 20px}
+.ct-h{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.ct-ic{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+.ct-h b{display:block;font-size:14px;font-weight:800;color:#1A1A1A;line-height:1.2}
+.ct-h small{display:block;margin-top:1px;font-size:11.5px;color:#6B6570}
+.ct-n{margin-left:auto;min-width:24px;height:24px;padding:0 8px;border-radius:99px;background:#F3E4EA;color:#9C1C4F;font-size:12px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+.ct-grid{display:grid;grid-template-columns:1fr;gap:8px}
+.ct-card{gap:10px;padding:12px 14px;border-radius:14px;align-content:start}
+.ct-card:hover{border-color:rgba(156,28,79,.35);box-shadow:0 10px 22px -18px rgba(156,28,79,.5)}
+.ct-card .rq-av{width:34px;height:34px;border-radius:10px;font-size:12px}
+.ct-card .rq-n{font-size:14px}
+.ct-card .rq-s{font-size:11.5px}
+.ct-card .rq-chip{font-size:11.5px;padding:3px 9px}
+.ct-card .rq-ct{min-height:30px;font-size:12px;padding:0 11px}
+.ct-copy{flex:none;width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #EDE6E9;border-radius:10px;background:#fff;font-size:13px;color:#6B6570;cursor:pointer;font-family:inherit}
+.ct-copy:hover{color:#9C1C4F;border-color:#9C1C4F}
+.ct-day{display:flex;align-items:center;gap:12px}
+.ct-dic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;flex:none}
+.ct-nc{flex:none;font-size:11px;font-weight:600;color:#9A93A0;white-space:nowrap}
+@media(max-width:480px){.ct-nc{display:none}}
+.ct-note{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;background:#fff;border:1px solid #EDE6E9;color:#6B6570;font-size:12.5px}
 .ct-note i{color:#9C1C4F}
-@media(max-width:760px){.ct-wrap{padding:18px 16px 22px;gap:24px}}
+#rq-ov .av-bar2{padding:12px 28px;border-radius:0 0 22px 22px}
+#rq-ov .av-ghost{height:38px;padding:0 20px;font-size:13px}
+@media(max-width:760px){#rq-ov{padding:0}#rq-ov .av-md{border-radius:0;min-height:100%}#rq-ov .av-bar2{border-radius:0}#rq-ov .av-fh{padding:22px 16px 0}.ct-wrap{padding:14px 16px 18px;gap:16px}#rq-ov .av-bar2{padding:10px 16px}}
 </style>
 
 <script>
